@@ -40,7 +40,7 @@ For a circular sequence $S$ and $k\ge1$, $G_k(S)$ is the de Bruijn multigraph wh
 vertices are the distinct $k$-mers and whose arcs are the occurrences of $(k{+}1)$-mers;
 $S$ is an Eulerian circuit, and by the BEST theorem \cite{AEdB,SmithTutte} the number of
 reconstructions of $S$ from its $k$-mer spectrum is $|\K(G_k)|\prod_v(d^+(v)-1)!$ with
-$\K(G_k)$ the sandpile group. The first companion paper \cite{Bio1} showed that $\K(G_k)$
+$\K(G_k)$ the sandpile group. The first companion paper [Ch.~\ref{chap:Bio1}] showed that $\K(G_k)$
 is not determined by the branch statistics and computed it in three model situations: a
 single repeat of length $L$ and multiplicity $r$ gives $(\Z/r)^{L-k}$; two repeats of
 multiplicity two give $(\Z/2)^{2s-2}$ if they are disjoint or nested and $(\Z/2)^{2s-1}$ if
@@ -48,7 +48,7 @@ interleaved, $s=L-k+1$; three repeats give a correction that is $\Z/2$, $\Z/3$ o
 $(\Z/2)^{2}$ according to their crossing pattern; since the three non-trivial patterns
 have intersection matrices of the same rank over $\F_2$, the correction is not a function
 of that rank (Remark~\ref{Bio3:rem:chord} sharpens this). The second
-paper \cite{Bio2} used the group as a coordinate system on reconstructions and found that
+paper [Ch.~\ref{chap:Bio2}] used the group as a coordinate system on reconstructions and found that
 for $\varphi$X174 at $k=12$ the single surviving $\Z/2$ is a pair of interleaved
 $12$-mers.
 
@@ -59,7 +59,7 @@ one cyclic factor per shared $k$-mer of each repeat, and an \emph{arrangement} p
 sandpile group of a repeat-adjacency skeleton.
 
 \paragraph{What is known.} Contracting a vertex of in- and out-degree one leaves the
-sandpile group unchanged \cite[Lem.~4]{Bio1}; this is the $r=1$ case of
+sandpile group unchanged [Ch.~\ref{chap:Bio1}, Lem.~4]; this is the $r=1$ case of
 Lemma~\ref{Bio3:lem:bundle} and is the reason assemblers' compacted (unitig) graphs
 \cite{BCALM,KM} carry the same group. For \emph{undirected} graphs with multiple edges
 the sandpile groups of thick trees \cite{ChenSchedler} and thick cycles \cite{Alar} are
@@ -136,11 +136,11 @@ Hence $\K(G)\cong\bigoplus_{t<s}\Z/r\oplus\K(G/C)$.
 
 If $G$ consists of the chain alone --- the only vertices are $v_1,\dots,v_s$ and the $r$
 arcs of $v_s$ return to $v_1$ --- the same computation rooted at $v_1$ gives
-$\K(G)\cong(\Z/r)^{s-1}$; this is the single-repeat theorem of \cite[Thm.~5]{Bio1}.
+$\K(G)\cong(\Z/r)^{s-1}$; this is the single-repeat theorem of [Ch.~\ref{chap:Bio1}, Thm.~5].
 
 \begin{remark}\label{Bio3:rem:r1}
 For $r=1$ the summand is trivial and the lemma says that smoothing a vertex of in- and
-out-degree one preserves the group, which is \cite[Lem.~4]{Bio1}. The content of the
+out-degree one preserves the group, which is [Ch.~\ref{chap:Bio1}, Lem.~4]. The content of the
 lemma for $r>1$ is that a vertex which \emph{cannot} be smoothed --- it has $r$ parallel
 exits --- can nevertheless be removed at the exact cost of a $\Z/r$.
 \end{remark}
@@ -204,7 +204,7 @@ Induction on the number of contractions, using Lemma~\ref{Bio3:lem:bundle} at ea
 \end{proof}
 
 Now let $S$ be a sequence with repeats $W_1,\dots,W_m$ of lengths $L_i$ and
-multiplicities $r_i$, and suppose the \emph{clean} hypothesis of \cite{Bio1}: the $k$-mers
+multiplicities $r_i$, and suppose the \emph{clean} hypothesis of [Ch.~\ref{chap:Bio1}]: the $k$-mers
 inside $W_i$ occur exactly $r_i$ times each and every other $k$-mer once. Write $w$ for
 the circular word of repeat occurrences and $D_w$ for the \emph{connector digraph}: one
 vertex per repeat, one arc $i\to j$ for each occurrence of $W_i$ immediately followed
@@ -225,10 +225,10 @@ spines gives $D_w$. Apply Theorem~\ref{Bio3:thm:split}.
 \end{proof}
 
 \begin{corollary}[The published cases]\label{Bio3:cor:cases}
-For $m=1$, $D_w$ is a single vertex and $\K=(\Z/r)^{s-1}$ \cite[Thm.~5]{Bio1}. For $m=2$,
+For $m=1$, $D_w$ is a single vertex and $\K=(\Z/r)^{s-1}$ [Ch.~\ref{chap:Bio1}, Thm.~5]. For $m=2$,
 $r_1=r_2=2$: $D_w$ is trivial for $A\,A\,B\,B$ and $A\,B\,B\,A$ and is the doubled
-$2$-cycle, with $\K(D_w)=\Z/2$, for $A\,B\,A\,B$ \cite[Thm.~6]{Bio1}. For $m=3$ the four
-crossing patterns give $\K(D_w)=0,\ \Z/2,\ \Z/3,\ (\Z/2)^{2}$ \cite[Prop.~8]{Bio1}; the
+$2$-cycle, with $\K(D_w)=\Z/2$, for $A\,B\,A\,B$ [Ch.~\ref{chap:Bio1}, Thm.~6]. For $m=3$ the four
+crossing patterns give $\K(D_w)=0,\ \Z/2,\ \Z/3,\ (\Z/2)^{2}$ [Ch.~\ref{chap:Bio1}, Prop.~8]; the
 $\Z/3$ is the sandpile group of the complete symmetric digraph on three vertices, which is
 $D_w$ for $A\,B\,A\,C\,B\,C$.
 \end{corollary}
@@ -300,7 +300,7 @@ the repeat-adjacency skeleton. By BEST applied to $D_w$, $|\K(D_w)|\cdot\prod_i(
 of Eulerian circuits of $D_w$, i.e.\ of circular words with the same adjacency counts as
 $w$: the number of ways to thread the repeats, ignoring their lengths. That this is
 $|\K(D_w)|$ up to the local factor is the repeat-level form of the decomposition of
-\cite{Bio1}.
+[Ch.~\ref{chap:Bio1}].
 \end{remark}
 
 \section{$\varphi$X174}\label{Bio3:sec:phix}
@@ -311,7 +311,7 @@ skeleton, and the two summands are listed, and where the compacted graph is smal
 the group is also computed directly for comparison. Two things happen. The direct and
 decomposed groups agree wherever both exist ($k=10,11,12$). And at $k=9$, where the
 compacted graph has $146$ branch vertices and was beyond the dense exact Smith form used
-in \cite{Bio1}, the skeleton has $110$ and is not: the spectrum extends by one level, with
+in [Ch.~\ref{chap:Bio1}], the skeleton has $110$ and is not: the spectrum extends by one level, with
 the length-driven part $(\Z/2)^{36}$ split off exactly and the arrangement part read off
 the skeleton.
 
@@ -378,7 +378,7 @@ enters only in identifying the skeleton with $D_w$.
 Eulerian formulation and the repeat graph \cite{PTW,PTT,Flye}; the thick-graph and
 line-digraph results that are the lemma's nearest relatives
 \cite{ChenSchedler,Alar,Levine,PSX}; the special cases and the $\varphi$X174 spectrum
-\cite{Bio1,Bio2}.
+[Chs.~\ref{chap:Bio1}, \ref{chap:Bio2}].
 
 \emph{Open.} (a) A structure theorem for $\K(D_w)$ itself --- for which circular words is
 it trivial, and what bounds its exponent? For $r_i=2$ this is the critical group of a

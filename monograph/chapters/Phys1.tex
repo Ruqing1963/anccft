@@ -64,7 +64,7 @@ its finite quotients are ordinary finite graphs, which always have $b_1\ge2$ and
 always admit $\Z^{d}$ covers. The natural rank-two generalization is a two-dimensional
 building of type $\Atwo$ --- a simplicial complex of sites, links and plaquettes in which
 every vertex link is the incidence graph of a projective plane --- whose finite quotients
-are the Ramanujan complexes~\cite{LSV:Phys1}. These are the higher-rank hyperbolic lattices. We
+are the Ramanujan complexes~\cite{LSV}. These are the higher-rank hyperbolic lattices. We
 show in Sec.~\ref{Phys1:sec:nogo} that for them band theory does not merely become harder, it
 ceases to exist: $b_1=0$ by Garland's vanishing theorem~\cite{Ga} as extended by Ballmann
 and \'Swi\k{a}tkowski~\cite{BSw}, so there is no $\Z^{d}$ cover, no crystal momentum, and no
@@ -205,7 +205,7 @@ theorem $\prod_{j\ge1}\lambda_j(0)=n\kappa_0$, which with \eqref{Phys1:eq:band} 
 \end{proof}
 
 For $d=1$ Eq.~\eqref{Phys1:eq:band} is the effective-mass identity of
-Ref.~\onlinecite{ANCFT14}, where $-n\lambda_0''(0)/2$ was identified with an
+Ref.~[Ch.~\ref{chap:XIV}], where $-n\lambda_0''(0)/2$ was identified with an
 $\mathcal L$-invariant and with a diffusion constant. The content of
 \eqref{Phys1:eq:albanese} for $d=1$ --- that the Albanese metric evaluates the harmonic energy ---
 is Kotani--Sunada~\cite{KS1,KS3}; what is added here is the $d>1$ tensor, the identification
@@ -379,7 +379,7 @@ two-dimensional simplicial complex on which $\mathrm{PGL}_3$ of a local field wi
 field of size $q$ acts; it is the rank-two counterpart of the $(q{+}1)$-regular tree, and
 every vertex link in it is the incidence graph of the projective plane over $\mathbb F_q$
 (for $q=2$, the Heawood graph). Its finite quotients are lattices of sites, links and
-plaquettes; the Ramanujan complexes of Lubotzky, Samuels and Vishne~\cite{LSV:Phys1} are among
+plaquettes; the Ramanujan complexes of Lubotzky, Samuels and Vishne~\cite{LSV} are among
 them, and they are built from groups acting simply transitively on the vertices in the sense
 of Cartwright, Mantero, Steger and Zappa~\cite{CMSZ}. These are the natural candidates for a
 higher-rank hyperbolic lattice.
@@ -477,7 +477,7 @@ key & check & $\#$ & mode\\
 (Q) & $\kappa_0H$ integral, Eq.~\eqref{Phys1:eq:quant} & $15/15$ & exact\\
 (E) & $\sigma^{2}=H/m$ by Green--Kubo, Eq.~\eqref{Phys1:eq:einstein} & $15/15$ & exact\\
 (G) & gap $\lambda_1(0)>0$ and $\lambda_0(0)=0$ & $15/15$ & numeric\\
-(X) & $H$ reproduces Refs.~\onlinecite{ANCFT9,ANCFT14} & $4/4$ & exact\\
+(X) & $H$ reproduces Refs.~[Chs.~\ref{chap:IX}, \ref{chap:XIV}] & $4/4$ & exact\\
 (C) & loop flux gives $H=\ell$, Corollary~\ref{Phys1:cor:loop} & $1/1$ & exact\\
 (B) & $b_1=0$ and $H_1(Y;\Z)$, Table~\ref{Phys1:tab:ranktwo} & $4/4$ & exact\\
 \colrule
@@ -487,7 +487,7 @@ key & check & $\#$ & mode\\
 \caption{The verification battery (\texttt{bloch\_mass.py}). Unit cells: $K_4$,
 $K_{3,3}$, $Q_3$, $K_5$, Petersen, Heawood, with single-link fluxes ($d=1$), two-link
 fluxes ($d=2$), and on $K_4$ and $K_5$ the multi-chord and triangle patterns of
-Refs.~\onlinecite{ANCFT9,ANCFT14}.}
+Refs.~[Chs.~\ref{chap:IX}, \ref{chap:XIV}].}
 \label{Phys1:tab:battery}
 \end{table}
 
@@ -502,7 +502,7 @@ mathematically complete check; the numeric row is a redundant confirmation that 
 being differentiated really is the bottom band.
 
 The rank-two rows use the complex builder and the $p$-adic Smith-normal-form routine of
-Ref.~\onlinecite{ANCFT10}: the complexes of Table~\ref{Phys1:tab:ranktwo} are abelian covers of
+Ref.~[Ch.~\ref{chap:X}]: the complexes of Table~\ref{Phys1:tab:ranktwo} are abelian covers of
 the three-site type quotient of a triangle presentation over $\mathrm{PG}(2,2)$ compatible
 with a Singer cycle, the presentation axioms are re-verified at start-up, and every vertex
 link is confirmed to be a Heawood graph. The Betti numbers are exact ranks; the torsion
@@ -570,9 +570,9 @@ crystal-lattice central limit theorem; Secs.~\ref{Phys1:sec:mass}--\ref{Phys1:se
 physical reading of that material and not a replacement for it.
 
 Attribution, statement by statement. The $d=1$ case of Theorem~\ref{Phys1:thm:mass} is
-Ref.~\onlinecite{ANCFT14}, Theorem~4.2; Eq.~\eqref{Phys1:eq:trees} for $d=1$ is
-Ref.~\onlinecite{ANCFT9}, Theorem~1.2(iv); Theorem~\ref{Phys1:thm:nogo}(i) is
-Ref.~\onlinecite{ANCFT12}, Theorem~1.1, which in turn quotes Refs.~\onlinecite{Ga,BSw}. The
+Ref.~[Ch.~\ref{chap:XIV}], Theorem~4.2; Eq.~\eqref{Phys1:eq:trees} for $d=1$ is
+Ref.~[Ch.~\ref{chap:IX}], Theorem~1.2(iv); Theorem~\ref{Phys1:thm:nogo}(i) is
+Ref.~[Ch.~\ref{chap:XII}], Theorem~1.1, which in turn quotes Refs.~\onlinecite{Ga,BSw}. The
 identification of the Albanese metric with a Kirchhoff ratio, and hence the mathematical
 substance of Corollary~\ref{Phys1:cor:quant}, is in Refs.~\onlinecite{KS3,BF}. What the present
 paper adds is the $d>1$ tensor form, the identification of that tensor with $M^{-1}$, the
@@ -584,5 +584,5 @@ rank-two affine buildings; we cannot prove that none exists.
 
 \begin{acknowledgments}
 The complex builder and the exact $p$-adic Smith normal form used in Sec.~\ref{Phys1:sec:battery}
-are those of Ref.~\onlinecite{ANCFT10}.
+are those of Ref.~[Ch.~\ref{chap:X}].
 \end{acknowledgments}

@@ -112,8 +112,8 @@ arborescences. We compute it as a Smith normal form.
 \begin{remark}[The tower]\label{Bio1:rem:tower}
 $G_{k+1}(S)$ is a spanning subgraph of the line digraph $L(G_k(S))$, with equality for the
 complete de Bruijn graph; the prefix and suffix maps are the tail and head maps of $G_k$
-and are the degeneracy maps of the non-normal tower of \cite[V]{ANCFT}. The line-digraph
-recursion of \cite[III]{ANCFT} specialises to Knuth's formula and reproduces
+and are the degeneracy maps of the non-normal tower of [Ch.~\ref{chap:V}]. The line-digraph
+recursion of [Ch.~\ref{chap:III}] specialises to Knuth's formula and reproduces
 $|\K(\DB(\sigma,k))|=\sigma^{\sigma^{k}-k-1}$ (check~(T)); check~(L) reproduces Levine's
 decomposition. These are consistency checks on our conventions, not results.
 \end{remark}
@@ -336,7 +336,7 @@ group (check~(N), sampled).
 \section{Computation}\label{Bio1:sec:compute}
 
 Computing $\K(G_k)$ directly is one Smith normal form of an $(n_k-1)\times(n_k-1)$ integer
-matrix, $O(n_k^{3})$ with the usual bit-length control \cite[I]{ANCFT}, which for a genome
+matrix, $O(n_k^{3})$ with the usual bit-length control [Ch.~\ref{chap:I}], which for a genome
 is impractical. Lemma~\ref{Bio1:lem:contract} removes the difficulty: the critical group of $G_k$
 equals that of its compacted graph, whose vertices are the branch points. The compaction is
 linear in $N$ --- one pass to find the branch vertices, one walk per outgoing arc --- and
@@ -376,7 +376,7 @@ Two remarks. The levels $k\le9$ have compacted graphs of $146$ to $1384$ vertice
 within reach of a sparse or $p$-adic Smith normal form but not of the dense routine used
 here, and we have not pursued them. And $k^{*}=R+1$ for this genome. A single isolated repeat collapses at $k=R$
 (Theorem~\ref{Bio1:thm:repeat}), so a surviving $\Z/2$ at $k=12$ is \emph{consistent with}
-Theorem~\ref{Bio1:thm:interleave} rather than implied by it; the companion paper \cite{Bio2}
+Theorem~\ref{Bio1:thm:interleave} rather than implied by it; the companion paper [Ch.~\ref{chap:Bio2}]
 settles the question by exhibiting the two reconstructions: the longest $12$-mer repeat is
 interleaved with a second repeated $12$-mer, and the residual bit is exactly the one of
 Theorem~\ref{Bio1:thm:interleave} at $s=1$.

@@ -26,7 +26,7 @@ genome ever sequenced. Seven checks, exact except the two sampling rows.
 
 \section{Introduction}\label{Bio2:sec:intro}
 
-A companion paper \cite{Bio1} showed that the number of reconstructions of a circular
+A companion paper [Ch.~\ref{chap:Bio1}] showed that the number of reconstructions of a circular
 sequence from its $k$-mer spectrum factors, by the BEST theorem, into a local part
 $\prod_v(d^+(v)-1)!$ determined by branch statistics and a global part $|\K(G_k)|$, the
 order of the sandpile group, which branch statistics do not determine; and that the group
@@ -40,7 +40,7 @@ any of them.
 \item \emph{Counting and sampling.} The BEST theorem \cite{AEdB,SmithTutte} counts Eulerian
 circuits of a directed Eulerian graph as (arborescences)$\times\prod(d-1)!$, and since
 arborescences can be sampled uniformly in polynomial time \cite{CMN,PW,Wilson}, so can
-Eulerian circuits; Creed and Cryan state this explicitly \cite{CC:Bio2}. (For \emph{undirected}
+Eulerian circuits; Creed and Cryan state this explicitly \cite{CC}. (For \emph{undirected}
 graphs counting is $\#$P-complete \cite{BW}; the directed case, which is ours, is easy.)
 Bioinformatics has used exactly this since 1985 to shuffle sequences preserving $k$-let
 counts \cite{AE,KMUW,uShuffle}, and to count reconstructions from $k$-mer spectra
@@ -67,7 +67,7 @@ the $12$-mer spectrum leaves one binary choice and we show what that choice is.
 \paragraph{What we do not claim.} Not the torsor theorem, which is \cite[\S3]{HLMPPW}; not
 the bijection between tours and (arborescence, rotor order), which is \cite[Cor.~4.10]{HLMPPW}
 and which our check~(B) merely re-implements; not uniform sampling, which is
-\cite{CMN,PW,CC:Bio2} and, in bioinformatics, \cite{AE,KMUW,uShuffle}. The contribution is the
+\cite{CMN,PW,CC} and, in bioinformatics, \cite{AE,KMUW,uShuffle}. The contribution is the
 reading of these as a coordinate system on assemblies, the identification of chip-firing
 with rearrangement, and the $\varphi$X174 computation.
 
@@ -76,7 +76,7 @@ with rearrangement, and the $\varphi$X174 computation.
 $S$ is a circular sequence, $G=G_k(S)$ its de Bruijn multigraph (vertices the distinct
 $k$-mers, one arc per $(k{+}1)$-mer occurrence), which is connected and balanced with $S$
 an Eulerian circuit; $\Rec(G)$ denotes the set of arc-rooted Eulerian circuits, i.e.\ the
-reconstructions \cite[Rem.~1]{Bio1}. Fix a sink $s\in V$ and let $\Arb(G)$ be the set of
+reconstructions [Ch.~\ref{chap:Bio1}, Rem.~1]. Fix a sink $s\in V$ and let $\Arb(G)$ be the set of
 spanning arborescences oriented toward $s$; for balanced $G$ the count $|\Arb(G)|$ and the
 group $\K(G)=\coker\Delta^{\mathsf T}$ do not depend on $s$ \cite[Lem.~4.12]{HLMPPW}.
 Here $\Delta=D^{+}-A$ is the out-Laplacian with the row and column of $s$ deleted; its
@@ -94,7 +94,7 @@ recurrent chip configuration and toppling back to the recurrent representative, 
 the rotor-router group and the sandpile group coincide \cite[Lem.~3.19]{HLMPPW}; we use
 the dynamical description because it delivers the new arborescence directly.
 
-By the contraction lemma of \cite[Lem.~4]{Bio1}, both $\K(G)$ and, arc for arc, $\Arb(G)$
+By the contraction lemma of [Ch.~\ref{chap:Bio1}, Lem.~4], both $\K(G)$ and, arc for arc, $\Arb(G)$
 are unchanged when every vertex of in- and out-degree $1$ is smoothed away, so all of the
 following may be computed on the compacted (unitig) graph; the contracted arcs carry the
 concatenated labels and a circuit on the compacted graph is spelled back into a
@@ -129,7 +129,7 @@ four graphs).
 The local choices at a branch vertex of out-degree $d$ --- which of the $d-1$ non-tree
 exits to take first --- are what the local factor $\prod(d-1)!$ counts, and they are
 independent of one another and of the arborescence. They are the ambiguity that branch
-statistics \emph{do} see. The torsor lives on what remains, which \cite{Bio1} showed is
+statistics \emph{do} see. The torsor lives on what remains, which [Ch.~\ref{chap:Bio1}] showed is
 invisible to branch statistics; Theorem~\ref{Bio2:thm:torsor} says it nevertheless has the
 structure of a finite abelian group, given explicitly by the Smith normal form of the
 out-Laplacian.
@@ -180,7 +180,7 @@ of comparative genomics, and we see no immediate inequality between them.
 
 Uniform sampling of $\Rec(G)$ is classical: sample an arborescence uniformly by a
 loop-erased random walk \cite{Wilson,PW} or by unranking \cite{CMN}, then choose exit
-orders uniformly \cite{CC:Bio2}; this is what \cite{AE,KMUW} do and what uShuffle implements
+orders uniformly \cite{CC}; this is what \cite{AE,KMUW} do and what uShuffle implements
 \cite{uShuffle}. Theorem~\ref{Bio2:thm:torsor} gives the same distribution in a different form:
 with $\K(G)\cong\bigoplus\Z/d_i$ from the Smith normal form $U\Delta^{\mathsf T}V=D$, draw
 $r_i$ uniformly mod $d_i$, take $U^{-1}r$ as a chip configuration, and route it from a
@@ -214,7 +214,7 @@ disambiguation would have to be a search over the torsor, not a system of congru
 
 The companion paper computed the sandpile spectrum of bacteriophage $\varphi$X174
 (NC\_001422.1, $5386$ bp) and found $\K(G_{12})=\Z/2$ and $\K(G_{11})=\Z/2\oplus\Z/66$
-\cite[Tab.~1]{Bio1}. Theorem~\ref{Bio2:thm:torsor} says that the $12$-mer spectrum of the phage
+[Ch.~\ref{chap:Bio1}, Tab.~1]. Theorem~\ref{Bio2:thm:torsor} says that the $12$-mer spectrum of the phage
 leaves exactly \emph{two} global reconstructions. Check~(F) exhibits them.
 
 \begin{proposition}[$\varphi$X174 at $k=12$]\label{Bio2:prop:phix}
@@ -241,7 +241,7 @@ four unique segments and the four occurrences of the two $12$-mers; the exchange
 permutes segments, so both reconstructions have the same length and, segment by segment,
 the same content.
 
-This is precisely the situation of the interleaving theorem \cite[Thm.~6]{Bio1} at $s=1$:
+This is precisely the situation of the interleaving theorem [Ch.~\ref{chap:Bio1}, Thm.~6] at $s=1$:
 a single repeat of multiplicity two leaves no circular ambiguity (its two threadings are
 rotations of one another), so a surviving $\Z/2$ at $k=L$ must come from two interleaved
 repeats, and the one bit it records is which of the two $B$-exits follows which $A$. The
@@ -288,8 +288,8 @@ key & check & mode\\
 \section{Scope}\label{Bio2:sec:scope}
 
 \emph{Quoted.} The torsor and the rotor proof of BEST \cite{HLMPPW}; uniform sampling
-\cite{CMN,PW,Wilson,CC:Bio2} and its bioinformatic use \cite{AE,KMUW,uShuffle}; counting
-\cite{ABCS,KSP}; the spectrum of $\varphi$X174 and the interleaving theorem \cite{Bio1}.
+\cite{CMN,PW,Wilson,CC} and its bioinformatic use \cite{AE,KMUW,uShuffle}; counting
+\cite{ABCS,KSP}; the spectrum of $\varphi$X174 and the interleaving theorem [Ch.~\ref{chap:Bio1}].
 
 \emph{New here, as far as we can determine.} Theorem~\ref{Bio2:thm:torsor}(iii) as a statement
 about assemblies; chip-firing as rearrangement and the word metric of

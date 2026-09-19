@@ -5,7 +5,7 @@
 \noindent
 The sandpile group of a genome's de Bruijn graph splits into a length-driven part and
 the group $\K(D_w)$ of the transition digraph of the circular word of repeat occurrences
-\cite{Bio3}. For repeats of multiplicity two, $\K(D_w)$ is the critical group of a
+[Ch.~\ref{chap:Bio3}]. For repeats of multiplicity two, $\K(D_w)$ is the critical group of a
 one-vertex map: $\coker(A+I)$ for Bouchet's signed interlace matrix, by a theorem of
 Merino, Moffatt and Noble --- a presentation whose entries are \emph{pairwise} data
 about the repeats. This note asks what survives for repeats with three or more copies.
@@ -27,8 +27,8 @@ large. Four checks, all exact.
 \section{Introduction}\label{Bio4:sec:intro}
 
 Let $S$ be a circular sequence with repeat families $W_1,\dots,W_m$ of multiplicities
-$r_i$, clean in the sense of \cite{Bio1}, and let $w$ be the circular word of their
-occurrences. The bundle-chain splitting theorem \cite{Bio3} gives
+$r_i$, clean in the sense of [Ch.~\ref{chap:Bio1}], and let $w$ be the circular word of their
+occurrences. The bundle-chain splitting theorem [Ch.~\ref{chap:Bio3}] gives
 \[
 \K\bigl(G_k(S)\bigr)\;\cong\;\bigoplus_i(\Z/r_i)^{\,s_i-1}\;\oplus\;\K(D_w),
 \]
@@ -43,7 +43,7 @@ interlace polynomial at $1$ \cite{ABS}, the number of Euler circuits of $D_w$
 \cite{MacrisPule,Jonsson}.
 
 Real genomes have repeats with more than two copies. In $\varphi$X174 the skeleton of
-\cite{Bio3} is $2$-in $2$-out at $k=11$ and $k=10$ but has vertices of out-degree $3$ and
+[Ch.~\ref{chap:Bio3}] is $2$-in $2$-out at $k=11$ and $k=10$ but has vertices of out-degree $3$ and
 $4$ at $k=9$ and up to $6$ at $k=7$ (Table~\ref{Bio4:tab:phix}). This note asks whether the
 two-copy description extends. The answer is: only in the smallest case.
 
@@ -56,7 +56,7 @@ arborescences rather than circuits; we could not locate it. Lauri's own attempt 
 extensions \cite{Lauri} is described by its reviewer as inconclusive. For rotor-routing
 the picture is different: T\'othm\'er\'esz \cite{Toth} constructs a canonical simply
 transitive action of the sandpile group on compatible Euler tours of any Eulerian ribbon
-digraph, whatever the degrees, so the torsor of \cite{Bio2} generalises even though, as
+digraph, whatever the degrees, so the torsor of [Ch.~\ref{chap:Bio2}] generalises even though, as
 we show, the matrix presentation does not.
 
 \section{Setting}\label{Bio4:sec:setting}
@@ -89,7 +89,7 @@ $A^{r-c+1}B^{s-c+1}(AB)^{c-1}$ realises $c$, and $c\le\min(r,s)$ since each bloc
 contains at least one letter.
 \end{proof}
 
-For $r=s=2$ this is the interleaving theorem \cite[Thm.~6]{Bio1}: $c=1$ for
+For $r=s=2$ this is the interleaving theorem [Ch.~\ref{chap:Bio1}, Thm.~6]: $c=1$ for
 $A\,A\,B\,B$ and $A\,B\,B\,A$ (disjoint or nested, no arrangement ambiguity) and $c=2$
 for $A\,B\,A\,B$. For two families the arrangement ambiguity is thus a single cyclic
 factor whose order is a crossing number, and no sign is needed. Check~(A) verifies the
@@ -153,7 +153,7 @@ computed by splitting it into a two-copy one and applying \cite{MMN}.
 
 \begin{remark}[What does determine it]
 Trivially, the transition matrix $T$: the arrangement group is the sandpile group of the
-transition digraph, which is what \cite{Bio3} says. The content of the two-copy theory is
+transition digraph, which is what [Ch.~\ref{chap:Bio3}] says. The content of the two-copy theory is
 that $T$ can be traded for interlacement --- a different, topological parametrisation of
 the same group. Propositions~\ref{Bio4:prop:pair} and~\ref{Bio4:prop:detach} say that for three or
 more copies no such trade is available through pairwise data or through two-copy
@@ -172,7 +172,7 @@ The last column counts the classes of pairwise patterns and, in parentheses, how
 them carry more than one group. For two families the groups are exactly $\Z/c$,
 $c\le\min(r,s)$, as Theorem~\ref{Bio4:thm:two} predicts, and every pairwise class is pure.
 From three families on the arrangement group is far richer than for two-copy repeats
---- three two-copy repeats give only $0,\Z/2,\Z/3,(\Z/2)^{2}$ \cite[Prop.~8]{Bio1},
+--- three two-copy repeats give only $0,\Z/2,\Z/3,(\Z/2)^{2}$ [Ch.~\ref{chap:Bio1}, Prop.~8],
 three three-copy repeats give nine groups up to order $9$ --- and most pairwise classes
 are mixed.
 
@@ -202,7 +202,7 @@ Table~\ref{Bio4:tab:phix} gives the out-degree profile of the bundle-contracted 
 $\varphi$X174 (NC\_001422.1) at $k=12,\dots,7$. At $k=11$ and $k=10$ every skeleton
 vertex has in- and out-degree $2$, and the signed interlace matrix of an Euler circuit
 found by Hierholzer's algorithm gives $\coker(A+I)=\Z/3\oplus\Z/11$ and
-$\Z/4\oplus\Z/1076338579$, the groups computed in \cite{Bio3} from the Laplacian
+$\Z/4\oplus\Z/1076338579$, the groups computed in [Ch.~\ref{chap:Bio3}] from the Laplacian
 (check~(D)) --- the theorem of \cite{MMN} on a real genome. From $k=9$ down the skeleton
 has vertices of out-degree $3$ ($5$ of them at $k=9$, $42$ at $k=8$, $147$ at $k=7$),
 $4$, $5$ and $6$: the two-copy presentation stops applying at the same $k$ at which the
@@ -256,7 +256,7 @@ key & check & mode\\
 \emph{Proved.} Theorem~\ref{Bio4:thm:two}; Propositions~\ref{Bio4:prop:pair}
 and~\ref{Bio4:prop:detach} by explicit witness.
 
-\emph{Quoted.} The splitting theorem \cite{Bio3}; the two-copy presentation \cite{MMN};
+\emph{Quoted.} The splitting theorem [Ch.~\ref{chap:Bio3}]; the two-copy presentation \cite{MMN};
 the determinant formula \cite{MacrisPule,Jonsson} and interlace polynomial \cite{ABS};
 sink-independence \cite{HLMPPW}; the rotor torsor for Eulerian ribbon digraphs
 \cite{Toth}.
@@ -270,14 +270,14 @@ is not ruled out; Proposition~\ref{Bio4:prop:pair} shows it cannot be pairwise. 
 census suggests questions we have not pursued: which groups occur for $(r,r,r)$ as $r$
 grows, and whether the largest order is always attained by an elementary abelian group.
 (c) The $\varphi$X174 skeleton at $k=8$ ($312$ vertices) is beyond the dense exact Smith
-form used here; a modular Smith form would extend Table~\ref{Bio4:tab:phix} of \cite{Bio3}.
+form used here; a modular Smith form would extend Table~\ref{Bio4:tab:phix} of [Ch.~\ref{chap:Bio3}].
 
 \section*{Provenance of this chapter}
 
 Unrefereed preprint. Theorem~\ref{Bio4:thm:two} is elementary and, as far as we can find,
 unstated in this form; the propositions are negative results established by explicit
 computation and are the reason this note exists: the natural extension of \cite{MMN} to
-multi-copy repeats was the obvious next step after \cite{Bio3}, and it does not exist in
+multi-copy repeats was the obvious next step after [Ch.~\ref{chap:Bio3}], and it does not exist in
 any pairwise form. We searched for an interlacement or determinant formula for Euler
 circuits of $r$-in $r$-out digraphs with $r\ge3$ and found none; a search cannot
 establish a negative.
