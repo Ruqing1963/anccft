@@ -1,0 +1,7 @@
+complex,vertices,H1,notes
+X_3,3,Z/2+Z/2+Z/14,"triangle presentation over PG(2,2), Singer cycle"
+Y_21,21,(Z/2)^6,"abelian cover, Heawood links, K_{7,7,7}"
+Y_24,24,(Z/2)^4+Z/14,"abelian cover, Heawood links"
+Y_42,42,(Z/2)^3+(Z/4)^2,"abelian cover, Heawood links"
+Y_84,84,,abelian cover
+Y_168,168,,"abelian cover; edge flow carries all 498 nontrivial pencil roots, 678 remainder eigenvalues |.|=sqrt q"

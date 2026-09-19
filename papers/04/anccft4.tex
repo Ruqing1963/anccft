@@ -1,0 +1,309 @@
+% Algorithmic Non-commutative Class Field Theory, IV
+% The limit module of abelian towers and the characteristic identity
+% Build: pdflatex anccft4 (x3)
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{booktabs}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Zl}{\Z_\ell}
+\newcommand{\La}{\Lambda}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\car}{\operatorname{char}_{\La}}
+\newcommand{\Fitt}{\operatorname{Fitt}}
+
+\title[Algorithmic non-commutative class field theory, IV]
+{Algorithmic non-commutative class field theory, IV:\\
+the limit module of abelian towers\\ and the characteristic identity}
+
+\author{Ruqing Chen}
+\address{GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada}
+\email{ruqing@hotmail.com}
+\date{12 September 2026}
+\subjclass[2020]{Primary 11R23, 05C50; Secondary 05C25, 13C12, 46L80}
+\keywords{Iwasawa module, voltage graph, sandpile group, characteristic ideal,
+control theorem, Bruhat--Tits tree}
+
+\thanks{Paper IV of the series; Papers I--III are cited as [I], [II], [III]. This
+paper upgrades [II, Conj.~3.6(ii-a)] from a verified growth law to a limit-module
+theorem. All computational claims are reproduced by the script
+\texttt{limit\_module.py} in the ancillary bundle.}
+
+\begin{document}
+
+\begin{abstract}
+For an abelian $\Z/\ell^k$ voltage tower $(Y_k)$ over a finite base graph, Papers
+II--III established the exact Iwasawa growth law of the sandpile orders and its
+Newton-polygon mechanism, leaving the limit-module statement of
+[II, Conj.~3.6(ii-a)] open. This paper closes it. Writing $D(t)$ for the voltage
+Laplacian pencil and $\La=\Zl[[T]]$, we prove:
+\[
+X_\infty:=\varprojlim_k\bigl(\coker_\Z(\Delta_{Y_k})\otimes\Zl,\ \pi_*\bigr)
+\;\cong\;\La^n\big/D(1+T)\,\La^n,
+\]
+a finitely generated torsion $\La$-module with
+$\car(X_\infty)=\bigl(\det D(1+T)\bigr)$, together with an \emph{exact} control
+theorem $X_\infty/\omega_kX_\infty\cong\coker_\Z(\Delta_{Y_k})\otimes\Zl$ --- exact,
+not merely pseudo-isomorphic, because the tower's presentations are literally the
+$\omega_k$-specializations of one $\La$-presentation. The proof rests on three
+structural identities --- the derived Laplacian is the block-circulant $D(\sigma)$;
+the covering pushforward is the group-ring coefficient projection; pushforward is
+surjective on $\ell$-primary torsion with kernel of the exact predicted order --- each
+proved and additionally machine-verified at every level of two towers. Combined with
+[II, Rem.~5.4], the measured invariants $(\mu,\lambda)=(\mu(g),\lambda(g)-1)$,
+$g=\det D(1+T)$, are now consequences of a theorem rather than observations. The
+result is stated with explicit deference to the graph-Iwasawa literature of
+Vallières, McGown--Vallières and Gonet, whose verified titles indicate substantial
+overlap; what is new here, at minimum, is the exactness of the control isomorphism at
+the level of Smith normal forms and the integration into the trilogy's $K$-theoretic
+framework. The non-normal congruence tower ([II, Conj.~3.6(ii-b)]) and the canonicity
+problem ([III, Rem.~1.10]) are untouched and remain the open frontier.
+\end{abstract}
+
+\maketitle
+
+\section*{Status of the results}
+
+Every numbered statement in this paper is proved in full. Lemmas~\ref{lem:block},
+\ref{lem:norm} and \ref{lem:torsurj} are elementary and were additionally verified by
+exact machine computation at every level $k\le3$ of the tower with voltages $(1,1,1)$,
+$\ell=2$, and every level $k\le2$ of the tower $(1,0,0)$, $\ell=3$
+(Table~\ref{tab:battery}). The single external algebraic input is the structure
+theory of finitely generated $\La$-modules, quoted with a flagged citation. The
+relation of Theorem~\ref{thm:limit} to the published graph-Iwasawa literature is
+discussed, deliberately and prominently, in Section~\ref{sec:lit}.
+
+\section{Setup and the three structural identities}\label{sec:setup}
+
+Fix a finite connected base graph $Y_0$ on $n$ vertices, a prime $\ell$, a spanning
+tree, and a voltage assignment $\alpha$ on the chords, giving the derived
+$\Z/\ell^k$-covers $Y_k$ on $n\ell^k$ vertices with deck generator $\sigma$ and
+covering maps $\pi\colon Y_{k+1}\to Y_k$. Let
+\[
+D(t)\;=\;(q+1)I_n-A(t)\ \in\ M_n\bigl(\Z[t,t^{-1}]\bigr)
+\]
+be the voltage Laplacian pencil ($A(t)$ the voltage adjacency), $\Delta_k$ the
+ordinary Laplacian of $Y_k$, $G_k=\Z/\ell^k$, and order $V_{Y_k}$ as
+$(v,g)\mapsto vN+g$, $N=\ell^k$. Write $S_N$ for the cyclic shift on $\Zl^N$ and
+$Q_N\colon\Zl^{\ell N}\to\Zl^{N}$ for reduction of the group coordinate,
+$e_g\mapsto e_{g\bmod N}$.
+
+\begin{lemma}[Block-circulant identification]\label{lem:block}
+In the ordering above, $\Delta_k=D(S_N)$ exactly: the level-$k$ Laplacian is the
+image of the pencil under $t\mapsto S_N$. Equivalently, as a
+$\Z[G_k]$-module with the deck action,
+$\coker_\Z(\Delta_k)\cong\Z[G_k]^n\big/D(\sigma)\Z[G_k]^n$.
+\end{lemma}
+
+\begin{proof}
+This is the definition of the derived graph read backwards: a base edge $(u,v)$ of
+voltage $a$ contributes the arcs $(u,g)\!-\!(v,g{+}a)$ for all $g$, i.e.\ the block
+$E_{uv}\otimes S_N^{\,a}$ plus its transpose, and the degree term is
+$(q+1)I_n\otimes I_N$. Summing gives $\Delta_k=D(S_N)$; identifying
+$\Zl^N\cong\Zl[G_k]$ with $S_N=$ multiplication by $\sigma$ gives the module form.
+Verified as an exact matrix identity at all computed levels.
+\end{proof}
+
+\begin{lemma}[Pushforward is coefficient projection]\label{lem:norm}
+Let $P_k:=I_n\otimes Q_{\ell^k}$, the matrix of the covering pushforward
+$\pi_*\colon\Z^{V_{Y_{k+1}}}\to\Z^{V_{Y_k}}$ (sum over fibres). Then
+\[
+P_k\,\Delta_{k+1}=\Delta_k\,P_k,
+\qquad
+P_k\,R_{k+1}=R_k\,P_k,
+\]
+where $R_k=I_n\otimes S_{\ell^k}$ is the deck action; under
+Lemma~\ref{lem:block} the induced map on cokernels is the group-ring coefficient
+projection $\Z[G_{k+1}]\to\Z[G_k]$. Moreover $P_k$ is surjective.
+\end{lemma}
+
+\begin{proof}
+Both identities reduce to the one-line facts $Q\,S_{\ell N}=S_N\,Q$ and
+$Q\,S_{\ell N}^{\,a}=S_N^{\,a}\,Q$ applied blockwise to $\Delta=D(S)$; surjectivity
+is immediate since every $e_{(v,h)}$ is hit. Verified as exact matrix identities at
+all computed levels.
+\end{proof}
+
+\begin{lemma}[Norm surjectivity on torsion]\label{lem:torsurj}
+The induced norm
+$\pi_*\colon\coker_\Z(\Delta_{k+1})\to\coker_\Z(\Delta_k)$ is
+surjective; it preserves the degree functional $\deg$ (total mass), hence restricts
+to a surjection of torsion subgroups, with kernel of order
+\[
+\bigl|\ker(\pi_*|_{\Tor_\ell})\bigr|
+=\ell^{\,\ord_\ell|\Jac(Y_{k+1})|\,-\,\ord_\ell|\Jac(Y_k)|}.
+\]
+\end{lemma}
+
+\begin{proof}
+Surjectivity of $P_k$ plus the intertwining gives surjectivity on cokernels. The
+column sums of $\Delta_k$ vanish, so $\deg([y])=\sum_iy_i$ is well defined and
+realizes $\coker_\Z(\Delta_k)\cong\Z\oplus\Tor$ with $\Tor=\ker(\deg)$ (a finitely
+generated group surjecting onto $\Z$ with rank-zero kernel has kernel equal to its
+torsion). Pushforward preserves total mass, so $\deg\circ\pi_*=\deg$; hence for
+torsion $t$ downstairs any preimage $a$ has $\deg(a)=0$, i.e.\ $a$ is torsion:
+surjectivity on $\Tor$. The kernel order is then forced by counting. Verified,
+including the exact kernel orders $\ell^{3},\ell^{3},\ell^{3}$ and
+$\ell^{1},\ell^{1}$ at the computed transitions (Table~\ref{tab:battery}).
+\end{proof}
+
+\section{The limit module and the characteristic identity}\label{sec:limit}
+
+\begin{theorem}[Limit module]\label{thm:limit}
+Let $g(T):=\det D(1+T)\in\Zl[T]$ and assume $g\neq0$ $($true in every tower of
+{\rm[II, \S5]}$)$. Then, with transition maps the norms $\pi_*$ of
+Lemma~\ref{lem:torsurj},
+\[
+X_\infty:=\varprojlim_k\bigl(\coker_\Z(\Delta_{Y_k})\otimes\Zl\bigr)
+\;\cong\;\La^n\big/\,D(1+T)\,\La^n ,
+\qquad \La=\Zl[[T]],
+\]
+under the standard identification $\varprojlim_k\Zl[G_k]\cong\La$,
+$\sigma\mapsto1+T$ $($the Laurent entries $t^{\pm a}$ of the pencil landing in
+$\La^\times$-multiples since $1+T\in\La^\times)$. The module $X_\infty$ is finitely
+generated and torsion over $\La$, and
+\[
+\car(X_\infty)\;=\;\bigl(g(T)\bigr)\;=\;\bigl(\det D(1+T)\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+By Lemmas~\ref{lem:block}--\ref{lem:norm} the tower of cokernels is, level by level
+and compatibly with the transition maps, the tower of presentations
+$\Zl[G_k]^n\xrightarrow{D(\sigma)}\Zl[G_k]^n\to C_k\to0$ with transitions the
+coefficient projections. All modules are finitely generated $\Zl$-modules, hence
+compact, and the transition maps are continuous surjections on the presenting
+copies; inverse limits are exact on such systems (Mittag--Leffler for compact
+groups), so $\varprojlim C_k=\coker\bigl(\varprojlim D(\sigma)\bigr)
+=\La^n/D(1+T)\La^n$. Since $g=\det D(1+T)\neq0$, the map $D(1+T)$ is injective over
+the fraction field, so the cokernel is $\La$-torsion; it is finitely generated by
+presentation. For the characteristic ideal, localize at a height-one prime
+$P\subset\La$: $\La_P$ is a discrete valuation ring, elementary divisors give
+$\operatorname{length}_{\La_P}\bigl((X_\infty)_P\bigr)=v_P\bigl(\det D(1+T)\bigr)$,
+and taking the product over height-one primes yields
+$\car(X_\infty)=(\det D(1+T))$ by the structure theory of finitely generated
+torsion $\La$-modules \cite{Washington}.
+\end{proof}
+
+\begin{corollary}[Exact control]\label{cor:control}
+For every $k\ge0$, with $\omega_k=(1+T)^{\ell^k}-1$,
+\[
+X_\infty\big/\omega_k X_\infty\;\cong\;\coker_\Z(\Delta_{Y_k})\otimes\Zl
+\;\cong\;\bigl(\Z\oplus\Jac(Y_k)\bigr)\otimes\Zl ,
+\]
+an isomorphism on the nose --- not merely up to bounded kernels and cokernels ---
+because $\La/\omega_k\cong\Zl[G_k]$ carries the level-$k$ presentation exactly.
+\end{corollary}
+
+\begin{corollary}[Invariants, now as a theorem]\label{cor:invariants}
+The Iwasawa invariants of the tower are $\mu=\mu(g)$ and $\lambda=\lambda(g)-1$,
+where $(\mu(g),\lambda(g))$ are read off the Newton polygon of $g$, the $-1$ being
+the trivial-zero and normalization accounting of {\rm[II, Rem.~5.4]}. In particular
+the four exact laws of {\rm[II, Table~2]} are consequences of
+Theorem~\ref{thm:limit}, no longer observations.
+\end{corollary}
+
+\section{The verification battery}\label{sec:battery}
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccccc}
+\toprule
+tower & levels & (B) block & (S) deck & (P)+(C) norm identities & (N) torsion norm\\
+\midrule
+$(1,1,1)$, $\ell=2$ & $k\le3$ & exact & exact & exact & surj.; $|\ker|=2^3,2^3,2^3$\\
+$(1,0,0)$, $\ell=3$ & $k\le2$ & exact & exact & exact & surj.; $|\ker|=3^1,3^1$\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{Machine verification of Lemmas~\ref{lem:block}--\ref{lem:torsurj}:
+(B) $\Delta_k=D(S_N)$; (S) $R_k\Delta_k=\Delta_kR_k$; (P) $P_k\Delta_{k+1}
+=\Delta_kP_k$; (C) $P_kR_{k+1}=R_kP_k$; (N) surjectivity of $\pi_*$ on
+$\ell$-primary torsion with kernel orders exactly
+$\ell^{\Delta\ord}$. Every check passed as an exact identity; the lemmas are proved
+above independently, so the table is confirmation, not evidence.}
+\label{tab:battery}
+\end{table}
+
+\section{Relation to the literature, stated prominently}\label{sec:lit}
+
+The verified bibliographic records of Vallières \cite{Vallieres}, McGown--Vallières
+\cite{McGownVallieres} and, above all, Gonet --- whose paper is titled precisely
+\emph{Iwasawa theory of Jacobians of graphs} \cite{Gonet} --- make it very likely
+that Theorem~\ref{thm:limit}, or a statement equivalent to it, is present in that
+literature; the growth law certainly is, as acknowledged since [II, \S5]. Under the
+series' policy, we have verified those papers' metadata but have not read their
+theorems, and we therefore claim priority for nothing in
+Sections~\ref{sec:setup}--\ref{sec:limit} beyond what a comparison with their texts
+will leave standing. What we believe is ours at minimum: the \emph{exactness} of
+Corollary~\ref{cor:control} in the form stated, its verification at the resolution
+of Smith normal forms across [II, Table~2] and Table~\ref{tab:battery}, and the
+integration of the statement into the trilogy's $K$-theoretic framework, where
+$\coker_\Z(\Delta_{Y_k})$ is the $K_0$-group of the level-$k$ Laplacian channel
+$($[I, Thm.~3.5]$)$, so that Theorem~\ref{thm:limit} reads: \emph{the
+$K$-theoretic torsion of the Laplacian channel along an abelian tower is one
+finitely generated torsion Iwasawa module, with characteristic ideal the voltage
+pencil determinant}.
+
+\section{What remains open}\label{sec:open}
+
+Nothing here touches the two hard problems. The congruence tower is non-normal, its
+pseudo-Iwasawa law has $\lambda=-1$, and the correct base object --- conjecturally a
+module theory over the Iwahori--Hecke algebra with an intrinsic Euler-characteristic
+correction ([II, Conj.~3.6(ii-b)], [III, \S2]) --- still lacks a definition of
+characteristic ideal. And the canonicity problem of [III, Rem.~1.10] --- a Kirchberg
+algebra over $C(\Omega)$, functorial in the Hecke data, with
+$K_0\cong(\Z\oplus\Jac(Y_k))_k$ --- is exactly as open as before;
+Theorem~\ref{thm:limit} sharpens its target, since the prescribed $K$-theory is now
+known to be a single $\La$-module, but supplies no construction.
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. All numbered statements are proved; the machine battery of
+Table~\ref{tab:battery} confirms the three lemmas at seven levels across two towers.
+External inputs: the structure theory of finitely generated torsion
+$\La$-modules and the identification $\varprojlim\Zl[G_k]\cong\La$, both standard,
+cited to \cite{Washington}, whose bibliographic record is now primary-source
+verified (only the chapter-level pointer remains a recollection-based reading aid);
+the graph-Iwasawa literature
+\cite{Vallieres,McGownVallieres,Gonet}, bibliographic data verified in [II--III],
+texts unread, priority explicitly ceded in Section~\ref{sec:lit}.
+
+\begin{thebibliography}{9}
+\bibitem{Vallieres} D.~Vallières, \emph{On abelian $\ell$-towers of multigraphs},
+Ann.\ Math.\ Qu\'ebec \textbf{45} (2021), no.~2, 433--452. [Crossref-verified:
+DOI 10.1007/s40316-020-00152-4.]
+\bibitem{McGownVallieres} K.~J.~McGown and D.~Vallières, \emph{On abelian
+$\ell$-towers of multigraphs II}, Ann.\ Math.\ Qu\'ebec \textbf{47}, no.~2,
+461--473. [Crossref-verified: DOI 10.1007/s40316-021-00183-5; online 2021, issue
+2023.]
+\bibitem{Gonet} S.~R.~Gonet, \emph{Iwasawa theory of Jacobians of graphs}, Algebraic
+Combinatorics \textbf{5} (2022), no.~5, 827--848. [Crossref-verified:
+DOI 10.5802/alco.225.]
+\bibitem{Washington} L.~C.~Washington, \emph{Introduction to Cyclotomic Fields},
+2nd ed., Grad.\ Texts in Math.\ \textbf{83}, Springer, 1997; Chapter~13 for the
+structure theory of $\La$-modules. [Bibliographic data primary-source verified via
+the Springer book page: author, title, second edition, GTM~\textbf{83},
+\copyright~1997. The chapter-level pointer is a reading aid from recollection.]
+\end{thebibliography}
+
+\end{document}

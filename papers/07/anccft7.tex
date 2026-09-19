@@ -1,0 +1,279 @@
+% Algorithmic Non-commutative Class Field Theory, VII
+% The snake factorization of the transfer and the evaluated characteristic form
+% Build: pdflatex anccft7 (x3)
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{booktabs}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zp}{\Z_p}
+\newcommand{\Zl}{\Z_\ell}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\ind}{\operatorname{ind}_{\mathbf1}}
+\newcommand{\ta}{\tau_*}
+\newcommand{\et}{\eta_*}
+\newcommand{\etp}{\eta^*}
+
+\title[Algorithmic non-commutative class field theory, VII]
+{Algorithmic non-commutative class field theory, VII:\\
+the snake factorization of the transfer\\ and the evaluated characteristic form}
+
+\author{Ruqing Chen}
+\address{GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada}
+\email{ruqing@hotmail.com}
+\date{14 September 2026}
+\subjclass[2020]{Primary 11R23, 05C50; Secondary 18G35, 20C08, 05C25}
+\keywords{snake lemma, sandpile group, Iwahori tower, degeneracy maps, Eisenstein
+index, characteristic form, Iwasawa invariants}
+
+\thanks{Paper VII of the series; Papers I--VI are cited as [I]--[VI]. The
+verification script \texttt{iwahori\_char.py} in the ancillary bundle reproduces
+every computational claim. This paper has no external bibliography: every input is a
+result of the series or textbook homological algebra.}
+
+\begin{document}
+
+\begin{abstract}
+Problem 5.1 of [V] asked for a characteristic formalism on the degeneracy tower
+satisfying three axioms: an arc-density term recovering $\mu=n(q+1)/q$ (A1), an
+additive Euler term $-\chi k$ with $\chi$ the rank of the degeneracy $H^0$ (A2), and
+reduction to the commutative characteristic ideal of [IV] on abelian sub-towers
+(A3). This paper solves the problem in evaluated form, by a single application of
+the snake lemma, and the mechanism turns out to be simpler than anything the series
+anticipated: because the level-$(k{+}1)$ Hecke operator factors through the tail
+norm, $A_{k+1}=\etp\ta$ {\rm[V, Prop.~1.2]}, it \emph{vanishes identically} on
+$\ker\ta$, so the Laplacian restricted to the norm kernel is exactly $qI$ and the
+``arc determinant'' is exactly $q^{\,n_k(q-1)}$ --- no nilpotency estimate, no unit
+ambiguity. The snake lemma applied to
+$0\to\ker\nu\to\Zp^{N_{k+1}}\to\Zp^{N_k}\to0$ with Laplacian verticals then yields,
+for every exactly intertwining, surjective, degree-preserving norm $\nu$,
+\[
+\ord_p\Tor_{k+1}-\ord_p\Tor_k
+=\ord_p\bigl|\coker(\Delta_{k+1}|_{\ker\nu})\bigr|-\ord_p\ind(\nu),
+\]
+where $\ind(\nu)$ is the factor by which $\nu$ scales the Eisenstein line. For
+$\nu=\ta$ this gives $n_k(q-1)-1$: axiom (A1) with $\mathrm{Det_{arc}}
+=q^{\,n_k(q-1)}$ and axiom (A2) with $\mathrm{Det_{Euler}}=\ind(\ta)=q$, one factor
+per level, $\chi=1$. For $\nu=\pi_*$ on an abelian voltage tower the same snake
+gives $\ord_\ell\prod_{\text{new }\zeta}\det D(\zeta)-1$: axiom (A3), the character
+mechanism of [II, \S5] and [IV], verified to the integer
+($\det(\Delta|_{\ker\pi})=48$ and $784$ against the character products). One
+formula, two specializations, all three axioms now theorems. What is not delivered
+--- a lift of this evaluated form to a single class in $K_1$ of a localized
+completed degeneracy algebra --- is stated as the precise residue of Problem 5.1,
+and, consistently with [III] and [V], we decline to axiomatize a localization theory
+that does not exist.
+\end{abstract}
+
+\maketitle
+
+\section*{Status of the results}
+
+All numbered statements are proved; the proofs use only results of Papers I--VI and
+the snake lemma. Every identity was additionally machine-verified exactly
+(Table~\ref{tab:battery}): Iwahori transitions $1\to2$, $2\to3$ over $K_4$, and
+abelian transitions $0\to1$, $1\to2$ of the voltage tower $(1,1,1)$, $\ell=2$.
+Remark~\ref{rem:residue} states what remains open of [V, Prob.~5.1];
+Remark~\ref{rem:corrections} records two corrections to the task specification that
+prompted this paper. There are no external citations.
+
+\section{The kernel of the norm, and the vanishing lemma}\label{sec:kernel}
+
+Setting as in [V]: $Y_k$ the Iwahori path tower over a $(q+1)$-regular base
+($n_k=n(q+1)q^{k-1}$ for $k\ge1$), $\ta$ the tail norm, $A_k$ the level Hecke
+(adjacency) operator, $\Delta_k=qI-A_k$ for $k\ge1$, sandpile torsion
+$\Tor_k$.
+
+\begin{lemma}[Vanishing on the norm kernel]\label{lem:vanish}
+For $k\ge1$ let $K_k:=\ker_{\Zp}(\ta)\subseteq\Zp^{\,n_{k+1}}$. Then:
+\begin{enumerate}
+\item[(i)] $K_k$ is a saturated direct summand of rank $n_{k+1}-n_k=n_k(q-1)$
+(kernels of integer matrices are saturated);
+\item[(ii)] $A_{k+1}$ vanishes on $K_k$: since $A_{k+1}=\etp\,\ta$
+{\rm[V, Prop.~1.2]}, $A_{k+1}x=\etp(\ta x)=0$ for $x\in K_k$; in particular $K_k$
+is invariant and
+\[
+\Delta_{k+1}\big|_{K_k}=q\,\mathrm{id}_{K_k},
+\qquad
+\bigl|\coker(\Delta_{k+1}|_{K_k})\bigr|=q^{\,n_k(q-1)}\ \text{exactly.}
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) is the saturation principle of [II] (if $ka\in\ker$, $k\neq0$, then
+$a\in\ker$); the rank is surjectivity of $\ta$. (ii) is the displayed one-line
+computation; then $\Delta_{k+1}=qI-A_{k+1}$ restricts to $q\,\mathrm{id}$, whose
+cokernel on a rank-$n_k(q-1)$ lattice has order exactly $q^{\,n_k(q-1)}$. Verified:
+the machine search for the nilpotency index of $A_{k+1}|_{K_k}$ returned $s=1$ at
+both computed transitions, and $\det(\Delta_{k+1}|_{K_k})=2^{12},2^{24}$ on the
+nose.
+\end{proof}
+
+Lemma~\ref{lem:vanish}(ii) is the structural surprise of this paper: the series
+expected, at best, a nilpotency estimate through the characteristic-polynomial ratio
+of [III, eq.~(2.1)]; instead the incidence calculus of [V] kills the operator
+outright, because the Hecke operator of the upper level literally factors through
+the norm to the lower one.
+
+\section{The snake factorization}\label{sec:snake}
+
+\begin{theorem}[Snake factorization of the transfer]\label{thm:snake}
+Let $\nu\colon\Zp^{N_{k+1}}\to\Zp^{N_k}$ be surjective and degree-preserving, with
+$\nu\Delta_{k+1}=\Delta_k\nu$, and suppose the Eisenstein lines satisfy
+$\nu(\mathbf1)=c\,\mathbf1$ for an integer $c=:\ind(\nu)\neq0$. Then $K:=\ker\nu$ is
+a saturated invariant summand, the snake lemma applied to
+\[
+0\longrightarrow K\longrightarrow \Zp^{N_{k+1}}
+\xrightarrow{\ \nu\ }\Zp^{N_k}\longrightarrow0
+\]
+with verticals $\Delta_{k+1}|_K$, $\Delta_{k+1}$, $\Delta_k$ yields the exact
+sequence
+\[
+0\to\Zp\xrightarrow{\ \cdot c\ }\Zp\xrightarrow{\ \delta\ }
+\coker\bigl(\Delta_{k+1}|_K\bigr)\to\coker\Delta_{k+1}\to\coker\Delta_k\to0 ,
+\]
+and hence, whenever $\coker(\Delta_{k+1}|_K)$ is finite,
+\begin{equation}\label{eq:master}
+\ord_p\Tor_{k+1}-\ord_p\Tor_k
+\;=\;\ord_p\bigl|\coker(\Delta_{k+1}|_{K})\bigr|\;-\;\ord_p\,c .
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Invariance of $K$ is the intertwining; saturation as in
+Lemma~\ref{lem:vanish}(i). The kernels of the verticals are:
+$\ker(\Delta_{k+1}|_K)=K\cap\Zp\mathbf1=0$ (the constants are not in $\ker\nu$
+since $\nu\mathbf1=c\mathbf1\neq0$), $\ker\Delta_{k+1}=\Zp\mathbf1$,
+$\ker\Delta_k=\Zp\mathbf1$, and the induced map between them is
+$\mathbf1\mapsto c\mathbf1$. The snake lemma gives the displayed sequence; the free
+ranks of the two cokernels match through $\nu$ (degree preservation, as in
+[IV, Lem.~1.3]), so taking orders of the finite parts yields \eqref{eq:master}.
+\end{proof}
+
+\begin{corollary}[Iwahori specialization: axioms (A1) and (A2)]\label{cor:iwahori}
+For $\nu=\ta$, $k\ge1$: $c=q$ $($[V], $\ta\mathbf1=q\mathbf1)$ and
+Lemma~\ref{lem:vanish} give
+\[
+\ord_p\Tor_{k+1}-\ord_p\Tor_k=n_k(q-1)-1 ,
+\]
+recovering {\rm[III, Thm.~2.1]} homologically. Summation yields the pseudo-Iwasawa
+law with $\mu=n(q+1)/q$ carried entirely by
+$\mathrm{Det_{arc}}:=\det(\Delta_{k+1}|_{\ker\ta})=q^{\,n_k(q-1)}$ (axiom A1), and
+the Euler term $-\chi k$ carried entirely by
+$\mathrm{Det_{Euler}}:=\ind(\ta)=q$, one factor per level, with
+$\chi=1=\rk\ker(\tau^*-\eta^*)$ by {\rm[V, Thm.~2.1]} (axiom A2): the $-1$ is,
+finally and precisely, the Eisenstein line passing through the connecting map of the
+snake.
+\end{corollary}
+
+\begin{corollary}[Abelian specialization: axiom (A3)]\label{cor:abelian}
+For an abelian $\Z/\ell^{k}$ voltage tower with covering pushforward $\nu=\pi_*$
+$($exactly intertwining by {\rm[IV, Lem.~1.2]}$)$: $c=\ell$, and under the
+block-character decomposition of {\rm[IV, Lem.~1.1]} the kernel $\ker\pi_*$ is the
+sum of the \emph{new} character blocks, on which $\Delta$ acts with determinant
+$\prod_{\text{new }\zeta}\det D(\zeta)$; hence \eqref{eq:master} reads
+\[
+\ord_\ell\Tor_{k+1}-\ord_\ell\Tor_k
+=\ord_\ell\!\!\prod_{\text{new }\zeta}\!\det D(\zeta)\;-\;1 ,
+\]
+which is precisely the character/Newton mechanism of {\rm[II, \S5]} and
+{\rm[IV, Cor.~2.3]}. Verified exactly: $\det(\Delta|_{\ker\pi})=48=\det D(-1)$ at
+$0\to1$ and $784=|\det D(i)\det D(-i)|$ at $1\to2$, increments $4-1=3$ in both,
+matching {\rm[II, Table~2]}.
+\end{corollary}
+
+One snake, two kernels: on the Iwahori side the kernel is killed by the Hecke
+operator and contributes the pure arc power $q^{\,n_k(q-1)}$; on the abelian side
+the kernel is the new-character space and contributes the $L$-value block
+$\prod_{\text{new}}\det D(\zeta)$. The Eisenstein index $c$ is $q$ or $\ell$
+respectively --- one factor per level in either world, which is the whole content of
+$\lambda=-\chi$. The three axioms of [V, \S5] are now theorems with these referents.
+
+\section{Scope, residue, corrections}\label{sec:scope}
+
+\begin{remark}[The residue of Problem 5.1]\label{rem:residue}
+Theorem~\ref{thm:snake} solves [V, Prob.~5.1] \emph{in evaluated form}: the
+characteristic form is the level-wise pair
+$\mathrm{Char}_k:=\bigl(\det(\Delta_{k+1}|_{\ker\nu}),\ \ind(\nu)\bigr)$, and
+(A1)--(A3) hold for it as theorems. What is not constructed is a single element of
+$K_1$ of a localized completion of the degeneracy algebra --- a Dieudonn\'e-type
+determinant --- whose evaluations reproduce $\mathrm{Char}_k$. Defining such an
+object would require an Ore localization theory for the non-normal pro-ring of
+[V, Prop.~4.1], which does not exist; consistently with [III, Rem.~2.6] and
+[V, \S5], we decline to axiomatize it, and we record the lift as the precise open
+residue. Everything quantitative that a lift could evaluate to is already proved
+here.
+\end{remark}
+
+\begin{remark}[Two corrections to the task specification]\label{rem:corrections}
+The specification prompting this paper asserted an exact sequence
+$0\to X_{k+1}\xrightarrow{\partial}X_k\to0$ with $\partial=\ta-\et$; that map is far
+from injective ($\rk\ker\partial=n_{k+1}-n_k+1$ by {\rm[V, Thm.~2.1(ii)]}), and the
+exact sequence that carries the theory is the norm sequence of
+Theorem~\ref{thm:snake}. It also placed the Eisenstein class in
+$K_0(\mathcal H_k)$; the Eisenstein \emph{projector} $\mathbf1\mathbf1^{t}/N$ is not
+integral and does not lie in the algebra, and the class that exists is the
+module-level line $\Zp\mathbf1=\ker\Delta$, entering the theory through the
+connecting map --- which is where Corollary~\ref{cor:iwahori} puts it.
+\end{remark}
+
+\begin{remark}[Boundary level]\label{rem:boundary}
+At $k=0$ the tail map fails to intertwine by exactly the degeneracy boundary
+$($[V, Rem.~3.3]$)$, $\ker S$ is not invariant, and Theorem~\ref{thm:snake} does not
+apply; the Eisenstein index there is $q+1$, not $q$
+$(S\mathbf1=(q+1)\mathbf1$, verified$)$. The transfer $0\to1$ enters the law as the
+initial value, as everywhere in the series.
+\end{remark}
+
+\section{The verification battery}\label{sec:battery}
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccccc}
+\toprule
+transition & $\rk\ker\nu$ & invariant & $A_{k+1}|_{\ker}$ &
+$\det(\Delta|_{\ker\nu})$ & $\ind(\nu)$\\
+\midrule
+Iwahori $1\to2$ & $12$ & yes & $=0$ ($s{=}1$) & $2^{12}$ exactly & $2$\\
+Iwahori $2\to3$ & $24$ & yes & $=0$ ($s{=}1$) & $2^{24}$ exactly & $2$\\
+abelian $0\to1$ & $4$ & yes & --- & $48=\det D(-1)$ & $2$\\
+abelian $1\to2$ & $8$ & yes & --- & $784=|\det D(i)\det D(-i)|$ & $2$\\
+boundary $0\to1$ & --- & no & --- & --- & $3=q+1$\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{Exact verification (\texttt{iwahori\_char.py}). Increments
+\eqref{eq:master}: $12-1=11$, $24-1=23$ (Iwahori, matching [II, Rem.~5.2]);
+$4-1=3$, $4-1=3$ (abelian $2$-adic orders, matching [II, Table~2]). The vanishing
+$A_{k+1}|_{\ker\ta}=0$ was found by the machine ($s=1$) before its one-line proof
+was noticed.}
+\label{tab:battery}
+\end{table}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Every numbered statement is proved from Papers I--VI and the
+snake lemma; the battery of Table~\ref{tab:battery} confirms each ingredient
+exactly. No external sources are cited and none are load-bearing.
+Remark~\ref{rem:residue} states the open residue of [V, Prob.~5.1];
+Remark~\ref{rem:corrections} corrects the specification that prompted the paper.
+
+\end{document}

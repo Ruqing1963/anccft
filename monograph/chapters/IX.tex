@@ -1,0 +1,669 @@
+% generated from Paper 9/anccft9.tex
+\chapter{Algorithmic non-commutative class field theory, IX: exceptional zeros, the graph $\cL$-invariant, and the operator-algebraic
+Mazur--Tate--Teitelbaum formula}\label{chap:IX}
+\chaptermark{IX}
+\begin{chapterabstract}
+Section~3 of [Ch.~\ref{chap:III}] recorded, without proof, that the cleared voltage pencil
+$g(T)=T^{2}h(T)$ of an abelian $\Z/\ell^{k}$ tower over a $(q{+}1)$-regular graph has a
+double zero at the trivial character, and that the constant term of the Iwasawa growth
+law obeys $\nu_0=\ord_\ell\kappa(Y_0)-\mu+\sum_j\varepsilon_j$ in all four towers of
+[Ch.~\ref{chap:II}, Table~2]. This paper turns both observations into theorems and identifies the
+number they conceal. The double zero is forced by the symmetry $D(t^{-1})=D(t)^{t}$ of
+the pencil; its second-order coefficient has the closed form
+\[
+\tfrac12\Theta''(0)\;=\;-\,\kappa(Y_0)\,\|h_\alpha\|^{2},
+\]
+where $h_\alpha$ is the harmonic representative of the voltage cochain $\alpha$ --- its
+orthogonal projection onto the cycle space, equivalently onto the kernel of the
+Hecke--Dirac operator of [Ch.~\ref{chap:II}] --- and $\kappa(Y_0)=|\Jac(Y_0)|=\frac1n\prod_f\#E_f(\F_p)$
+is the algebraic $L$-value of [Ch.~\ref{chap:I}]. We therefore define the graph $\cL$-invariant
+$\cL(Y_\bullet):=\tfrac12\Theta''(0)/\kappa(Y_0)=-\|h_\alpha\|^{2}$, a rational number
+depending only on the class $[\alpha]\in H^{1}(Y_0;\Z)$ and not on $\ell$; for a
+single-chord voltage, $-\tfrac12\Theta''(0)$ counts the spanning trees avoiding the
+chord. The bookkeeping identity of [Ch.~\ref{chap:III}] becomes a theorem with an exact description of
+the finitely supported defects $\varepsilon_j$, and the specification's proposed
+alignment is replaced by the correct one: in the exceptional-zero regime $\lambda_h=0$
+all defects vanish and $\nu_0=-\ord_\ell\cL(Y_\bullet)$, while in general
+$\nu_0+\ord_\ell\cL(Y_\bullet)=(\ord_\ell a_2-\mu)+\sum_j\varepsilon_j$. On the
+operator-algebraic side we prove a twisted Bass identity for the character-twisted
+Satake dynamics of [Ch.~\ref{chap:I}] and show that at the critical inverse temperature $\beta=1$ the
+twisted Bass determinant equals $q^{-n}\Theta(t-1)$: its zero at the trivial character
+is simple in the temperature direction with derivative proportional to $\kappa(Y_0)$,
+of order two in the character direction with second derivative proportional to
+$\cL(Y_\bullet)\kappa(Y_0)$, and the partition function of the critical KMS family has a
+double pole with leading coefficient $n(q-q^{-1})/\cL(Y_\bullet)$ --- the
+Mazur--Tate--Teitelbaum and Greenberg--Stevens shapes, with the roles of algebraic
+$L$-value and $\cL$-invariant made explicit. The abelian shadow limit of [Ch.~\ref{chap:VIII}] carries
+$\Theta$ as the characteristic element of its equivariant $K_0$. For the non-normal
+Iwahori tower there is no character direction: its zero is simple at every level, and
+the constancy of its residue $n_k\kappa(Y_k)q^{-n_k}$ along the tower is exactly the
+pseudo-Iwasawa law, with the Euler term $-k$ appearing as the $p$-adic valuation of the
+vertex count. No $\cL$-invariant exists for that tower, and we say so.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved. The proofs use only results of Papers I--VIII,
+finite-dimensional linear algebra (a Schur complement replaces analytic perturbation
+theory), the Weierstrass preparation theorem for $\Zl[[T]]$ \cite{Wa}, and the character
+product formula for abelian covers already used in [Ch.~\ref{chap:II}, \S5] and [Ch.~\ref{chap:IV}]. The twisted Bass
+identity is the Artin--Ihara $L$-function formula of Stark--Terras \cite{ST}; we give a
+six-line proof so that nothing is quoted. Every identity was machine-verified exactly
+on the four abelian towers of [Ch.~\ref{chap:II}, Table~2] --- growth laws recomputed directly from the
+reduced Laplacians of the derived graphs up to $128$ vertices --- and on the Iwahori tower
+at levels $k\le3$ (Table~\\ref{IX:tab:battery}). The Mazur--Tate--Teitelbaum \cite{MTT} and
+Greenberg--Stevens \cite{GS} formulas are cited for the shape of the analogy only;
+nothing here depends on them. Section~\\ref{IX:sec:scope} records what is open and five
+corrections to the specification that prompted this paper.
+
+\section{The exceptional zero of the voltage pencil}\label{IX:sec:zero}
+
+Setting as in [Ch.~\ref{chap:II}, \S5] and [Ch.~\ref{chap:IV}]. $Y_0$ is a finite connected $(q{+}1)$-regular graph
+with $n$ vertices and $m=\frac{(q+1)n}2$ edges, $r=m-n+1$; fix an orientation $E^+$ of
+the edges and a voltage $\alpha\colon E^+\to\Z$, extended to oriented edges by
+$\alpha(\bar e)=-\alpha(e)$, so that $\alpha$ is an integer $1$-cochain. The voltage
+adjacency and Laplacian pencils are
+\[
+A(t)_{uv}=\sum_{e\colon u\to v}t^{\alpha(e)},\qquad
+D(t)=(q{+}1)I_n-A(t)\ \in M_n\bigl(\Z[t,t^{-1}]\bigr),
+\]
+and $\Theta(T):=\det D(1+T)\in\Z[T,(1+T)^{-1}]\subset\La:=\Zl[[T]]$ is the graph
+$\ell$-adic $L$-function, the characteristic element of the limit module of
+[Ch.~\ref{chap:IV}, Thm.~2.1]. Its cleared form $g(T)=(1+T)^{d}\Theta(T)\in\Z[T]$, $d$ minimal, is the
+polynomial of [Ch.~\ref{chap:II}, Rem.~5.4] and [Ch.~\ref{chap:III}, \S3]; since $(1+T)^{d}=1+dT+\cdots$ and
+$\Theta(0)=\Theta'(0)=0$ (Theorem~\\ref{IX:thm:zero}), the coefficients
+$a_i$ of $T^{i}$ in $\Theta$ and in $g$ agree for $i\le2$. We write
+$\kappa_0:=\kappa(Y_0)=|\Jac(Y_0)|=\frac1n\prod_f\#E_f(\F_p)$, the algebraic $L$-value
+of [Ch.~\ref{chap:I}, Thm.~3.5], and $\Delta_0=D(1)$ for the Laplacian of $Y_0$.
+
+Hodge data. Let $\partial\colon\Z^{E^+}\to\Z^{V}$, $\partial e=t(e)-o(e)$, be the
+boundary map, so $\Delta_0=\partial\partial^{t}$ [Ch.~\ref{chap:II}, Lem.~3.2]; the cycle space
+$\ker\partial=H_1(Y_0;\Z)$ and the cut space $\operatorname{im}\partial^{t}$ are
+orthogonal complements in $\Q^{E^+}$. With $\Delta_0^{+}$ the Moore--Penrose inverse
+(the inverse of $\Delta_0$ on $\mathbf1^{\perp}$, zero on $\mathbf1$), the orthogonal
+projection onto the cycle space is
+\[
+\Pi:=I-\partial^{t}\Delta_0^{+}\partial ,
+\]
+which is also the projection onto $\ker\mathsf D_p\cap\ell^{2}(E^+)$ for the
+Hecke--Dirac operator $\mathsf D_p$ of [Ch.~\ref{chap:II}, Def.~3.1]. Put $h_\alpha:=\Pi\alpha$, the
+harmonic representative of $\alpha$, and $\|h_\alpha\|^{2}=\alpha^{t}\Pi\alpha
+=\|\alpha\|^{2}-(\partial\alpha)^{t}\Delta_0^{+}(\partial\alpha)\in\Q_{\ge0}$.
+
+\begin{lemma}[Symmetry and switching]\label{IX:lem:sym}
+$D(t^{-1})=D(t)^{t}$, hence $f(t):=\det D(t)$ satisfies $f(t^{-1})=f(t)$. For
+$\varphi\in\Z^{V}$, the switched voltage $\alpha+\partial^{t}\varphi$ has pencil
+$\operatorname{diag}(t^{\varphi_u})\,D(t)\,\operatorname{diag}(t^{-\varphi_u})$, so $f$
+depends only on the class $[\alpha]\in H^{1}(Y_0;\Z)$.
+\end{lemma}
+
+\begin{proof}
+$A(t^{-1})_{uv}=\sum_{e\colon u\to v}t^{-\alpha(e)}=\sum_{e\colon v\to u}t^{\alpha(e)}
+=A(t)_{vu}$. Switching multiplies the entry $t^{\alpha(e)}$, $e\colon u\to v$, by
+$t^{\varphi_v-\varphi_u}$.
+\end{proof}
+
+\begin{theorem}[Exceptional zero of order two]\label{IX:thm:zero}
+\begin{enumerate}
+\item[(i)] $\Theta(0)=0$ and $\Theta'(0)=0$.
+\item[(ii)] $a_2=\tfrac12\Theta''(0)=-\,\kappa(Y_0)\,\|h_\alpha\|^{2}$.
+\item[(iii)] The zero has order exactly two if and only if $h_\alpha\neq0$, i.e.\ if and
+only if $[\alpha]\neq0$ in $H^{1}(Y_0;\Q)$.
+\item[(iv)] If $\alpha$ is the indicator of a single edge $e$, then
+$\|h_\alpha\|^{2}=1-\Reff(e)$ and $-a_2=\kappa(Y_0)\bigl(1-\Reff(e)\bigr)$ is the number
+of spanning trees of $Y_0$ not containing $e$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Write $s=T$ and expand $D(1+s)=\Delta_0+sD_1+s^{2}D_2+O(s^{3})$ with
+$D_1=D'(1)=-A'(1)=:-W$ and $D_2=\frac12D''(1)=-\frac12A''(1)$. By
+Lemma~\\ref{IX:lem:sym}, $A'(1)^{t}=-A'(1)$, so $W$ is antisymmetric, and
+$(W\mathbf1)_u=\sum_{o(e)=u}\alpha(e)-\sum_{t(e)=u}\alpha(e)=-(\partial\alpha)_u$, i.e.\
+$W\mathbf1=-\partial\alpha$. Also
+$\mathbf1^{t}A''(1)\mathbf1=\sum_{e\in E^+}\bigl[\alpha(\alpha-1)+\alpha(\alpha+1)\bigr]
+=2\|\alpha\|^{2}$, so $\mathbf1^{t}D_2\mathbf1=-\|\alpha\|^{2}$.
+
+Decompose $\Q^{n}=\Q\mathbf1\oplus\mathbf1^{\perp}$ orthogonally, with unit vector
+$\mathbf1/\sqrt n$. In this decomposition $\Delta_0=0\oplus\Delta'$ with $\Delta'$
+invertible and $\det\Delta'=\prod_{\mu\neq0}\mu=n\kappa_0$ [Ch.~\ref{chap:III}, eq.~(2.2)]. Writing
+$E:=sD_1+s^{2}D_2+O(s^{3})$ in block form $\begin{psmallmatrix}e_{00}&e_{0*}\\
+e_{*0}&E_{**}\end{psmallmatrix}$, the Schur complement gives
+\[
+f(1+s)=\det(\Delta'+E_{**})\cdot\bigl(e_{00}-e_{0*}(\Delta'+E_{**})^{-1}e_{*0}\bigr).
+\]
+Here $e_{00}=\frac1n\mathbf1^{t}E\mathbf1=\frac{s}{n}\mathbf1^{t}D_1\mathbf1
++\frac{s^{2}}n\mathbf1^{t}D_2\mathbf1+O(s^{3})=-\frac{s^{2}}n\|\alpha\|^{2}+O(s^{3})$,
+because $\mathbf1^{t}W\mathbf1=0$ by antisymmetry; and $e_{0*},e_{*0}=O(s)$ with
+$e_{*0}=\frac{s}{\sqrt n}D_1\mathbf1|_{\mathbf1^\perp}+O(s^{2})$,
+$e_{0*}=\frac{s}{\sqrt n}(D_1^{t}\mathbf1)^{t}|_{\mathbf1^\perp}+O(s^{2})$; note
+$D_1\mathbf1=-W\mathbf1=\partial\alpha\in\mathbf1^{\perp}$ and
+$D_1^{t}\mathbf1=W\mathbf1=-\partial\alpha$. Since $(\Delta'+E_{**})^{-1}=\Delta_0^{+}
++O(s)$ on $\mathbf1^{\perp}$,
+\[
+e_{0*}(\Delta'+E_{**})^{-1}e_{*0}
+=\frac{s^{2}}n(-\partial\alpha)^{t}\Delta_0^{+}(\partial\alpha)+O(s^{3}) .
+\]
+Hence
+$f(1+s)=\bigl(n\kappa_0+O(s)\bigr)\cdot\frac{s^{2}}{n}\bigl(-\|\alpha\|^{2}
++(\partial\alpha)^{t}\Delta_0^{+}(\partial\alpha)\bigr)+O(s^{3})
+=-\kappa_0\|\Pi\alpha\|^{2}s^{2}+O(s^{3})$, which is (i) and (ii). (iii): $\Pi\alpha=0$
+iff $\alpha$ lies in the cut space $\operatorname{im}\partial^{t}\otimes\Q$ iff
+$[\alpha]=0$ in $H^{1}(Y_0;\Q)$. (iv): for $\alpha=e$,
+$\|\Pi e\|^{2}=1-e^{t}\partial^{t}\Delta_0^{+}\partial e=1-\Reff(e)$, and
+$\kappa_0\Reff(e)$ is the number of spanning trees containing $e$ (Kirchhoff). On $K_4$:
+$\Reff=\frac12$, $16\cdot\frac12=8$ trees avoid the chord, and $a_2=-8$ in both
+$(1,0,0)$ towers (Table~\\ref{IX:tab:battery}).
+\end{proof}
+
+\begin{definition}[Graph $\cL$-invariant]\label{IX:def:L}
+$\displaystyle\cL(Y_\bullet):=\frac{\Theta''(0)}{2\,\kappa(Y_0)}=-\|h_\alpha\|^{2}
+=-\|\Pi_{\ker\mathsf D_p}\alpha\|^{2}\ \in\Q_{\le0}$, nonzero iff $[\alpha]\neq0$
+rationally. It depends only on $[\alpha]\in H^{1}(Y_0;\Z)$ and not on $\ell$: the same
+rational number serves every prime. On $K_4$ the four towers of [Ch.~\ref{chap:II}, Table~2] have
+$\cL=-\frac12,\,-1,\,-\frac32,\,-\frac12$ for $(1,0,0)$, $(1,1,1)$, $(1,2,0)$, $(1,0,0)$
+respectively.
+\end{definition}
+
+\begin{theorem}[The graph Mazur--Tate--Teitelbaum formula]\label{IX:thm:mtt}
+$\displaystyle\tfrac12\Theta''(0)=\cL(Y_\bullet)\cdot\kappa(Y_0)
+=\cL(Y_\bullet)\cdot\frac1n\prod_f\#E_f(\F_p)$: the leading coefficient of the graph
+$\ell$-adic $L$-function at its exceptional zero is the $\cL$-invariant times the
+algebraic $L$-value.
+\end{theorem}
+
+\begin{proof}
+Theorem~\\ref{IX:thm:zero}(ii), Definition~\\ref{IX:def:L}, and [Ch.~\ref{chap:I}, Thm.~3.5] for the product
+formula for $\kappa(Y_0)$.
+\end{proof}
+
+\begin{remark}[The analogy, stated as an analogy]\label{IX:rem:analogy}
+For an elliptic curve with split multiplicative reduction at $p$, the $p$-adic
+$L$-function has an exceptional zero at $s=1$ and \cite{MTT} conjectured, \cite{GS}
+proved, $L_p'(E,1)=\cL(E)\,L(E,1)/\Omega_E$ with $\cL(E)=\log_pq_E/\ord_pq_E$ the
+$\cL$-invariant of the Tate period. Theorem~\\ref{IX:thm:mtt} has that shape: a zero forced
+by a symmetry, an algebraic part that is a product of Frobenius point counts, and a
+transcendental-looking factor that is in fact a period-type quantity --- here the Hodge
+energy of the class $[\alpha]$, i.e.\ its length in the harmonic metric of $Y_0$. The
+zero is of order two rather than one because the graph pencil is self-dual under
+$t\mapsto t^{-1}$ (Lemma~\\ref{IX:lem:sym}), which kills the first derivative; the analogue
+in the classical setting would be a functional equation forcing an even order. We
+claim the shape and nothing more.
+\end{remark}
+
+\section{The $\ell$-adic bookkeeping}\label{IX:sec:book}
+
+Fix a prime $\ell$ with the tower $Y_k$ connected for all $k$ (equivalently
+$\alpha\not\equiv0$ in $H^{1}(Y_0;\F_\ell)$, true in the four towers). Write
+$h(T):=g(T)/T^{2}\in\Z[T]$, so $h(0)=a_2$, and let $h=\ell^{\mu}P(T)U(T)$ be its
+Weierstrass decomposition in $\La$: $P$ distinguished of degree $\lambda_h$, $U$ a unit
+\cite{Wa}. Thus $\mu=\min_i\ord_\ell(\text{coefficients of }h)$ and $\lambda_h$ is the
+index of the first coefficient attaining it; $[Ch.~\ref{chap:II}, Rem.~5.4]$ and $[Ch.~\ref{chap:IV}, Cor.~2.3]$ give
+the Iwasawa invariants of the tower as $\mu$ and $\lambda=\lambda(g)-1=\lambda_h+1$.
+For $j\ge1$ put
+\[
+N_j:=\ord_\ell\prod_{\zeta\ \mathrm{prim.}\ \ell^{j}}h(\zeta-1)
+=\ord_\ell\Res_T\bigl(\Phi_{\ell^{j}}(1+T),\,h(T)\bigr),
+\qquad
+\varepsilon_j:=N_j-\bigl(\mu\,\varphi(\ell^{j})+\lambda_h\bigr),
+\]
+the exceptional low-level defects of [Ch.~\ref{chap:III}, \S3].
+
+\begin{lemma}[Character product]\label{IX:lem:char}
+For every $k\ge0$,
+$\kappa(Y_k)=\kappa(Y_0)\,\ell^{-k}\prod_{\zeta^{\ell^{k}}=1,\ \zeta\neq1}\det D(\zeta)$
+{\rm[Ch.~\ref{chap:II}, \S5]}, and consequently
+\[
+\ord_\ell\kappa(Y_k)=\ord_\ell\kappa_0-k+\sum_{j=1}^{k}\bigl(2+N_j\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+$\det D(\zeta)=\zeta^{-d}g(\zeta-1)$ and $\prod_{\zeta\neq1}\zeta^{-d}$ is a root of
+unity; $g(\zeta-1)=(\zeta-1)^{2}h(\zeta-1)$ and
+$\prod_{\zeta\ \mathrm{prim.}\ \ell^{j}}(\zeta-1)=\pm\Phi_{\ell^{j}}(1)=\pm\ell$, of
+valuation $1$; group the nontrivial roots by exact order $\ell^{j}$, $1\le j\le k$.
+\end{proof}
+
+\begin{theorem}[The bookkeeping identity of {\rm[Ch.~\ref{chap:III}, \S3]}]\label{IX:thm:book}
+Let $\rho_1,\dots,\rho_{\lambda_h}$ be the roots of $P$ (all of positive valuation) and
+let $j_0\ge1$ be least with $1/\varphi(\ell^{j_0})<\min_i\ord_\ell\rho_i$ ($j_0=1$ if
+$\lambda_h=0$). Then:
+\begin{enumerate}
+\item[(i)] $\varepsilon_j=0$ for all $j\ge j_0$; the defects are finitely supported;
+\item[(ii)] for all $k\ge j_0-1$,
+\[
+\ord_\ell\kappa(Y_k)=\mu\,\ell^{k}+(\lambda_h+1)\,k+\nu_0,\qquad
+\nu_0=\ord_\ell\kappa(Y_0)-\mu+\sum_{j\ge1}\varepsilon_j ;
+\]
+\item[(iii)] in particular $\lambda=\lambda_h+1=\lambda(g)-1$, recovering
+{\rm[Ch.~\ref{chap:II}, Rem.~5.4]} and {\rm[Ch.~\ref{chap:IV}, Cor.~2.3]}, and the constant term is the identity
+recorded in {\rm[Ch.~\ref{chap:III}, \S3]}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) For $\zeta$ primitive of order $\ell^{j}$, $\ord_\ell(\zeta-1)=1/\varphi(\ell^{j})$;
+if this is smaller than every $\ord_\ell\rho_i$ then
+$\ord_\ell(\zeta-1-\rho_i)=1/\varphi(\ell^{j})$ for all $i$, so
+$\ord_\ell h(\zeta-1)=\mu+\lambda_h/\varphi(\ell^{j})$, and summing over the
+$\varphi(\ell^{j})$ primitive roots gives $N_j=\mu\varphi(\ell^{j})+\lambda_h$. (ii) By
+Lemma~\\ref{IX:lem:char},
+$\ord_\ell\kappa(Y_k)=\ord_\ell\kappa_0-k+2k+\sum_{j\le k}(\mu\varphi(\ell^{j})
++\lambda_h+\varepsilon_j)=\ord_\ell\kappa_0+k+\mu(\ell^{k}-1)+\lambda_hk
++\sum_{j\le k}\varepsilon_j$, and for $k\ge j_0-1$ the last sum is the full sum. (iii)
+is read off. Machine confirmation (Table~\\ref{IX:tab:battery}): the law holds with the
+predicted $(\mu,\lambda,\nu_0)=(3,1,1),(0,3,4),(2,3,3),(0,1,0)$ --- the four rows of
+[Ch.~\ref{chap:II}, Table~2] --- at every computed level $k\ge2$, and in fact at every $k\ge0$ except
+in the $(1,2,0)$ tower, where $(\varepsilon_1,\varepsilon_2)=(-1,+2)$ and the law
+starts at $k=2$, exactly as [Ch.~\ref{chap:III}, \S3] reported.
+\end{proof}
+
+\begin{corollary}[The exceptional-zero regime]\label{IX:cor:regime}
+The following are equivalent: $\lambda_h=0$; $\ord_\ell a_2=\mu$;
+$\ord_\ell\cL(Y_\bullet)=\mu-\ord_\ell\kappa(Y_0)$. In this regime $\varepsilon_j=0$ for
+every $j\ge1$, the law of Theorem~\\ref{IX:thm:book}(ii) holds for every $k\ge0$, and
+\[
+\nu_0\;=\;-\,\ord_\ell\cL(Y_\bullet):
+\]
+the constant term of the Iwasawa law is minus the $\ell$-adic valuation of the
+$\cL$-invariant. This is the case in both $(1,0,0)$ towers: $\nu_0=1=-\ord_2(-\tfrac12)$
+and $\nu_0=0=-\ord_3(-\tfrac12)$.
+\end{corollary}
+
+\begin{proof}
+$\mu\le\ord_\ell a_2$ always, with equality iff the constant coefficient attains the
+minimum iff $\lambda_h=0$; the third condition is the second rewritten. If $\lambda_h=0$
+then $P=1$, $\ord_\ell h(\zeta-1)=\mu$ for every $\zeta$, so $N_j=\mu\varphi(\ell^{j})$
+and $\varepsilon_j=0$, $j_0=1$; then $\nu_0=\ord_\ell\kappa_0-\mu
+=\ord_\ell\kappa_0-\ord_\ell a_2=-\ord_\ell\cL$.
+\end{proof}
+
+\begin{theorem}[The $\cL$-defect identity]\label{IX:thm:defect}
+In general,
+\[
+\nu_0+\ord_\ell\cL(Y_\bullet)\;=\;\bigl(\ord_\ell a_2-\mu\bigr)+\sum_{j\ge1}\varepsilon_j
+\;=:\;\delta(Y_\bullet,\ell),
+\]
+with $\ord_\ell a_2-\mu\ge0$ and equality iff $\lambda_h=0$. On the four towers
+$\delta=0,4,2,0$.
+\end{theorem}
+
+\begin{proof}
+Substitute $\ord_\ell\cL=\ord_\ell a_2-\ord_\ell\kappa_0$ into
+Theorem~\\ref{IX:thm:book}(ii).
+\end{proof}
+
+\begin{remark}[A correction to the specification]\label{IX:rem:align}
+The specification asked to prove that $\ord_\ell\cL(Y_\bullet)$ ``aligns exactly'' with
+$\nu_0-\ord_\ell\kappa(Y_0)+\mu$. By Theorem~\\ref{IX:thm:book} the latter quantity is
+$\sum_j\varepsilon_j$, which is $0,0,1,0$ on the four towers, whereas
+$\ord_\ell\cL=-1,0,-1,0$: there is no such identity. The statements that hold are
+Corollary~\\ref{IX:cor:regime} and Theorem~\\ref{IX:thm:defect}. The specification's other
+claim, that $\ord_\ell a_2=\mu$ ``controls the main term in the $\lambda_h=0$ regime'',
+is the definition of that regime; its content is the vanishing of all defects and the
+formula $\nu_0=-\ord_\ell\cL$.
+\end{remark}
+
+\begin{proposition}[The exceptional zero inside the Iwasawa module]\label{IX:prop:module}
+Let $X_\infty\cong\La^{n}/D(1+T)\La^{n}$ be the limit module of {\rm[Ch.~\ref{chap:IV}, Thm.~2.1]}, with
+$\car(X_\infty)=(\Theta)$. Then $X_\infty/TX_\infty\cong(\Z\oplus\Jac(Y_0))\otimes\Zl$
+has $\Zl$-rank one, while $\ord_T\Theta=2$; at the augmentation prime the localization
+is
+\[
+X_\infty\otimes_{\La}\La_{(T)}\;\cong\;\La_{(T)}\big/T^{2}\La_{(T)} ,
+\]
+cyclic of length two. The exceptional zero is the statement that the Eisenstein
+eigenspace of the Iwasawa module is not semisimple.
+\end{proposition}
+
+\begin{proof}
+The first isomorphism is the exact control theorem [Ch.~\ref{chap:IV}, Cor.~2.2] at $k=0$.
+$\La_{(T)}$ is a discrete valuation ring with uniformizer $T$ and residue field $\Ql$,
+so $D(1+T)$ has elementary divisors over it; reducing modulo $T$ gives
+$D(1)=\Delta_0$ of rank $n-1$ over $\Ql$, so exactly one elementary divisor is divisible
+by $T$, and since the $T$-adic order of the determinant is $2$
+(Theorem~\\ref{IX:thm:zero}) that divisor is $T^{2}$ times a unit.
+\end{proof}
+
+\section{The operator-algebraic formulation}\label{IX:sec:oa}
+
+Setting from [Ch.~\ref{chap:I}]. $\cG_\Gamma$ is the Hecke groupoid, $C^*(\cG_\Gamma)=\cO_{\Anb}$ the
+Cuntz--Krieger algebra of the non-backtracking matrix
+$\Anb=T^{t}S-J$ [Ch.~\ref{chap:I}, Def.~1.7, Prop.~1.9(ii)], where $S,T\in M_{n\times2m}(\Z)$ are the
+start and terminal incidence matrices of oriented edges and $J$ is edge reversal. The
+Satake dynamics $\sigma^{(\pi)}$ [Ch.~\ref{chap:I}, Def.~2.1] has partition function
+$Z_p(\beta;\pi)=L_p(\beta,\pi_p)$ [Ch.~\ref{chap:I}, Thm.~2.2]; for the Eisenstein parameter
+$(\alpha_1,\alpha_2)=(1,q)$ the $\KMS_\beta$ simplex is nonempty exactly at the critical
+inverse temperature $\beta=1$, where it is a single Perron state [Ch.~\ref{chap:I}, Thm.~2.4(ii),(iv)];
+off the Perron locus the Satake data survive only as $\KMS$ \emph{functionals}
+[Ch.~\ref{chap:I}, Thm.~2.5, Rem.~2.6]. Throughout $u=q^{-\beta}$, so $\beta=1$ is $u=q^{-1}$.
+
+\begin{definition}[Character twist]\label{IX:def:twist}
+The voltage $\alpha$ is a $\Z$-valued continuous $1$-cocycle $c_\alpha$ on
+$\cG_\Gamma$ --- the sum of $\alpha$ along the edges of a Hecke move, well defined on
+$(\omega,i-j,\omega')$ because the tails agree --- commuting with the degree cocycle
+$c$. It induces a $\mathbb T$-action $\gamma^{\alpha}$ on $C^*(\cG_\Gamma)$ commuting
+with $\sigma^{(\pi)}$, and for $t\in\C^{\times}$ the \emph{twisted transfer operator} and
+\emph{twisted Hecke operators}
+\[
+B_t:=B\La_t,\qquad \La_t:=\operatorname{diag}\bigl(t^{\alpha(e)}\bigr)_{e},\qquad
+T_k(t)_{uv}:=\sum_{\text{nb paths }u\to v\text{ of length }k}t^{\alpha(\text{path})},
+\]
+with $B=\Anb$ on $\C^{2m}$; for $|t|=1$ these are the character-twisted Ruelle--Hecke
+transfer operator of [Ch.~\ref{chap:I}, Def.~2.1] at the Eisenstein potential and the twisted Hecke
+correspondences. Note $T_1(t)=A(t)$ and $\La_tJ\La_t=J$, since $\alpha(\bar e)=-\alpha(e)$.
+\end{definition}
+
+\begin{lemma}[Twisted Hecke recursion]\label{IX:lem:rec}
+$A(t)T_k(t)=T_{k+1}(t)+qT_{k-1}(t)$ for $k\ge2$, $A(t)^{2}=T_2(t)+(q{+}1)I$, hence
+\[
+\sum_{k\ge0}T_k(t)u^{k}=(1-u^{2})\bigl(I-uA(t)+qu^{2}I\bigr)^{-1}
+\]
+as an identity of matrix-valued rational functions of $(u,t)$.
+\end{lemma}
+
+\begin{proof}
+$A(t)T_k(t)$ sums over an edge $e\colon u\to w$ followed by a non-backtracking path
+$w\to v$ of length $k$, with weight $t^{\alpha(e)}t^{\alpha(\text{path})}$. The terms in
+which the path begins with $\bar e$ have weight $t^{\alpha(e)+\alpha(\bar e)}
+t^{\alpha(\text{rest})}=t^{\alpha(\text{rest})}$, the rest being a non-backtracking path
+$u\to v$ of length $k-1$ whose first edge is not $e$; for each such rest there are $q$
+admissible $e$. This is the proof of [Ch.~\ref{chap:I}, Lem.~1.5] with the multiplicative weight
+carried along; the generating function follows by the same algebra.
+\end{proof}
+
+\begin{theorem}[Twisted Bass identity]\label{IX:thm:bass}
+With $P(u,t):=\det\bigl(I_n-uA(t)+qu^{2}I_n\bigr)$,
+\[
+\det\bigl(I_{2m}-uB\La_t\bigr)=(1-u^{2})^{\,r-1}\,P(u,t) .
+\]
+\end{theorem}
+
+\begin{proof}
+Recall $S\La_tT^{t}=A(t)$ (entry $(u,v)$ sums $t^{\alpha(e)}$ over $e\colon u\to v$),
+$SJ=T$, $TT^{t}=(q{+}1)I$, and $\La_tJ\La_t=J$. The operator $J\La_t$ is an involution
+($(J\La_t)^{2}=J\La_tJ\La_t=JJ=I$) with trace $0$ (no edge is its own reverse), so its
+eigenvalues are $\pm1$ with multiplicity $m$ each and
+$\det(I+uJ\La_t)=(1-u^{2})^{m}$, with $(I+uJ\La_t)^{-1}=(1-u^{2})^{-1}(I-uJ\La_t)$.
+Then $I-uB\La_t=(I+uJ\La_t)-uT^{t}S\La_t$, and by $\det(I-XY)=\det(I-YX)$,
+\begin{align*}
+\det(I-uB\La_t)
+&=(1-u^{2})^{m}\det\Bigl(I_n-\tfrac{u}{1-u^{2}}\,S\La_t(I-uJ\La_t)T^{t}\Bigr)\\
+&=(1-u^{2})^{m-n}\det\Bigl((1-u^{2})I_n-u\bigl(A(t)-uSJT^{t}\bigr)\Bigr)\\
+&=(1-u^{2})^{m-n}\det\bigl(I-uA(t)+qu^{2}I\bigr),
+\end{align*}
+using $S\La_tJ\La_tT^{t}=SJT^{t}=TT^{t}=(q{+}1)I$ and $m-n=r-1$. For $t=1$ this is
+Bass's identity [Ch.~\ref{chap:I}, Prop.~3.4]; for $|t|=1$ it is the Artin--Ihara $L$-function formula
+of \cite{ST}. Verified as a polynomial identity in $(u,t)$ on all four voltage
+assignments (Table~\\ref{IX:tab:battery}).
+\end{proof}
+
+\begin{theorem}[Exceptional zero at the critical temperature]\label{IX:thm:crit}
+Let $P(u,t)$ be as above and $Z(\beta;t):=\tr\sum_kT_k(t)q^{-k\beta}$ the twisted
+partition function of the Eisenstein Satake dynamics.
+\begin{enumerate}
+\item[(i)] Functional equation: $P\bigl(\tfrac1{qu},t\bigr)=(qu^{2})^{-n}P(u,t)$.
+\item[(ii)] At the critical inverse temperature $\beta=1$,
+$P(q^{-1},t)=q^{-n}\,\Theta(t-1)$: the twisted Bass determinant of the Satake dynamics
+at $\beta=1$ is the graph $\ell$-adic $L$-function.
+\item[(iii)] At $(u,t)=(q^{-1},1)$ the zero is simple in the temperature direction and
+of order two in the character direction:
+\begin{gather*}
+\partial_uP(q^{-1},1)=-\,n(q-1)\,q^{1-n}\,\kappa(Y_0),\\
+\partial_tP(q^{-1},1)=0,\qquad
+\tfrac12\partial_t^{2}P(q^{-1},1)=q^{-n}\,\cL(Y_\bullet)\,\kappa(Y_0) .
+\end{gather*}
+The ratio $\tfrac12\partial_t^{2}P/\partial_uP=-\cL(Y_\bullet)/(nq(q-1))
+=\|h_\alpha\|^{2}/(nq(q-1))$ is independent of $\kappa(Y_0)$.
+\item[(iv)] The unique $\KMS_1$ state of {\rm[Ch.~\ref{chap:I}, Thm.~2.4]} is the $t=1$ member of the
+family; for $t\neq1$ on the unit circle with $t^{\alpha(C)}\neq1$ for some cycle $C$
+there is no $\KMS_1$ state, only the functional of {\rm[Ch.~\ref{chap:I}, Rem.~2.6]}, and the critical
+partition function has a double pole at the trivial character with
+\[
+Z(1;t)=q\,(1-q^{-2})\,\tr D(t)^{-1}
+=\frac{n\,(q-q^{-1})}{\cL(Y_\bullet)}\,\frac1{(t-1)^{2}}+O\bigl((t-1)^{-1}\bigr).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $I-\frac1{qu}A+\frac{q}{q^{2}u^{2}}I=(qu^{2})^{-1}(qu^{2}I-uA+I)$. (ii) At $u=q^{-1}$,
+$I-q^{-1}A(t)+q^{-1}I=q^{-1}D(t)$. (iii) $\partial_tP(q^{-1},t)=q^{-n}f'(t)$ and
+$\frac12\partial_t^{2}P(q^{-1},1)=q^{-n}a_2$, so Theorem~\\ref{IX:thm:zero} gives the
+$t$-derivatives. For the $u$-derivative, $\partial_u\det M(u)=\tr\bigl(\adj M(u)\,M'(u)\bigr)$
+with $M(q^{-1})=q^{-1}\Delta_0$, $\adj(q^{-1}\Delta_0)=q^{1-n}\adj\Delta_0
+=q^{1-n}\kappa_0\mathbf1\mathbf1^{t}$ (all cofactors of a Laplacian equal $\kappa_0$),
+and $M'(q^{-1})=-T_p+2I$, so $\partial_uP=q^{1-n}\kappa_0\mathbf1^{t}(2I-T_p)\mathbf1
+=q^{1-n}\kappa_0n(2-(q{+}1))$. (iv) Existence of a $\KMS_1$ state requires
+$\rho(q^{-1}B\La_t)=1$ [Ch.~\ref{chap:I}, Thm.~2.4(i)]; for $|t|=1$ the twisted Laplacian $D(t)$ is
+Hermitian positive semidefinite with $D(t)v=0$ forcing $|v|$ constant and
+$t^{\alpha(C)}=1$ on every cycle, so under the hypothesis $D(t)$ is positive definite,
+$P(q^{-1},t)\neq0$, and the pressure equation fails (Perron obstruction, as in
+[Ch.~\ref{chap:I}, Thm.~2.5]). By Lemma~\\ref{IX:lem:rec},
+$Z(1;t)=(1-q^{-2})\tr\bigl(I-q^{-1}A(t)+q^{-1}I\bigr)^{-1}=q(1-q^{-2})\tr D(t)^{-1}$.
+The Perron eigenvalue branch of $D(t)$ through $0$ at $t=1$ is
+$\lambda(1+s)=-\frac{\|h_\alpha\|^{2}}{n}s^{2}+O(s^{3})$ (this is the Schur-complement
+computation in the proof of Theorem~\\ref{IX:thm:zero}: $f(1+s)/\det\Delta'$), and the other
+$n-1$ eigenvalues are bounded away from zero, so $\tr D(t)^{-1}=
+-\frac{n}{\|h_\alpha\|^{2}}(t-1)^{-2}+O((t-1)^{-1})=\frac{n}{\cL(Y_\bullet)}(t-1)^{-2}
++O((t-1)^{-1})$. On $K_4$ the leading coefficients are $-12,-6,-4,-12$
+(Table~\\ref{IX:tab:battery}).
+\end{proof}
+
+\begin{remark}[Which derivative]\label{IX:rem:whichderivative}
+The specification asked for ``the second derivative of the KMS functional at $\beta=1$''.
+Theorem~\\ref{IX:thm:crit} locates the derivatives precisely: at the critical point the
+\emph{temperature} derivative is simple and carries the algebraic $L$-value
+$\kappa(Y_0)$; the \emph{character} derivative is of second order and carries
+$\cL(Y_\bullet)\kappa(Y_0)$; their ratio is the $\cL$-invariant up to the explicit
+normalization $nq(q-1)$, with $\kappa(Y_0)$ cancelling --- which is the Greenberg--Stevens
+shape \cite{GS}, a ratio of a derivative in the ``weight'' direction to one in the
+cyclotomic direction. The specification's request for a cyclic-cohomology formulation
+is not met here: the natural candidate pairs the derivation generating $\gamma^{\alpha}$
+with the Fredholm module of [Ch.~\ref{chap:II}, Thm.~3.3], and we have not established that pairing.
+We record it as open (Remark~\\ref{IX:rem:scope}) rather than dress the second derivative in
+cohomological language it has not earned.
+\end{remark}
+
+\begin{theorem}[The abelian shadow limit carries $\Theta$]\label{IX:thm:shadow}
+Let $(Y_k)$ be a connected abelian $\Z/\ell^{k}$ voltage tower, $\cO_k:=\cO_{B(Y_k)}$ the
+shadow algebras of {\rm[VI]} ($c=q$ at every level, all levels being $(q{+}1)$-regular),
+and $\pi\colon Y_{k+1}\to Y_k$ the covering maps. Then $\pi$ extends to an in-covering
+$\pi^{\sharp}$ of shadow graphs, {\rm[Ch.~\ref{chap:VIII}, Lem.~2.1]} yields unital injective
+$*$-homomorphisms $\varphi_k\colon\cO_k\to\cO_{k+1}$, and
+$\cO_\infty^{\mathrm{ab}}:=\varinjlim(\cO_k,\varphi_k)$ is a unital Kirchberg algebra with
+\[
+K_1(\cO_\infty^{\mathrm{ab}})\cong\Z,\qquad
+\Tor K_0(\cO_\infty^{\mathrm{ab}})\cong\Hom_{\mathrm{cont}}\Bigl(\varprojlim_k\bigl(\Jac(Y_k),\pi_*\bigr),\Q/\Z\Bigr),
+\qquad K_0/\Tor\cong\Z[1/\ell].
+\]
+The deck transformations induce a continuous action of $\Zl=\varprojlim\Z/\ell^{k}$ on
+$\cO_\infty^{\mathrm{ab}}$ commuting with the gauge action, and the $\ell$-primary torsion
+of $K_0$ is, as a discrete $\La$-module, the Pontryagin dual of the compact $\La$-module
+$\Tor X_\infty$ of {\rm[Ch.~\ref{chap:IV}, Thm.~2.1]}, whose characteristic ideal is $(\Theta)$. The
+ideal $(\Theta)$ is stable under the involution $1+T\mapsto(1+T)^{-1}$
+(Lemma~\\ref{IX:lem:sym}), so the same $\Theta$ --- with its exceptional zero and its
+$\cL$-invariant --- is the characteristic element on both sides of the duality.
+\end{theorem}
+
+\begin{proof}
+A covering map is bijective on in-arcs and on out-arcs at every vertex, so
+$\pi^{\sharp}$ ($v\mapsto\pi(v)$, $v'\mapsto\pi(v)'$, shadow arcs label-wise) is an
+in-covering, and [Ch.~\ref{chap:VIII}, Lem.~2.1, Thm.~2.3] apply verbatim with $\tau$ replaced by
+$\pi$: $K_0(\varphi_k)$ is the pullback $\pi^{*}$ on $\coker\Delta_k$ (the Laplacians
+are symmetric, so the transpose convention of [Ch.~\ref{chap:VIII}, Conv.~1.1] is invisible), which is
+the Pontryagin adjoint of the norm $\pi_*$ of [Ch.~\ref{chap:IV}, Lem.~1.2--1.3] by
+[Ch.~\ref{chap:VIII}, Lem.~1.5]; $\pi^{*}\mathbf1=\mathbf1$ gives unitality, $\deg\pi^{*}=\ell\deg$
+gives the free part, and $K_1(\varphi_k)=\mathrm{id}$ as in [Ch.~\ref{chap:VIII}, Thm.~2.3(iii)]. The
+limit is Kirchberg by [Ch.~\ref{chap:VIII}, Thm.~3.2] and its $K$-theory follows as in
+[Ch.~\ref{chap:VIII}, Thm.~3.3]. Each deck generator $\sigma_k$ is an automorphism of $Y_k^{\sharp}$
+covering $\sigma_{k-1}$, hence induces an automorphism of $\cO_k$ with
+$\sigma_{k+1}\circ\varphi_k=\varphi_k\circ\sigma_k$ (both send $p_v$ to
+$\sum_{\pi(w)=\sigma_kv}p_w$), so $\Zl$ acts on the limit, continuously because on each
+$\cO_k$ the action factors through $\Z/\ell^{k}$. On $K_0(\cO_k)=\coker\Delta_k\otimes\Zl$
+the deck action is multiplication by $\sigma\in\Zl[G_k]$ [Ch.~\ref{chap:IV}, Lem.~1.1], so the
+$\ell$-part of $\Tor K_0(\cO_\infty^{\mathrm{ab}})=\varinjlim\Jac(Y_k)^{\vee}$ is the
+Pontryagin dual of $\varprojlim\Jac(Y_k)\otimes\Zl=\Tor X_\infty$ with the
+contragredient $\La$-action, and $\car(X_\infty)=(\Theta)$ is [Ch.~\ref{chap:IV}, Thm.~2.1]. The
+involution stability is $f(t^{-1})=f(t)$.
+\end{proof}
+
+\begin{remark}[Two algebras, one zero]\label{IX:rem:twoalgebras}
+The shadow algebras are Hecke-functorial and not Hecke-dynamical [Ch.~\ref{chap:VI}, Rem.~4.3]: their
+gauge dynamics reach the Laplacian at $u=1$, i.e.\ $\beta=0$, where pure infiniteness
+forbids traces and hence $\KMS_0$ states. So the exceptional zero has two
+operator-algebraic homes, and they do not overlap: the \emph{dynamical} side ---
+partition functions, the critical temperature $\beta=1$, the double pole of
+Theorem~\\ref{IX:thm:crit}(iv) --- lives on $C^*(\cG_\Gamma)$ of [Ch.~\ref{chap:I}]; the
+\emph{$K$-theoretic} side --- $\Theta$ as characteristic element,
+Proposition~\\ref{IX:prop:module} --- lives on the equivariant limit
+$\cO_\infty^{\mathrm{ab}}$ of Theorem~\\ref{IX:thm:shadow}. The specification's request to
+read the derivative off ``the gauge action of $\cO_\infty$'' conflates the two; by [Ch.~\ref{chap:II}, Thm.~1.6] no single algebra can carry both.
+\end{remark}
+
+\section{The Iwahori tower: a simple zero and no $\cL$-invariant}\label{IX:sec:iwahori}
+
+\begin{theorem}[Residue constancy along the Iwahori tower]\label{IX:thm:iwahori}
+For the Iwahori path tower $(Y_k)_{k\ge1}$ of {\rm[Ch.~\ref{chap:II}, \S5]} over a $(q{+}1)$-regular
+base with $q=p$, let $\zeta_k(u)^{-1}:=\det(I-uA_k)$. Then:
+\begin{enumerate}
+\item[(i)] $\zeta_k(u)^{-1}$ is independent of $k\ge1$ and equals
+$\det(I-u\Anb)=(1-u^{2})^{r-1}P(u,1)$;
+\item[(ii)] $u=q^{-1}$ is a simple zero of $\zeta_k(u)^{-1}$ at every level, with
+\[
+\frac{d}{du}\det(I-uA_k)\Big|_{u=q^{-1}}=-\,q^{\,2-n_k}\,n_k\,\kappa(Y_k);
+\]
+\item[(iii)] consequently $n_k\,\kappa(Y_k)\,q^{-n_k}$ is independent of $k\ge1$, which is
+the recursion $\kappa(Y_{k+1})=q^{\,n_k(q-1)-1}\kappa(Y_k)$ of {\rm[Ch.~\ref{chap:III}, Thm.~2.1]}, and
+comparing with level $0$,
+\[
+\kappa(Y_1)=\frac{(1-q^{-2})^{\,r-1}(q-1)\,n\,q^{\,n_1-1-n}}{n_1}\,\kappa(Y_0);
+\]
+\item[(iv)] the pseudo-Iwasawa law {\rm[Ch.~\ref{chap:III}, Thm.~2.2]} reads
+$\ord_p\kappa(Y_k)=n_k-\ord_p n_k+\mathrm{const}=\mu p^{k}-k+\nu_0$: the Euler term $-k$
+is the $p$-adic valuation of the vertex count $n_k=n(q{+}1)q^{k-1}$, i.e.\ of the
+Eisenstein normalization in the residue.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $A_1=\Anb$, and $\det(zI-A_{k+1})=z^{n_{k+1}-n_k}\det(zI-A_k)$ [Ch.~\ref{chap:III}, eq.~(2.1)] gives
+$\det(I-uA_{k+1})=\det(I-uA_k)$; the last equality is Bass [Ch.~\ref{chap:I}, Prop.~3.4]. (ii) With
+$M(u)=I-uA_k$, $M(q^{-1})=q^{-1}\Delta_k$ has the simple eigenvalue $0$ (Perron), so the
+zero is simple; $\adj(q^{-1}\Delta_k)=q^{1-n_k}\kappa(Y_k)\mathbf1\mathbf1^{t}$ since all
+cofactors of the Eulerian Laplacian equal $\kappa(Y_k)$ [III, proof of Thm.~2.1, Step~2],
+and $\tr(\mathbf1\mathbf1^{t}(-A_k))=-\mathbf1^{t}A_k\mathbf1=-qn_k$. (iii) Equate the
+derivatives at consecutive levels, using $n_{k+1}=qn_k$; for the level-$0$ formula
+differentiate $(1-u^{2})^{r-1}P(u,1)$ at $q^{-1}$ using Theorem~\\ref{IX:thm:crit}(iii). (iv)
+$\ord_p(n_k\kappa_kq^{-n_k})$ constant gives $\ord_p\kappa_k=n_k-\ord_pn_k+\mathrm{const}$,
+and $\ord_pn_k=\ord_p(n(q{+}1))+k-1$. On $K_4$: $n_k\kappa_kq^{-n_k}=\frac98$ at
+$k=1,2,3$, the derivative is $-\frac92$ at every level, and
+$\kappa(Y_1)=\frac{(3/4)^{2}\cdot4\cdot2^{7}}{12}\cdot16=384$ (Table~\\ref{IX:tab:battery}).
+\end{proof}
+
+\begin{remark}[No $\cL$-invariant for the non-normal tower]\label{IX:rem:noL}
+The specification asked for $\Theta''(0)$, the $\cL$-invariant and the defects
+$\varepsilon_j$ ``on the Iwahori path tower as well''. There is no $\Theta$ there: the
+tower carries no deck action, hence no character variable, hence no pencil, and the
+Hecke variable $u$ is the only direction available. In that direction the zero at the
+critical temperature is simple at every level (Theorem~\\ref{IX:thm:iwahori}(ii)), with
+residue $\kappa(Y_k)$ rather than a second-order coefficient. What replaces the
+$\cL$-invariant is the tower constant $n_k\kappa(Y_k)q^{-n_k}$, and what replaces the
+bookkeeping identity is the observation that its constancy \emph{is} the growth law.
+This gives the Euler term $-k$ its third reading, after the Eisenstein rank removed
+once per level [Ch.~\ref{chap:III}, Thm.~2.4] and the Eisenstein index through the connecting map of
+the snake [Ch.~\ref{chap:VII}, Cor.~2.2]: it is the $p$-adic valuation of the vertex count, the
+normalization $\prod_{\mu\neq0}\mu=n_k\kappa_k$ of [Ch.~\ref{chap:III}, eq.~(2.2)] read $p$-adically.
+The three readings are one fact seen from three sides, and none of them is an
+$\cL$-invariant.
+\end{remark}
+
+\section{Scope, residue, corrections}\label{IX:sec:scope}
+
+\begin{remark}[Solved, open, impossible]\label{IX:rem:scope}
+\emph{Solved:} the direction of [Ch.~\ref{chap:III}, \S3], made precise. The double zero is a theorem
+with the closed form $\frac12\Theta''(0)=-\kappa(Y_0)\|h_\alpha\|^{2}$; the $\cL$-invariant
+is defined, computed, and shown to be a Hodge energy and $\ell$-independent; the
+bookkeeping identity holds with an exact description of the defects, and the constant
+term is $-\ord_\ell\cL$ in the exceptional-zero regime; the twisted Bass identity and
+the critical-temperature theorem give the Mazur--Tate--Teitelbaum and
+Greenberg--Stevens shapes on $C^*(\cG_\Gamma)$; the abelian shadow limit carries
+$\Theta$ as equivariant characteristic element. \emph{Open:} (a) a cyclic-cohomology
+formulation of Theorem~\\ref{IX:thm:crit}(iii) (Remark~\\ref{IX:rem:whichderivative}); (b) a
+converse to Theorem~\\ref{IX:thm:defect} --- whether $\delta(Y_\bullet,\ell)=0$ forces
+$\lambda_h=0$; (c) a structural formula for the defects $\varepsilon_j$ at $j<j_0$ in
+terms of the Newton polygon of $P$ at the levels $\ell^{j}$, beyond the resultant
+definition; (d) everything about the non-normal tower that [Ch.~\ref{chap:V}, Prob.~5.1] and
+[Ch.~\ref{chap:VII}, Rem.~3.1] left open, which this paper does not touch. \emph{Impossible or
+false as stated:} an $\cL$-invariant for the Iwahori tower in the sense of
+Definition~\\ref{IX:def:L} (Remark~\\ref{IX:rem:noL}); the alignment formula of the
+specification (Remark~\\ref{IX:rem:align}); a single algebra carrying both the dynamical
+and the $K$-theoretic side (Remark~\\ref{IX:rem:twoalgebras}, by [Ch.~\ref{chap:II}, Thm.~1.6]).
+\end{remark}
+
+\begin{remark}[Five corrections to the task specification]\label{IX:rem:corrections}
+(1) $\Theta(T)=\det D(1+T)$ lies in $\Z[T,(1+T)^{-1}]\subset\La$, not in $\Zl[T]$; the
+cleared $g$ is the polynomial, and $a_2$ is the same for both. (2)
+``$\ord_\ell a_2=\mu$ in the $\lambda_h=0$ regime'' is the definition of the regime;
+the theorem is Corollary~\\ref{IX:cor:regime}. (3) The alignment
+``$\ord_\ell\cL\leftrightarrow\nu_0-\ord_\ell\kappa_0+\mu$'' is false;
+Theorem~\\ref{IX:thm:defect} is the identity that holds. (4) The KMS second derivative is in
+the character direction, at $\beta=1$, on $C^*(\cG_\Gamma)$ and not on the shadow limit;
+the temperature derivative carries $\kappa(Y_0)$ (Theorem~\\ref{IX:thm:crit},
+Remarks~\\ref{IX:rem:whichderivative}--\\ref{IX:rem:twoalgebras}); no cyclic-cohomology
+statement is claimed. (5) The Iwahori tower has no $\Theta$, no $\Theta''$, and no
+$\varepsilon_j$; Theorem~\\ref{IX:thm:iwahori} is what it has. Separately, [Ch.~\ref{chap:III}, Rem.~1.11]
+and [Ch.~\ref{chap:VIII}] cite the tail-groupoid $K$-theory as [Ch.~\ref{chap:I}, Prop.~1.7(iii)]; in the compiled
+numbering of [Ch.~\ref{chap:I}] it is Proposition~1.9(iii), and [Ch.~\ref{chap:VIII}] has been corrected accordingly.
+\end{remark}
+
+\section{The verification battery}\label{IX:sec:battery}
+
+Table~\\ref{IX:tab:battery} lists the exact checks of \texttt{exceptional\_zero.py}; the
+letters match the docstring of the script and the references in the text. The four
+abelian towers are those of [Ch.~\ref{chap:II}, Table~2]; the growth laws were recomputed directly
+from the reduced Laplacians of the derived graphs ($k\le5$ for $\ell=2$, up to $128$
+vertices; $k\le3$ for $\ell=3$) and independently from the character product of
+Lemma~\\ref{IX:lem:char}, and the two agree at every level.
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcl}
+\toprule
+check & towers / levels & result\\
+\midrule
+(Z) $\Theta(0)=\Theta'(0)=0$; $a_2=-8,-16,-24,-8$; $g=-8T^{2}$, $-T^{4}-16T^{3}-16T^{2}$, $-4T^{4}-24T^{3}-24T^{2}$ & 4 towers & exact\\
+(H) $a_2=-\kappa_0\|h_\alpha\|^{2}$; $\|h_\alpha\|^{2}=\frac12,1,\frac32,\frac12$; $\cL=-\frac12,-1,-\frac32,-\frac12$ & 4 towers & exact\\
+(H$'$) single chord: $\Reff=\frac12$, $8$ spanning trees avoid the chord $=-a_2$ & $(1,0,0)$ & exact\\
+(K) double pole of $Z(1;t)$: leading coefficient $=n(q-q^{-1})/\cL=-12,-6,-4,-12$ & 4 towers & exact\\
+(M) Newton data $(\mu,\lambda_h)=(3,0),(0,2),(2,2),(0,0)$; regime iff $\ord_\ell a_2=\mu$ & 4 towers & exact\\
+(E) $\varepsilon_j$, $j\le5$: all zero except $(\varepsilon_1,\varepsilon_2)=(-1,2)$ for $(1,2,0)$ & 4 towers & exact\\
+(G) $\ord_\ell\kappa(Y_k)$ direct $=$ character formula $=$ law; $(\mu,\lambda,\nu_0)$ as [Ch.~\ref{chap:II}, Table~2] & $k\le5$ / $k\le3$ & exact\\
+(L) $\nu_0+\ord_\ell\cL=(\ord_\ell a_2-\mu)+\sum\varepsilon_j=0,4,2,0$; regime $\Rightarrow\nu_0=-\ord_\ell\cL$ & 4 towers & exact\\
+(B) $\det(I-uB\La_t)=(1-u^{2})^{r-1}P(u,t)$ as a polynomial identity in $(u,t)$ & 4 towers & exact\\
+(F) functional equation; $P(q^{-1},t)=q^{-n}\Theta(t-1)$; $\partial_uP=-8$; $\frac12\partial_t^{2}P=q^{-n}a_2$ & 4 towers & exact\\
+(S) $\rk D(1)=3=n-1$, $\ord_T\Theta=2$ & 4 towers & exact\\
+(I) Iwahori: level-independent $\det(I-uA_k)$; $n_k\kappa_kq^{-n_k}=\frac98$; slope $-\frac92$ at $u=\frac12$; $\kappa(Y_1)=384$ & $k\le3$ & exact\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{Exact verification (\texttt{exceptional\_zero.py}) on $K_4$ ($q=2$, $n=4$,
+$r=3$, $\kappa_0=16$). Tower order: $(1,0,0),\ell=2$; $(1,1,1),\ell=2$;
+$(1,2,0),\ell=2$; $(1,0,0),\ell=3$. For the fixed towers each line is itself a proof;
+the general statements are proved in the text.}
+\label{IX:tab:battery}
+\end{table}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Every numbered statement is proved from Papers I--VIII, finite
+linear algebra, Weierstrass preparation \cite{Wa} and the character product formula;
+the twisted Bass identity is proved rather than quoted from \cite{ST}. The
+Mazur--Tate--Teitelbaum and Greenberg--Stevens references \cite{MTT,GS} fix the shape of
+an analogy (Remarks~\\ref{IX:rem:analogy}, \\ref{IX:rem:whichderivative}) and are load-bearing
+for nothing. Remark~\\ref{IX:rem:corrections} records the corrections to the specification
+that prompted the paper and one citation correction propagated from [Ch.~\ref{chap:III}] to [Ch.~\ref{chap:VIII}].
+Bibliographic data of \cite{MTT,GS,ST,Ba} were checked against publisher or indexing
+pages (titles, venues, years, volumes, pages); \cite{Wa} is the entry verified in [Ch.~\ref{chap:IV}].

@@ -1,0 +1,112 @@
+﻿
+=== (A) abelian Z/2^k voltage towers: the law holds and lambda > 0 ===
+    K_4 / chord                    [8, 15, 28, 53, 102, 199, 392]
+                                   mu=3, lambda=1, nu=1; holds on last 7/7
+    K_4 / two chords               [8, 15, 28, 53, 102, 199, 392]
+                                   mu=3, lambda=1, nu=1; holds on last 7/7
+    K_4 / alternating              [-, -, -, -, -, -, -]   (insufficient / disconnected)
+    K_{3,3} / chord                [3, 8, 17, 34, 67, 132, 261]
+                                   mu=2, lambda=1, nu=-2; holds on last 7/7
+    K_{3,3} / two chords           [3, 8, 17, 34, 67, 132, 261]
+                                   mu=2, lambda=1, nu=-2; holds on last 7/7
+    K_{3,3} / alternating          [-, -, -, -, -, -, -]   (insufficient / disconnected)
+    Q_3 (cube) / chord             [13, 24, 45, 86, 167, 328]
+                                   mu=5, lambda=1, nu=2; holds on last 6/6
+    Q_3 (cube) / two chords        [13, 24, 45, 86, 167, 328]
+                                   mu=5, lambda=1, nu=2; holds on last 6/6
+    Q_3 (cube) / alternating       [13, 18, 23, 28, 33, 38]
+                                   mu=0, lambda=5, nu=8; holds on last 6/6
+    Petersen / chord               [10, 21, 42, 83, 164]
+                                   mu=5, lambda=1, nu=-1; holds on last 5/5
+    Petersen / two chords          [12, 19, 30, 49, 84]
+                                   mu=2, lambda=3, nu=5; holds on last 5/5
+    Petersen / alternating         [10, 19, 28, 37, 46]
+                                   mu=0, lambda=9, nu=1; holds on last 5/5
+    C_6 ring / chord               [2, 3, 4, 5, 6, 7, 8]
+                                   mu=0, lambda=1, nu=1; holds on last 7/7
+    C_6 ring / two chords          [-, -, -, -, -, -, -]   (insufficient / disconnected)
+    C_6 ring / alternating         [2, 3, 4, 5, 6, 7, 8]
+                                   mu=0, lambda=1, nu=1; holds on last 7/7
+    C_4xK_2 torus / chord          [13, 24, 45, 86, 167, 328]
+                                   mu=5, lambda=1, nu=2; holds on last 6/6
+    C_4xK_2 torus / two chords     [10, 13, 16, 19, 22, 25]
+                                   mu=0, lambda=3, nu=7; holds on last 6/6
+    C_4xK_2 torus / alternating    [16, 35, 60, 105, 190, 355]
+                                   mu=5, lambda=5, nu=5; holds on last 5/6
+  [ok]   (A) the law holds and lambda > 0 in all 15 abelian towers; lambda values [1, 3, 5, 9]   [15 towers] [exact]
+
+=== (L) non-backtracking towers: lambda = -1 universally, mu = n(q+1)/q ===
+    K_4 (q=2)                      [7, 18, 41, 88, 183, 374]
+                                   mu=6, lambda=-1, nu=-4; holds on last 6/6   <== lambda < 0
+                                   mu predicted n(q+1)/q = 6: match
+    K_{3,3} (q=2)                  [5, 22, 57, 128, 271]
+                                   mu=9, lambda=-1, nu=-12; holds on last 5/5   <== lambda < 0
+                                   mu predicted n(q+1)/q = 9: match
+    Q_3 (cube) (q=2)               [14, 37, 84, 179]
+                                   mu=12, lambda=-1, nu=-9; holds on last 4/4   <== lambda < 0
+                                   mu predicted n(q+1)/q = 12: match
+    Petersen (q=2)                 [13, 42, 101, 220]
+                                   mu=15, lambda=-1, nu=-16; holds on last 4/4   <== lambda < 0
+                                   mu predicted n(q+1)/q = 15: match
+    C_4xK_2 torus (q=2)            [14, 37, 84, 179]
+                                   mu=12, lambda=-1, nu=-9; holds on last 4/4   <== lambda < 0
+                                   mu predicted n(q+1)/q = 12: match
+  [ok]   (L) lambda = -1 and mu = n(q+1)/q on every base tested   [5 towers] [exact]
+
+=== (E) the -1 is an Euler characteristic: increment = n_k(q-1) - 1 ===
+    level 1 -> 2: n_k =   12, increment =   11, n_k(q-1) - 1 =   11  ok
+    level 2 -> 3: n_k =   24, increment =   23, n_k(q-1) - 1 =   23  ok
+    level 3 -> 4: n_k =   48, increment =   47, n_k(q-1) - 1 =   47  ok
+    level 4 -> 5: n_k =   96, increment =   95, n_k(q-1) - 1 =   95  ok
+  [ok]   (E) the one-step increment is n_k(q-1) - chi with chi = 1, the Eisenstein kernel   [K_4, levels 1..5] [exact]
+
+=== (K) lambda = -1 telescopes from the classical line-digraph formula ===
+    K_4              measured [7, 18, 41, 88, 183]
+                     telescoped [7, 18, 41, 88, 183]   match
+    K_{3,3}          measured [5, 22, 57, 128]
+                     telescoped [5, 22, 57, 128]   match
+    Q_3 (cube)       measured [14, 37, 84, 179]
+                     telescoped [14, 37, 84, 179]   match
+    Petersen         measured [13, 42, 101, 220]
+                     telescoped [13, 42, 101, 220]   match
+    C_4xK_2 torus    measured [14, 37, 84, 179]
+                     telescoped [14, 37, 84, 179]   match
+  [ok]   (K) the measured sequence equals the telescoped Knuth/Levine recursion on every base: lambda = -1 is a consequence of that classical formula   [6 bases] [exact]
+
+=== (R) rank-two abelian towers (Z/2)^k: the one-variable law must fail ===
+    K_4 / (Z/2)^k                  [8, 17, -, -, -]   (insufficient / disconnected)
+    K_{3,3} / (Z/2)^k              [3, 10, -, -, -]   (insufficient / disconnected)
+    Q_3 (cube) / (Z/2)^k           [13, 26, -, -, -]   (insufficient / disconnected)
+  [ok]   (R) the one-variable law fails on 3/3 rank-two towers, as a Z_l^2-extension requires   [3 towers] [exact]
+
+=== (D) non-abelian (dihedral) towers ===
+    K_4 / D_(2^k) r,s              [17, 28, 47, 82, 149]
+                                   mu=4, lambda=3, nu=6; holds on last 5/5
+    K_4 / D_(2^k) two rotations    [17, 28, 47, 82, 149]
+                                   mu=4, lambda=3, nu=6; holds on last 5/5
+    K_{3,3} / D_(2^k) r,s          [10, 17, 28, 47, 82]
+                                   mu=2, lambda=3, nu=3; holds on last 5/5
+    K_{3,3} / D_(2^k) two rotations [10, 17, 28, 47, 82]
+                                   mu=2, lambda=3, nu=3; holds on last 5/5
+  [ok]   (D) dihedral towers: lambda values ['3']   [4 towers] [exact]
+
+=== (C) the certificate ===
+    abelian Z/2^k towers  : lambda in [1, 3, 5, 9], all > 0
+    non-backtracking      : lambda = -1 on every base tested
+    dihedral              : lambda in ['3']
+    For an abelian Z_l-tower the limit module is a finitely generated torsion
+    Z_l[[T]]-module, so mu, lambda >= 0.  A measured lambda < 0 therefore PROVES
+    that no abelian Z_l deck group generates the tower.  This is the certificate;
+    it is a quoted structure theorem plus an exact computation, not a heuristic.
+  [ok]   (C) no abelian tower in the battery has lambda < 0, and every non-backtracking tower has lambda = -1   [whole battery] [exact]
+
+=== battery summary ===
+  (A)  1/1 passed
+  (L)  1/1 passed
+  (E)  1/1 passed
+  (K)  1/1 passed
+  (R)  1/1 passed
+  (D)  1/1 passed
+  (C)  1/1 passed
+  TOTAL 7/7 passed
+  elapsed 425.4s

@@ -1,0 +1,41 @@
+﻿===== (B) first homology of the thick complexes =====
+  Y_21 (Z/7): b_1 = 0; H_1(Y;Z) = (Z/2)^6; gcd of six maximal minors = 64 (primes [2]): prime set certified
+  Y_24 (Z/2xZ/2xZ/2): b_1 = 0; H_1(Y;Z) = (Z/2)^4 + Z/14; gcd of six maximal minors = 448 (primes [2, 7]): prime set certified
+  Y_42 (Z/14): b_1 = 0; H_1(Y;Z) = (Z/2)^3 + (Z/4)^2; gcd of six maximal minors = 256 (primes [2]): prime set certified
+  Y_84 (Z/2xZ/2xZ/7): b_1 = 0 (exact ranks); H_1 finite
+  Y_168 (Z/2xZ/2xZ/14): b_1 = 0 (exact ranks); H_1 finite
+
+===== (A) Hecke critical groups along the abelian covers of X_3 =====
+  Y_24 (Z/2xZ/2xZ/2): Jac^H = (Z/7)^2 + Z/49 + (Z/392)^5 + Z/1176; |Jac^H| = 2^18 * odd;  log|Jac^H| = 44.709824 vs log((1/n)prod|P_j(1)|) = 44.709824
+  Y_168 (Z/2xZ/2xZ/14): Jac^H = (Z/7)^18 + (Z/299593)^13 + Z/2097151 + Z/14680057 + (Z/117440456)^5 + Z/352321368; |Jac^H| = 2^18 * odd;  log|Jac^H| = 342.604080 vs log((1/n)prod|P_j(1)|) = 342.604080
+  Y_84 (Z/2xZ/2xZ/7): Jac^H = (Z/7)^18 + (Z/299593)^5 + Z/2097151 + Z/29360114 + Z/117440456 + Z/352321368; |Jac^H| = 2^7 * odd;  log|Jac^H| = 168.090018 vs log((1/n)prod|P_j(1)|) = 168.090018
+  Y_42 (Z/14): Jac^H = (Z/7)^18 + Z/299593 + Z/2097151 + Z/176160684; |Jac^H| = 2^2 * odd;  log|Jac^H| = 81.179560 vs log((1/n)prod|P_j(1)|) = 81.179560
+  Y_21 (Z/7): Jac^H = (Z/7)^17 + Z/147; |Jac^H| = 2^0 * odd;  log|Jac^H| = 38.070905 vs log((1/n)prod|P_j(1)|) = 38.070905
+  Y_84 (Z/2xZ/2xZ/7) <- Y_168 (Z/2xZ/2xZ/14) (degree 2): P A1 = A1 P True, P A2 = A2 P True, P Delta^H = Delta^H P True; |Jac^H| ratio = 6172970684689622181693989344655204475073058506534077290411853253663413045248 = 2^11 * ...; integral True; log ratio = 174.514062 vs log[(n_k/n_k+1) prod_new |P_j(1)|] = 174.514062
+      Hodge: |Jac_0| ratio = 2^159 * ..., integral True; log ratio = 217.392026 vs log[(n_k/n_k+1) prod_new (2(q^2+q+1)-2Re a)] = 217.392026
+  Y_21 (Z/7) <- Y_84 (Z/2xZ/2xZ/7) (degree 4): P A1 = A1 P True, P A2 = A2 P True, P Delta^H = Delta^H P True; |Jac^H| ratio = 292808153797778768065456274995103423205780506269211348096 = 2^7 * ...; integral True; log ratio = 130.019113 vs log[(n_k/n_k+1) prod_new |P_j(1)|] = 130.019113
+      Hodge: |Jac_0| ratio = 2^118 * ..., integral True; log ratio = 162.177586 vs log[(n_k/n_k+1) prod_new (2(q^2+q+1)-2Re a)] = 162.177586
+  Y_24 (Z/2xZ/2xZ/2) <- Y_168 (Z/2xZ/2xZ/14) (degree 7): P A1 = A1 P True, P A2 = A2 P True, P Delta^H = Delta^H P True; |Jac^H| ratio = 2365002362532425151508140747538611410603705432058162754882633380205022476442359141989826730992593410253871141993998965938066662751 = 2^0 * ...; integral True; log ratio = 297.894256 vs log[(n_k/n_k+1) prod_new |P_j(1)|] = 297.894256
+      Hodge: |Jac_0| ratio = 2^270 * ..., integral True; log ratio = 371.888764 vs log[(n_k/n_k+1) prod_new (2(q^2+q+1)-2Re a)] = 371.888764
+  Y_42 (Z/14) <- Y_168 (Z/2xZ/2xZ/14) (degree 4): P A1 = A1 P True, P A2 = A2 P True, P Delta^H = Delta^H P True; |Jac^H| ratio = 342946459721854659184696930972758846547736047439201433562467767550348737513753077479844784610995132382662731300864 = 2^16 * ...; integral True; log ratio = 261.424520 vs log[(n_k/n_k+1) prod_new |P_j(1)|] = 261.424520
+      Hodge: |Jac_0| ratio = 2^238 * ..., integral True; log ratio = 325.741466 vs log[(n_k/n_k+1) prod_new (2(q^2+q+1)-2Re a)] = 325.741466
+  Y_21 (Z/7) <- Y_42 (Z/14) (degree 2): P A1 = A1 P True, P A2 = A2 P True, P Delta^H = Delta^H P True; |Jac^H| ratio = 5270490767269447972 = 2^2 * ...; integral True; log ratio = 43.108655 vs log[(n_k/n_k+1) prod_new |P_j(1)|] = 43.108655
+      Hodge: |Jac_0| ratio = 2^39 * ..., integral True; log ratio = 53.828146 vs log[(n_k/n_k+1) prod_new (2(q^2+q+1)-2Re a)] = 53.828146
+
+===== (D) two-dimensional degeneracy calculus on Y_168 (Z/2xZ/2xZ/14) =====
+  S T^t = A_1: True;  T S^t = A_2: True;  S S^t = T T^t = (q^2+q+1)I: True
+  S M^t = (q+1) A_2: True;  T M^t = (q+1) A_1: True
+  M M^t diagonal = (q^2+q+1)(q+1) = 21: True;  off-diagonal part = A_1A_2 - (q^2+q+1)I: True;  = A_2A_1 - (q^2+q+1)I: True;  entries of off-diagonal part: [0, 1]
+  d_0 + d_1 + d_2 = boundary d2: True;  K = sum_i d_i d_(i+1)^t has row sums [3] (= q+1);  L_E = T^t S - K: True
+  sum_i d_i d_i^t = (q+1) I_E: True;  d_i^t d_j = 0 for i != j: True;  d_i^t d_i = chamber-adjacency across the i-th edge (diagonal 1, row sums q+1): True
+  d_1 = T - S: True;  Delta_0 = (T-S)(T-S)^t = 2(q^2+q+1)I - A_1 - A_2: True
+  A_1 A_2 = A_2 A_1 (from the symmetry of M M^t): True
+
+===== (E) geodesic edge digraph E_1 = (E, L_E) on Y_168 (Z/2xZ/2xZ/14) =====
+  n_1 = |E| = 1176 = n(q^2+q+1); out-degrees [4], in-degrees [4] (Eulerian q^2-regular); strongly connected: True
+  log kappa(E_1) = 1623.956704 (numeric);  accounting: Eisenstein log(3q^4/n_1) = -3.198673 + pencil sum_j log|q^6 P_j(q^-2)| = 684.746853 + parahoric sum log|q^2 - lambda| = 942.408524 -> total 1623.956704
+  tower constants: n_k = 1176 * q^(2(k-1)); mu_2 = 2 n_1/q^2 = 588; chi_2 = ord_p(q^2) = 2;  law: ord_p kappa(E_k) = 588 p^(2k) - 2k + nu_0
+  chamber digraph: 3528 = 3|F| vertices, out-degrees [2], in-degrees [2]; mu_1 = 3|F|/q = 1764; chi = 1
+
+===== (L) [III, Thm 2.1] with d = 4 on the complete digraph K_5: kappa = 125, kappa(L) = 33554432000 = 4^(5*3-1) kappa: True
+done.

@@ -1,0 +1,401 @@
+% generated from Paper 15/anccft15.tex
+\renewcommand{\LE}{L_E}
+\chapter{Algorithmic non-commutative class field theory, XV: the parahoric factorization of the geodesic edge flow, the unitarity of the remainder,
+and the chamber companion}\label{chap:XV}
+\chaptermark{XV}
+\begin{chapterabstract}
+[Ch.~\ref{chap:XI}, Cor.~3.5] found numerically, on one $\Atwo$ complex, that the characteristic polynomial of
+the geodesic edge flow $\LE$ factors as $\det(I-u\LE)(1-u^{3})(1-q^{3}u^{3})=\det P(u)\,G(u)$,
+with $P$ the cubic Hecke pencil and $G$ a polynomial of degree $4n+6$ all of whose roots lie
+on $|u|=q^{-1/2}$, and left the proof and the identification of $G$ open. This paper proves
+the identity for every $\Atwo$ complex of order $q$, identifies $G$, and proves the
+Riemann hypothesis for it unconditionally. The mechanism is a two-sided intertwining: the
+image of $\Psi=[S^{t}\,T^{t}\,M^{t}]$ is invariant under $\LE$ \emph{and} $\LE^{t}$, so its
+orthogonal complement $W=\ker S\cap\ker T\cap\ker M$ reduces $\LE$, and the local identities
+$\LE\LE^{t}=qI+(q^{2}-q)T^{t}T$, $\LE^{t}\LE=qI+(q^{2}-q)S^{t}S$ --- two points of a projective
+plane lie on one line --- make $R:=\LE|_W$ satisfy $RR^{t}=R^{t}R=qI$. Hence $R/\sqrt q$ is
+orthogonal, $G(u)=\det(I-uR)$, and every root of $G$ has $|u|=q^{-1/2}$ for every complex,
+Ramanujan or not; the Ramanujan property of the complex lives entirely in the vertex pencil.
+The same calculus on pointed chambers gives the Kang--Li operator $\LB$ a companion
+$B$ on $\ell^{2}(E)^{3}$, with $\LB\Phi=\Phi B$ and
+$\det(I+uB)=\det\bigl((1+qu^{3})I+uK+u^{2}K^{t}\bigr)
+=(1-u^{3})^{n}\det(I-u\LE)\det(I-u^{2}\LE)/\det P(u)$: the Kang--Li zeta identity in companion
+form, with the parahoric block $G(u)G(u^{2})$ explaining the eigenvalues of modulus
+$q^{1/4}$ of the chamber operator as square roots of the unitary remainder. A correction to
+[Ch.~\ref{chap:XI}, Def.~3.1] is recorded (the geodesic condition is ``not in a common chamber''). Verified
+exactly on $Y_{21},Y_{24},Y_{42},T_6$ and structurally on $Y_{168}$.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved; the proofs use only the link structure of an $\Atwo$
+complex of order $q$ ([Ch.~\ref{chap:X}, Def.~1.1(i)--(iii)], vertex links the incidence graph of
+$\PG(2,q)$), linear algebra over $\Q$, and the results of [Ch.~\ref{chap:XI}], [Ch.~\ref{chap:XII}] that are re-derived where
+used. Kang--Li \cite{KL} and Kang--Li--Wang \cite{KLW} are cited for context and for the
+one statement we do not reprove (the relation between $\LB$ and its companion for $q\ne2$,
+Corollary~\\ref{XV:cor:KL}); Lubotzky--Samuels--Vishne \cite{LSV} for the notion of Ramanujan
+complex. The flag condition [Ch.~\ref{chap:X}, Def.~1.1(iv)] is not assumed anywhere.
+
+\section{Setting, and a correction}\label{XV:sec:setting}
+
+$Y$ is a finite $\Atwo$ complex of order $q$: a connected pure $2$-dimensional simplicial
+complex with a $\Z/3$ vertex typing, $n$ vertices, typed edges $E$ ($e=(x\to y)$,
+$\tau(y)=\tau(x)+1$, $|E|=n(q^{2}+q+1)=:nN$), chambers $F$ (one vertex of each type,
+$|F|=(q{+}1)|E|/3$), such that the link of every vertex $y$ is the incidence graph of
+$\PG(2,q)$: in-neighbours of $y$ are the points, out-neighbours the lines, and $\{x,y,z\}$ is a
+chamber iff the point $x$ lies on the line $z$. $A_1,A_2=A_1^{t}$ are the Hecke operators,
+$P(u):=I-A_1u+qA_2u^{2}-q^{3}u^{3}$ the pencil, $S,T,M\in M_{n\times|E|}(\Z)$ the tail, head and
+third-vertex incidences, $K:=\sum_id_id_{i+1}^{t}$ the chamber continuation
+($K(e,e')=\#\{$chambers in which $e'$ follows $e\}$), all as in [Ch.~\ref{chap:XI}, \S3] and [Ch.~\ref{chap:XII}, Thm.~3.1].
+
+\begin{definition}[Geodesic edge flow, chamber form]\label{XV:def:LE}
+$\LE\in M_{|E|}(\{0,1\})$, $\LE\bigl((x\to y),(y\to z)\bigr)=1$ iff $(y\to z)\in E$ and
+$\{x,y,z\}\notin F$; equivalently $\LE=T^{t}S-K$ [Ch.~\ref{chap:XII}, Thm.~3.1].
+\end{definition}
+
+\begin{remark}[Correction to {\rm[Ch.~\ref{chap:XI}, Def.~3.1]}]\label{XV:rem:corrXI}
+[Ch.~\ref{chap:XI}, Def.~3.1] used ``$z$ not adjacent to $x$''. The two conditions agree exactly when $Y$ is
+a flag complex ([Ch.~\ref{chap:X}, Def.~1.1(iv)]), which holds for $Y_{168}$, the only complex on which [Ch.~\ref{chap:XI}]
+evaluated $\LE$. On $Y_{21}$, whose $1$-skeleton is $K_{7,7,7}$, every $z$ is adjacent to $x$
+and the adjacency version is the zero matrix, while Definition~\\ref{XV:def:LE} gives row sums
+$q^{2}$; on $Y_{24}$ and $Y_{42}$ the two versions differ as well (Table~\\ref{XV:tab:battery},
+line (D)). Definition~\\ref{XV:def:LE} is the projection of the geodesic operator of the
+building, the operator $L_E$ of \cite{KL}, and every statement of [Ch.~\ref{chap:XI}, \S3] and [Ch.~\ref{chap:XII}] holds
+for it with the proofs unchanged; the quoted numerics of [Ch.~\ref{chap:XI}] concern $Y_{168}$ and are
+unaffected.
+\end{remark}
+
+\begin{lemma}[Local counts]\label{XV:lem:local}
+For $e=(x\to y)$, $e'=(x'\to y)$ with the same head, and $f\in\ell^{2}(V)$, $m_f:=M^{t}f$:
+\begin{enumerate}
+\item[(a)] $e$ has $q^{2}$ geodesic continuations and $q^{2}$ geodesic predecessors;
+\item[(b)] $\sum_{z\colon e\to(y\to z)}f(z)=(A_1f)(y)-m_f(e)$,\quad
+$\sum_{z}m_f(y\to z)=q\bigl((A_2f)(y)-f(x)\bigr)$;
+\item[(c)] $\#\{$common geodesic continuations of $e,e'\}=q^{2}$ if $x=x'$ and $q^{2}-q$ if
+$x\ne x'$; dually for two edges with the same tail;
+\item[(d)] $\sum_{x\colon(x\to y)\to e''}f(x)=(A_2f)(y)-m_f(e'')$ and
+$\sum_{x}m_f(x\to y)=q\bigl((A_1f)(y)-f(z)\bigr)$ for $e''=(y\to z)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+In the link of $y$ the continuations of $e$ are the lines $z$ not through the point $x$:
+$N-(q{+}1)=q^{2}$. (b) is [Ch.~\ref{chap:XI}, Lem.~3.2(b),(c)] with ``chamber'' in place of ``adjacent'', the
+proof verbatim. (c): lines through neither of two distinct points: $N-2(q{+}1)+1=q^{2}-q$.
+(d) is (b) for the opposite complex (all edges reversed, types negated), whose $\LE$ is
+$\LE^{t}$.
+\end{proof}
+
+\section{Two-sided intertwining and the unitary remainder}\label{XV:sec:intertwine}
+
+Let $\Psi:=[S^{t}\ T^{t}\ M^{t}]\colon\ell^{2}(V)^{3}\to\ell^{2}(E)$ and
+$W:=(\im\Psi)^{\perp}=\ker S\cap\ker T\cap\ker M$.
+
+\begin{theorem}[Two-sided intertwining]\label{XV:thm:two}
+With $I=I_n$ and block matrices over $\ell^{2}(V)^{3}$,
+\begin{gather*}
+\LE\Psi=\Psi C',\quad C'=\begin{pmatrix}0&0&-qI\\ q^{2}I&A_1&qA_2\\0&-I&0\end{pmatrix};\qquad
+\LE^{t}\Psi=\Psi\Cpp,\quad \Cpp=\begin{pmatrix}A_2&q^{2}I&qA_1\\0&0&-qI\\-I&0&0\end{pmatrix};\\
+K\Psi=\Psi\Ch,\quad \Ch=\begin{pmatrix}0&0&qI\\(q{+}1)I&0&A_2\\0&I&0\end{pmatrix};\qquad
+K^{t}\Psi=\Psi\Chp,\quad \Chp=\begin{pmatrix}0&(q{+}1)I&A_1\\0&0&qI\\I&0&0\end{pmatrix};\\
+\LE\LE^{t}=qI_E+(q^{2}-q)\,T^{t}T,\qquad \LE^{t}\LE=qI_E+(q^{2}-q)\,S^{t}S .
+\end{gather*}
+Consequently $\im\Psi$ and $W$ are invariant under $\LE,\LE^{t},K,K^{t}$, and
+$\ell^{2}(E)=\im\Psi\oplus W$ is an orthogonal decomposition reducing all four.
+\end{theorem}
+
+\begin{proof}
+The first identity is [Ch.~\ref{chap:XI}, Thm.~3.3], whose proof uses only Lemma~\\ref{XV:lem:local}(a),(b).
+For $\LE^{t}$: $(\LE^{t}S^{t}f)(y\to z)=\sum_{x}f(x)$ over geodesic predecessors, which is
+$(A_2f)(y)-m_f(y\to z)$ by (d), i.e.\ $\LE^{t}S^{t}=S^{t}A_2-M^{t}$; $(\LE^{t}T^{t}f)(y\to z)=q^{2}f(y)$
+by (a), i.e.\ $\LE^{t}T^{t}=q^{2}S^{t}$; $(\LE^{t}M^{t}f)(y\to z)=\sum_xm_f(x\to y)=q((A_1f)(y)-f(z))$
+by (d), i.e.\ $\LE^{t}M^{t}=qS^{t}A_1-qT^{t}$. Reading the three columns gives $\Cpp$. For
+$K=T^{t}S-\LE$: $T^{t}S\Psi=T^{t}[SS^{t}\ ST^{t}\ SM^{t}]=T^{t}[NI\ A_1\ (q{+}1)A_2]$ by
+[Ch.~\ref{chap:XII}, Thm.~3.1], and subtracting $\LE\Psi=\Psi C'$ gives $KS^{t}=(q{+}1)T^{t}$, $KT^{t}=M^{t}$,
+$KM^{t}=T^{t}A_2+qS^{t}$, i.e.\ $\Ch$; $K^{t}=S^{t}T-\LE^{t}$ likewise gives $\Chp$. The two
+product identities are Lemma~\\ref{XV:lem:local}(c): $(\LE\LE^{t})(e,e')$ counts common
+continuations, zero unless the heads agree, $q^{2}$ on the diagonal and $q^{2}-q$ off it, and
+$(T^{t}T)(e,e')=[\text{head}(e)=\text{head}(e')]$. Invariance of $\im\Psi$ under an operator
+$X$ and of $W=(\im\Psi)^{\perp}$ under $X^{t}$ are the same statement; since all four
+operators and their transposes preserve $\im\Psi$, both summands are invariant under all
+four. Verified as exact integer identities on all five complexes (Table~\\ref{XV:tab:battery},
+line (D)).
+\end{proof}
+
+\begin{theorem}[The remainder is $\sqrt q$ times an orthogonal matrix]\label{XV:thm:unitary}
+Let $R:=\LE|_W$. Then $R^{t}=\LE^{t}|_W$ and
+\[
+RR^{t}=R^{t}R=q\,I_W .
+\]
+Hence $R$ is invertible, every eigenvalue of $R$ has modulus $\sqrt q$, and
+$G(u):=\det(I-uR)\in\Z[u]$ has all its roots on the circle $|u|=q^{-1/2}$, with
+$G(u)=(-u)^{d}\det(R)\,G\bigl(1/(qu)\bigr)$, $d=\dim W$, $\det R=\pm q^{d/2}$.
+\end{theorem}
+
+\begin{proof}
+$W$ is invariant under $\LE$ and $\LE^{t}$ (Theorem~\\ref{XV:thm:two}), so the restriction of
+$\LE^{t}$ to $W$ is the adjoint of $R$. For $v\in W$, $Tv=0$ and $Sv=0$, so the product
+identities give $\LE\LE^{t}v=qv$ and $\LE^{t}\LE v=qv$. Thus $R/\sqrt q$ is orthogonal, its
+eigenvalues have modulus one, and $\det(I-uR)=\det(-uR)\det(I-(uR)^{-1})
+=(-u)^{d}\det R\cdot\det(I-\tfrac1{qu}R^{t})$. $G\in\Z[u]$ because $W\cap\Z^{E}$ is a
+saturated $\LE$-invariant sublattice of full rank in $W$. On the five complexes the
+eigenvalues of $R$ have modulus $\sqrt q$ to $10^{-12}$ (Table~\\ref{XV:tab:battery}, line (U)).
+\end{proof}
+
+\begin{remark}[What this says about the Riemann hypothesis]\label{XV:rem:RH}
+Kang--Li--Wang \cite[Thm.~1.5.1]{KLW} prove that $Y$ is Ramanujan iff the nontrivial zeros of
+$\det P(u)$ have $|u|=q^{-1}$, iff the nontrivial zeros of $\det(I-u\LE)$ have $|u|\in\{q^{-1},
+q^{-1/2}\}$. Theorem~\\ref{XV:thm:unitary} shows that the second clause of the edge criterion is
+automatic: the zeros of $\det(I-u\LE)$ off the pencil are always on $|u|=q^{-1/2}$. The
+Riemann hypothesis for the zeta function of an $\Atwo$ complex is therefore exactly the
+Ramanujan property of the \emph{vertex} spectrum, and the ``parahoric'' zeros are on the
+critical line for every complex, Ramanujan or not --- for the same reason that the Hashimoto
+remainder of a graph is $\pm1$: it is a local, not a global, statement.
+\end{remark}
+
+\section{The factorization theorem}\label{XV:sec:factor}
+
+\begin{theorem}[Parahoric factorization]\label{XV:thm:factor}
+For every $\Atwo$ complex of order $q$, with $K_Y(u):=\det(I-uC'|_{\ker\Psi})$,
+\begin{gather*}
+\det(I-u\LE)\cdot K_Y(u)\;=\;\det P(u)\cdot G(u),\\
+G(u)=\det(I-u\LE|_W)\in\Z[u],\qquad \deg G=\dim W=|E|-\rk\Psi ,
+\end{gather*}
+$K_Y$ divides $\det P$, and all roots of $G$ lie on $|u|=q^{-1/2}$.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\\ref{XV:thm:two}, $\LE=\LE|_{\im\Psi}\oplus R$, so $\det(I-u\LE)=\det(I-u\LE|_{\im\Psi})
+\,G(u)$. $\Psi$ induces an isomorphism $\ell^{2}(V)^{3}/\ker\Psi\to\im\Psi$ intertwining the
+map induced by $C'$ with $\LE|_{\im\Psi}$, and $\ker\Psi$ is $C'$-invariant ($\Psi C'v=\LE\Psi v=0$);
+hence $\det(I-uC')=K_Y(u)\det(I-u\LE|_{\im\Psi})$. Finally $\det(I-uC')=\det P(u)$: the blocks
+of $C'$ commute, and the formal determinant of $I-uC'$ expanded along the first block row is
+$(I-uA_1+qu^{2}A_2)+qu\cdot(-q^{2}u^{2})=P(u)$ [Ch.~\ref{chap:XI}, Prop.~3.4]. Multiply out. Degree and
+roots: Theorem~\\ref{XV:thm:unitary}, $R$ invertible.
+\end{proof}
+
+\begin{proposition}[The kernel of $\Psi$]\label{XV:prop:kernel}
+The Gram matrix
+\[
+\Psi^{t}\Psi=\begin{pmatrix}NI&A_1&(q{+}1)A_2\\A_2&NI&(q{+}1)A_1\\(q{+}1)A_1&(q{+}1)A_2&qNI+A_1A_2\end{pmatrix}
+\]
+lies in $M_3$ of the commutative algebra $\Q[A_1,A_2]$; for a joint eigenvector with
+$A_1f=\lambda f$, $A_2f=\bar\lambda f$ it is the Hermitian matrix
+\begin{gather*}
+H(\lambda)=\begin{pmatrix}N&\lambda&(q{+}1)\bar\lambda\\\bar\lambda&N&(q{+}1)\lambda\\
+(q{+}1)\lambda&(q{+}1)\bar\lambda&qN+|\lambda|^{2}\end{pmatrix},\\
+\det H(\lambda)=(qN+|\lambda|^{2})(N^{2}-|\lambda|^{2})-2N(q{+}1)^{2}|\lambda|^{2}+2(q{+}1)^{2}\,\mathrm{Re}\,\lambda^{3},
+\end{gather*}
+and $\dim\ker\Psi=\sum_\lambda\dim\ker H(\lambda)$ over the eigenvalues of $A_1$ with
+multiplicity. For the three trivial eigenvalues $\lambda=N\omega^{j}$, $H$ has rank one, so
+$\dim\ker\Psi\ge6$ [Ch.~\ref{chap:XI}, Cor.~3.5(i)]. Say $Y$ is \emph{non-degenerate} (ND) if $\det H(\lambda)\ne0$
+for every nontrivial eigenvalue. Under (ND): $\ker\Psi$ is the $6$-dimensional space of
+type-constant triples $(f,g,h)$ with $f_i+g_{i+1}+(q{+}1)h_{i+2}=0$,
+\[
+K_Y(u)=(1-u^{3})(1-q^{3}u^{3}),\qquad \deg G=4n+6 ,
+\]
+and Theorem~\\ref{XV:thm:factor} is the identity of {\rm[Ch.~\ref{chap:XI}, Cor.~3.5(ii)]}. $Y_{21},Y_{24},Y_{42},
+Y_{168}$ satisfy (ND); the thin torus $T_6$ ($q=1$) does not (Table~\\ref{XV:tab:battery}, line (K)).
+\end{proposition}
+
+\begin{proof}
+The block entries are [Ch.~\ref{chap:XII}, Thm.~3.1]; $A_1$ is normal, so $\ell^{2}(V)$ is an orthogonal sum of
+joint eigenlines and $\Psi^{t}\Psi$ is the direct sum of the $H(\lambda)$. Expanding
+$\det H$ with $x=\lambda$, $y=\bar\lambda$, $r=xy$, $c=q{+}1$, $D=qN+r$:
+$N(ND-c^{2}r)-x(yD-c^{2}x^{2})+cy(c\,y^{2}-cNx)=D(N^{2}-r)-2Nc^{2}r+c^{2}(x^{3}+y^{3})$. For
+$\lambda=N$ the rows are $(N,N,cN)$, $(N,N,cN)$, $(cN,cN,(c-1)N+N^{2})$, and
+$(c-1)N+N^{2}-c^{2}N=N(q+N-(q{+}1)^{2})=0$, so the rank is one; the $\omega$-rotations are
+conjugate. Under (ND) the kernel is the $6$-dimensional type-constant space described (it is
+$C'$-invariant and contained in the $9$-dimensional space $V_0$ of type-constant triples).
+$C'$ on $V_0$ has characteristic polynomial $\prod_jP_{N\omega^{j}}(u)=(1-u^{3})(1-q^{3}u^{3})(1-q^{6}u^{3})$,
+and on the quotient $V_0/\ker\Psi\cong\Psi(V_0)$, the type-constant edge functions, $\LE$
+acts by $q^{2}$ times the type rotation, with characteristic polynomial $1-q^{6}u^{3}$; dividing
+gives $K_Y$. Then $\deg G=|E|-(3n-6)=4n+6$.
+\end{proof}
+
+\section{The chamber companion and the Kang--Li identity}\label{XV:sec:chamber}
+
+A \emph{pointed chamber} is a pair $(e,z)$ with $e=(x\to y)\in E$ and $\{x,y,z\}\in F$; write
+it $(x,y;z)$. There are $|P|=3|F|=(q{+}1)|E|$ of them. The Kang--Li operator \cite{KL} is
+\[
+\LB\bigl((x,y;z),(y,z;w)\bigr)=1\quad\text{iff}\quad w\ne x ,
+\]
+row sums $q$; it is the chamber flow $L_F$ of [Ch.~\ref{chap:XI}, Rem.~3.6] and [Ch.~\ref{chap:XII}, Def.~4.1]. Let
+$\sigma,\rho,\tau\colon P\to E$ send $(x,y;z)$ to $(x\to y)$, $(y\to z)$, $(z\to x)$, and
+$\Phi:=[\sigma^{*}\ \rho^{*}\ \tau^{*}]\colon\ell^{2}(E)^{3}\to\ell^{2}(P)$,
+$\Phi(f,g,h)(x,y;z)=f(x,y)+g(y,z)+h(z,x)$.
+
+\begin{theorem}[Chamber companion]\label{XV:thm:companion}
+\[
+\LB\Phi=\Phi B,\qquad B=\begin{pmatrix}0&0&-I_E\\ qI_E&K&K^{t}\\0&-I_E&0\end{pmatrix},
+\qquad \det(I+uB)=\det\bigl((1+qu^{3})I_E+uK+u^{2}K^{t}\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+All sums run over the $q$ vertices $w\ne x$ with $\{y,z,w\}\in F$; with
+$K((y,z),(z,w))=[\{y,z,w\}\in F]$,
+\begin{align*}
+(\LB\sigma^{*}f)(x,y;z)&=\textstyle\sum_{w}f(y,z)=q\,(\rho^{*}f)(x,y;z),\\
+(\LB\rho^{*}g)(x,y;z)&=\textstyle\sum_{w}g(z,w)=(Kg)(y,z)-g(z,x)=(\rho^{*}Kg-\tau^{*}g)(x,y;z),\\
+(\LB\tau^{*}h)(x,y;z)&=\textstyle\sum_{w}h(w,y)=(K^{t}h)(y,z)-h(x,y)=(\rho^{*}K^{t}h-\sigma^{*}h)(x,y;z).
+\end{align*}
+Reading the three columns gives $B$. For the determinant, permute the block rows and columns
+of $I+uB$ to
+\[
+\begin{pmatrix}I&-uI&0\\0&I&-uI\\quI&uK^{t}&I+uK\end{pmatrix};
+\]
+the upper-left $2\times2$ block is unipotent with inverse
+$\begin{psmallmatrix}I&uI\\0&I\end{psmallmatrix}$, and the Schur complement is
+\[
+I+uK-\begin{pmatrix}quI&uK^{t}\end{pmatrix}\begin{pmatrix}I&uI\\0&I\end{pmatrix}
+\begin{pmatrix}0\\-uI\end{pmatrix}=I+uK+qu^{3}I+u^{2}K^{t}.
+\]
+No commutation of $K,K^{t}$ is used. Exact on all five complexes (Table~\\ref{XV:tab:battery},
+line (B)).
+\end{proof}
+
+\begin{theorem}[Kang--Li identity in companion form]\label{XV:thm:KLcomp}
+For an $\Atwo$ complex of order $q$ satisfying {\rm(ND)},
+\[
+\det\bigl((1+qu^{3})I_E+uK+u^{2}K^{t}\bigr)\;=\;(1-u^{3})^{n}\,
+\frac{\det(I-u\LE)\,\det(I-u^{2}\LE)}{\det P(u)} ,
+\]
+and the restriction of $B$ to $W^{3}$ has characteristic polynomial $G(u)\,G(u^{2})$.
+\end{theorem}
+
+\begin{proof}
+$\ell^{2}(E)^{3}=(\im\Psi)^{3}\oplus W^{3}$ orthogonally, both summands $B$-invariant
+(Theorem~\\ref{XV:thm:two}). On $W$, $K=T^{t}S-\LE$ acts as $-R$ and $K^{t}$ as $-R^{t}$, so
+$B|_{W^{3}}=\begin{psmallmatrix}0&0&-I\\qI&-R&-R^{t}\\0&-I&0\end{psmallmatrix}$ and, by the
+elimination of Theorem~\\ref{XV:thm:companion},
+$\det(I+uB|_{W^{3}})=\det\bigl((1+qu^{3})I-uR-u^{2}R^{t}\bigr)=\det\bigl((I-uR)(I-u^{2}R^{t})\bigr)
+=G(u)G(u^{2})$, using $RR^{t}=qI$ (Theorem~\\ref{XV:thm:unitary}) and $\det(I-u^{2}R^{t})=G(u^{2})$.
+On $(\im\Psi)^{3}$, $\Psi^{\oplus3}$ intertwines $B$ with
+$\Bh=\begin{psmallmatrix}0&0&-I\\qI&\Ch&\Chp\\0&-I&0\end{psmallmatrix}$ on $\ell^{2}(V)^{9}$
+modulo $(\ker\Psi)^{3}$, so $\det(I+uB|_{(\im\Psi)^{3}})=\det(I+u\Bh)/\det(I+u\Bh|_{(\ker\Psi)^{3}})$.
+The same elimination gives $\det(I+u\Bh)=\det\bigl((1+qu^{3})I+u\Ch+u^{2}\Chp\bigr)$, a
+$3\times3$ block matrix over $\Q[A_1,A_2]$; on a joint eigenline $(a,b)=(\lambda,\bar\lambda)$
+it is
+\[
+D_{a,b}(u)=\det\begin{pmatrix}1+qu^{3}&(q{+}1)u^{2}&qu+au^{2}\\(q{+}1)u&1+qu^{3}&bu+qu^{2}\\u^{2}&u&1+qu^{3}\end{pmatrix}
+=(1-u^{3})\bigl(1-bu^{2}+qau^{4}-q^{3}u^{6}\bigr)
+\]
+(a polynomial identity in $a,b,q,u$, verified by expansion), so
+$\det(I+u\Bh)=(1-u^{3})^{n}\det\bigl(I-u^{2}A_2+qu^{4}A_1-q^{3}u^{6}\bigr)=(1-u^{3})^{n}\det P(u^{2})$,
+the last step by transposition. Under (ND), $(\ker\Psi)^{3}\subset V_0^{3}$ with
+$V_0$ the type-constant space; $\det(I+u\Bh|_{V_0^{3}})=\prod_jD_{N\omega^{j},N\omega^{-j}}(u)
+=(1-u^{3})^{3}(1-u^{6})(1-q^{3}u^{6})(1-q^{6}u^{6})$, and on $\Psi(V_0)^{3}$ --- type-constant
+edge functions, on which $K$ and $K^{t}$ act as $(q{+}1)$ times the type rotation and its
+inverse --- the factor is $\prod_j(1+qu^{3}+(q{+}1)u\omega^{j}+(q{+}1)u^{2}\omega^{2j})
+=\prod_j(1+u\omega^{j}+u^{2}\omega^{2j})(1+qu\omega^{j})=(1-u^{3})^{2}(1+q^{3}u^{3})$; the quotient is
+$\det(I+u\Bh|_{(\ker\Psi)^{3}})=(1-u^{3})(1-q^{3}u^{3})(1-u^{6})(1-q^{3}u^{6})=K_Y(u)K_Y(u^{2})$.
+Assembling,
+\[
+\det(I+uB)=(1-u^{3})^{n}\,\frac{\det P(u^{2})\,G(u)\,G(u^{2})}{K_Y(u)\,K_Y(u^{2})},
+\]
+and Theorem~\\ref{XV:thm:factor} at $u$ and at $u^{2}$ turns the right side into the statement.
+Certified modulo two $31$-bit primes at $3|E|+1$ points on $Y_{21},Y_{24},Y_{42},T_6$ (a
+polynomial identity of degree $\le3|E|$) and at random points on $Y_{168}$
+(Table~\\ref{XV:tab:battery}, line (B)).
+\end{proof}
+
+\begin{corollary}[Kang--Li's zeta identity]\label{XV:cor:KL}
+$\det(I+u\LB)\,K_\Phi(u)=\det(I+uB)\,G_\Phi(u)$ with $K_\Phi,G_\Phi$ the characteristic
+polynomials of $B$ on $\ker\Phi$ and of $\LB$ on $\ell^{2}(P)/\im\Phi$. For $q=2$, where
+$|P|=3|E|$, $K_\Phi=G_\Phi$ on the four thick complexes, and hence, with $\chi(Y)=n$,
+\[
+\frac{(1-u^{3})^{\chi(Y)}}{\det P(u)}=\frac{\det(I+u\LB)}{\det(I-u\LE)\,\det(I-u^{2}\LE^{t})},
+\]
+which is \cite[Thm.~C]{KL}, \cite[eq.~(1.6)]{KLW}, for the zeta function
+$Z(Y,u)=\det(I-u\LE)^{-1}$. For general $q$, \cite{KL} gives
+$G_\Phi/K_\Phi=(1-u^{3})^{\chi(Y)-n}$; verified on $T_6$, where $\chi=0$ and $n=36$. The
+eigenvalues of $\LB$ off the pencil are the roots of $G(u)G(u^{2})$: moduli $q^{1/2}$ and
+$q^{1/4}$, the latter being square roots of the unitary remainder --- the $q^{-1/4}$ zeros
+of \cite[Thm.~1.5.1(4)]{KLW}.
+\end{corollary}
+
+\begin{proof}
+$\Phi$ intertwines, $\ker\Phi$ is $B$-invariant and $\im\Phi$ is $\LB$-invariant, so both
+characteristic polynomials factor through $\ell^{2}(E)^{3}/\ker\Phi\cong\im\Phi$. The rest is
+Theorem~\\ref{XV:thm:KLcomp}, $\det(I-u^{2}\LE)=\det(I-u^{2}\LE^{t})$, and the computations of
+Table~\\ref{XV:tab:battery}; the equality $K_\Phi=G_\Phi$ and the general ratio are not proved
+here and are the one point where \cite{KL} is used.
+\end{proof}
+
+\section{The verification battery}\label{XV:sec:battery}
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & complexes & result\\
+\midrule
+(D) $\LE\LE^{t}=qI+(q^{2}-q)T^{t}T$, $\LE^{t}\LE=qI+(q^{2}-q)S^{t}S$; $\LE\Psi=\Psi C'$, $\LE^{t}\Psi=\Psi\Cpp$, $K\Psi=\Psi\Ch$, $K^{t}\Psi=\Psi\Chp$ & all five & exact\\
+\quad adjacency version of [Ch.~\ref{chap:XI}, Def.~3.1] equals the chamber version & $Y_{168},T_6$ yes; $Y_{21},Y_{24},Y_{42}$ no & exact\\
+(K) $\rk\Psi=3n-6$ (mod two primes $+$ explicit rational kernel); $K_Y=(1-u^{3})(1-q^{3}u^{3})$; $\dim W=4n+6$ & $Y_{21},Y_{24},Y_{42},Y_{168}$ & exact\\
+\quad $T_6$: $\rk\Psi=93$, $\dim\ker\Psi=15$, (ND) fails, $\dim W=15$, $K_Y$ of degree $15$ & $T_6$ & exact\\
+(U) $RR^{t}=R^{t}R=qI$ on $W$; $|\spec R|=\sqrt q$ to $10^{-12}$ & all five & numeric\\
+(E) $\det(I-u\LE)K_Y=\det P\cdot G$ in $\Z[u]$; $\deg G=\dim W$; functional equation; roots on $|u|=q^{-1/2}$ & $Y_{21},Y_{24},Y_{42},T_6$ & exact (roots numeric)\\
+\quad $Y_{168}$: six missing pencil roots $\{1,\omega,\omega^{2},q,q\omega,q\omega^{2}\}$, $678$ remainder eigenvalues of modulus $\sqrt q$ & $Y_{168}$ & numeric\\
+(B) $\LB\Phi=\Phi B$; Theorem~\\ref{XV:thm:KLcomp} at $3|E|+1$ points mod two primes; $\det(I+u\LB)=\det(I+uB)$ ($q=2$); ratio $(1-u^{3})^{\chi-n}$ on $T_6$ & all five ($Y_{168}$: random points) & exact / modular\\
+(V) nontrivial pencil roots of modulus $q$ (vertex Ramanujan property) & all five & numeric\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Verification (\texttt{pgl3\_parahoric.py}). Complexes: $Y_{21},Y_{24},Y_{42},Y_{168}$
+($q=2$) and $T_6$ ($q=1$) of [Ch.~\ref{chap:X}].}
+\label{XV:tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{XV:sec:scope}
+
+\begin{remark}[Solved, open, impossible]\label{XV:rem:scope}
+\begin{sloppypar}
+\emph{Solved:} [Ch.~\ref{chap:XI}, Rem.~5.1(b)] in full --- the determinant identity for all $\Atwo$ complexes
+(Theorem~\\ref{XV:thm:factor}, with the exact form of the trivial factor under (ND),
+Proposition~\\ref{XV:prop:kernel}) and the identification of $G$ with Kang--Li's chamber factor
+(Theorem~\\ref{XV:thm:KLcomp}: $G(u)G(u^{2})$ is the parahoric block of the chamber companion);
+the Riemann hypothesis for the parahoric factor, unconditionally (Theorem~\\ref{XV:thm:unitary});
+the Kang--Li identity itself in companion form, with a proof by the degeneracy calculus of
+[Ch.~\ref{chap:XII}] (Theorem~\\ref{XV:thm:KLcomp}). \emph{Open:} (a) a direct proof that $G_\Phi/K_\Phi=
+(1-u^{3})^{\chi-n}$ (Corollary~\\ref{XV:cor:KL}), which would make the Kang--Li identity
+independent of \cite{KL}; (b) an exact (rather than numeric) certificate of the vertex
+Ramanujan property of $Y_{21},\dots,Y_{168}$, i.e.\ of the Riemann hypothesis for their zeta
+functions; (c) the exact polynomial identity on $Y_{168}$, verified here only structurally
+and at random points modulo primes; (d) the $\Atwo\to\widetilde A_d$ generalization, where
+the parahoric remainders should again be $\sqrt{q^{k}}$ times orthogonal matrices.
+\emph{Impossible or false as stated:} see Remark~\\ref{XV:rem:corrections}.
+\end{sloppypar}
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{XV:rem:corrections}
+\begin{sloppypar}
+(1) The identity $\det(I-u\LE)(1-u^{3})(1-q^{3}u^{3})=\det P(u)\det(I-uL_F^{\mathrm{par}})$ with
+$L_F^{\mathrm{par}}$ an operator on the $3|F|$ pointed chambers is false as stated: the right
+factor would have degree up to $3|F|=(q{+}1)|E|$, not $4n+6$. The remainder $G$ is the
+characteristic polynomial of $\LE$ on $W\subset\ell^{2}(E)$, and it enters the chamber
+operator as the block $G(u)G(u^{2})$. (2) ``$L_F^{\mathrm{par}}\cong\im(\Psi)^{\perp}$'' is
+false: $\dim W=4n+6$ while $\LB$ acts on $(q{+}1)|E|$ coordinates; the correct relation is
+$\LB\Phi=\Phi B$ with $B$ on $\ell^{2}(E)^{3}$. (3) The ``Riemann hypothesis for $\Atwo$
+complexes'' for the parahoric poles is true but needs no Ramanujan hypothesis: it holds for
+every complex (Theorem~\\ref{XV:thm:unitary}); the Ramanujan property is exactly the vertex
+condition (Remark~\\ref{XV:rem:RH}). (4) The formula requires (ND); on $T_6$ the trivial factor
+has degree $15$ and $\deg G=15\ne4n+6$. (5) The ``block triangularization'' is in fact a
+block diagonalization: $\im\Psi$ is invariant under $\LE^{t}$ too. (6) Our own [Ch.~\ref{chap:XI}, Def.~3.1] is corrected (Remark~\\ref{XV:rem:corrXI}). (7) The representation-theoretic reading of
+the remainder as ``the subdominant Iwahori--Hecke spectrum on a parahoric'' is \cite{KLW}'s;
+here the remainder is characterized combinatorially and its unitarity proved, which is more
+than the representation theory gives without a temperedness input.
+\end{sloppypar}
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. All numbered statements are proved from the link structure of an
+$\Atwo$ complex and linear algebra; the one external input is the relation between $\LB$
+and its companion for $q\ne2$ in Corollary~\\ref{XV:cor:KL}, quoted from \cite{KL}. The
+modular certificates of Theorem~\\ref{XV:thm:KLcomp} are identities in $\F_p[u]$ for two
+primes, not in $\Z[u]$; the theorem itself is proved. Bibliographic data of
+\cite{KL,KLW,LSV} were checked against publisher pages.

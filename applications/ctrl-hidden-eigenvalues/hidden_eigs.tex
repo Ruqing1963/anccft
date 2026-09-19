@@ -1,0 +1,414 @@
+% Power-sum lower bounds on hidden eigenvalues in positive realizations
+% Build: pdflatex hidden_eigs (x3)
+\documentclass[11pt]{article}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\title{\bfseries Power-sum lower bounds on hidden eigenvalues\\ in positive realizations}
+\author{Ruqing Chen\\[2pt]
+\normalsize GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec J0P 1R0, Canada\\
+\normalsize\texttt{ruqing@hotmail.com}}
+\date{19 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+A positive realization of a transfer function of order $n$ is a nonnegative matrix of some
+size $N\ge n$ carrying the $n$ poles among its eigenvalues; the $s=N-n$ remaining
+eigenvalues are the \emph{hidden} eigenvalues, whose characterization Benvenuti and Farina
+list as an open problem. We give a lower bound on $s$ from the power sums of the poles: if
+$p_k$ denotes the $k$-th power sum and $\rho$ the spectral radius, then
+$s\ge\max_{k\ge1}\lceil[-p_k]_+/\rho^k\rceil$. At $k=1$ this reproduces the quantity
+$\zeta$ of Benvenuti's lower bound; for $k\ge2$ it is, as far as we can determine, new, and
+it is strictly stronger. On the family $\M_m(\theta)=\{1\}\cup m\cdot\{\pm i\theta\}$ the
+published lower bound is vacuous ($N\ge n$) while ours gives $N\ge 2m(1+\theta^{2})$; when
+$\theta^{2}>1-1/2m$ this meets Benvenuti's own upper bound $4m$ and therefore determines
+the minimal size exactly, where previously only $n\le N\le 4m$ was known. The bound is
+attained: on $\{1\}\cup m\cdot\{\pm i\}$ it gives $N\ge4m$, and a direct sum of $m$ copies
+of the $4$-cycle permutation matrix realizes $N=4m$. We also record two limitations. The
+method has a hard ceiling --- it can never prove more than $N\le2n$ --- so it is
+complementary to, not competitive with, the digraph bounds that give unbounded ratios; and
+the ratio $2$ itself is not new territory, being exactly what the Benvenuti--Farina family
+of 1999 achieves. Finally we explain why no such bound can exist in the
+Boyle--Handelman/Kim--Ormes--Roush setting: there one appends only zeros, and zeros change
+no power sum. All claims are machine-verified in exact rational arithmetic.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Let $H(z)$ be a rational transfer function of order $n$ with pole multiset
+$\Lambda=\{\lambda_1,\dots,\lambda_n\}$ and spectral radius
+$\rho=\max_i|\lambda_i|$. A \emph{positive realization} of $H$ is a triple
+$(A,b,c)$ with $A\in\R_{\ge0}^{N\times N}$, $b,c\ge0$ and
+$H(z)=c(zI-A)^{-1}b$. Existence is settled \cite{Farina96,ADFB96,OMK84}, and a clean
+criterion is available in terms of an invariant polyhedral cone \cite{BF04}. What is not
+settled is \emph{size}. The poles of $H$ are a subset of the eigenvalues of any positive
+realization, and the remaining $s=N-n$ eigenvalues --- the \emph{hidden eigenvalues} --- are
+the reason $N$ may exceed $n$. Benvenuti and Farina put it as follows
+\cite[\S IX]{BF04}: ``An important issue related to minimality of positive systems is the
+study of `hidden' eigenvalues, i.e.\ of the eigenvalues which are not poles and that
+possibly one has to add in order to obtain a minimal positive realization. A full
+characterization of this property may lead to a deeper and valuable insight into the
+problem.'' The minimality problem remains open; a recent statement of its status is
+\cite{TS25}.
+
+This note contributes one inequality. It is elementary, and its only merit is that it
+appears not to have been written down beyond its first instance.
+
+\paragraph{The bound.} Write $p_k=p_k(\Lambda)=\sum_{i}\lambda_i^{k}$ for the $k$-th power
+sum of the poles and $[x]_+=\max(x,0)$. Theorem~\ref{thm:main} states
+\begin{equation}\label{eq:bound}
+s\;\ge\;\Bigl\lceil\;\max_{k\ge1}\;\frac{[-p_k]_+}{\rho^{k}}\;\Bigr\rceil .
+\end{equation}
+
+\paragraph{What is already known.} The case $k=1$ of \eqref{eq:bound} is published.
+Benvenuti \cite[Thm.~4.7]{Ben20ELA} proves $N\ge N_D+\sum_{|s|<1}m(s)+\zeta$ with
+$\zeta=\lceil-m_{\mathcal R_1}-\sum_{|s|<1}s\,m(s)\rceil$ when that quantity is positive,
+and the proof is exactly the $k=1$ argument: ``since the trace of a nonnegative matrix is
+nonnegative \dots\ since each one of these additional eigenvalues has to be not greater
+than $1$, then their number is not lesser than $\zeta$''
+\cite[pp.~379--380]{Ben20ELA}. The companion paper \cite{Ben20SCL} transfers the same
+quantity to the realization dimension. We have found no power sum beyond the first
+anywhere in this literature: not in \cite{Ben20ELA,Ben20SCL}, not in the digraph bound of
+Nagy and Matolcsi \cite{NM03}, not in \cite{BF04,TS25}. Section~\ref{sec:improve} shows
+that $k=2$ already does strictly better.
+
+\paragraph{What we do not claim.} Two disclaimers, stated here rather than buried.
+\begin{enumerate}
+\item[(a)] The ratio $N/n=2$ is \emph{not} new territory. The family
+$H(z,m)=1/\bigl((z-1)(z^{2^{m}}+1)\bigr)$ of Benvenuti and Farina \cite{BF99} has
+$n=2^{m}+1$ and minimal positive realization of dimension $N=2^{m+1}=2n-2$, so ratio $2$ is
+exactly what they already achieve; and Nagy and Matolcsi \cite{NM03} obtain \emph{unbounded}
+ratios, with $n=4$ fixed and $N\ge m+1$ for arbitrary $m$.
+\item[(b)] Worse, ratio $2$ is a hard ceiling for the present method.
+Since $p_k\ge-\sum_i|\lambda_i|^{k}\ge-n\rho^{k}$, the right-hand side of \eqref{eq:bound}
+never exceeds $n$, so \eqref{eq:bound} can never prove more than $N\le 2n$
+(Proposition~\ref{prop:ceiling}). The bound is therefore complementary to the combinatorial
+bounds of \cite{NM03}, not a competitor to them.
+\end{enumerate}
+What we do claim is (i) the inequality for $k\ge2$, (ii) that it strictly improves the
+published lower bound, and (iii) that on an explicit family it closes the published gap
+completely.
+
+\section{The bound}\label{sec:bound}
+
+\begin{theorem}\label{thm:main}
+Let $A\in\R_{\ge0}^{N\times N}$ and let $\Lambda$ be a sub-multiset of $\operatorname{spec}A$
+of size $n$ containing an eigenvalue of modulus $\rho(A)$; write $\rho=\rho(A)$ and
+$s=N-n$. Then for every $k\ge1$
+\[
+s\;\ge\;\frac{-p_k(\Lambda)}{\rho^{k}},
+\qquad\text{hence}\qquad
+s\;\ge\;\Bigl\lceil\max_{k\ge1}\frac{[-p_k(\Lambda)]_+}{\rho^{k}}\Bigr\rceil .
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\M$ be the complementary multiset, $|\M|=s$, so that
+$\operatorname{spec}A=\Lambda\uplus\M$. Every eigenvalue of $A$ has modulus at most
+$\rho(A)=\rho$, so $\bigl|\sum_{\mu\in\M}\mu^{k}\bigr|\le\sum_{\mu\in\M}|\mu|^{k}\le
+s\rho^{k}$. Since $A$ is nonnegative, $\Tr(A^{k})\ge0$: it is a sum of products of
+nonnegative entries. Therefore
+\[
+0\;\le\;\Tr(A^{k})\;=\;p_k(\Lambda)+\sum_{\mu\in\M}\mu^{k}\;\le\;p_k(\Lambda)+s\rho^{k},
+\]
+which rearranges to the claim; $s$ is an integer, so the ceiling may be taken.
+\end{proof}
+
+The hypothesis that $\Lambda$ contains a dominant eigenvalue is what makes $\rho$ computable
+from the poles alone; in the realization setting it holds because $\rho(H)$ is a pole
+\cite[Lem.~7]{BF04}.
+
+\begin{proposition}[$k=1$ is Benvenuti's $\zeta$]\label{prop:k1}
+At $k=1$, \eqref{eq:bound} reads $s\ge\lceil-p_1(\Lambda)/\rho\rceil$, which after
+normalising $\rho=1$ and splitting $\Lambda$ into its dominant and non-dominant parts is
+the quantity $\zeta$ of {\rm\cite[Thm.~4.7]{Ben20ELA}}.
+\end{proposition}
+
+\begin{proof}
+Normalise $\rho=1$. The dominant part of $\Lambda$ contributes $m_{\mathcal R_1}$ to
+$p_1$, since the $h$-th roots of unity sum to zero for $h>1$
+\cite[proof of Thm.~4.7]{Ben20ELA}, and the non-dominant part contributes
+$\sum_{|s|<1}s\,m(s)$. Hence $-p_1=-m_{\mathcal R_1}-\sum_{|s|<1}s\,m(s)$, and the ceiling
+of its positive part is $\zeta$.
+\end{proof}
+
+\begin{proposition}[Ceiling of the method]\label{prop:ceiling}
+The right-hand side of \eqref{eq:bound} is at most $n$; consequently
+Theorem~\ref{thm:main} can never certify $N>2n$.
+\end{proposition}
+
+\begin{proof}
+$-p_k\le\sum_i|\lambda_i|^{k}\le n\rho^{k}$.
+\end{proof}
+
+\section{Strict improvement, and an exact determination}\label{sec:improve}
+
+Fix $0<\theta<1$ and $m\ge1$, and let
+\[
+\M_m(\theta)=\{1\}\;\cup\;m\ \text{copies of}\ \{\,i\theta,\,-i\theta\,\},
+\qquad n=2m+1,\ \rho=1 .
+\]
+Only $1$ is dominant, so in the notation of \cite{Ben20ELA} we have $r=1$,
+$N_D=1$ and $m_{\mathcal R_1}=1$.
+
+\begin{theorem}\label{thm:improve}
+For $\M_m(\theta)$:
+\begin{enumerate}
+\item[(i)] the lower bound of {\rm\cite[Thm.~4.7]{Ben20ELA}} gives $N\ge 2m+1=n$, i.e.\ it is
+vacuous, because $\zeta=0$;
+\item[(ii)] Theorem~\ref{thm:main} at $k=2$ gives
+$s\ge\lceil 2m\theta^{2}-1\rceil$, hence $N\ge 2m+1+\lceil2m\theta^{2}-1\rceil$, which
+exceeds $n$ whenever $\theta^{2}>1/2m$;
+\item[(iii)] the upper bound of {\rm\cite[Thm.~4.4]{Ben20ELA}} gives $N\le 4m$;
+\item[(iv)] if $\theta^{2}>1-\dfrac{1}{2m}$ then the bounds in (ii) and (iii) coincide and
+\[
+N_{\min}=4m .
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $p_1(\M_m(\theta))=1$ and the non-dominant numbers cancel in conjugate pairs, so
+$m_{\mathcal R_1}+\sum_{|s|<1}s\,m(s)=1\ge0$ and $\zeta=0$; the bound reads
+$N\ge N_D+2m+0=2m+1$. (ii) $p_2=1+m\bigl((i\theta)^{2}+(-i\theta)^{2}\bigr)=1-2m\theta^{2}$,
+so $[-p_2]_+/\rho^{2}=2m\theta^{2}-1$ when positive. (iii) is \cite[Thm.~4.4]{Ben20ELA}
+with $\kappa(i\theta)=4$, valid since $i\theta\in\Pi_4\setminus\Pi_3$ for
+$\theta>1/\sqrt3$. (iv) The bound in (ii) equals $4m$ as soon as
+$\lceil2m\theta^{2}-1\rceil\ge2m-1$, i.e.\ $2m\theta^{2}-1>2m-2$, i.e.\
+$\theta^{2}>1-1/2m$.
+\end{proof}
+
+Table~\ref{tab:improve} shows the three quantities. The criterion $\theta^{2}>1-1/2m$ of
+Theorem~\ref{thm:improve}(iv) predicts exactly which rows close: it holds for
+$\theta=9/10$ only at $m=1$ ($0.81>0.5$) and fails at $m=4$ ($0.81<0.875$), where the bound
+indeed falls one short of the upper bound; it holds throughout for $\theta=99/100$ from
+$m=2$ on and for $\theta=999/1000$, and there the gap closes and $N$ is determined.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{rrrrrr}
+\toprule
+$\theta$ & $m$ & $n$ & \cite[Thm.~4.7]{Ben20ELA} & Theorem~\ref{thm:main} & \cite[Thm.~4.4]{Ben20ELA}\\
+ & & & lower & lower & upper\\
+\midrule
+$9/10$      &  1 &  3 &  3 &  \textbf{4} &  4\\
+$9/10$      &  4 &  9 &  9 & 15 & 16\\
+$9/10$      & 16 & 33 & 33 & 58 & 64\\
+\midrule
+$99/100$    &  2 &  5 &  5 &  \textbf{8} &  8\\
+$99/100$    &  4 &  9 &  9 & \textbf{16} & 16\\
+$99/100$    &  8 & 17 & 17 & \textbf{32} & 32\\
+$99/100$    & 16 & 33 & 33 & \textbf{64} & 64\\
+\midrule
+$999/1000$  &  4 &  9 &  9 & \textbf{16} & 16\\
+$999/1000$  & 16 & 33 & 33 & \textbf{64} & 64\\
+\bottomrule
+\end{tabular}
+\caption{Lower and upper bounds on the minimal size $N$ for $\M_m(\theta)$. Bold: the new
+lower bound meets the published upper bound, so $N$ is determined exactly. All entries
+exact.}
+\label{tab:improve}
+\end{table}
+
+\section{Sharpness}\label{sec:sharp}
+
+Let $\M_m=\{1\}\cup m\cdot\{i,-i\}$, all of modulus one, $n=2m+1$.
+
+\begin{theorem}\label{thm:sharp}
+$p_2(\M_m)=1-2m$, so Theorem~\ref{thm:main} gives $s\ge2m-1$ and $N\ge4m$. The bound is
+attained: if $C_4$ is the $4$-cycle permutation matrix, with characteristic polynomial
+$x^{4}-1$ and spectrum $\{1,i,-1,-i\}$, then $C_4^{\oplus m}$ is nonnegative of size $4m$
+and contains $\M_m$ in its spectrum. Hence $N_{\min}=4m=2n-2$.
+\end{theorem}
+
+\begin{proof}
+The power sum is immediate. For the construction, $\operatorname{spec}C_4^{\oplus m}$ is
+$m$ copies of $\{1,i,-1,-i\}$, which contains one $1$ and $m$ copies of each of $\pm i$.
+\end{proof}
+
+\begin{remark}\label{rem:caveat}
+Two caveats. First, for $m\ge2$ the multiset $\M_m$ violates the standing hypothesis of
+\cite[Thms.~3.2, 4.1]{Ben20ELA} that the spectral radius occur with dominant multiplicity:
+here $m(1)=1$ while the dominant multiplicity is $m$. The formula of
+\cite[Thm.~4.1]{Ben20ELA} nevertheless evaluates to $N_D=4m$ on $\M_m$, so the conclusion
+$N_{\min}=4m$ is also reachable by that route, by an argument through roots of unity rather
+than through traces; we note this so that Theorem~\ref{thm:sharp} is not mistaken for a new
+determination. It is a sharpness check on \eqref{eq:bound}, not a new value of $N$. Second,
+$4m=2n-2$ is the Benvenuti--Farina ratio of \cite{BF99}, as recalled in
+Section~\ref{sec:intro}.
+\end{remark}
+
+\begin{remark}[Tutorial Example 8]\label{rem:ex8}
+For the poles $\{1,\pm0.9i\}$ of \cite[Ex.~8]{BF04}, $p_2=-31/50$ and \eqref{eq:bound}
+gives $s\ge1$, i.e.\ $N\ge4$. This is attained by the nonnegative circulant with first row
+$(0,\tfrac{19}{20},0,\tfrac1{20})$, whose characteristic polynomial is
+$(x-1)(x+1)(x^{2}+\tfrac{81}{100})$: the hidden eigenvalue is $-1$. The example in
+\cite{BF04} is $4$-dimensional, so the bound is tight there as well.
+\end{remark}
+
+\section{Why there is no analogue for the Boyle--Handelman problem}\label{sec:bh}
+
+It is worth saying why the same traces behave completely differently one category over.
+In the inverse eigenvalue problem solved by Boyle and Handelman over $\R$ \cite{BH91} and by
+Kim, Ormes and Roush over $\Z$ \cite{KOR00}, one asks whether $\Lambda$ is the \emph{nonzero}
+spectrum of a nonnegative matrix; the matrix may be enlarged, but only by appending
+\emph{zeros}. Zeros contribute nothing to any power sum, so the trace conditions
+$\operatorname{tr}_k\ge0$ must already hold for $\Lambda$ itself: they are a genuine
+obstruction, not a counting device, and no lower bound of the shape \eqref{eq:bound} on the
+size of the dilation can exist. Equivalently: in that category the analogue of
+Theorem~\ref{thm:main} is the statement $p_k(\Lambda)\ge0$, with no $s$ in it.
+
+This is the exact point at which results from symbolic dynamics fail to transfer to the
+positive realization problem. A negative $p_2$ closes the fixed-nonzero-spectrum problem
+outright --- shift equivalence preserves the nonzero spectrum with multiplicities
+\cite[\S7.4]{LM95}, so no dilation of any size helps, an argument used in this form in
+\cite[II]{ANCFT} --- while in the present setting the same negative $p_2$ merely counts
+hidden eigenvalues, and indeed \cite[Ex.~8]{BF04} exhibits a transfer function with
+$p_2=-0.62$ and a $4$-dimensional positive realization. The two categories differ exactly by
+the freedom to add nonzero eigenvalues.
+
+\section{Verification}\label{sec:battery}
+
+The script \texttt{hidden\_eigs.py} accompanying this note runs the checks of
+Table~\ref{tab:battery} in $23$\,s, all passing; its output is archived as
+\texttt{hidden\_eigs\_output.txt}. Arithmetic is exact rational throughout; the only
+floating-point quantity anywhere is the spectral radius in check (T), and that row is
+labelled accordingly.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{clc}
+\toprule
+key & check & mode\\
+\midrule
+(T) & Theorem~\ref{thm:main} holds on $120$ random nonnegative integer matrices, $\Lambda$ a rational factor & exact $+$ numeric $\rho$\\
+(K) & at $k=1$ the bound equals $\zeta$ of \cite[Thm.~4.7]{Ben20ELA} & exact\\
+(I) & $k=2$ strictly exceeds \cite[Thm.~4.7]{Ben20ELA} in $15/15$ instances (Table~\ref{tab:improve}) & exact\\
+(S) & Theorem~\ref{thm:sharp}: bound $=4m$ attained by $C_4^{\oplus m}$, $m\le32$ & exact\\
+(E) & Remark~\ref{rem:ex8}: bound $=1$, attained by an explicit rational circulant & exact\\
+(C) & Proposition~\ref{prop:ceiling}: the bound never exceeds $n$, on $300$ random pole sets & exact\\
+(Z) & appending zeros leaves every power sum unchanged (Section~\ref{sec:bh}) & exact\\
+\bottomrule
+\end{tabular}
+\caption{The verification battery (\texttt{hidden\_eigs.py}), $7/7$ passing.}
+\label{tab:battery}
+\end{table}
+
+In check (T) the spectral radius is replaced by a rational \emph{lower} bound, which makes
+the tested inequality strictly stronger than the theorem; no violation occurred. The bound
+was attained in none of those $120$ random instances, which is the expected behaviour: like
+the $k=1$ bound it is weak on generic spectra and bites only when the poles are strongly
+oscillatory.
+
+\section{Scope}\label{sec:scope}
+
+\emph{Established here.} Theorem~\ref{thm:main} for all $k$; its coincidence with
+\cite[Thm.~4.7]{Ben20ELA} at $k=1$; strict improvement and an exact determination of
+$N_{\min}$ on $\M_m(\theta)$ for $\theta^{2}>1-1/2m$; sharpness on $\M_m$ and on
+\cite[Ex.~8]{BF04}; the ceiling $N\le2n$; the structural reason the bound has no analogue
+in \cite{BH91,KOR00}.
+
+\emph{Open.} (a) Whether power sums can be combined with the cone criterion \cite{BF04} or
+with the digraph bound \cite{NM03} to pass the ratio-$2$ ceiling. (b) Whether the
+Johnson--Loewy--London inequalities \cite{LoewyLondon78}, which mix power sums of different
+orders, give a bound not implied by \eqref{eq:bound}; we have not investigated this and it
+is the obvious next step. (c) Whether the bound is ever tight outside the families of
+Sections~\ref{sec:improve}--\ref{sec:sharp}; it was not tight in any of our $120$ random
+instances.
+
+\emph{Not claimed.} Ratio $2$, which is \cite{BF99}; unbounded ratios, which are
+\cite{NM03}; and the $k=1$ case, which is \cite{Ben20ELA}.
+
+\section*{Provenance}
+
+Unrefereed preprint. Theorem~\ref{thm:main} is elementary and its proof is complete above.
+The bounds of \cite{Ben20ELA} quoted for comparison in Table~\ref{tab:improve} are
+evaluated by us from the published statements of Theorems 4.4 and 4.7 of that paper and are
+reproduced in the script; we have not reproved them. The symbolic-dynamics facts in
+Section~\ref{sec:bh} are quoted from \cite{LM95,BH91,KOR00}. We searched the literature for
+a power-sum bound with $k\ge2$ and found none; a search cannot establish a negative, and we
+state this as the limit of our knowledge.
+
+\begin{thebibliography}{99}
+
+\bibitem{ADFB96} B.~D.~O.~Anderson, M.~Deistler, L.~Farina and L.~Benvenuti,
+\emph{Nonnegative realization of a linear system with nonnegative impulse response},
+IEEE Trans.\ Circuits Syst.\ I \textbf{43} (1996), 134--142.
+
+\bibitem{Ben20ELA} L.~Benvenuti,
+\emph{The NIEP and the positive realization problem},
+Electron.\ J.\ Linear Algebra \textbf{36} (2020), 367--384.
+
+\bibitem{Ben20SCL} L.~Benvenuti,
+\emph{A lower bound on the dimension of minimal positive realizations for discrete time
+systems}, Systems Control Lett.\ \textbf{135} (2020), 104595.
+
+\bibitem{BF99} L.~Benvenuti and L.~Farina,
+\emph{An example of how positivity may force realizations of ``large'' dimension},
+Systems Control Lett.\ \textbf{36} (1999), 261--266.
+
+\bibitem{BF04} L.~Benvenuti and L.~Farina,
+\emph{A tutorial on the positive realization problem},
+IEEE Trans.\ Automat.\ Control \textbf{49} (2004), 651--664.
+
+\bibitem{BH91} M.~Boyle and D.~Handelman,
+\emph{The spectra of nonnegative matrices via symbolic dynamics},
+Ann.\ of Math.\ \textbf{133} (1991), 249--316.
+
+\bibitem{ANCFT} R.~Chen,
+\emph{Algorithmic non-commutative class field theory, I--XVI}, preprints (2026);
+here II (the trace obstruction under shift equivalence), X and XI.
+
+\bibitem{Farina96} L.~Farina,
+\emph{On the existence of a positive realization},
+Systems Control Lett.\ \textbf{28} (1996), 219--226.
+
+\bibitem{KOR00} K.~H.~Kim, N.~S.~Ormes and F.~W.~Roush,
+\emph{The spectra of nonnegative integer matrices via formal power series},
+J.\ Amer.\ Math.\ Soc.\ \textbf{13} (2000), 773--806.
+
+\bibitem{LM95} D.~Lind and B.~Marcus,
+\emph{An Introduction to Symbolic Dynamics and Coding},
+Cambridge University Press, 1995.
+
+\bibitem{LoewyLondon78} R.~Loewy and D.~London,
+\emph{A note on an inverse problem for nonnegative matrices},
+Linear Multilinear Algebra \textbf{6} (1978), 83--90.
+
+\bibitem{NM03} B.~Nagy and M.~Matolcsi,
+\emph{A lowerbound on the dimension of positive realizations},
+IEEE Trans.\ Circuits Syst.\ I \textbf{50} (2003), 782--784.
+
+\bibitem{OMK84} Y.~Ohta, H.~Maeda and S.~Kodama,
+\emph{Reachability, observability and realizability of continuous-time positive systems},
+SIAM J.\ Control Optim.\ \textbf{22} (1984), 171--180.
+
+\bibitem{TS25} H.~Taghavian and J.~Sj\"olund,
+\emph{Minimal positive Markov realizations},
+preprint, arXiv:2502.21102 (2025).
+
+\end{thebibliography}
+
+\end{document}

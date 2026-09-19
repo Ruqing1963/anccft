@@ -1,0 +1,30 @@
+{
+  "title": "Algorithmic Non-commutative Class Field Theory: Hecke operators, sandpile groups and operator algebras on trees and buildings, with applications",
+  "upload_type": "publication",
+  "publication_type": "book",
+  "description": "<p>A monograph assembled from sixteen papers (September 2026) and eight applied notes, with the verification scripts, data tables and figures that reproduce every numerical claim.</p><p>For a finite (q+1)-regular graph &mdash; an arithmetic quotient of the Bruhat&ndash;Tits tree of PGL<sub>2</sub> &mdash; the sandpile (critical) group of the Hecke&ndash;Laplacian has order a product of inverse local L-values, so Frobenius traces appear as K-theoretic torsion. The book develops what this group does along towers of graphs (exact Iwasawa control for abelian voltage towers, a second-order exceptional zero with a rational L-invariant, and a non-commutative degeneracy calculus with &lambda; = &minus;1 for the Iwahori tower), which operator algebras carry it (a trace obstruction forbids Cuntz&ndash;Krieger realizations of the Ihara companion; shadow graphs realize Z &oplus; Jac(Y) as K<sub>0</sub> of Kirchberg algebras whose inductive limit has torsion K<sub>0</sub> dual to the sandpile pro-module; the head map gives a C*-correspondence with K<sub>0</sub>-index the head pushforward), and what changes in rank two (&Atilde;<sub>2</sub> buildings: no trace obstruction, no abelian towers, and an unconditional unitarity theorem placing the parahoric zeros of the edge zeta on the critical circle). Part V applies the machinery outside number theory: Bloch effective mass on tree lattices, what the boundary algebra of p-adic AdS/CFT cannot see, an algebraic normality certificate for graph towers, power-sum bounds for hidden eigenvalues of positive realizations, and the critical group of a de Bruijn graph as a measure of genome-assembly ambiguity that splits exactly along repeats.</p><p>Every result is labelled proved, quoted, computationally verified or conjectural; the closing chapter lists what is solved, open and impossible. Text: CC BY 4.0. Code: MIT.</p>",
+  "creators": [
+    {
+      "name": "Chen, Ruqing",
+      "affiliation": "GUT Geoservice Inc., Rivière-Beaudette, Québec, Canada"
+    }
+  ],
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "sandpile group", "critical group", "Bruhat-Tits tree", "Hecke operator", "Ihara zeta function",
+    "Cuntz-Krieger algebra", "Kirchberg algebra", "KK-theory", "Iwasawa theory of graphs", "line digraph",
+    "affine building", "Ramanujan complex", "interlace polynomial", "de Bruijn graph", "genome assembly",
+    "Smith normal form", "non-commutative class field theory", "KMS states", "Bost-Connes system"
+  ],
+  "subjects": [
+    {"term": "Number theory", "identifier": "https://id.loc.gov/authorities/subjects/sh85093222", "scheme": "url"},
+    {"term": "Operator algebras", "identifier": "https://id.loc.gov/authorities/subjects/sh85094811", "scheme": "url"},
+    {"term": "Graph theory", "identifier": "https://id.loc.gov/authorities/subjects/sh85056471", "scheme": "url"},
+    {"term": "K-theory", "identifier": "https://id.loc.gov/authorities/subjects/sh85071606", "scheme": "url"},
+    {"term": "Genomics", "identifier": "https://id.loc.gov/authorities/subjects/sh2006004130", "scheme": "url"}
+  ],
+  "language": "eng",
+  "version": "1.0.0",
+  "notes": "MSC 2020: 46L55, 11F70, 46L80, 11F72, 20E08, 37A55, 11G20, 05C50, 05C25, 46L35, 19K35, 92D20. Unrefereed. Scripts require Python 3 with numpy, sympy, mpmath, scipy, matplotlib."
+}

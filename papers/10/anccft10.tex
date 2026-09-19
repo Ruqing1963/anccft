@@ -1,0 +1,620 @@
+% Algorithmic Non-commutative Class Field Theory, X
+% A~_2 complexes, higher simplicial Laplacians, and the fate of the trace obstruction in rank two
+% Build: pdflatex anccft10 (x3)
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{booktabs,graphicx}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PG}{\mathrm{PG}}
+\newcommand{\Atwo}{\widetilde A_2}
+\newcommand{\DeltaH}{\Delta^{\mathrm{H}}}
+\newcommand{\JacH}{\Jac^{\mathrm{H}}}
+\newcommand{\Cthree}{C^{(3)}}
+
+\title[Algorithmic non-commutative class field theory, X]
+{Algorithmic non-commutative class field theory, X:\\
+$\Atwo$ complexes, higher simplicial Laplacians,\\ and the fate of the trace obstruction in
+rank two}
+
+\author{Ruqing Chen}
+\address{GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada}
+\email{ruqing@hotmail.com}
+\date{17 September 2026}
+\subjclass[2020]{Primary 05E45, 20E42; Secondary 46L80, 11F70, 05C50, 15B48}
+\keywords{Bruhat--Tits building, $\Atwo$ complex, triangle presentation, Hodge Laplacian,
+critical group, Hecke operator, companion matrix, trace obstruction, spectral conjecture,
+Kirchberg algebra}
+
+\thanks{Paper X of the series; Papers I--IX are cited as [I]--[IX]. The verification script
+\texttt{pgl3\_building.py} in the ancillary bundle constructs every complex used and reproduces
+every computational claim; its output is archived as \texttt{pgl3\_building\_output.txt}.}
+
+\begin{document}
+
+\begin{abstract}
+The series has so far lived on quotients of the Bruhat--Tits tree of $\PGL_2$. This paper
+moves one rank up, to finite $\Atwo$ complexes --- quotients of two-dimensional buildings of
+order $q$, locally the building of $\PGL_3$ over a local field with residue field $\F_q$ ---
+and asks which of the rank-one theorems survive. Three things are established. First, the
+Hodge Laplacians $\Delta_0,\Delta_1,\Delta_2$ of the typed chain complex give higher
+critical groups $\Jac_i(Y)=\Tor\coker\Delta_i$, computed exactly on thin tori and on five
+thick complexes of order $2$ with $21$, $24$, $42$, $84$ and $168$ vertices, built here from
+a triangle presentation over $\PG(2,2)$ compatible with a Singer cycle and verified to have
+Heawood-graph links; the Hodge vertex Laplacian is no longer a Hecke operator, and the
+arithmetic bridge of [I, Thm.~3.5] is carried instead by the \emph{Hecke--Laplacian}
+$\DeltaH=(q^{3}-1)I+A_1-qA_2$, the value at $u=1$ of the cubic pencil
+$P(u)=\det(I-uA_1+qu^{2}A_2-q^{3}u^{3}I)$, whose critical group has order
+$\frac1n\prod_j|P_j(1)|$, a product of inverse local $\mathrm{GL}_3$ $L$-values. Second,
+the companion $\Cthree$ of the cubic pencil is unimodularly equivalent to $\DeltaH\oplus I\oplus I$
+exactly as in [II], but the trace obstruction of [II] does \emph{not} transfer: the $\Z/3$
+type grading forces $\Tr(\Cthree)^{k}=0$ for $3\nmid k$, and a block computation gives
+$\Tr(\Cthree)^{3}=n(q-1)^{2}(q+1)\ge0$. There is no cubic trace obstruction; on the five
+thick complexes, all of which turn out to be Ramanujan, every net trace of the reduced
+(type-preserving) pencil is non-negative and its Perron condition holds, so by the theorem
+of Kim--Ormes--Roush the nonzero spectrum of $\Cthree$ is that of a non-negative integer
+matrix, irreducible of period three --- the rank-two pencil is spectrally realizable, the
+opposite of the rank-one situation, and the realization problem for the $\PGL_3$ Hecke
+critical group is open and unobstructed. Third, the shadow construction of [VI] extends to
+arbitrary
+integer matrices with positive diagonal by a signed-shadow lemma in which positive
+off-diagonal entries are produced by one-directional auxiliary vertices with double loops;
+it yields unital Kirchberg algebras $\cO(Y,\Delta_1)$ and $\cO(Y,\DeltaH)$ with
+$K_0\cong\Z^{b_1}\oplus\Jac_1(Y)$ and $K_0\cong\Z\oplus\JacH(Y)$ respectively, functorially
+in the complex. What the specification predicted and what is proved differ in two places,
+and the paper says where.
+\end{abstract}
+
+\maketitle
+
+\section*{Status of the results}
+
+Every numbered statement is proved. The inputs are finite linear algebra, the classical
+Cuntz--Krieger facts quoted in [VI, VIII], the Cartwright--Mantero--Steger--Zappa theorem
+that a triangle presentation gives a group acting simply transitively on the vertices of an
+$\Atwo$ building \cite{CMSZ}, and, for one corollary that nothing else depends on, the
+Kim--Ormes--Roush theorem on the nonzero spectra of primitive integer matrices \cite{KOR}.
+The Kang--Li zeta function of $\PGL_3$ complexes \cite{KL} is context for the cubic pencil,
+not an input. Every finite identity was machine-verified exactly (Table~\ref{tab:battery});
+the five thick complexes are constructed by the script, and their local structure (Heawood
+links, regularity, flag condition) is checked rather than assumed --- with the result that
+the flag condition holds only for the largest of them, a distinction the theorems respect. Section~\ref{sec:scope}
+records what is open and the corrections to the specification.
+
+\section{\texorpdfstring{$\Atwo$ complexes of order $q$}{A2 complexes of order q}}\label{sec:complexes}
+
+\begin{definition}[$\Atwo$ complex]\label{def:a2}
+An \emph{$\Atwo$ complex of order $q\ge1$} is a finite connected pure two-dimensional
+simplicial complex $Y$ with vertex set $V$ ($n:=|V|$), edge set $E$ and triangle set $F$,
+together with a type function $\tau\colon V\to\Z/3$, such that
+\begin{enumerate}
+\item[(i)] every triangle has one vertex of each type;
+\item[(ii)] every vertex has exactly $q^{2}+q+1$ neighbours of type $\tau(v)+1$ and
+$q^{2}+q+1$ of type $\tau(v)+2$;
+\item[(iii)] every edge lies in exactly $q+1$ triangles;
+\item[(iv)] (flag condition) every closed walk $x\to y\to z\to x$ with
+$\tau(y)=\tau(x)+1$, $\tau(z)=\tau(x)+2$ is the boundary of a triangle.
+\end{enumerate}
+Every edge is oriented from type $t$ to type $t+1$ and every triangle $(a,b,c)$ is listed
+with types $(t,t+1,t+2)$, so that $\partial_2(a,b,c)=(a,b)+(b,c)+(c,a)$ and
+$\partial_1(a,b)=b-a$ are canonical; $A_1\in M_n(\{0,1\})$ is the adjacency $x\to y$ for
+edges, $A_2:=A_1^{t}$, and we assume $A_1A_2=A_2A_1$ (true for building quotients, where
+$A_1,A_2$ generate the commutative spherical Hecke algebra; verified on every complex used).
+\end{definition}
+
+Quotients of a thick $\Atwo$ building of order $q\ge2$ by a type-rotating, freely acting
+group with injectivity radius $\ge2$ are $\Atwo$ complexes in this sense, with vertex links
+the incidence graph of $\PG(2,q)$; the flag condition holds because buildings are flag
+complexes. Thin complexes ($q=1$) are triangulated flat tori (Construction~\ref{con:thin}).
+
+\begin{lemma}[Counts]\label{lem:counts}
+$|E|=n(q^{2}+q+1)$, $|F|=\tfrac13n(q^{2}+q+1)(q+1)$, $\Tr A_1^{3}=3|F|$,
+$\Tr(A_1A_2)=|E|$, and $\chi(Y)=n\bigl(1+\tfrac13(q^{2}+q+1)(q-2)\bigr)$. For $q=2$:
+$|E|=|F|=7n$ and $\chi(Y)=n$.
+\end{lemma}
+
+\begin{proof}
+(ii) gives $|E|$; each vertex lies in $(q^{2}+q+1)(q+1)$ triangles by (ii),(iii), each
+counted three times; $\Tr A_1^{3}$ counts closed type-increasing $3$-walks, three per
+triangle by (iv); $\Tr(A_1A_1^{t})=\sum_{x,y}A_1(x,y)^{2}=|E|$.
+\end{proof}
+
+\begin{construction}[Thin tori]\label{con:thin}
+On $\Z^{2}$ let $d_1=(1,0)$, $d_2=(0,1)$, $d_3=(-1,-1)$, edges $v\to v+d_i$, type
+$\tau(a,b)=a+b\bmod3$, triangles $\{v,v+d_i,v+d_i+d_j\}$, $i\neq j$. This is the
+$\Atwo$ Coxeter complex (one apartment); its quotient by $m\Z^{2}$, $3\mid m$, $m\ge3$, is an
+$\Atwo$ complex of order $1$ with $m^{2}$ vertices, $b_1=2$, $b_2=1$, hexagonal links.
+\end{construction}
+
+\begin{construction}[Thick complexes of order $2$]\label{con:thick}
+Label the points of $\PG(2,2)$ by $\Z/7$ with lines $\{i,i+1,i+3\}$ and let
+$\lambda(x)=\{x+1,x+2,x+4\}$, the Singer cycle. A triangle presentation compatible with
+$\lambda$ \cite{CMSZ} is a set $T$ of $21$ triples with (A) $(x,y,z)\in T\Rightarrow
+(y,z,x)\in T$, (B) $(x,y,\cdot)\in T$ iff $y\in\lambda(x)$, (C) the third entry is
+determined by the first two. Exhaustive search over all bijections without absolute points
+finds, for $\lambda$ the Singer cycle, the presentation with cyclic orbits
+\[
+T/\Z_3=\{(0,1,3),(0,2,6),(0,4,5),(1,2,4),(1,5,6),(2,3,5),(3,4,6)\}
+\]
+(axioms re-verified by the script). By \cite{CMSZ} the group
+$\Gamma=\langle a_0,\dots,a_6\mid a_xa_ya_z=1,\ (x,y,z)\in T\rangle$ acts simply
+transitively and type-rotatingly on the vertices of an $\Atwo$ building of order $2$; its
+type-preserving subgroup $\Gamma^{0}$ has index $3$, and $X_3:=\Gamma^{0}\backslash B$ is
+the $\Delta$-complex with three vertices, $21$ edges and $21$ triangles. We compute
+$H_1(X_3;\Z)\cong\Z/2\oplus\Z/2\oplus\Z/14$ and build the abelian voltage covers of $X_3$
+with deck group $A$ for the quotients $A=\Z/7$, $(\Z/2)^{3}$, $\Z/14$ and $H_1(X_3)$
+itself, exactly as the derived graphs of [II, \S5] in one dimension higher: vertices
+$(i,g)$, edges lifted by voltages in $A$, triangles lifting because their boundaries are
+null-homologous. The results $Y_{21},Y_{24},Y_{42},Y_{84},Y_{168}$ are simplicial, every
+vertex link is the Heawood graph (bipartite, $3$-regular, $14$ vertices, girth $6$), and
+conditions (i)--(iii) hold, with $|E|=|F|=7n$ (Table~\ref{tab:battery}, line (P)). The flag
+condition (iv) holds for $Y_{168}$ and fails for the four smaller covers: there the deck
+group is too small, some product $a_xa_ya_{z'}$ with $(x,y,z')\notin T$ has trivial voltage,
+and $\Tr A_1^{3}$ exceeds $3|F|$ by $28n$, $21n$, $12n$, $4n$ respectively. So (iv) is not
+implied by the link condition, and the five complexes separate the two hypotheses cleanly:
+$Y_{168}$ is an $\Atwo$ complex in the full sense of Definition~\ref{def:a2}, the others
+satisfy (i)--(iii) only. The count $168=|\PGL_3(\F_2)|$ for the maximal abelian cover
+suggests that $Y_{168}$ is a congruence quotient; we neither need nor claim this. Whether the
+building is that of $\PGL_3(\F_2((t)))$, of $\PGL_3(\Q_2)$, or exotic is not decided here:
+every statement below depends only on the local structure of Definition~\ref{def:a2}, and
+the statements that use (iv) are marked.
+\end{construction}
+
+\section{Hodge Laplacians and higher critical groups}\label{sec:hodge}
+
+\begin{definition}\label{def:hodge}
+$\Delta_0:=\partial_1\partial_1^{t}$ on $C_0$, $\Delta_1:=\partial_1^{t}\partial_1
++\partial_2\partial_2^{t}$ on $C_1$, $\Delta_2:=\partial_2^{t}\partial_2$ on $C_2$, and
+$\Jac_i(Y):=\Tor\coker_\Z\Delta_i$, the \emph{$i$-th critical group}. Following
+Duval--Klivans--Martin \cite{DKM} we also record $K(Y):=\ker\partial_1/\operatorname{im}
+(\partial_2\partial_2^{t})$.
+\end{definition}
+
+\begin{proposition}[Structure]\label{prop:hodge}
+$\partial_1\partial_2=0$; $\coker\Delta_i\cong\Z^{b_i}\oplus\Jac_i(Y)$ with $b_i$ the Betti
+numbers of $Y$; $b_0=1$; $\Delta_0=2(q^{2}+q+1)I-(A_1+A_2)$ is the Laplacian of the
+$1$-skeleton, so $\Jac_0(Y)$ is its sandpile group with $|\Jac_0(Y)|$ the number of
+spanning trees of the $1$-skeleton; $\Delta_1$ has diagonal entries $q+3$, entry $0$ at pairs
+of edges spanning a triangle, and entries $\pm1$ at pairs sharing a vertex and no triangle.
+\end{proposition}
+
+\begin{proof}
+$\partial_1\partial_2(a,b,c)=(b-a)+(c-b)+(a-c)=0$. Each $\Delta_i$ is symmetric with
+$\ker\Delta_i=\ker\partial_i\cap\ker\partial_{i+1}^{t}$ of rank $b_i$ (Hodge), so its
+cokernel has free rank $b_i$. The diagonal of $\Delta_1$ is $2+(q+1)$ by (iii); for edges
+$e=(a,b)$, $f=(b,c)$ in a triangle the down-term $\langle\partial e,\partial f\rangle=-1$
+cancels the up-term $+1$, and without a triangle only the down-term survives.
+\end{proof}
+
+\section{The Hecke--Laplacian and the \texorpdfstring{$\mathrm{GL}_3$ $L$-values}{GL3 L-values}}\label{sec:hecke}
+
+\begin{definition}[Cubic pencil and Hecke--Laplacian]\label{def:pencil}
+$P(u):=I-uA_1+qu^{2}A_2-q^{3}u^{3}I\in M_n(\Z[u])$ and
+\[
+\DeltaH:=-P(1)=(q^{3}-1)I+A_1-qA_2,\qquad \JacH(Y):=\Tor\coker_\Z\DeltaH .
+\]
+For a joint eigenpair $(a_j,b_j)$ of $(A_1,A_2)$ write $P_j(u)=1-a_ju+qb_ju^{2}-q^{3}u^{3}
+=\prod_{i=1}^{3}(1-\lambda_{j,i}u)$; the trivial pair $a=b=q^{2}+q+1$ gives
+$(1-u)(1-qu)(1-q^{2}u)$.
+\end{definition}
+
+The pencil is the vertex factor of the Kang--Li zeta function of a $\PGL_3$ complex
+\cite{KL}, and $P_j(u)^{-1}$ is the local $L$-factor of the unramified $\mathrm{GL}_3$
+Hecke eigenform with Satake parameters $\lambda_{j,i}/q$; we use only the polynomial.
+
+\begin{theorem}[Hecke critical group and $L$-values]\label{thm:hecke}
+\begin{enumerate}
+\item[(i)] $\DeltaH\mathbf1=0$ and $\mathbf1^{t}\DeltaH=0$.
+\item[(ii)] If $P_j(1)\neq0$ for every nontrivial $j$ (no nontrivial eigenform has a
+Satake parameter $\lambda_{j,i}=1$; automatic when $|\lambda_{j,i}|=q$), then
+$\rk\DeltaH=n-1$, all $n$ principal cofactors of $\DeltaH$ are equal, and
+\[
+\coker_\Z\DeltaH\cong\Z\oplus\JacH(Y),\qquad
+|\JacH(Y)|=\frac1n\prod_{j\ \mathrm{nontrivial}}\bigl|P_j(1)\bigr| .
+\]
+\item[(iii)] $\DeltaH\neq\Delta_0$ for $q\ge1$, and $\Delta_0$ is not a specialization of the
+pencil: no $u$ gives $P(u)\in\Q^{\times}\Delta_0$. For $\PGL_2$ the two operators coincide
+($(q{+}1)I-T_p=\Delta_0=-P(1)$ with $P(u)=I-uT_p+qu^{2}$).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Row sums: $(q^{3}-1)+(q^{2}+q+1)-q(q^{2}+q+1)=0$; column sums likewise since
+$\mathbf1^{t}A_1=\mathbf1^{t}A_2=(q^{2}+q+1)\mathbf1^{t}$. (ii) The eigenvalues of $\DeltaH$
+on the joint eigenspaces are $-P_j(1)$, zero exactly for the trivial pair under the
+hypothesis, so the kernel is $\Z\mathbf1$ on both sides; the equal-cofactor argument of
+[III, proof of Thm.~2.1, Step~2] applies verbatim to a matrix with two-sided kernel
+$\mathbf1$ and gives $\prod_{\mu\neq0}\mu=n\kappa$ with $\kappa$ the common cofactor
+$=|\Tor\coker|$. (iii) $P(u)\in\Q\Delta_0$ would need $-u:qu^{2}=-1:-1$, i.e.\ $u=-1/q$,
+where $P(-1/q)=2I+(A_1+A_2)/q$ has the wrong constant term unless $2q=2(q^{2}+q+1)$,
+impossible.
+\end{proof}
+
+\begin{theorem}[Companion reduction]\label{thm:companion}
+Let $\Cthree=\begin{psmallmatrix}A_1&-qA_2&q^{3}I\\ I&0&0\\0&I&0\end{psmallmatrix}$, so
+that $\det(I-u\Cthree)=\det P(u)$. With
+$U=\begin{psmallmatrix}I&q^{3}I-qA_2&q^{3}I\\0&I&0\\0&0&I\end{psmallmatrix}$ and
+$V=\begin{psmallmatrix}I&0&0\\ I&I&0\\ I&I&I\end{psmallmatrix}$, both unimodular,
+\[
+U\,(I-\Cthree)\,V=P(1)\oplus I_n\oplus I_n=(-\DeltaH)\oplus I_n\oplus I_n,
+\qquad\text{hence}\qquad \coker_\Z(I-\Cthree)\cong\Z\oplus\JacH(Y).
+\]
+\end{theorem}
+
+\begin{proof}
+$I-\Cthree=\begin{psmallmatrix}I-A_1&qA_2&-q^{3}I\\-I&I&0\\0&-I&I\end{psmallmatrix}$; the
+first block row of $U(I-\Cthree)$ is $(I-A_1,qA_2,-q^{3}I)+(q^{3}I-qA_2)(-I,I,0)
++q^{3}(0,-I,I)=(P(1),0,0)$, and the column operations $V$ clear the subdiagonal $-I$'s.
+This is [II, \S1.1] one degree higher.
+\end{proof}
+
+\section{The fate of the trace obstruction}\label{sec:trace}
+
+\begin{theorem}[Grading]\label{thm:grading}
+$\Tr(A_1^{\alpha}A_2^{\beta})=0$ unless $\alpha\equiv\beta\pmod3$. Consequently
+$\Tr(\Cthree)^{k}=0$ for every $k$ with $3\nmid k$, and the spectrum of $\Cthree$ is
+invariant under multiplication by cube roots of unity.
+\end{theorem}
+
+\begin{proof}
+A closed walk contributing to the trace changes type by $\alpha+2\beta\equiv\alpha-\beta$.
+$\Tr(\Cthree)^{k}=\sum_jp_k(a_j,b_j)$ with $p_k$ the $k$-th power sum of the roots of
+$\lambda^{3}-a\lambda^{2}+qb\lambda-q^{3}$, a polynomial in monomials $a^{\alpha}(qb)^{\beta}
+(q^{3})^{\gamma}$ with $\alpha+2\beta+3\gamma=k$, so $\alpha\equiv\beta$ forces $3\mid k$.
+Equivalently $D_\omega=\operatorname{diag}(\omega^{\tau(v)})\oplus\cdots$ conjugates
+$\omega\Cthree$ to $\Cthree$.
+\end{proof}
+
+\begin{theorem}[No cubic trace obstruction]\label{thm:notrace}
+For every $\Atwo$ complex of order $q$,
+\[
+\Tr\Cthree=0,\qquad\Tr(\Cthree)^{2}=0,\qquad
+\Tr(\Cthree)^{3}=3|F|-3q|E|+3nq^{3}=n(q-1)^{2}(q+1)\ \ge\ 0,
+\]
+with equality only in the thin case $q=1$. Hence the mechanism of {\rm[II, Thms.~1.5--1.6]}
+--- a negative trace of a power of the companion, incompatible with any non-negative
+matrix of any size --- has no analogue in rank two at orders $\le5$: the first net trace
+that is not forced to be non-negative by these identities is $\tr_6$.
+\end{theorem}
+
+\begin{proof}
+$p_1=a$, $p_2=a^{2}-2qb$, $p_3=a^{3}-3qab+3q^{3}$ (Newton). $\Tr A_1=0$ (no loops),
+$\Tr A_1^{2}=0$ and $\Tr A_2=0$ by Theorem~\ref{thm:grading}, $\Tr A_1^{3}=3|F|$ and
+$\Tr(A_1A_2)=|E|$ by Lemma~\ref{lem:counts}; substitute the counts:
+$(q^{2}+q+1)(q+1)-3q(q^{2}+q+1)+3q^{3}=q^{3}-q^{2}-q+1=(q-1)^{2}(q+1)$. The net trace
+$\tr_m=\sum_{d\mid m}\mu(m/d)\Tr(\Cthree)^{d}$ vanishes for $m\le5$, $m\neq3$, and equals
+$\Tr(\Cthree)^{3}\ge0$ for $m=3$. Without the flag condition the identity reads
+$\Tr(\Cthree)^{3}=\Tr A_1^{3}-3q|E|+3nq^{3}$, still non-negative since $\Tr A_1^{3}\ge3|F|$:
+on $Y_{168}$ the value is $504=n(q-1)^{2}(q+1)$ exactly; on $Y_{21}$ it is $651=63+588$,
+the excess being the spurious closed $3$-walks (Table~\ref{tab:battery}).
+\end{proof}
+
+\begin{remark}[Why rank one is different]\label{rem:why}
+In [II] the companion of $1-uT_p+qu^{2}$ has $\Tr C^{2}=\Tr T_p^{2}-2qn=n(q+1)-2qn<0$:
+the $\Z/2$ type structure of a graph allows a walk to return in two steps (edge reversal),
+so the symmetric adjacency contributes $\Tr T_p^{2}=2|E|>0$ but not enough to beat the
+$-2qn$ of the negative block. In rank two the type grading is $\Z/3$: a type-increasing walk
+cannot return before three steps, the negative block $-qA_2$ is invisible to
+$\Tr(\Cthree)^{k}$ for $k<3$, and at $k=3$ the chambers contribute $3|F|=n(q^{2}+q+1)(q+1)$,
+which exceeds the $3q|E|-3nq^{3}=n(q^{2}+q+1)\cdot3q-3nq^{3}$ removed by the negative block.
+The obstruction of [II] is a rank-one accident of parity.
+\end{remark}
+
+\begin{definition}[Reduced pencil]\label{def:reduced}
+By Theorem~\ref{thm:grading}, $\det P(u)\in\Z[u^{3}]$; write $\det P(u)=Q(u^{3})$ with
+$Q\in\Z[v]$ of degree $n$. Its roots are $\lambda^{3}$, one for each $\omega$-orbit
+$\{\lambda,\omega\lambda,\omega^{2}\lambda\}$ of eigenvalues of $\Cthree$: the trivial orbits
+give $1,q^{3},q^{6}$, and the power sums of the multiset $\Lambda_Q$ of roots are
+$p_d(\Lambda_Q)=\tfrac13\Tr(\Cthree)^{3d}$. $\Lambda_Q$ is the spectrum of the
+type-preserving (three-step) dynamics.
+\end{definition}
+
+\begin{theorem}[Spectral realizability of the thick examples]\label{thm:realizable}
+For each of $Y_{21},Y_{24},Y_{42},Y_{84},Y_{168}$:
+\begin{enumerate}
+\item[(i)] $\Cthree$ has exactly nine eigenvalues of modulus $\ge q$: the orbits of $1,q,q^{2}$
+under $\omega$; every other eigenvalue has modulus exactly $q$ (numeric, to $10^{-6}$): the
+complexes are Ramanujan in the sense of \cite{KL}. In particular $\Cthree$ itself never
+satisfies the Perron condition of a primitive matrix --- $q^{2},q^{2}\omega,q^{2}\omega^{2}$
+are all dominant --- which is forced by the grading and is the signature of an irreducible
+matrix of period $3$.
+\item[(ii)] For $\Lambda_Q$: $q^{6}$ is simple and strictly dominant; the net traces
+\[
+\tr_m(\Lambda_Q)=\sum_{d\mid m}\mu(m/d)\,\tfrac13\Tr(\Cthree)^{3d}
+\]
+are non-negative for $m\le10$ (exact integers) and provably positive for
+$m\ge m_0\in\{2,3\}$ (Lemma~\ref{lem:bound}); hence by \cite{KOR} there is a primitive
+non-negative integer matrix $B_0$ with nonzero spectrum $\Lambda_Q$.
+\item[(iii)] Consequently the block-cyclic non-negative integer matrix
+$\begin{psmallmatrix}0&B_0&0\\0&0&I\\I&0&0\end{psmallmatrix}$ has the nonzero spectrum of
+$\Cthree$: the $\PGL_3$ pencil of these complexes is spectrally realizable by a non-negative
+integer matrix, irreducible of period $3$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is computation (Table~\ref{tab:battery}, line (R)); the grading statement is
+Theorem~\ref{thm:grading}. (ii) The Boyle--Handelman conditions for a primitive integer
+matrix are: $\Lambda_Q$ is the root multiset of a monic integer polynomial ($Q$), a simple
+strictly dominant positive root ($q^{6}$, by (i)), and $\tr_m(\Lambda_Q)\ge0$ for all $m$;
+\cite{KOR} proves them sufficient. (iii) If $M=\begin{psmallmatrix}0&X&0\\0&0&Y\\Z&0&0
+\end{psmallmatrix}$ then $M^{3}=\operatorname{diag}(XYZ,YZX,ZXY)$, so the nonzero spectrum
+of $M$ consists of all cube roots of the nonzero spectrum of $XYZ=B_0$, i.e.\ of the
+$\omega$-orbits of $\Lambda_Q^{1/3}$, which is the nonzero spectrum of $\Cthree$.
+\end{proof}
+
+\begin{lemma}[Tail bound]\label{lem:bound}
+Let $M<q^{2}$ bound the moduli of the genuinely nontrivial eigenvalues and $N=n-1$. Then
+$\tr_m(\Lambda_Q)\ge q^{6m}+q^{3m}+1-NM^{3m}-\sum_{d\le m/2}\bigl(q^{6d}+q^{3d}+1+NM^{3d}\bigr)$,
+positive for all $m\ge m_0$ with $m_0$ computable from $(n,q,M)$; for the five complexes
+$m_0\le3$.
+\end{lemma}
+
+\begin{proof}
+$|p_d(\Lambda_Q)-(1+q^{3d}+q^{6d})|\le NM^{3d}$; the proper divisors of $m$ are $\le m/2$; the
+bound increases with $m$ once $q^{6m}$ dominates, which for $M=q$ and $n\le168$ happens by
+$m=3$.
+\end{proof}
+
+\begin{remark}[What remains of the realization problem]\label{rem:realization}
+Theorem~\ref{thm:realizable} is about the nonzero spectrum. The realization problem proper
+--- a non-negative integer matrix $B$ shift equivalent over $\Z$ to $\Cthree$, so that
+$\coker(I-B)\cong\Z\oplus\JacH(Y)$ with the Hecke dynamics --- asks for more than spectral
+data, and we do not solve it. What is established is that the one tool which closed it in
+rank one, Theorem~[II, 1.6], is unavailable in rank two, and that the necessary conditions
+known to us are all satisfied. The problem is open and, as far as the trace method can see,
+unobstructed. Whether the double-loop mechanism of Section~\ref{sec:shadow} can be upgraded
+from a $K$-theoretic to a dynamical realization is the natural next question, and [II,
+Thm.~1.6] no longer forbids it here.
+\end{remark}
+
+\section{Signed shadows and the higher Kirchberg algebras}\label{sec:shadow}
+
+\begin{lemma}[Signed shadow lemma]\label{lem:signed}
+Let $M\in M_N(\Z)$ with $M_{ee}\ge1$ for all $e$, and let $\mathcal P=\{(e,f):e\neq f,\
+M_{ef}>0\}$. Define a non-negative integer matrix $B$ on the vertex set
+$\{e\}\sqcup\{w_{ef}:(e,f)\in\mathcal P\}\sqcup\{e'\}$ by the arcs
+\begin{itemize}
+\item $|M_{ef}|$ arcs $f\to e$ for each $e\neq f$ with $M_{ef}<0$;
+\item for $(e,f)\in\mathcal P$: $M_{ef}$ arcs $f\to w_{ef}$, one arc $w_{ef}\to e$, two loops at
+$w_{ef}$;
+\item for each $e$: one arc $e\to e'$, $M_{ee}-1$ arcs $e'\to e$, two loops at $e'$.
+\end{itemize}
+Then, with $X:=(I-B^{t})_{\text{main},\text{aux}}$, $Y:=(I-B^{t})_{\text{aux},\text{main}}$
+and $U=\begin{psmallmatrix}I&X\\0&I\end{psmallmatrix}$,
+$V=\begin{psmallmatrix}I&0\\Y&I\end{psmallmatrix}$,
+\[
+U\,(I-B^{t})\,V\;=\;M\oplus(-I_{|\mathcal P|+N}) .
+\]
+If the graph on $\{e\}$ with edges $\{e,f\}$ for $M_{ef}\neq0$ is connected, $B$ is
+irreducible with double-loop vertices, and $\cO_B:=C^*(\text{digraph of }B)$ is a unital
+Kirchberg algebra with $K_0(\cO_B)\cong\coker_\Z M$ and $K_1(\cO_B)\cong\ker_\Z M$.
+\end{lemma}
+
+\begin{proof}
+The auxiliary block of $I-B^{t}$ is $-I$ (each auxiliary vertex carries exactly two loops and
+no other arcs among auxiliaries), so the Schur complement of that block is $R+XY$ where
+$R$ is the main block: diagonal $1$, entry $M_{ef}$ at negative positions, $0$ elsewhere.
+The auxiliary $w_{ef}$ contributes $X_{e,w}Y_{w,f}=(-1)(-M_{ef})=M_{ef}$ at $(e,f)$ and
+nothing else; the shadow $e'$ contributes $X_{e,e'}Y_{e',e}=(-(M_{ee}-1))(-1)=M_{ee}-1$ at
+$(e,e)$. Hence $R+XY=M$, and the displayed identity is the block factorization
+$\begin{psmallmatrix}R&X\\Y&-I\end{psmallmatrix}=U^{-1}\bigl((R+XY)\oplus(-I)\bigr)V^{-1}$.
+Irreducibility: every arc $f\to e$ or $f\to w_{ef}\to e$ is matched by the reverse
+connection through $M_{fe}$ or through the shared vertex structure of a connected support
+graph, and every $e'$ communicates with $e$ in both directions; the double loops give the
+witness of [VI, Thm.~3.1]; $K$-theory is the Cuntz--Krieger formula transported by $U,V$.
+For $M=\Delta_p$ of a graph ($M_{ef}\le0$ off the diagonal) $\mathcal P=\emptyset$ and the
+construction is [VI, Def.~1.1] with $c=M_{ee}-1$.
+\end{proof}
+
+\begin{theorem}[Higher shadow algebras]\label{thm:shadow}
+For an $\Atwo$ complex $Y$ let $\cO(Y,\Delta_1):=\cO_{B(\Delta_1)}$ and
+$\cO(Y,\DeltaH):=\cO_{B(\DeltaH)}$ be the algebras of Lemma~\ref{lem:signed} for $M=\Delta_1$
+(diagonal $q+3\ge1$) and $M=\DeltaH$ (diagonal $q^{3}-1\ge1$ for $q\ge2$). Both are unital
+Kirchberg algebras, hence traceless, and
+\[
+K_0\bigl(\cO(Y,\Delta_1)\bigr)\cong\Z^{b_1}\oplus\Jac_1(Y),\quad K_1\cong\Z^{b_1};\qquad
+K_0\bigl(\cO(Y,\DeltaH)\bigr)\cong\Z\oplus\JacH(Y),\quad K_1\cong\Z ,
+\]
+the second under the hypothesis of Theorem~\ref{thm:hecke}(ii). Type- and
+orientation-preserving automorphisms of $Y$ act compatibly. Changing the edge orientations
+conjugates $\Delta_1$ by a diagonal $\pm1$ matrix and changes $B(\Delta_1)$, but not the
+$K$-theory.
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:signed} with Proposition~\ref{prop:hodge} and Theorem~\ref{thm:hecke}; the
+support graph of $\Delta_1$ is connected because two edges of a connected complex are joined
+by a chain of edges sharing vertices, and pairs spanning a triangle (where the entry is
+$0$) are joined through a third edge; the support of $\DeltaH$ is the $1$-skeleton.
+\end{proof}
+
+\begin{remark}[Digraph, not cellular algebra]\label{rem:digraph}
+The specification asked for a ``two-dimensional shadow complex with higher self-loop faces''
+and a ``higher graph or cellular $C^*$-algebra''. No such theory is needed: the invariant to
+be realized is a cokernel, cokernels are unimodular-equivalence invariants, and
+Lemma~\ref{lem:signed} realizes any integer matrix with positive diagonal as the
+Bowen--Franks presentation of an ordinary graph algebra. The two dimensions of $Y$ enter
+through $\Delta_1$ and $\DeltaH$, not through the algebra.
+\end{remark}
+
+\section{The verification battery}\label{sec:battery}
+
+All computations are exact except the spectra. Smith forms are computed $p$-adically:
+the determinant of the (reduced) matrix by Bareiss elimination, its prime factors by trial
+division, and the $p$-primary invariants by elimination over $\Z/p^{k}$ with
+valuation-minimal pivots; for singular symmetric $M$ the torsion found is certified
+complete by the lattice identity
+\begin{equation}\label{eq:lattice}
+|\Tor\coker_\Z M|\cdot\operatorname{disc}(\ker_\Z M)=\operatorname{pdet}(M),
+\end{equation}
+where $\operatorname{disc}$ is the Gram determinant of a saturated basis of the kernel
+lattice and $\operatorname{pdet}$ the product of the nonzero eigenvalues; the two sides
+agree to $10^{-6}$ in every case (this also verifies \eqref{eq:lattice} itself, a
+matrix-tree theorem for symmetric integer matrices, on twelve instances).
+
+\subsection*{Data}
+$Y_{168}$: $n=168$, $|E|=|F|=1176$, $\chi=168$, $(b_0,b_1,b_2)=(1,0,167)$, flag condition
+holds;
+\begin{gather*}
+\Jac_0=(\Z/2)^{31}\oplus(\Z/16)^{6}\oplus(\Z/592)^{6}\oplus(\Z/1184)^{18}\oplus\Z/4736\\
+\qquad\oplus(\Z/33152)^{3}\oplus(\Z/430976)^{12}\oplus\Z/3016832\oplus\Z/9050496,\\
+\JacH=(\Z/7)^{18}\oplus(\Z/299593)^{13}\oplus\Z/2097151\oplus\Z/14680057\oplus
+(\Z/117440456)^{5}\oplus\Z/352321368,
+\end{gather*}
+where $299593=7\cdot127\cdot337$ and $2097151=2^{21}-1=7^{2}\cdot127\cdot337$;
+$|\JacH|\approx6.18\cdot10^{136}$ agrees with $\frac1n\prod_j|P_j(1)|$ to $10^{-14}$;
+$\Tr(\Cthree)^{3}=504=n(q-1)^{2}(q+1)$.
+
+$Y_{21}$: $(b_0,b_1,b_2)=(1,0,20)$. $\Jac_0=\Z/2\oplus(\Z/14)^{15}\oplus\Z/98\oplus\Z/294$;
+$\Jac_1=(\Z/2)^{10}\oplus(\Z/14)^{10}\oplus(\Z/98)^{26}\oplus\Z/2058\oplus\Z/18522$
+($|\Jac_1|\approx6.7\cdot10^{73}$); $\Jac_2=(\Z/2)^{13}\oplus(\Z/14)^{15}\oplus\Z/98\oplus\Z/294$;
+$K(Y)=(\Z/7)^{6}\oplus\Z/14\oplus(\Z/98)^{10}\oplus\Z/294$;
+$\JacH=(\Z/7)^{17}\oplus\Z/147$, $|\JacH|=3\cdot7^{19}$; $\Tr(\Cthree)^{3}=651=63+588$.
+
+$Y_{24}$: $(1,0,23)$. $\Jac_0=(\Z/13)^{7}\oplus\Z/26\oplus(\Z/208)^{4}\oplus\Z/1456\oplus\Z/4368$;
+$\Jac_1=(\Z/2)^{10}\oplus(\Z/51376)^{2}\oplus(\Z/102752)^{6}\oplus(\Z/2877056)^{4}\oplus
+\Z/60418176\oplus\Z/543763584$; $\Jac_2=\Z/2\oplus(\Z/26)^{6}\oplus(\Z/52)^{2}\oplus(\Z/208)^{2}
+\oplus(\Z/1456)^{3}\oplus\Z/4368$; $K(Y)=(\Z/2)^{3}\oplus(\Z/38)^{7}\oplus\Z/152\oplus(\Z/304)^{2}
+\oplus(\Z/2128)^{3}\oplus\Z/6384$; $\JacH=(\Z/7)^{2}\oplus\Z/49\oplus(\Z/392)^{5}\oplus\Z/1176$.
+
+$Y_{42}$: $(1,0,41)$. $\Jac_0=(\Z/4)^{2}\oplus(\Z/28)^{10}\oplus\Z/56\oplus(\Z/8288)^{4}\oplus
+\Z/754208\oplus\Z/2262624$;
+\begin{gather*}
+\Jac_1=(\Z/2)^{12}\oplus(\Z/4)^{4}\oplus(\Z/28)^{10}\oplus(\Z/196)^{14}\oplus(\Z/784)^{6}
+\oplus(\Z/1568)^{2}\\
+\oplus(\Z/21865186112)^{4}\oplus\Z/N_1\oplus\Z/N_2 ,
+\end{gather*}
+$N_1=1474391364718272$, $N_2=13269522282464448=9N_1$;
+$\Jac_2=(\Z/2)^{6}\oplus(\Z/4)^{6}\oplus(\Z/28)^{10}\oplus\Z/56\oplus
+(\Z/8288)^{4}\oplus\Z/754208\oplus\Z/2262624$; $K(Y)=\Z/7\oplus(\Z/14)^{6}\oplus(\Z/98)^{5}\oplus
+\Z/1078\oplus(\Z/2156)^{3}\oplus\Z/40964\oplus\Z/245784$;
+$\JacH=(\Z/7)^{18}\oplus\Z/299593\oplus\Z/2097151\oplus\Z/176160684$.
+
+$Y_{84}$ (vertex level): $\Jac_0=(\Z/2)^{12}\oplus(\Z/4)^{7}\oplus(\Z/16)^{2}\oplus\Z/1184\oplus
+(\Z/8288)^{5}\oplus(\Z/16576)^{6}\oplus(\Z/215488)^{4}\oplus\Z/1508416\oplus\Z/4525248$.
+
+Thin torus $m=6$ ($n=36$, $|E|=108$, $|F|=72$, $\chi=0$, $(1,2,1)$, flag holds):
+$\Jac_0=\Z/2\oplus(\Z/8)^{2}\oplus(\Z/16)^{6}\oplus\Z/80\oplus(\Z/240)^{3}\oplus\Z/720\oplus\Z/2160$;
+$\coker\Delta_1=\Z^{2}\oplus(\Z/2)^{12}\oplus\Z/8\oplus(\Z/16)^{3}\oplus(\Z/640)^{3}\oplus(\Z/1920)^{5}
+\oplus(\Z/5760)^{2}\oplus\Z/17280\oplus\Z/51840$; $K(Y)=\Z^{2}\oplus\Z/72$;
+$\Tr(\Cthree)^{3}=0$. The torus $m=3$ violates the flag condition ($\Tr A_1^{3}=81>54$) and
+has $\Tr(\Cthree)^{3}=27$.
+
+In every thick example the odd parts of $\Jac_0$ and $\Jac_2$ nearly coincide while the
+$2$-parts differ, $K(Y)$ is much smaller than $\Jac_1$, and $\JacH$ shares no visible
+structure with any Hodge group; we record this without interpretation.
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & complexes & result\\
+\midrule
+(P) presentation axioms; simplicial; Heawood/hexagon links; (ii),(iii); flag (iv) & all & exact; (iv) only for $Y_{168}$, $T_6$\\
+(D) $\partial_1\partial_2=0$; Betti numbers; $\chi$; $b_2=\chi-1+b_1$ & all & exact\\
+(H) Smith forms of $\Delta_0,\Delta_1,\Delta_2$; $K(Y)$; completeness via \eqref{eq:lattice} & thin, $Y_{21},Y_{24},Y_{42}$ & exact, complete\\
+(L) $\DeltaH$: two-sided kernel; equal cofactors; $|\JacH|=\frac1n\prod|P_j(1)|$ & thick & exact; numeric to $10^{-14}$\\
+(C) $U(I-\Cthree)V=P(1)\oplus I\oplus I$, $P(1)=-\DeltaH$ & all & exact\\
+(T) $\Tr(\Cthree)^{k}$, $k\le6$, directly and by Newton; $=0$ for $3\nmid k\le30$; $\Tr(\Cthree)^{3}$ formula & all & exact\\
+(R) nine trivial eigenvalues; nontrivial $|\lambda|=q$ (Ramanujan); $\Lambda_Q$ net traces $m\le10$; $m_0$ & thick & numeric / exact\\
+(S) signed shadows of $\DeltaH$ and $\Delta_1$: identity, $B\ge0$, irreducible, double loops; Smith check & all & exact\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Exact verification (\texttt{pgl3\_building.py}). Sizes: shadow of $\DeltaH$ has
+$3n+|E|$ vertices ($1512$ for $Y_{168}$); shadow of $\Delta_1$ has $2058$ vertices for
+$Y_{21}$ and $2352$ for $Y_{24}$. Net traces of $\Lambda_Q$ for $Y_{168}$:
+$168,\,3920,\,257544,\,16751728,\,\dots$; $m_0=3$.}
+\label{tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{sec:scope}
+
+\begin{remark}[Solved, open, impossible]\label{rem:scope}
+\emph{Solved:} the Hodge and Hecke Laplacians of $\Atwo$ complexes are set up and their
+critical groups computed exactly on thin and thick examples; the Hecke critical group is
+identified with the product of inverse $\mathrm{GL}_3$ $L$-values and the companion is
+reduced to it unimodularly; the trace question is settled, negatively for the obstruction
+and positively for spectral realizability on the computed complexes; the signed-shadow
+lemma gives Kirchberg realizations of $\Delta_1$ and $\DeltaH$. \emph{Open:} (a) a non-negative
+matrix shift equivalent over $\Z$ to $\Cthree$ (Remark~\ref{rem:realization}); (b) a
+general theorem that all net traces of the reduced pencil are non-negative for every $\Atwo$
+complex of order $q\ge2$ (we have it for five complexes, and in general for the Ramanujan
+case once $m\ge m_0$); (c) a relation
+between $\Jac_1(Y)$, $K(Y)$ and the Hecke data --- none is visible in the computed examples,
+and we conjecture none exists: the edge critical group is combinatorial, the vertex Hecke
+group arithmetic; (d) towers of $\Atwo$ complexes (the natural continuation of [III]--[IX]).
+\emph{Impossible or false as stated:} a cubic trace obstruction (Theorem~\ref{thm:notrace}).
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{rem:corrections}
+(1) The predicted ``higher cubic trace obstruction'' does not exist:
+$\Tr(\Cthree)^{k}=0$ for $3\nmid k$ and $\Tr(\Cthree)^{3}=n(q-1)^{2}(q+1)\ge0$; the paper
+proves the contrary and, for the computed complexes, spectral realizability. (2) The
+``duality bridge between the cellular sandpile group and the $\mathrm{GL}_3$ local
+$L$-factors'' runs through the Hecke--Laplacian $\DeltaH$ and its critical group $\JacH(Y)$, not
+through the Hodge groups $\Jac_0,\Jac_1$, which in rank two are different objects
+(Theorem~\ref{thm:hecke}(iii)). (3) The test complexes are $\Atwo$ complexes of order $2$
+built from a Cartwright--Steger-type triangle presentation, i.e.\ quotients of an $\Atwo$
+building of order $2$; the specification's ``$\PGL_3(\Q_p)$'' is not literally available
+(arithmetic lattices in $\PGL_3(\Q_p)$ were not constructed), and nothing proved depends on
+the field. (4) No ``two-dimensional shadow complex'' is needed
+(Remark~\ref{rem:digraph}). (5) The companion in the specification is correct, and its
+reduction to $\DeltaH$ (Theorem~\ref{thm:companion}) is the rank-two form of [II, \S1.1].
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Every numbered statement is proved from finite linear algebra and the
+results of Papers I--IX; the classical inputs are \cite{CMSZ} (existence of the building for
+a triangle presentation), the Cuntz--Krieger facts quoted in [VI], and \cite{KOR} for
+Theorem~\ref{thm:realizable} only. Spectral statements marked ``numeric'' in
+Table~\ref{tab:battery} are floating-point computations with the stated tolerances; all
+group-theoretic and trace statements are exact. The identification of the thick complexes
+with quotients of the Bruhat--Tits building of $\PGL_3$ over a specific local field is not
+claimed. Bibliographic data of \cite{CMSZ,KL,KOR,DKM} were checked against publisher or
+indexing pages.
+
+\begin{thebibliography}{9}
+\bibitem{CMSZ} D.~I.~Cartwright, A.~M.~Mantero, T.~Steger and A.~Zappa, \emph{Groups acting
+simply transitively on the vertices of a building of type $\widetilde A_2$, I}, Geom.\
+Dedicata \textbf{47} (1993), 143--166.
+\bibitem{DKM} A.~M.~Duval, C.~J.~Klivans and J.~L.~Martin, \emph{Critical groups of
+simplicial complexes}, Ann.\ Comb.\ \textbf{17} (2013), 53--70.
+\bibitem{KL} M.-H.~Kang and W.-C.~W.~Li, \emph{Zeta functions of complexes arising from
+$\mathrm{PGL}(3)$}, Adv.\ Math.\ \textbf{256} (2014), 46--103.
+\bibitem{KOR} K.~H.~Kim, N.~S.~Ormes and F.~W.~Roush, \emph{The spectra of nonnegative
+integer matrices via formal power series}, J.\ Amer.\ Math.\ Soc.\ \textbf{13} (2000),
+773--806.
+\end{thebibliography}
+
+\end{document}

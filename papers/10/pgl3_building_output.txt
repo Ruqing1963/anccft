@@ -1,0 +1,120 @@
+﻿triangle presentation axioms (A),(B),(C), no absolute points, |T|=21: True 
+
+===== T_3Z2 (n=9): q=1, n=9, E=27, F=18, chi=0 =====
+  (P) simplicial=True; links=hexagon:True; 3 type+1 and type-1 neighbours:True; 2 triangles per edge:True; flag (Tr A1^3 = 3F):False
+  (D) d1 d2 = 0; Betti (b0,b1,b2) = (1, 2, 1); predicted b2 = chi-1+b1 = 1
+  (H) coker Delta_0 = Z + Z/2 + (Z/6)^3 + Z/18 + Z/54
+      coker Delta_1 = Z^2 + (Z/3)^2 + Z/6 + (Z/12)^2 + (Z/36)^2 + Z/108 + Z/324;  |Tor| = 352638738432;  log|Tor| + log Gram(ker) = 32.081771 vs log pdet = 32.081771: complete True
+      coker Delta_2 = Z + Z/2 + (Z/6)^2 + (Z/18)^2 + Z/54;  |Tor| = 1259712;  log|Tor| + log Gram(ker) = 16.936765 vs log pdet = 16.936765: complete True
+      DKM K(Y) = Z_1/im(d2 d2^t) = Z^2 + Z/18
+  (L) Delta^H: two-sided kernel Z1:True; A1A2=A2A1:True; coker Delta^H = Z^7; |Jac^H|=0; equal cofactors:True; (1/n)prod|P_j(1)| (numeric)=0.000000
+  (C) U(I-C)V = P(1) + I + I: True;  P(1) = -Delta^H: True
+  (T) Tr C^k (direct, k<=6) = [0, 0, 27, 0, 0, 27]; via Newton recursion = [0, 0, 27, 0, 0, 27]; agree:True
+      Tr C^3 = 27 = Tr A1^3 - 3q|E| + 3nq^3 = 27; flag formula n(q-1)^2(q+1) = 0: False (flag condition holds: False; Tr A1^3 = 81, 3F = 54);  Tr C^k = 0 for 3 not| k (k<=30): True
+      Tr C^(3j), j=1..10: [27, 27, 27, 27, 27, 27, 27, 27, 27, 27]
+      net traces tr_m, m=1..30: [0, 0, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  all >= 0: True
+  (R) genuinely nontrivial |lambda| in [0.999994, 1.000006] (numeric; the nine trivial ones removed); Perron gap to q^2=1: False; Ramanujan (all |lambda|=q): False
+      reduced spectrum Lambda_Q: p_d = Tr C^(3d)/3 integral:True; power sums [9, 9, 9, 9, 9]; net traces m=1..10: [9, 0, 0, 0, 0, 0, 0, 0, 0, 0]; all >= 0: True; provably > 0 for m >= None
+  (S) q=1: Delta^H = A_1 - A_2 is antisymmetric with zero diagonal; no Hecke shadow (see paper)
+      shadow of Delta_1: size 162 (108 auxiliaries); U(I-B^t)V = Delta_1+(-I):True; B>=0:True; strongly connected:True; double loops:135
+
+===== T_6Z2 (n=36): q=1, n=36, E=108, F=72, chi=0 =====
+  (P) simplicial=True; links=hexagon:True; 3 type+1 and type-1 neighbours:True; 2 triangles per edge:True; flag (Tr A1^3 = 3F):True
+  (D) d1 d2 = 0; Betti (b0,b1,b2) = (1, 2, 1); predicted b2 = chi-1+b1 = 1
+  (H) coker Delta_0 = Z + Z/2 + (Z/8)^2 + (Z/16)^6 + Z/80 + (Z/240)^3 + Z/720 + Z/2160
+      coker Delta_1 = Z^2 + (Z/2)^12 + Z/8 + (Z/16)^3 + (Z/640)^3 + (Z/1920)^5 + (Z/5760)^2 + Z/17280 + Z/51840;  |Tor| = 27284100856753563685112782650813186048000000000000;  log|Tor| + log Gram(ker) = 122.096039 vs log pdet = 122.096039: complete True
+      coker Delta_2 = Z + Z/2 + (Z/8)^2 + (Z/16)^6 + Z/80 + (Z/240)^2 + (Z/720)^2 + Z/2160;  |Tor| = 11080543933191684096000000;  log|Tor| + log Gram(ker) = 61.943899 vs log pdet = 61.943899: complete True
+      DKM K(Y) = Z_1/im(d2 d2^t) = Z^2 + Z/72
+  (L) Delta^H: two-sided kernel Z1:True; A1A2=A2A1:True; coker Delta^H = Z^16; |Jac^H|=0; equal cofactors:True; (1/n)prod|P_j(1)| (numeric)=0.000000
+  (C) U(I-C)V = P(1) + I + I: True;  P(1) = -Delta^H: True
+  (T) Tr C^k (direct, k<=6) = [0, 0, 0, 0, 0, 108]; via Newton recursion = [0, 0, 0, 0, 0, 108]; agree:True
+      Tr C^3 = 0 = Tr A1^3 - 3q|E| + 3nq^3 = 0; flag formula n(q-1)^2(q+1) = 0: True (flag condition holds: True; Tr A1^3 = 216, 3F = 216);  Tr C^k = 0 for 3 not| k (k<=30): True
+      Tr C^(3j), j=1..10: [0, 108, 0, 108, 0, 108, 0, 108, 0, 108]
+      net traces tr_m, m=1..30: [0, 0, 0, 0, 0, 108, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  all >= 0: True
+  (R) genuinely nontrivial |lambda| in [0.999995, 1.000007] (numeric; the nine trivial ones removed); Perron gap to q^2=1: False; Ramanujan (all |lambda|=q): False
+      reduced spectrum Lambda_Q: p_d = Tr C^(3d)/3 integral:True; power sums [0, 36, 0, 36, 0]; net traces m=1..10: [0, 36, 0, 0, 0, 0, 0, 0, 0, 0]; all >= 0: True; provably > 0 for m >= None
+  (S) q=1: Delta^H = A_1 - A_2 is antisymmetric with zero diagonal; no Hecke shadow (see paper)
+      shadow of Delta_1: size 648 (432 auxiliaries); U(I-B^t)V = Delta_1+(-I):True; B>=0:True; strongly connected:True; double loops:540
+
+===== Y_21 (Z/7): q=2, n=21, E=147, F=147, chi=21 =====
+  (P) simplicial=True; links=Heawood:True; 7 type+1 and type-1 neighbours:True; 3 triangles per edge:True; flag (Tr A1^3 = 3F):False
+  (D) d1 d2 = 0; Betti (b0,b1,b2) = (1, 0, 20); predicted b2 = chi-1+b1 = 20
+  (H) coker Delta_0 = Z + Z/2 + (Z/14)^15 + Z/98 + Z/294
+      coker Delta_1 = (Z/2)^10 + (Z/14)^10 + (Z/98)^26 + Z/2058 + Z/18522;  |Tor| = 66771561359258590350167134142731948414897525627709067689835671816226471936;  log|Tor| + log Gram(ker) = 169.987404 vs log pdet = 169.987404: complete True
+      coker Delta_2 = Z^20 + (Z/2)^13 + (Z/14)^15 + Z/98 + Z/294;  |Tor| = 36718411523782130056298496;  log|Tor| + log Gram(ker) = 116.395327 vs log pdet = 116.395327: complete True
+      DKM K(Y) = Z_1/im(d2 d2^t) = (Z/7)^6 + Z/14 + (Z/98)^10 + Z/294
+  (L) Delta^H: two-sided kernel Z1:True; A1A2=A2A1:True; coker Delta^H = Z + (Z/7)^17 + Z/147; |Jac^H|=34196685556119429; equal cofactors:True; (1/n)prod|P_j(1)| (numeric)=34196685556119516.000000
+  (C) U(I-C)V = P(1) + I + I: True;  P(1) = -Delta^H: True
+  (T) Tr C^k (direct, k<=6) = [0, 0, 651, 0, 0, 15939]; via Newton recursion = [0, 0, 651, 0, 0, 15939]; agree:True
+      Tr C^3 = 651 = Tr A1^3 - 3q|E| + 3nq^3 = 651; flag formula n(q-1)^2(q+1) = 63: False (flag condition holds: False; Tr A1^3 = 1029, 3F = 441);  Tr C^k = 0 for 3 not| k (k<=30): True
+      Tr C^(3j), j=1..10: [651, 15939, 815619, 50565123, 3223093251, 206173372419, 13194259070979, 844425886433283, 54043203178856451, 3458764575023824899]
+      net traces tr_m, m=1..30: [0, 0, 651, 0, 0, 15288, 0, 0, 814968, 0, 0, 50549184, 0, 0, 3223092600, 0, 0, 206172541512, 0, 0, 13194259070328, 0, 0, 844425835868160, 0, 0, 54043203178040832, 0, 0, 3458764571800716360];  all >= 0: True
+  (R) genuinely nontrivial |lambda| in [2.000000, 2.000000] (numeric; the nine trivial ones removed); Perron gap to q^2=4: True; Ramanujan (all |lambda|=q): True
+      reduced spectrum Lambda_Q: p_d = Tr C^(3d)/3 integral:True; power sums [217, 5313, 271873, 16855041, 1074364417]; net traces m=1..10: [217, 5096, 271656, 16849728, 1074364200, 68724180504, 4398086356776, 281475278622720, 18014401059346944, 1152921523933572120]; all >= 0: True; provably > 0 for m >= 2
+  (S) shadow of Delta^H: size 189 (147 auxiliaries); U(I-B^t)V = M+(-I):True; B>=0:True; strongly connected:True; double loops:168; coker(I-B^t) = Z + (Z/7)^17 + Z/147 = coker Delta^H: True
+      shadow of Delta_1: size 2058 (1764 auxiliaries); U(I-B^t)V = Delta_1+(-I):True; B>=0:True; strongly connected:True; double loops:1911
+
+===== Y_24 (Z/2xZ/2xZ/2): q=2, n=24, E=168, F=168, chi=24 =====
+  (P) simplicial=True; links=Heawood:True; 7 type+1 and type-1 neighbours:True; 3 triangles per edge:True; flag (Tr A1^3 = 3F):False
+  (D) d1 d2 = 0; Betti (b0,b1,b2) = (1, 0, 23); predicted b2 = chi-1+b1 = 23
+  (H) coker Delta_0 = Z + (Z/13)^7 + Z/26 + (Z/208)^4 + Z/1456 + Z/4368
+      coker Delta_1 = (Z/2)^10 + (Z/51376)^2 + (Z/102752)^6 + (Z/2877056)^4 + Z/60418176 + Z/543763584;  |Tor| = 7160333107350715461493762855611225454364415942535075099605015744166945174971538735104;  log|Tor| + log Gram(ker) = 195.385704 vs log pdet = 195.385704: complete True
+      coker Delta_2 = Z^23 + Z/2 + (Z/26)^6 + (Z/52)^2 + (Z/208)^2 + (Z/1456)^3 + Z/4368;  |Tor| = 974473863443983899778357395456;  log|Tor| + log Gram(ker) = 133.979247 vs log pdet = 133.979247: complete True
+      DKM K(Y) = Z_1/im(d2 d2^t) = (Z/2)^3 + (Z/38)^7 + Z/152 + (Z/304)^2 + (Z/2128)^3 + Z/6384
+  (L) Delta^H: two-sided kernel Z1:True; A1A2=A2A1:True; coker Delta^H = Z + (Z/7)^2 + Z/49 + (Z/392)^5 + Z/1176; |Jac^H|=26135440053712453632; equal cofactors:True; (1/n)prod|P_j(1)| (numeric)=26135440053712375808.000000
+  (C) U(I-C)V = P(1) + I + I: True;  P(1) = -Delta^H: True
+  (T) Tr C^k (direct, k<=6) = [0, 0, 576, 0, 0, 12840]; via Newton recursion = [0, 0, 576, 0, 0, 12840]; agree:True
+      Tr C^3 = 576 = Tr A1^3 - 3q|E| + 3nq^3 = 576; flag formula n(q-1)^2(q+1) = 72: False (flag condition holds: False; Tr A1^3 = 1008, 3F = 504);  Tr C^k = 0 for 3 not| k (k<=30): True
+      Tr C^(3j), j=1..10: [576, 12840, 777744, 50304312, 3222223776, 206174669640, 13194265837104, 844425379864152, 54043194311165376, 3458764496630734440]
+      net traces tr_m, m=1..30: [0, 0, 576, 0, 0, 12264, 0, 0, 777168, 0, 0, 50291472, 0, 0, 3222223200, 0, 0, 206173879632, 0, 0, 13194265836528, 0, 0, 844425329559840, 0, 0, 54043194310387632, 0, 0, 3458764493408498400];  all >= 0: True
+  (R) genuinely nontrivial |lambda| in [2.000000, 2.000000] (numeric; the nine trivial ones removed); Perron gap to q^2=4: True; Ramanujan (all |lambda|=q): True
+      reduced spectrum Lambda_Q: p_d = Tr C^(3d)/3 integral:True; power sums [192, 4280, 259248, 16768104, 1074074592]; net traces m=1..10: [192, 4088, 259056, 16763824, 1074074400, 68724626544, 4398088612176, 281475109853280, 18014398103462544, 1152921497802832800]; all >= 0: True; provably > 0 for m >= 2
+  (S) shadow of Delta^H: size 216 (168 auxiliaries); U(I-B^t)V = M+(-I):True; B>=0:True; strongly connected:True; double loops:192; coker(I-B^t) = Z + (Z/7)^2 + Z/49 + (Z/392)^5 + Z/1176 = coker Delta^H: True
+      shadow of Delta_1: size 2352 (2016 auxiliaries); U(I-B^t)V = Delta_1+(-I):True; B>=0:True; strongly connected:True; double loops:2184
+
+===== Y_42 (Z/14): q=2, n=42, E=294, F=294, chi=42 =====
+  (P) simplicial=True; links=Heawood:True; 7 type+1 and type-1 neighbours:True; 3 triangles per edge:True; flag (Tr A1^3 = 3F):False
+  (D) d1 d2 = 0; Betti (b0,b1,b2) = (1, 0, 41); predicted b2 = chi-1+b1 = 41
+  (H) coker Delta_0 = Z + (Z/4)^2 + (Z/28)^10 + Z/56 + (Z/8288)^4 + Z/754208 + Z/2262624
+      coker Delta_1 = (Z/2)^12 + (Z/4)^4 + (Z/28)^10 + (Z/196)^14 + (Z/784)^6 + (Z/1568)^2 + (Z/21865186112)^4 + Z/1474391364718272 + Z/13269522282464448;  |Tor| = 97911679115368199916167878918157342318211959782071552943929493053780354388008572509315253800952506851903685560129311844437507638947263323362910273536;  log|Tor| + log Gram(ker) = 343.064075 vs log pdet = 343.064075: complete True
+      coker Delta_2 = Z^41 + (Z/2)^6 + (Z/4)^6 + (Z/28)^10 + Z/56 + (Z/8288)^4 + Z/754208 + Z/2262624;  |Tor| = 35011503101990758729610172830398618999022086520832;  log|Tor| + log Gram(ker) = 234.950704 vs log pdet = 234.950704: complete True
+      DKM K(Y) = Z_1/im(d2 d2^t) = Z/7 + (Z/14)^6 + (Z/98)^5 + Z/1078 + (Z/2156)^3 + Z/40964 + Z/245784
+  (L) Delta^H: two-sided kernel Z1:True; A1A2=A2A1:True; coker Delta^H = Z + (Z/7)^18 + Z/299593 + Z/2097151 + Z/176160684; |Jac^H|=180233315494743938466030115333847988; equal cofactors:True; (1/n)prod|P_j(1)| (numeric)=180233315494744688789866496305135616.000000
+  (C) U(I-C)V = P(1) + I + I: True;  P(1) = -Delta^H: True
+  (T) Tr C^k (direct, k<=6) = [0, 0, 630, 0, 0, 15414]; via Newton recursion = [0, 0, 630, 0, 0, 15414]; agree:True
+      Tr C^3 = 630 = Tr A1^3 - 3q|E| + 3nq^3 = 630; flag formula n(q-1)^2(q+1) = 126: False (flag condition holds: False; Tr A1^3 = 1386, 3F = 882);  Tr C^k = 0 for 3 not| k (k<=30): True
+      Tr C^(3j), j=1..10: [630, 15414, 809550, 50522598, 3222926910, 206173220694, 13194389461806, 844425792495558, 54043201739477790, 3458764562444286774]
+      net traces tr_m, m=1..30: [0, 0, 630, 0, 0, 14784, 0, 0, 808920, 0, 0, 50507184, 0, 0, 3222926280, 0, 0, 206172396360, 0, 0, 13194389461176, 0, 0, 844425741972960, 0, 0, 54043201738668240, 0, 0, 3458764559221345080];  all >= 0: True
+  (R) genuinely nontrivial |lambda| in [2.000000, 2.000000] (numeric; the nine trivial ones removed); Perron gap to q^2=4: True; Ramanujan (all |lambda|=q): True
+      reduced spectrum Lambda_Q: p_d = Tr C^(3d)/3 integral:True; power sums [210, 5138, 269850, 16840866, 1074308970]; net traces m=1..10: [210, 4928, 269640, 16835728, 1074308760, 68724132120, 4398129820392, 281475247324320, 18014400579556080, 1152921519740448360]; all >= 0: True; provably > 0 for m >= 2
+  (S) shadow of Delta^H: size 378 (294 auxiliaries); U(I-B^t)V = M+(-I):True; B>=0:True; strongly connected:True; double loops:336; coker(I-B^t) = Z + (Z/7)^18 + Z/299593 + Z/2097151 + Z/176160684 = coker Delta^H: True
+
+===== Y_84 (Z/2xZ/2xZ/7): q=2, n=84, E=588, F=588, chi=84 =====
+  (P) simplicial=True; links=Heawood:True; 7 type+1 and type-1 neighbours:True; 3 triangles per edge:True; flag (Tr A1^3 = 3F):False
+  (D) d1 d2 = 0; Betti (b0,b1,b2) = (1, 0, 83); predicted b2 = chi-1+b1 = 83
+  (H) coker Delta_0 = Z + (Z/2)^12 + (Z/4)^7 + (Z/16)^2 + Z/1184 + (Z/8288)^5 + (Z/16576)^6 + (Z/215488)^4 + Z/1508416 + Z/4525248
+  (L) Delta^H: two-sided kernel Z1:True; A1A2=A2A1:True; coker Delta^H = Z + (Z/7)^18 + (Z/299593)^5 + Z/2097151 + Z/29360114 + Z/117440456 + Z/352321368; |Jac^H|=10013068363690497527787377582165906580533659661172750315028996943467757184; equal cofactors:True; (1/n)prod|P_j(1)| (numeric)=10013068363690484079787252063438075187290468052828643814050571001027100672.000000
+  (C) U(I-C)V = P(1) + I + I: True;  P(1) = -Delta^H: True
+  (T) Tr C^k (direct, k<=6) = [0, 0, 588, 0, 0, 14364]; via Newton recursion = [0, 0, 588, 0, 0, 14364]; agree:True
+      Tr C^3 = 588 = Tr A1^3 - 3q|E| + 3nq^3 = 588; flag formula n(q-1)^2(q+1) = 252: False (flag condition holds: False; Tr A1^3 = 2100, 3F = 1764);  Tr C^k = 0 for 3 not| k (k<=30): True
+      Tr C^(3j), j=1..10: [588, 14364, 797412, 50437548, 3222594228, 206172917244, 13194650243460, 844425604620108, 54043198860720468, 3458764537285210524]
+      net traces tr_m, m=1..30: [0, 0, 588, 0, 0, 13776, 0, 0, 796824, 0, 0, 50423184, 0, 0, 3222593640, 0, 0, 206172106056, 0, 0, 13194650242872, 0, 0, 844425554182560, 0, 0, 54043198859923056, 0, 0, 3458764534062602520];  all >= 0: True
+  (R) genuinely nontrivial |lambda| in [2.000000, 2.000000] (numeric; the nine trivial ones removed); Perron gap to q^2=4: True; Ramanujan (all |lambda|=q): True
+      reduced spectrum Lambda_Q: p_d = Tr C^(3d)/3 integral:True; power sums [196, 4788, 265804, 16812516, 1074198076]; net traces m=1..10: [196, 4592, 265608, 16807728, 1074197880, 68724035352, 4398216747624, 281475184727520, 18014399619974352, 1152921511354200840]; all >= 0: True; provably > 0 for m >= 3
+  (S) shadow of Delta^H: size 756 (588 auxiliaries); U(I-B^t)V = M+(-I):True; B>=0:True; strongly connected:True; double loops:672
+
+===== Y_168 (Z/2xZ/2xZ/14): q=2, n=168, E=1176, F=1176, chi=168 =====
+  (P) simplicial=True; links=Heawood:True; 7 type+1 and type-1 neighbours:True; 3 triangles per edge:True; flag (Tr A1^3 = 3F):True
+  (D) d1 d2 = 0; Betti (b0,b1,b2) = (1, 0, 167); predicted b2 = chi-1+b1 = 167
+  (H) coker Delta_0 = Z + (Z/2)^31 + (Z/16)^6 + (Z/592)^6 + (Z/1184)^18 + Z/4736 + (Z/33152)^3 + (Z/430976)^12 + Z/3016832 + Z/9050496
+  (L) Delta^H: two-sided kernel Z1:True; A1A2=A2A1:True; coker Delta^H = Z + (Z/7)^18 + (Z/299593)^13 + Z/2097151 + Z/14680057 + (Z/117440456)^5 + Z/352321368; |Jac^H|=61810377472854525338825262065742110977845990618947830337280365049088379668028387233354624873072938022239244883005447397191942460533348446738069061632; equal cofactors:True; (1/n)prod|P_j(1)| (numeric)=61810377472855492320064328381290231450369220663222835047971604160800487352255035422557954611758792836005271885756237645045549631139838089784975163392.000000
+  (C) U(I-C)V = P(1) + I + I: True;  P(1) = -Delta^H: True
+  (T) Tr C^k (direct, k<=6) = [0, 0, 504, 0, 0, 12264]; via Newton recursion = [0, 0, 504, 0, 0, 12264]; agree:True
+      Tr C^3 = 504 = Tr A1^3 - 3q|E| + 3nq^3 = 504; flag formula n(q-1)^2(q+1) = 504: True (flag condition holds: True; Tr A1^3 = 3528, 3F = 3528);  Tr C^k = 0 for 3 not| k (k<=30): True
+      Tr C^(3j), j=1..10: [504, 12264, 773136, 50267448, 3221928864, 206172310344, 13195171806768, 844425228869208, 54043193103205824, 3458764486967058024]
+      net traces tr_m, m=1..30: [0, 0, 504, 0, 0, 11760, 0, 0, 772632, 0, 0, 50255184, 0, 0, 3221928360, 0, 0, 206171525448, 0, 0, 13195171806264, 0, 0, 844425178601760, 0, 0, 54043193102432688, 0, 0, 3458764483745117400];  all >= 0: True
+  (R) genuinely nontrivial |lambda| in [2.000000, 2.000000] (numeric; the nine trivial ones removed); Perron gap to q^2=4: True; Ramanujan (all |lambda|=q): True
+      reduced spectrum Lambda_Q: p_d = Tr C^(3d)/3 integral:True; power sums [168, 4088, 257712, 16755816, 1073976288]; net traces m=1..10: [168, 3920, 257544, 16751728, 1073976120, 68723841816, 4398390602088, 281475059533920, 18014397700810896, 1152921494581705800]; all >= 0: True; provably > 0 for m >= 3
+  (S) shadow of Delta^H: size 1512 (1176 auxiliaries); U(I-B^t)V = M+(-I):True; B>=0:True; strongly connected:True; double loops:1344
+
+done.

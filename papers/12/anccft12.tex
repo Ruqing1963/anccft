@@ -1,0 +1,405 @@
+% Algorithmic Non-commutative Class Field Theory, XII
+% A~_2 towers: no abelian sector, the covering norm theorem, and the two digraph towers
+% Build: pdflatex anccft12 (x3)
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{booktabs,graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Zp}{\Z_p}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PG}{\mathrm{PG}}
+\newcommand{\Atwo}{\widetilde A_2}
+\newcommand{\DeltaH}{\Delta^{\mathrm{H}}}
+\newcommand{\JacH}{\Jac^{\mathrm{H}}}
+\newcommand{\Cthree}{C^{(3)}}
+\newcommand{\LE}{L_{E}}
+\newcommand{\LF}{L_{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\ta}{\tau_*}
+\newcommand{\etp}{\eta^*}
+
+\title[Algorithmic non-commutative class field theory, XII]
+{Algorithmic non-commutative class field theory, XII:\\
+$\Atwo$ towers --- no abelian sector, the covering norm theorem,\\ and the two digraph towers}
+
+\author{Ruqing Chen}
+\address{GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada}
+\email{ruqing@hotmail.com}
+\date{19 September 2026}
+\subjclass[2020]{Primary 11R23, 20E42; Secondary 05E45, 05C50, 11F70, 20F65}
+\keywords{$\Atwo$ complex, property (T), abelian cover, Hecke critical group, covering norm,
+line digraph, sandpile recursion, Iwasawa growth, degeneracy maps}
+
+\thanks{Paper XII of the series; Papers I--XI are cited as [I]--[XI]. The verification script
+\texttt{pgl3\_tower.py} in the ancillary bundle reproduces every computational claim; its
+output is archived as \texttt{pgl3\_tower\_output.txt}.}
+
+\begin{document}
+
+\begin{abstract}
+The specification asked for a two-dimensional congruence tower of $\Atwo$ complexes, a
+recursion for the Hecke critical groups along it, and a ``rank-two Iwasawa law''
+$\mu_2p^{2k}+\mu_1p^{k}-\chi_2k+\nu_0$ with $\chi_2=2$. Three things are established, and they
+change the framework. First, thick $\Atwo$ complexes have $b_1=0$ --- the vanishing of first
+$L^{2}$-cohomology for groups acting on thick $\Atwo$ buildings (Garland,
+Ballmann--\'Swi\k{a}tkowski) --- and $H_1(Y;\Z)$ is finite, computed exactly on our complexes
+($(\Z/2)^{6}$, $(\Z/2)^{4}\oplus\Z/14$, $(\Z/2)^{3}\oplus(\Z/4)^{2}$): there are no
+$\Z_\ell$-voltage towers in rank two, the commutative Iwasawa theory of [IV] has no rank-two
+sector, and every tower is a finite abelian chain or a congruence tower. Second, along the
+finite abelian chains $X_3\leftarrow Y_{21}\leftarrow Y_{84}\leftarrow Y_{168}$ (and through
+$Y_{24}$, $Y_{42}$) the covering pushforwards intertwine $A_1$, $A_2$ and the Hecke--Laplacian,
+are surjective on the Hecke critical groups, and their kernel orders obey the rank-two
+character mechanism $|\JacH(Y_{k+1})|/|\JacH(Y_k)|=\frac{n_k}{n_{k+1}}\prod_{\text{new }j}
+|P_j(1)|$, a product of twisted $\mathrm{GL}_3$ local $L$-values, verified to $10^{-6}$ on
+five coverings together with its Hodge analogue. Third, the two natural digraph towers of an
+$\Atwo$ complex --- the geodesic edge tower $E_k$ ($q^{2}$-regular, $n_k=n(q^{2}+q+1)q^{2(k-1)}$,
+the $(k,0)$-coset counts of $\PGL_3$) and the chamber tower $F_k$ ($q$-regular) --- obey the
+line-digraph recursion of [III] with degree $q^{2}$ and $q$, giving the exact laws
+$\ord_p\kappa(E_k)=\frac{2n(q^{2}+q+1)}{q^{2}}p^{2k}-2k+\nu$ and
+$\ord_p\kappa(F_k)=\frac{3|F|}{q}p^{k}-k+\nu'$: the ``higher Euler term'' $\chi_2=2$ is
+$\ord_p(q^{2})$, the valuation of the regularity degree, one exponential term per tower and
+no mixed law. The sandpile of the geodesic edge digraph factors as an Eisenstein term, the
+product $\prod_jq^{6}P_j(q^{-2})$ of $\mathrm{GL}_3$ local $L$-values at $u=q^{-2}$, and the
+parahoric factor, by the edge-flow theorem of [XI]. A two-dimensional degeneracy calculus for
+the incidence matrices $(S,T,M)$ and the three face maps $d_i$ is proved, and it yields a
+combinatorial proof that $A_1$ and $A_2$ commute. The growth law of $\JacH$ along a genuine
+infinite congruence tower is left open, with the reason stated: no computable second level
+exists, and no abelian shortcut exists in principle.
+\end{abstract}
+
+\maketitle
+
+\section*{Status of the results}
+
+Every numbered statement is proved except where marked ``numeric''. The classical inputs
+are the vanishing theorem for the first $L^{2}$-cohomology of groups acting on thick
+$\Atwo$ buildings \cite{Ga,BSw} (quoted; our complexes' Betti numbers are also computed
+exactly), the line-digraph recursion [III, Thm.~2.1], the edge-flow theorem [XI, Thm.~3.3],
+and the norm-surjectivity argument of [IV, Lem.~1.3]. All Smith forms are $p$-adic with the
+prime sets certified as in [X, \S6] or by determinants of maximal minors
+(Section~\ref{sec:noabelian}). Section~\ref{sec:scope} records what is open and the
+corrections to the specification.
+
+\section{No abelian sector in rank two}\label{sec:noabelian}
+
+\begin{theorem}[No abelian towers]\label{thm:noabelian}
+Let $Y=\Gamma\backslash B$ be a finite quotient of a thick $\Atwo$ building of order
+$q\ge2$ by a group acting freely. Then $H^{1}(\Gamma;\Q)=H^{1}(Y;\Q)=0$, i.e.\ $b_1(Y)=0$,
+and $H_1(Y;\Z)$ is finite. Consequently $Y$ has no connected $\Z_\ell$-voltage covers for
+any prime $\ell$: every abelian cover of $Y$ is a finite cover with group a quotient of the
+finite group $H_1(Y;\Z)$, and the limit modules $X_\infty$ of {\rm[IV]} have no rank-two
+analogue.
+\end{theorem}
+
+\begin{proof}
+$\Gamma$ acts properly and cocompactly on $B$; by Garland's vanishing theorem as extended
+to all $q\ge2$ by Ballmann--\'Swi\k{a}tkowski \cite{Ga,BSw}, $H^{1}(\Gamma;\R)=0$ (indeed
+$\Gamma$ has property (T)). Since $Y$ is aspherical with $\pi_1(Y)=\Gamma$, $b_1(Y)=0$ and
+$H_1(Y;\Z)=\Gamma^{\mathrm{ab}}$ is finite. A voltage cover with group $\Z/\ell^{k}$ is
+classified by a class in $H^{1}(Y;\Z/\ell^{k})=\Hom(H_1(Y;\Z),\Z/\ell^{k})$, whose image
+has bounded order; a $\Z_\ell$-tower would need unbounded ones. On $Y_{21},Y_{24},Y_{42}$
+the groups $H_1(Y;\Z)$ are $(\Z/2)^{6}$, $(\Z/2)^{4}\oplus\Z/14$, $(\Z/2)^{3}\oplus(\Z/4)^{2}$
+(exact: $p$-adic Smith forms of the coordinate matrix of $\partial_2$ in a basis of
+$\ker\partial_1$, with the prime set certified by the gcd of maximal minors, $64$, $448$,
+$256$); on $Y_{84},Y_{168}$, $b_1=0$ by exact ranks (Table~\ref{tab:battery}, line (B)).
+\end{proof}
+
+\begin{remark}[What this changes]\label{rem:framework}
+In rank one every finite graph has $b_1=r\ge2$ and carries $\Z_\ell$-voltage towers for
+every $\ell$; Papers II, IV, VII and IX built the commutative Iwasawa theory on them, and the
+Iwahori tower of [III], [V], [VII], [VIII] was the non-normal exception. In rank two the
+exception is the rule: the only infinite towers of $\Atwo$ complexes are congruence-type
+towers with non-abelian (indeed property-(T)) deck structure, and the only abelian
+structure available is the finite group $H_1(Y;\Z)$. The specification's ``rank-two Iwasawa
+theory'' is therefore, from the start, the non-commutative theory that [V] and [VII] asked
+for in rank one; nothing commutative can be borrowed.
+\end{remark}
+
+\section{The finite abelian chains and the covering norm theorem}\label{sec:chain}
+
+The complexes of [X] are abelian covers of the three-vertex type quotient $X_3$ of the
+Cartwright--Steger-type group with deck group $H_1(X_3;\Z)=\Z/2\oplus\Z/2\oplus\Z/14$; every
+quotient of that group gives a cover, and quotient maps give covering maps $\pi$ between
+covers. We use the chains
+\[
+X_3\leftarrow Y_{21}\leftarrow Y_{84}\leftarrow Y_{168},\qquad
+Y_{21}\leftarrow Y_{42}\leftarrow Y_{168},\qquad Y_{24}\leftarrow Y_{168},
+\]
+of degrees $7,4,2$; $2,4$; $7$. Write $P_\pi\in M_{n_k\times n_{k+1}}(\Z)$ for the vertex
+pushforward (sum over fibres), $A_i^{(k)}$ for the Hecke operators of $Y_k$, and
+\[
+\DeltaH_k=(q^{3}-1)I+A_1^{(k)}-qA_2^{(k)} .
+\]
+
+\begin{theorem}[Covering norm theorem]\label{thm:norm}
+For a covering $\pi\colon Y_{k+1}\to Y_k$ of $\Atwo$ complexes:
+\begin{enumerate}
+\item[(i)] $P_\pi A_i^{(k+1)}=A_i^{(k)}P_\pi$ for $i=1,2$, and hence
+$P_\pi\DeltaH_{k+1}=\DeltaH_kP_\pi$;
+\item[(ii)] the induced norm $\pi_*$ from $\coker\DeltaH_{k+1}$ to $\coker\DeltaH_k$ is
+surjective, preserves the degree functional, and restricts to a surjection of
+$\JacH(Y_{k+1})$ onto $\JacH(Y_k)$ whose kernel has order $|\JacH(Y_{k+1})|/|\JacH(Y_k)|$;
+\item[(iii)] (character mechanism) that order equals
+$\frac{n_k}{n_{k+1}}\prod_{j\ \mathrm{new}}|P_j(1)|$, the product over the joint eigenpairs of
+$(A_1^{(k+1)},A_2^{(k+1)})$ not lifted from $Y_k$, i.e.\ over the nontrivial characters
+$\chi$ of the deck group and the joint eigenpairs of the $\chi$-twisted operators
+$(A_1(\chi),A_2(\chi))$ on $Y_k$: a product of twisted $\mathrm{GL}_3$ local $L$-values at
+$u=1$. The same holds for the Hodge critical groups with $|P_j(1)|$ replaced by the
+Laplacian eigenvalues $2(q^{2}+q+1)-2\operatorname{Re}a_j$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) A covering is bijective on in- and out-arcs at every vertex, so fibre sums commute with
+the type-raising and type-lowering adjacencies; $\DeltaH$ is a polynomial in them. (ii) The
+argument of [IV, Lem.~1.3] applies verbatim: $P_\pi$ is surjective, $\mathbf1^{t}\DeltaH=0$
+makes $\deg$ well defined, $\deg\circ\pi_*=\deg$, and $\Tor\coker\DeltaH=\ker\deg$ by
+[X, Thm.~3.2(ii)]; surjectivity on torsion follows, and the kernel order is forced by
+counting. (iii) The deck group acts on $Y_{k+1}$ commuting with $A_1,A_2$, so the joint
+spectrum of $(A_1^{(k+1)},A_2^{(k+1)})$ is the union over characters $\chi$ of the joint
+spectra of the twisted operators on $Y_k$; the trivial character gives the spectrum of
+$Y_k$. Apply [X, Thm.~3.2(ii)] at both levels and divide. Verified numerically to $10^{-6}$
+on the five coverings, together with the exact integrality of the ratios and the exact
+intertwining identities (Table~\ref{tab:battery}, line (A)).
+\end{proof}
+
+\subsection*{Data}
+$|\JacH|$ along the chains, with the $2$-adic valuations: $Y_{21}$: $3\cdot7^{19}$ ($2^{0}$);
+$Y_{42}$: $2^{2}\cdot$odd; $Y_{24}$: $2^{18}\cdot$odd; $Y_{84}$: $2^{7}\cdot$odd; $Y_{168}$:
+$2^{18}\cdot$odd. The groups: $\JacH(Y_{84})=(\Z/7)^{18}\oplus(\Z/299593)^{5}\oplus\Z/2097151
+\oplus\Z/29360114\oplus\Z/117440456\oplus\Z/352321368$ (new here); the others are in [X].
+Kernel orders of the norms have $2$-adic valuations $11$ ($Y_{168}\to Y_{84}$), $7$
+($Y_{84}\to Y_{21}$), $0$ ($Y_{168}\to Y_{24}$), $16$ ($Y_{168}\to Y_{42}$), $2$
+($Y_{42}\to Y_{21}$). There is no monotone $p$-adic law along these finite chains, and none
+is to be expected: a finite abelian chain is not a tower.
+
+\section{Two-dimensional degeneracy calculus}\label{sec:calculus}
+
+Let $S,T,M\in M_{n\times|E|}(\Z)$ be the tail, head and third-vertex incidence matrices of
+[XI, \S3], and $d_0,d_1,d_2\in M_{|E|\times|F|}(\Z)$ the three face maps sending a chamber
+$(a,b,c)$ (types $0,1,2$) to its typed edges $(a\to b)$, $(b\to c)$, $(c\to a)$.
+
+\begin{theorem}[Incidence calculus in rank two]\label{thm:calculus}
+For an $\Atwo$ complex satisfying {\rm[X, Def.~1.1(i)--(iv)]} with $\PG(2,q)$ links:
+\begin{align*}
+&ST^{t}=A_1,\qquad TS^{t}=A_2,\qquad SS^{t}=TT^{t}=(q^{2}+q+1)I,\\
+&SM^{t}=(q+1)A_2,\qquad TM^{t}=(q+1)A_1,\\
+&MM^{t}=(q^{2}+q+1)(q+1)I+A_{(1,1)},\\
+&A_{(1,1)}:=A_1A_2-(q^{2}+q+1)I=A_2A_1-(q^{2}+q+1)I,\\
+&\partial_1=T-S,\qquad \Delta_0=(T-S)(T-S)^{t}=2(q^{2}+q+1)I-A_1-A_2,\\
+&\partial_2=d_0+d_1+d_2,\\
+&\textstyle\sum_id_id_i^{t}=(q+1)I_E,\qquad d_i^{t}d_j=0\ (i\ne j),\\
+&\textstyle K:=\sum_id_id_{i+1}^{t},\qquad \LE=T^{t}S-K .
+\end{align*}
+In particular $A_1A_2=A_2A_1$: the two Hecke operators commute, by the symmetry of $MM^{t}$.
+\end{theorem}
+
+\begin{proof}
+The first line is [XI, proof of Thm.~3.3] and Lemma~[XI, 3.2(a)]: $(SM^{t})(x,w)$ counts
+edges $x\to y$ whose chamber contains $w$, i.e.\ chambers on the edge $\{x,w\}$ with $w$ a
+type-raising-twice neighbour, $q+1$ of them; similarly $TM^{t}$. For $MM^{t}$: the diagonal
+counts chambers through $v$, $(q^{2}+q+1)(q+1)$; for $v\ne w$, $(MM^{t})(v,w)$ counts edges
+$x\to y$ with $\{x,y,v\}$ and $\{x,y,w\}$ chambers, so $x$ is a common out-neighbour of $v,w$
+and $y$ a common in-neighbour; given the common out-neighbour $x$, in the link of $x$ the
+vertices $v,w$ are two distinct points and $y$ must be a line through both --- exactly one
+--- so $(MM^{t})(v,w)=\#\{x\colon v\to x,\ w\to x\}=(A_1A_2)(v,w)$ for $v\ne w$, and the
+diagonal of $A_1A_2$ is $q^{2}+q+1$. Since $MM^{t}$ is symmetric, $A_1A_2=(A_1A_2)^{t}=A_2A_1$.
+The Laplacian line is $\partial_1=T-S$ expanded with the first line. The face maps: every
+chamber has one edge of each type, so $\sum_id_id_i^{t}$ is the diagonal matrix of chambers
+per edge, $q+1$; $d_i^{t}d_j=0$ for $i\ne j$ because an edge has one type; $K(e,e')$ counts
+chambers in which $e,e'$ are consecutive, which is the chamber-continuation term subtracted
+in [XI, Def.~3.1]. Verified exactly on $Y_{168}$ (Table~\ref{tab:battery}, line (D)).
+\end{proof}
+
+\begin{remark}[The three degeneracy operators]\label{rem:degeneracy}
+In rank one, [V] had two degeneracy maps $\tau,\eta$ with $\ta\etp=A_k$. In rank two the
+three face maps $d_i\colon C_2\to C_1$ together with the two vertex maps $S,T$ generate
+both Hecke operators, their commutation, the Hodge Laplacian $\Delta_0$, the chamber
+continuation $K$ and the edge flow $\LE$: the whole vertex- and edge-level Hecke theory of
+the complex is a polynomial identity in $(S,T,M,d_0,d_1,d_2)$, and the identity
+$A_1A_2=A_2A_1$ --- normally quoted from the commutativity of the spherical Hecke algebra
+--- is here a count of lines through two points.
+\end{remark}
+
+\section{The two digraph towers}\label{sec:towers}
+
+\begin{definition}[Edge and chamber towers]\label{def:towers}
+For an $\Atwo$ complex $Y$ with the hypotheses of Theorem~\ref{thm:calculus} let
+$E_1:=(E,\LE)$ be the geodesic edge digraph and $F_1:=(F^{\pm},\LF)$ the chamber digraph of
+[XI, Rem.~3.6] (oriented chambers $(a,b,c)\to(b,c,d)$, $d\ne a$), and for $k\ge1$ let
+$E_{k+1}:=L(E_k)$, $F_{k+1}:=L(F_k)$ be their line digraphs. Vertices of $E_k$ are geodesic
+type-raising galleries of $k$ edges; their number is
+$n_k(E)=n(q^{2}+q+1)q^{2(k-1)}$, the number of vertices at coweight distance $(k,0)$ from a
+vertex of the building, i.e.\ the index of the $\PGL_3$ congruence subgroup fixing a
+$(k,0)$-flag: $E_k$ is the rank-two Iwahori path tower in the $(k,0)$ direction.
+\end{definition}
+
+\begin{theorem}[Recursions and growth laws]\label{thm:towers}
+$E_1$ is Eulerian $q^{2}$-regular and strongly connected, $F_1$ is Eulerian $q$-regular and
+strongly connected (exact on $Y_{168}$; in general by {\rm[XI, Lem.~3.2(a)]} and its chamber
+analogue). Hence, by {\rm[III, Thm.~2.1]} applied with $d=q^{2}$ and $d=q$, for all $k\ge1$
+\[
+\kappa(E_{k+1})=(q^{2})^{\,n_k(E)(q^{2}-1)-1}\,\kappa(E_k),\qquad
+\kappa(F_{k+1})=q^{\,n_k(F)(q-1)-1}\,\kappa(F_k),
+\]
+and for $q=p$ the exact growth laws
+\[
+\ord_p\kappa(E_k)=\frac{2n(q^{2}+q+1)}{q^{2}}\,p^{2k}-2k+\nu_E,\qquad
+\ord_p\kappa(F_k)=\frac{3|F|}{q}\,p^{k}-k+\nu_F ,
+\]
+with constants fixed by $\kappa(E_1)$, $\kappa(F_1)$. The nonzero spectra of $A_{E_k}$ and of
+$A_{F_k}$ are independent of $k$ (spectral blindness), so the zeta function of $E_k$ is
+$\det(I-u\LE)^{-1}$ at every level and contains the whole nontrivial $\mathrm{GL}_3$ Hecke
+spectrum {\rm[XI, Thm.~3.3]}.
+\end{theorem}
+
+\begin{proof}
+Regularity: each typed edge has $q^{2}$ continuations and $q^{2}$ predecessors
+([XI, Lem.~3.2(a)] and its reverse); each oriented chamber has $q$ successors and $q$
+predecessors (the $q+1$ chambers on an edge minus the one you came from). Line digraphs of
+Eulerian $d$-regular strongly connected digraphs are again such, on $d$ times as many
+vertices, with $\det(zI-A_{L(G)})=z^{m-n}\det(zI-A_G)$ [III, eq.~(2.1)]; the recursion is
+[III, Thm.~2.1]; summing, $\sum_{j<k}2(n_j(E)(q^{2}-1)-1)=2n_1(E)(q^{2(k-1)}-1)-2(k-1)$ gives
+the edge law and likewise the chamber law. Sanity check of [III, Thm.~2.1] with $d=4$ on the
+complete digraph $K_5$: $\kappa=125$, $\kappa(L)=4^{14}\cdot125$ (Table~\ref{tab:battery},
+line (L)).
+\end{proof}
+
+\begin{remark}[The higher Euler term]\label{rem:chi2}
+The specification predicted $\chi_2=2$. It is right, and for a transparent reason: in
+[IX, Thm.~4.1(iv)] the Euler term of the rank-one Iwahori tower was identified as
+$-\ord_p n_k$, the valuation of the vertex count in the residue normalization
+$\prod_{\mu\ne0}\mu=n_k\kappa_k$; here $n_k(E)=n_1q^{2(k-1)}$ has $\ord_pn_k=2k+\mathrm{const}$,
+so the Euler term is $-2k$, and for the chamber tower $-k$. In general the Euler term of a
+line-digraph tower of degree $d$ is $-\ord_p(d)\cdot k$: one Eisenstein direction removed per
+level, weighted by the $p$-adic size of the regularity degree. There is no mixed law
+$\mu_2p^{2k}+\mu_1p^{k}$: each tower has one exponential term, with $\mu$ the arc density
+$n_1/d$ times $\ord_p d$.
+\end{remark}
+
+\begin{proposition}[The sandpile of the geodesic edge digraph]\label{prop:kappaE1}
+With the notation of {\rm[XI, Cor.~3.5]},
+\[
+\kappa(E_1)=\frac{3q^{4}}{n_1}\cdot\prod_{j\ \mathrm{nontrivial}}q^{6}P_j(q^{-2})\cdot
+\prod_{\lambda\ \mathrm{parahoric}}(q^{2}-\lambda),
+\]
+where $q^{6}P_j(q^{-2})=\prod_i(q^{2}-\lambda_{j,i})$ is, up to the factor $q^{6}$, the inverse
+local $L$-value of the $j$-th eigenform at $u=q^{-2}$, and the parahoric factor runs over
+the $4n+6$ eigenvalues of $\LE$ of modulus $q^{1/2}$. On $Y_{168}$ (numeric):
+$\log\kappa(E_1)=1623.9567$, decomposed as $\log(3q^{4}/n_1)=-3.1987$, pencil part
+$684.7469$, parahoric part $942.4085$, which add up to $1623.9567$.
+\end{proposition}
+
+\begin{proof}
+$E_1$ is Eulerian and strongly connected, so [III, eq.~(2.2)] gives
+$n_1\kappa(E_1)=\prod_{\mu\ne0}\mu$ over the nonzero eigenvalues of $q^{2}I-\LE$, i.e.\ over
+all eigenvalues $\lambda\ne q^{2}$ of $\LE$. By [XI, Cor.~3.5] these are: the two rotations
+$q^{2}\omega,q^{2}\omega^{2}$, contributing $(q^{2}-q^{2}\omega)(q^{2}-q^{2}\omega^{2})=3q^{4}$;
+the three roots of each nontrivial pencil $P_j$; and the parahoric eigenvalues. Exact
+$\kappa(E_1)$ (a $1176\times1176$ determinant of size $e^{1624}$) is not computed.
+\end{proof}
+
+\section{The verification battery}\label{sec:battery}
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & complexes & result\\
+\midrule
+(B) $b_1=0$; $H_1(Y;\Z)=(\Z/2)^{6}$, $(\Z/2)^{4}\oplus\Z/14$, $(\Z/2)^{3}\oplus(\Z/4)^{2}$; prime sets certified by minor gcds $64,448,256$ & $Y_{21},Y_{24},Y_{42}$ ($b_1$ also $Y_{84},Y_{168}$) & exact\\
+(A) $P_\pi A_i=A_iP_\pi$, $P_\pi\DeltaH=\DeltaH P_\pi$; $\JacH$ at five levels; ratios integral; character mechanism to $10^{-6}$; Hodge analogue & five coverings & exact / numeric\\
+(D) the fourteen identities of Theorem~\ref{thm:calculus}, including $A_1A_2=A_2A_1$ & $Y_{168}$ & exact\\
+(E) $E_1$: $q^{2}$-regular in and out, strongly connected, $n_1=1176$; spectral accounting of $\kappa(E_1)$; constants $\mu_2=588$, $\chi_2=2$ & $Y_{168}$ & exact / numeric\\
+(F) $F_1$: $q$-regular in and out, $3528$ vertices; constants $\mu_1=1764$, $\chi=1$ & $Y_{168}$ & exact\\
+(L) [III, Thm.~2.1] with $d=4$ on $K_5$: $\kappa(L)=4^{14}\kappa$ & --- & exact\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Verification (\texttt{pgl3\_tower.py}).}
+\label{tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{sec:scope}
+
+\begin{remark}[Solved, open, impossible]\label{rem:scope}
+\emph{Solved:} the non-existence of abelian towers in rank two and its consequence for the
+series' framework; the covering norm theorem with the rank-two character mechanism on the
+finite abelian chains; the two-dimensional incidence calculus with the combinatorial
+commutation of $A_1,A_2$; the edge and chamber digraph towers with their exact recursions
+and growth laws and the identification of $\chi_2$; the $L$-value structure of the sandpile
+of the geodesic edge digraph. \emph{Open:} (a) the growth law of $\JacH$ along a genuine
+infinite congruence tower $\Gamma\supset\Gamma_1\supset\cdots$ of $\Atwo$ complexes --- no
+second level is computable here (the maximal abelian cover of $Y_{168}$ would have
+$168\cdot|H_1(Y_{168})|$ vertices), and Theorem~\ref{thm:noabelian} shows no abelian
+shortcut exists; (b) an exact value of $\kappa(E_1)$ on $Y_{168}$ and the $p$-adic constant
+$\nu_E$; (c) a closed form for the parahoric factor of Proposition~\ref{prop:kappaE1}, which
+should be Kang--Li's chamber factor at $u=q^{-2}$; (d) the pro-module of an infinite
+congruence tower --- which, by Theorem~\ref{thm:noabelian}, is a module over a
+non-commutative completed Hecke algebra from the start, the object [V, Prob.~5.1] asked for
+in rank one. \emph{Impossible or false as stated:} a $\Z_p$-tower of $\Atwo$ complexes; a
+two-term law $\mu_2p^{2k}+\mu_1p^{k}$ for a single line-digraph tower.
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{rem:corrections}
+(1) ``$X_\infty^{(2)}=\varprojlim(\JacH(Y_k)\otimes\Zp)$'' over an abelian tower does not
+exist: there are no abelian towers (Theorem~\ref{thm:noabelian}); over the finite chains the
+inverse limit is just the top group. (2) The proposed recursion $|\JacH(Y_{k+1})|=
+q^{f(n_k,E_k,F_k)}|\JacH(Y_k)|$ is not what happens along coverings of $\Atwo$ complexes: the
+ratio is a product of twisted $L$-values (Theorem~\ref{thm:norm}(iii)), not a pure power of
+$q$ (its $2$-adic valuations along our chains are $11,7,0,16,2$); a pure-power recursion is
+what the \emph{digraph} towers obey (Theorem~\ref{thm:towers}), for the ordinary sandpile
+groups, not for $\JacH$. (3) The law $\mu_2p^{2k}+\mu_1p^{k}-\chi_2k+\nu_0$ splits into two
+separate one-term laws, one per tower; $\chi_2=2$ is $\ord_p(q^{2})$
+(Remark~\ref{rem:chi2}). (4) The ``2D line complex'' $\mathcal L_2(Y_0)$ is a digraph, not a
+two-dimensional complex; the levels $E_k$ carry no $A_2$, and the Hecke--Laplacian
+$\DeltaH_k$ is not defined on them --- the Hecke data live at level one, in
+$\det(I-u\LE)$, and are constant along the tower.
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Every numbered statement is proved from Papers I--XI and finite
+combinatorics, except the vanishing of $b_1$ for general thick quotients, which is quoted
+from \cite{Ga,BSw} and independently computed on our five complexes. Spectral statements
+marked numeric are floating point. Bibliographic data of \cite{BSw} were checked against
+the publisher page and those of \cite{Ga} against the JSTOR record.
+
+\begin{thebibliography}{9}
+\bibitem{BSw} W.~Ballmann and J.~\'Swi\k{a}tkowski, \emph{On $L^{2}$-cohomology and property
+(T) for automorphism groups of polyhedral cell complexes}, Geom.\ Funct.\ Anal.\ \textbf{7}
+(1997), 615--645.
+\bibitem{Ga} H.~Garland, \emph{$p$-adic curvature and the cohomology of discrete subgroups
+of $p$-adic groups}, Ann.\ of Math.\ (2) \textbf{97} (1973), no.~3, 375--423.
+[Primary-source verified: JSTOR record, DOI 10.2307/1970829.]
+\end{thebibliography}
+
+\end{document}

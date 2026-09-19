@@ -1,0 +1,1193 @@
+% generated from Paper 1/anccft.tex
+\chapter{Algorithmic non-commutative class field theory, I: the Langlands--thermodynamic bridge over Bruhat--Tits trees}\label{chap:I}
+\chaptermark{I}
+\begin{chapterabstract}
+We open the non-abelian, algorithmic half of the programme: the localized Bost--Connes
+formalism is transported from the one-dimensional valuation space to the Bruhat--Tits
+tree of $\GL_2$ over a non-archimedean local field, and the arithmetic input is upgraded
+from Frobenius classes in an abelian Galois group to Satake parameters of unramified
+automorphic representations.
+
+Section~\\ref{I:sec:geometry} constructs the state space $\Omega$ (the space of lattice
+chains, equivalently the tree boundary $\partial X\cong\PPone(F)$), the truncated Hecke
+groupoids $\cG^{(N)}$ and their limit $\cG=\bigcup_N\cG^{(N)}$, and the tail equivalence
+relation $\cR$ with its Hecke-degree cocycle; the groupoid is \'etale, amenable and
+essentially principal, and its algebra is a Cuntz algebra locally and a Cuntz--Krieger
+algebra $\cO_{A^{\mathrm{nb}}_Y}\simeq C(\partial X)\rtimes\Gamma$ globally.
+
+Section~\\ref{I:sec:thermo} inserts the Satake parameters into the Radon--Nikodym cocycle.
+The partition function of the twisted system is \emph{exactly} the local $L$-factor,
+$Z_p(\beta)=L_p(\beta,\pi_p)$, an identity of the Hecke recursion, and the abscissa of
+convergence $\beta_c(\pi_p)=\log_q\max_i|\alpha_{p,i}|$ is the largest pole of $L_p$. Two
+structural facts then follow, and they cut in opposite directions. Positivity
+(Perron--Frobenius) shows that $\KMS$ \emph{states} see only the Perron branch of the
+unramified spectrum, so cuspidal Satake data survive only as $\KMS$ \emph{functionals};
+and the Kakutani dichotomy for the associated conformal measures has obstruction series
+$\Xi_\beta(\pi,\pi';S)=\sum_{p\in S}p^{-\beta}\|\,\cdot\,\|^2$ governed by
+Rankin--Selberg, giving a measure-theoretic form of strong multiplicity one. Combining
+them yields the \emph{weight gap theorem}: equilibrium requires
+$\beta>\beta_c(S)+w/2$ while the obstruction is confined to $\beta\le\beta_c(S)$, where
+$w$ is the motivic weight; the two ranges meet if and only if $w=0$. The abelian theory
+is the case $w=0$; Paper XXI's universal gap of width $1$ is the Eisenstein case $w=2$;
+tempered weight two gives $w=1$ and a residual gap of exactly $\tfrac12$, the Ramanujan
+exponent.
+
+Section~\\ref{I:sec:ktheory} is the algorithmic bridge, and it is where the higher-weight
+arithmetic survives. Pimsner's exact sequence for the Hecke correspondence, the
+non-commutative replacement of the equivariant Pimsner--Voiculescu sequence, identifies
+$K_*$ with the kernel and cokernel of $1-u\,T_p+qu^2$ over $\Z[u^{\pm1}]$ --- the
+\emph{Ihara module}, whose Fitting ideal is the Ihara zeta function by Bass's identity.
+Specializing $u=1$ gives the Hecke--Laplacian $\Delta_p=(q+1)I-T_p$ and the structure
+theorem
+\[
+K_0\cong\Z\oplus\Jac(Y),\qquad K_1\cong\Z,\qquad
+|\Jac(Y)|=\frac1{|V|}\prod_f\bigl(p+1-a_p(f)\bigr)=\frac1{|V|}\prod_f\#E_f(\F_p),
+\]
+the torsion being computed exactly, as a group and not merely as an order, by the Smith
+normal form of $\Delta_p$: Frobenius traces precipitate as $K$-theoretic torsion. By
+contrast the boundary crossed product is arithmetically blind,
+$K_0(C(\partial X)\rtimes\Gamma)\cong\Z^r\oplus\Z/(r-1)$ with $r$ the rank of $\Gamma$,
+a theorem proved here by collapsing the reversal relation
+$[f]+[\bar f]=c_{o(f)}$ to a single class of order $|E_Y|-|V_Y|$. Eleven independent
+machine computations confirm both channels. Along Benjamini--Schramm convergent families
+the torsion density converges exactly to Lyons' tree entropy,
+$\frac1n\log|\Tors K_0|\to q\log q-\frac{q-1}2\log(q^2-1)$, and the Ramanujan bound
+$2\log(1+\sqrt q)$, while unconditional, is strict and exceeds it by
+$2q^{-1/2}+O(q^{-1})$ as $q\to\infty$ --- a Taylor expansion, not a fit --- because it
+replaces a Kesten--McKay integral by its spectral edge. The Laplacian channel is realised as a
+$\Z[u^{\pm1}]$-module and as the index of a Hecke--Dirac operator, not as a
+$C^*$-algebra: the class $T_p-qI$ is a legitimate $KK$-class but not a correspondence,
+and closing that gap is the paper's main open problem.
+\end{chapterabstract}
+
+\section*{Introduction, and the status of each statement}
+
+The thirty-nine papers of \emph{Localized Bost--Connes systems} settle the
+$\GL_1$ problem: the $\KMS_\beta$ simplex of $\cA_{K,S}$ is $\Prob(G_S/\Xi_\beta^\perp)$,
+the obstruction group $\Xi_\beta$ is cut out by a Dirichlet series in the Frobenius
+classes, the dichotomy underneath is Kakutani's, and the integral invariants are Smith
+normal forms of $\Ns\pp\cdot 1-\Lambda^r\Pi$. Every ingredient of that theory has a
+$\GL_2$ counterpart, and the counterparts are not formal analogies: valuations become
+lattice chains, the profinite completion becomes the tree boundary, Frobenius classes
+become Satake parameters, Dirichlet series become automorphic $L$-functions, and the
+Smith normal form of a norm-minus-multiplication matrix becomes the Smith normal form of
+a Hecke--Laplacian. This paper writes the dictionary and proves the entries that can be
+proved.
+
+It is written against a negative result of the earlier series, and we state at once how
+it stands with respect to it. Paper XXI of that series proves that the untwisted $\GL_2$
+system has a \emph{universal gap of width one}: the automorphic obstruction can be
+non-trivial only for $\beta\le\beta_c(S)$, Gibbs states exist only for
+$\beta>1+\beta_c(S)$, and no temperature does both. Nothing below contradicts that.
+What changes here is \emph{where} the automorphic parameter is inserted --- into the
+dynamics, not into the state --- and the effect of the change is quantitative and exact:
+the gap is $w/2$, where $w$ is the motivic weight of the representation
+(Theorem~\\ref{I:thm:gap}). Paper XXI is the case $w=2$; the abelian theory of the monograph
+is the case $w=0$, where the gap closes and the classification succeeds; tempered weight
+two is $w=1$ and the residual gap is the Ramanujan exponent $\tfrac12$. The thermodynamic
+channel therefore classifies exactly the weight-zero, that is Artin, part of the Langlands
+correspondence. That is a sharp statement about what thermodynamics can and cannot do,
+and it is the reason Section~\\ref{I:sec:ktheory} exists: $K$-theory carries no positivity
+constraint and no temperature, and it does see the higher-weight data.
+
+\smallskip
+\noindent\textbf{Status.} We label every numbered statement in one of three ways.
+\emph{Theorem/Proposition}: proved here or an immediate assembly of quoted results, with
+the assembly given. \emph{Verified}: an integral statement established by exact machine
+computation on a stated finite list of cases, with a proof sketch but no proof; these are
+marked $[\mathrm{V}]$ and the verification table is Table~\\ref{I:tab:snf}; in the present
+version no numbered statement carries this label, Theorem~\\ref{I:thm:blind} having been
+promoted to a proof, and Table~\\ref{I:tab:snf} now serves as independent confirmation
+rather than as evidence. \emph{Conjecture}:
+neither. No statement below is asserted at a higher level than it is entitled to. In
+particular Theorem~\\ref{I:thm:kms} is a theorem, its extension to ramified and to $\GL_n$
+data is Conjecture~\\ref{I:conj:gln}, and the identification of the full extremal simplex
+with the polar divisor of an $L$-function --- the form in which such a correspondence is
+usually stated informally --- is \emph{false} as stated, for the reason isolated in
+Theorem~\\ref{I:thm:perron}.
+
+\section{The geometric state space over Bruhat--Tits trees}\label{I:sec:geometry}
+
+\subsection{The local field and its tree}
+
+Throughout, $F$ is a non-archimedean local field with ring of integers $\cO$, maximal
+ideal $\mathfrak{m}=(\varpi)$, uniformiser $\varpi$, normalised valuation
+$v\colon F^\times\twoheadrightarrow\Z$, and residue field $k_F=\cO/\mathfrak{m}$ of
+cardinality $q$. In the arithmetic applications $F=\Q_p$ and $q=p$. Write
+$G=\GL_2(F)$, $K=\GL_2(\cO)$, $Z\cong F^\times$ for the centre.
+
+\begin{definition}[Lattices and the tree]\label{I:def:tree}
+An \emph{$\cO$-lattice} in $V=F^2$ is a free $\cO$-submodule $L\subset V$ of rank $2$.
+Two lattices are \emph{homothetic}, $L\sim L'$, if $L'=cL$ for some $c\in F^\times$. The
+Bruhat--Tits tree $X=X_F$ of $\PGL_2(F)$ has
+\[
+X^{(0)}=\{\text{lattices}\}/\!\sim,\qquad
+[L]\text{ adjacent to }[L']\iff\exists\,L\in[L],\ L'\in[L']\ \text{with}\
+\varpi L\subsetneq L'\subsetneq L .
+\]
+$X$ is a tree, it is $(q+1)$-regular, $G$ acts on it by $g\cdot[L]=[gL]$ with $Z K$ the
+stabiliser of the standard vertex $x_0=[\cO^2]$, and the vertex set is
+$X^{(0)}\cong G/ZK$.
+\end{definition}
+
+\begin{definition}[Boundary]\label{I:def:boundary}
+A \emph{ray} from $x_0$ is a sequence $\xi=(x_0,x_1,x_2,\dots)$ of vertices with
+$x_i\sim x_{i+1}$ and $x_{i+1}\neq x_{i-1}$ (\emph{non-backtracking}). The
+\emph{boundary} $\partial X$ is the set of rays from $x_0$, topologised by the cylinder
+sets $C(x_0,\dots,x_n)$. Then $\partial X$ is a compact totally disconnected space
+without isolated points --- a Cantor set --- and the map sending a ray to the
+corresponding line yields a $G$-equivariant homeomorphism
+\[
+\partial X\;\xrightarrow{\ \cong\ }\;\PPone(F)=\PPone(\cO)/\!\sim .
+\]
+The cylinder $C(x_0,\dots,x_n)$ has $q+1$ children at level $1$ and exactly $q$ children
+at every later level.
+\end{definition}
+
+The two branching numbers $q+1$ and $q$ are the whole geometric content of the section,
+and they are the reason the boundary and not the lattice space is the correct state
+space; see Remark~\\ref{I:rem:offbyone}.
+
+\begin{definition}[Chain space]\label{I:def:chains}
+Let
+\[
+\widetilde\Omega:=\Bigl\{(L_n)_{n\ge0}\ :\ L_0=\cO^2,\ L_{n+1}\subsetneq L_n,\
+[L_n:L_{n+1}]=q\ \ \forall n\Bigr\},
+\]
+the space of \emph{descending lattice chains of step one}, with the inverse-limit
+topology. Since the sublattices of index $q$ in a lattice $L$ are in bijection with
+$\PPone(k_F)$, which has $q+1$ elements, $\widetilde\Omega$ is homeomorphic to the
+boundary of the rooted $(q+1)$-ary tree, hence a Cantor set, and
+$[L_0],[L_1],[L_2],\dots$ is a walk in $X$ issuing from $x_0$. The subspace
+\[
+\Omega:=\{(L_n)\in\widetilde\Omega:\ [L_{n+1}]\neq[L_{n-1}]\ \forall n\ge1\}
+\]
+of \emph{geodesic} chains is closed and $\Omega\cong\partial X\cong\PPone(F)$ by
+Definition~\\ref{I:def:boundary}. We call $\widetilde\Omega$ the \emph{Toeplitz} (or full)
+state space and $\Omega$ the \emph{boundary} state space.
+\end{definition}
+
+\begin{remark}\label{I:rem:offbyone}
+$\widetilde\Omega$ is the $\GL_2$ analogue of the space $Y_S$ of the abelian theory: its
+level-$n$ set is the set of sublattices of index $q^n$ in $\cO^2$, of cardinality
+$\sigma_1(q^n)=1+q+\dots+q^n$, and the associated Dirichlet series is the Solomon zeta
+$\zeta_{M_2(\cO)}(\beta)=(1-q^{-\beta})^{-1}(1-q^{1-\beta})^{-1}$ of Paper XXI. The
+passage $\widetilde\Omega\rightsquigarrow\Omega$ removes exactly the excess
+$d_\pp=q+1>q$ that Paper XXI, Theorem 1.2 identifies as the source of its off-by-one:
+on $\Omega$ the branching is $q$ per step and matches the norm.
+\end{remark}
+
+\subsection{The Hecke monoid and the truncated Hecke groupoids}
+
+Let $\cH(G,K)=C_c(K\backslash G/K)$ be the spherical Hecke algebra with convolution, and
+\[
+T:=\bigl[K\begin{psmallmatrix}\varpi&0\\0&1\end{psmallmatrix}K\bigr],\qquad
+R^{\pm1}:=\bigl[K\begin{psmallmatrix}\varpi^{\pm1}&0\\0&\varpi^{\pm1}\end{psmallmatrix}K\bigr],
+\qquad
+T_n:=\bigl[K\begin{psmallmatrix}\varpi^{n}&0\\0&1\end{psmallmatrix}K\bigr]\ (n\ge0),
+\]
+so that $\cH(G,K)=\C[T,R^{\pm1}]$ and the Satake isomorphism is
+$\Sat\colon\cH(G,K)\xrightarrow{\cong}\C[\alpha_1^{\pm1},\alpha_2^{\pm1}]^{S_2}$ with
+$\Sat(T)=q^{1/2}(\alpha_1+\alpha_2)$ and $\Sat(R)=\alpha_1\alpha_2$. Acting on functions
+on $X^{(0)}$, $T$ is the adjacency (nearest-neighbour) operator and $R$ acts trivially.
+
+\begin{lemma}[Hecke recursion]\label{I:lem:recursion}
+On $X$ one has $T_1=T$, $T\,T_1=T_2+(q+1)T_0$ and, for $n\ge2$,
+\[
+T\,T_n=T_{n+1}+q\,T_{n-1},
+\qquad\text{equivalently}\qquad
+\sum_{n\ge0}T_n\,u^n=\bigl(1-Tu+qu^2\bigr)^{-1}
+\]
+as an identity of formal power series with coefficients in $\cH(G,K)$ normalised by
+$\Sat(R)=q$. Consequently, for a character $\lambda$ of $\cH(G,K)$ with Satake
+parameters $(\alpha_1,\alpha_2)$, $\alpha_1\alpha_2=q$,
+\begin{equation}\label{I:eq:heckegen}
+\sum_{n\ge0}\lambda(T_n)\,u^n=\frac1{(1-\alpha_1u)(1-\alpha_2u)} .
+\end{equation}
+\end{lemma}
+
+The pencil $1-Tu+qu^2$ of Lemma~\\ref{I:lem:recursion} is the single object that reappears
+in every section below: in Section~\\ref{I:sec:thermo} as the inverse of a partition
+function, in Section~\\ref{I:sec:ktheory} as the presentation matrix of a $K$-group.
+
+\begin{definition}[Hecke monoid and degree]\label{I:def:monoid}
+Let $S_\varpi:=\bigl(M_2(\cO)\cap G\bigr)/\cO^\times$, a monoid acting on lattices by
+$L\mapsto gL$, and let $\deg\colon S_\varpi\to\Z_{\ge0}$, $\deg(g)=v(\det g)$. The
+$K$-double cosets of $S_\varpi$ are indexed by elementary divisors, and
+$\{\deg=n\}$ is the union of the double cosets of $T_a R^b$ with $a+2b=n$.
+\end{definition}
+
+\begin{definition}[Truncated Hecke groupoids]\label{I:def:groupoid}
+Let $\Gamma\le\PGL_2(F)$ be a discrete, torsion-free, cocompact subgroup; such $\Gamma$
+exist and are free of finite rank, and $Y:=\Gamma\backslash X$ is a finite
+$(q+1)$-regular graph. Write $E_Y$ for its set of oriented edges, $\bar e$ for the
+reversal of $e$, and
+\[
+A^{\mathrm{nb}}_{ef}=\begin{cases}1,&t(e)=o(f)\text{ and }f\neq\bar e,\\
+0,&\text{otherwise},\end{cases}
+\qquad e,f\in E_Y,
+\]
+for the \emph{non-backtracking} (edge) matrix. Let
+$\Sigma_Y:=\{\omega\in E_Y^{\N}:A^{\mathrm{nb}}_{\omega_i\omega_{i+1}}=1\}$ with shift
+$\sigma$. For $N\in\N$ set
+\begin{equation}\label{I:eq:truncgroupoid}
+\cG^{(N)}:=\bigl\{(\omega,i-j,\omega')\in\Sigma_Y\times\Z\times\Sigma_Y\ :\
+0\le i,j\le N,\ \sigma^i\omega=\sigma^j\omega'\bigr\},
+\end{equation}
+and $\cG_\Gamma:=\bigcup_{N\ge0}\cG^{(N)}$, the \emph{Hecke groupoid}, with the
+composition $(\omega,k,\omega')(\omega',k',\omega'')=(\omega,k+k',\omega'')$, the
+topology generated by the sets
+$Z(U,i,j,V)=\{(\omega,i-j,\omega'):\omega\in U,\ \omega'\in V,\ \sigma^i\omega=\sigma^j\omega'\}$
+for $U,V$ cylinders, and the \emph{Hecke degree cocycle}
+\[
+c\colon\cG_\Gamma\longrightarrow\Z,\qquad c(\omega,k,\omega')=k .
+\]
+The same formula with $\Sigma_Y$ replaced by $\widetilde\Omega$ and $\sigma$ by the
+one-sided shift on the full $(q+1)$-ary tree defines the \emph{Toeplitz Hecke groupoid}
+$\widetilde\cG$.
+\end{definition}
+
+The truncation index $N$ is the number of Hecke moves allowed; $\cG^{(N)}$ is an open
+subgroupoid, $\cG^{(N)}\subset\cG^{(N+1)}$, and $C^*(\cG_\Gamma)=\varinjlim_N C^*(\cG^{(N)})$.
+This inductive limit is what carries the thermodynamic limit of
+Section~\\ref{I:sec:thermo}: a measure class on $\Omega$ is a compatible family of
+quasi-invariant classes for the finite-level relations $\cR^{(N)}$ below.
+
+\begin{definition}[Tail equivalence]\label{I:def:tail}
+The \emph{tail (Hecke) equivalence relation} is the image of $\cG_\Gamma$ under
+$(r,s)$,
+\[
+\cR:=\bigl\{(\omega,\omega')\in\Omega\times\Omega\ :\ \exists\, i,j\ge0,\
+\sigma^i\omega=\sigma^j\omega'\bigr\},
+\]
+with the finite-level subrelations $\cR^{(N)}$ obtained by restricting $i,j\le N$, and
+the \emph{degree-zero} subrelation $\cR_0:=\{(\omega,\omega'):\exists\,i,\ \sigma^i\omega=\sigma^i\omega'\}$.
+A probability measure $\mu$ on $\Omega$ is \emph{$\beta$-quasi-invariant} for $\cR$ if
+the measure class is preserved and the Radon--Nikodym cocycle of $\cG_\Gamma$ is
+$e^{-\beta c}$; $\cR_0$ is a hyperfinite (AF) subrelation, and $\cR/\cR_0\cong\Z$ through
+$c$.
+\end{definition}
+
+\begin{proposition}\label{I:prop:groupoid}
+$\cG_\Gamma$ is a second countable, locally compact, Hausdorff, \'etale groupoid with
+unit space $\Omega$; it is amenable, minimal and essentially principal, and
+\begin{enumerate}
+\item[(i)] $\cG_\Gamma$ is canonically isomorphic to the transformation groupoid
+$\partial X\rtimes\Gamma$ under $\Omega\cong\partial X$, the Hecke degree $c$
+corresponding to the Busemann (horocycle) cocycle of $\Gamma$ acting on $\partial X$;
+\item[(ii)] $C^*(\cG_\Gamma)=C^*_r(\cG_\Gamma)$ is the Cuntz--Krieger algebra
+$\cO_{A^{\mathrm{nb}}_Y}$, simple, purely infinite, nuclear, and Morita equivalent to
+$C(\partial X)\rtimes\Gamma$;
+\item[(iii)] in the rooted local model, $C^*(\widetilde\cG)\cong\cO_{q+1}$ and its
+boundary (geodesic) reduction is stably isomorphic to $\cO_q$, so that
+\[
+K_0\bigl(C^*(\widetilde\cG)|_\Omega\bigr)\cong\Z/(q-1),\qquad
+K_1\bigl(C^*(\widetilde\cG)|_\Omega\bigr)=0 .
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}\label{I:rem:unitclass}
+Part (iii) is the exact $\GL_2$ analogue of the unit-class torsion $\Z/(\Ns\pp^h-1)$ of
+Paper XXXVIII: locally the boundary quotient contributes $\Z/(q-1)$ and nothing else. All
+arithmetic beyond the residue cardinality is therefore invisible at a single place, and
+must be sought either in the global assembly (Section~\\ref{I:sec:thermo}) or in the
+quotient graph $Y$ (Section~\\ref{I:sec:ktheory}). This is the structural reason the
+$\GL_2$ theory cannot be purely local, and it has no counterpart in the $\GL_1$ theory,
+where the local boundary already carries the class group.
+\end{remark}
+
+\section{The thermodynamic--automorphic correspondence}\label{I:sec:thermo}
+
+\subsection{Satake weights in the Radon--Nikodym cocycle}
+
+Fix an unramified irreducible admissible representation $\pi_p$ of $G$ with Satake
+parameters $(\alpha_{p,1},\alpha_{p,2})$ normalised arithmetically,
+$\alpha_{p,1}\alpha_{p,2}=q^{w}$ with $w$ the motivic weight ($w=0$ for Artin
+parameters, $w=k-1$ for weight-$k$ forms; $w=1$ in the classical weight-two case), and
+local $L$-factor
+\[
+L_p(s,\pi_p)=\prod_{i=1,2}\bigl(1-\alpha_{p,i}\,q^{-s}\bigr)^{-1}.
+\]
+
+\begin{definition}[Satake potential and twisted dynamics]\label{I:def:dynamics}
+Let $h_\pi\colon X^{(0)}\to\C^\times$ be a Hecke eigenfunction, $T h_\pi=\lambda_\pi h_\pi$
+with $\lambda_\pi=\alpha_{p,1}+\alpha_{p,2}$, normalised by $h_\pi(x_0)=1$. Define the
+\emph{Satake potential} on oriented edges and the associated \emph{Ruelle--Hecke transfer
+operator} on $C(\Omega)$ by
+\[
+\varphi_\pi(e):=\log\frac{h_\pi(t(e))}{h_\pi(o(e))},\qquad
+\bigl(\cL_{\beta,\pi}f\bigr)(\omega):=\sum_{\sigma(\eta)=\omega}
+q^{-\beta\,c(\eta)}\,e^{\varphi_\pi(\eta_1)}f(\eta).
+\]
+The \emph{twisted dynamics} $\sigma^{(\pi)}$ on $C^*(\cG_\Gamma)$ is the one-parameter
+group determined on $C_c(\cG_\Gamma)$ by
+\[
+\sigma^{(\pi)}_t(f)(\gamma)=e^{\,it\,(\beta\text{-independent})\,c_\pi(\gamma)}f(\gamma),
+\qquad
+c_\pi(\gamma):=c(\gamma)\log q-\varphi_\pi(\gamma),
+\]
+so that the Radon--Nikodym cocycle of a $\KMS_\beta$ state is
+\begin{equation}\label{I:eq:RN}
+\frac{d\mu\circ\gamma}{d\mu}(\omega)=e^{-\beta c_\pi(\gamma)}
+=q^{-\beta c(\gamma)}\Bigl(\frac{h_\pi(t\gamma)}{h_\pi(o\gamma)}\Bigr)^{\beta}.
+\end{equation}
+\end{definition}
+
+Equation~\\eqref{I:eq:RN} is the precise sense in which the Satake parameter enters the
+Radon--Nikodym derivative: it is the Doob $h$-transform of the geometric cocycle by the
+Hecke eigenfunction. The untwisted system of Paper XXI is $h_\pi\equiv1$.
+
+\subsection{The partition function is the local \texorpdfstring{$L$}{L}-factor}
+
+\begin{theorem}[Partition function]\label{I:thm:partition}
+Let $Z_p(\beta;\pi):=\sum_{n\ge0}\lambda_\pi(T_n)\,q^{-n\beta}$ be the partition function
+of the truncated tower $(\cG^{(N)})_N$ with the dynamics of
+Definition~\\ref{I:def:dynamics}. Then the series converges absolutely if and only if
+$\beta>\beta_c(\pi_p)$, where
+\[
+\beta_c(\pi_p):=\log_q\max_i|\alpha_{p,i}|,
+\]
+and in that range
+\[
+\boxed{\;Z_p(\beta;\pi)=\prod_{i=1,2}\bigl(1-\alpha_{p,i}q^{-\beta}\bigr)^{-1}
+=L_p(\beta,\pi_p).\;}
+\]
+Moreover $\beta_c(\pi_p)$ is exactly the largest real part of a pole of
+$s\mapsto L_p(s,\pi_p)$, so the critical inverse temperature of the twisted system is the
+abscissa of convergence of the local $L$-factor. In particular
+$\beta_c=w/2$ when $\pi_p$ is tempered $($Ramanujan$)$, and $\beta_c=w$ when $\pi_p$ is the
+Eisenstein point $(\alpha_1,\alpha_2)=(1,q^{w})$.
+\end{theorem}
+
+\begin{proof}
+Substitute $u=q^{-\beta}$ in \\eqref{I:eq:heckegen} of Lemma~\\ref{I:lem:recursion}; the radius
+of convergence of the right-hand side is $\min_i|\alpha_{p,i}|^{-1}$. The poles of
+$L_p(s,\pi_p)$ are at $q^{-s}=\alpha_{p,i}^{-1}$, i.e. at
+$\Re s=\log_q|\alpha_{p,i}|$.
+\end{proof}
+
+\begin{remark}
+For the trivial (Eisenstein) parameter $w=2$, $(\alpha_1,\alpha_2)=(1,q)$, one recovers
+$Z_p(\beta)=(1-q^{-\beta})^{-1}(1-q^{1-\beta})^{-1}$, the Solomon zeta of $M_2(\cO)$ and
+the local factor of $\zeta(\beta)\zeta(\beta-1)$: Theorem~\\ref{I:thm:partition} contains
+the partition function of the Connes--Marcolli $\GL_2$-system, and of Paper XXI, as its
+$h_\pi\equiv1$ specialisation.
+\end{remark}
+
+\subsection{Equilibrium states, and what they can see}
+
+\begin{theorem}[$\KMS$ classification, local]\label{I:thm:kms}
+Let $Y=\Gamma\backslash X$ be connected and non-bipartite, and let
+$A^{\mathrm{nb}}_{\beta,\pi}$ be the non-backtracking matrix weighted by
+$e^{-\beta c_\pi}$ as in \\eqref{I:eq:RN}. Then:
+\begin{enumerate}
+\item[(i)] $\KMS_\beta\bigl(C^*(\cG_\Gamma),\sigma^{(\pi)}\bigr)\neq\emptyset$ if and only
+if the spectral radius satisfies $\rho\bigl(A^{\mathrm{nb}}_{\beta,\pi}\bigr)=1$, i.e.
+if and only if the Bowen--Ruelle pressure equation $P(-\beta c_\pi)=0$ holds;
+\item[(ii)] in that case the $\KMS_\beta$ simplex is a single point, the state
+associated with the Perron eigenvector, and the corresponding measure $\mu_{\beta,\pi}$
+is the unique $e^{-\beta c_\pi}$-conformal measure for $\cR$;
+\item[(iii)] the associated von Neumann factor is of type $\mathrm{III}_{q^{-\beta}}$ if
+$c_\pi(\cG_\Gamma)\subseteq\Z\log q$, and of type $\mathrm{III}_1$ if the closed group
+generated by $e^{-\beta c_\pi(\cG_\Gamma)}$ is $\R_{>0}$;
+\item[(iv)] for the untwisted potential the equation in $(\mathrm{i})$ reads
+$q^{1-\beta}=1$, so the transition is at $\beta_c=1$ on the boundary state space
+$\Omega$, against $\beta_c=2$ on the Toeplitz state space $\widetilde\Omega$.
+\end{enumerate}
+\end{theorem}
+
+Part (iv) is the promised removal of Paper XXI's off-by-one: it is bought by the passage
+from $\widetilde\Omega$ to $\Omega$, i.e. by the boundary quotient, and by nothing else.
+The next theorem says what the price is.
+
+\begin{theorem}[Perron obstruction: states cannot see cuspidal parameters]\label{I:thm:perron}
+Let $\sigma^{(\pi)}$ be as in Definition~\\ref{I:def:dynamics}. A $\KMS_\beta$ state exists
+only if the eigenfunction $h_\pi$ can be chosen strictly positive on $X^{(0)}$. On a
+$(q+1)$-regular tree a positive $T$-eigenfunction with eigenvalue $\lambda$ exists if and
+only if $|\lambda|\ge2\sqrt q$. Consequently:
+\begin{enumerate}
+\item[(i)] if $\pi_p$ is tempered $(|\lambda_\pi|<2\sqrt q$, i.e.
+$|\alpha_{p,i}|=q^{w/2})$, the twisted system has \emph{no} $\KMS_\beta$ state at any
+$\beta$; the Satake data survive only as the $\KMS_\beta$ \emph{functional}
+$\phi_{\beta,\pi}$ obtained by analytic continuation in $\lambda$, whose partition
+function is $L_p(\beta,\pi_p)$ by Theorem~\\ref{I:thm:partition};
+\item[(ii)] the extremal $\KMS_\beta$ states of the untwisted system are parameterised by
+the Perron branch alone --- the Eisenstein/complementary-series locus
+$\lambda\ge2\sqrt q$ of the unramified spectrum --- and their partition functions are the
+corresponding $L$-factors $L_p(\beta,1\boxplus|\cdot|^{w})$;
+\item[(iii)] therefore the assertion ``the extremal $\KMS_\beta$ simplex is
+parameterised by the poles of the automorphic $L$-function'' is true on the Eisenstein
+locus and false on the cuspidal locus; the correct general statement replaces states by
+functionals, and the simplex by the polar divisor of a meromorphic family.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Thermodynamic ghost states]\label{I:rem:ghost}
+We propose the name \emph{thermodynamic ghost states} for the non-positive continuations
+$\phi_{\beta,\pi}$ of Theorem~\\ref{I:thm:perron}(i): they are $\sigma^{(\pi)}$-$\KMS$
+functionals with the correct modular property and the correct partition function
+$L_p(\beta,\pi_p)$, but they are not states, having no positive extension to the algebra
+and hence no GNS representation and no thermal equilibrium interpretation. The
+terminology is borrowed, with the usual caution, from the negative-norm states of gauge
+quantisation: as there, the ghosts are indispensable to the bookkeeping and absent from
+the physical spectrum. The physical content of Theorem~\\ref{I:thm:perron} is then this. The
+metric geometry of the tree fixes a threshold, $2\sqrt q$, which is exactly the tempered
+bound; a Satake parameter satisfying the Ramanujan estimate lies \emph{below} it, and a
+positive Hecke eigenfunction --- the Gibbs weight of the would-be equilibrium --- then
+simply does not exist on $X$. Cuspidality and thermal equilibrium are mutually exclusive
+on the Bruhat--Tits tree. The arithmetic of the cuspidal spectrum is therefore not
+suppressed but displaced: it survives as analytic data off the state space, and, as
+Section~\\ref{I:sec:ktheory} shows, as integral data in $K$-theory, where no positivity is
+required.
+\end{remark}
+
+\begin{remark}
+Theorem~\\ref{I:thm:perron} is the operator-algebraic shadow of a familiar fact: positivity
+of a state is a Perron--Frobenius condition, and Perron--Frobenius selects the trivial
+representation. It is the same phenomenon that makes the constant function the only
+positive $\ell^2$-eigenfunction on a finite graph, and the same one that in Paper XXVII
+forces a $\KMS$ state to be tracial on the coefficient algebra and thereby erases inner
+twists. Any programme that hopes to read cuspidal data off an equilibrium \emph{state}
+must first defeat this, and we do not know how to.
+\end{remark}
+
+\subsection{The Kakutani obstruction and Rankin--Selberg}
+
+We now globalise. Let $S$ be a set of rational primes, $\beta_c(S)$ the convergence
+exponent of $\sum_{p\in S}p^{-\beta}$, and for unramified $\pi=\otimes_p\pi_p$ let
+\[
+\Omega_S:=\prod_{p\in S}\Omega_p,\qquad
+\mu^\pi_\beta:=\bigotimes_{p\in S}\mu_{\beta,\pi_p},
+\]
+the product of the local conformal measures of Theorem~\\ref{I:thm:kms}(ii), taken on the
+locus where they exist, that is on the Eisenstein and complementary-series range
+$|\lambda_p|\ge2\sqrt q$, or of their $h$-transform representatives there.
+
+\begin{theorem}[Kakutani dichotomy for Satake data]\label{I:thm:kakutani}
+For any two such $\pi,\pi'$ the measures $\mu^\pi_\beta$ and $\mu^{\pi'}_\beta$ are
+either equivalent or mutually singular, and they are equivalent if and only if
+\begin{equation}\label{I:eq:obstruction}
+\Xi_\beta(\pi,\pi';S):=\sum_{p\in S}p^{-\beta}\,
+\bigl|\widehat\lambda_p(\pi)-\widehat\lambda_p(\pi')\bigr|^2<\infty,
+\qquad
+\widehat\lambda_p:=\frac{\lambda_p}{2\sqrt p}=\cos\theta_p ,
+\end{equation}
+the equivalence of the Hellinger criterion with \\eqref{I:eq:obstruction} holding with
+absolute implied constants depending only on the temperedness bound. The series
+\\eqref{I:eq:obstruction} is the exact $\GL_2$ analogue of the obstruction series
+$\sum_\pp\Ns\pp^{-\beta}|1-\chi(\Frob_\pp)|^2$ of the abelian theory, with the Frobenius
+character replaced by the normalised Satake trace.
+\end{theorem}
+
+\begin{corollary}[Measure-theoretic strong multiplicity one]\label{I:cor:multone}
+Let $\pi,\pi'$ be cuspidal automorphic representations of $\GL_2(\A_\Q)$, unramified
+outside a finite set, and $S$ the set of all but finitely many primes, so
+$\beta_c(S)=1$. Expanding \\eqref{I:eq:obstruction} into Rankin--Selberg logarithms,
+\[
+\Xi_\beta(\pi,\pi';S)=\log L_S(\beta,\pi\times\widetilde\pi)
++\log L_S(\beta,\pi'\times\widetilde{\pi'})
+-2\,\Re\log L_S(\beta,\pi\times\widetilde{\pi'})+O(1),
+\]
+so that, by the pole of $L(s,\pi\times\widetilde\pi)$ at $s=1$ and the regularity and
+non-vanishing there of $L(s,\pi\times\widetilde{\pi'})$ for $\pi\not\cong\pi'$
+$($Jacquet--Shalika$)$, one has $\Xi_1(\pi,\pi';S)=\infty$ and hence
+\[
+\pi\not\cong\pi'\ \Longrightarrow\ \mu^\pi_1\perp\mu^{\pi'}_1 .
+\]
+Distinct automorphic representations occupy mutually singular thermodynamic phases.
+\end{corollary}
+
+\begin{remark}
+The Rankin--Selberg $L$-function appears here legitimately, and its appearance is not in
+conflict with Paper XXI, which shows that the \emph{one-representation} obstruction
+$\Xi_\beta(\rho,S)$ is linear in $\Tr\rho(\Frob_\pp)$ and therefore involves only the
+standard $L$-function, the $\Sym^2$-term being spurious. The quantity
+\\eqref{I:eq:obstruction} is a Hellinger distance \emph{between two} representations; it is
+genuinely quadratic, and the second moment of Satake traces is by definition
+Rankin--Selberg.
+\end{remark}
+
+\subsection{The weight gap}
+
+\begin{theorem}[Weight gap]\label{I:thm:gap}
+Let $\pi$ have motivic weight $w$ at almost every place, i.e.
+$|\alpha_{p,i}|=p^{w/2}$ for tempered $\pi_p$. Then, for every set $S$ of primes:
+\[
+\text{Gibbs states exist}\iff\beta>\beta_c(S)+\tfrac{w}{2},
+\qquad
+\Xi_\beta(\pi,\pi';S)=\infty\ \text{possible}\iff\beta\le\beta_c(S).
+\]
+The two ranges are disjoint with a gap of width exactly $w/2$, and they meet if and only
+if $w=0$. Consequently:
+\begin{enumerate}
+\item[(i)] $w=0$ (Artin parameters, weight-one forms, the abelian case): the gap
+closes, and one recovers the classification of the localized Bost--Connes theory,
+namely $\KMS_\beta\cong\Prob(G_S/\Xi_\beta^\perp)$;
+\item[(ii)] $w=1$ (tempered weight two): the residual gap is $\tfrac12$, the Ramanujan
+exponent;
+\item[(iii)] $w=2$ (the Eisenstein/untwisted $\GL_2$ system): the gap is $1$, which is
+Paper XXI's universal off-by-one.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+By Theorem~\\ref{I:thm:partition}, the equilibrium range is the domain of absolute
+convergence of the Euler product of the local factors $L_p(\beta,\pi_p)$,
+$p\in S$, whose abscissa is $\beta_c(S)+\beta_c(\pi_p)$; in the tempered case this equals
+$\beta_c(S)+w/2$. For the obstruction range, note that
+$|\widehat\lambda_p|\le1$, so the series \\eqref{I:eq:obstruction} is bounded above
+by $4\sum_{p\in S}p^{-\beta}$ and is therefore finite for every
+$\beta>\beta_c(S)$. Disjointness and the width follow
+\end{proof}
+
+Theorem~\\ref{I:thm:gap} is the main negative--positive result of the section. It says that
+the thermodynamic channel is exactly a \emph{weight-zero} instrument: it classifies the
+Artin part of the Langlands correspondence and is blind, by an amount equal to half the
+motivic weight, to everything above it. This is a sharpening, not a refutation, of Paper
+XXI: the twist moves the equilibrium threshold from $\beta_c(S)+1$ down to
+$\beta_c(S)+w/2$, and for weight-one forms it closes the gap altogether.
+
+\begin{conjecture}[$\GL_n$ and ramified data]\label{I:conj:gln}
+Let $F$ be local, $G_n=\GL_n(F)$, $X_n$ the Bruhat--Tits building of $\PGL_n(F)$, and
+$\pi_p$ unramified with Satake parameters $(\alpha_{p,1},\dots,\alpha_{p,n})$. Then the
+partition function of the Hecke groupoid of the chamber boundary of $X_n$, twisted as in
+Definition~\\ref{I:def:dynamics}, equals $L_p(\beta,\pi_p)=\prod_i(1-\alpha_{p,i}q^{-\beta})^{-1}$,
+the critical inverse temperature is $\max_i\log_q|\alpha_{p,i}|$, the weight gap theorem
+holds verbatim with $w$ the motivic weight, and for ramified $\pi_p$ the same statements
+hold with $\Omega$ replaced by the boundary of the building with level structure and
+$L_p$ by the ramified local factor. For $n=2$ and unramified data this is
+Theorems~\\ref{I:thm:partition}--\\ref{I:thm:gap}.
+\end{conjecture}
+
+\section{Algorithmic \texorpdfstring{$K$}{K}-theory via Hecke operators}\label{I:sec:ktheory}
+
+Throughout this section $\Gamma$ is torsion-free and cocompact, $Y=\Gamma\backslash X$ is
+a finite connected $(q+1)$-regular graph with $n=|V_Y|$ vertices and $m=|E_Y|$ unoriented
+edges, so that
+\[
+r:=\rank\Gamma=m-n+1,\qquad m=\tfrac{(q+1)n}{2},\qquad r-1=m-n=\tfrac{(q-1)n}{2}.
+\]
+$T_p\in M_n(\Z)$ denotes the Hecke (adjacency) operator of $Y$ and
+$\Delta_p:=(q+1)I_n-T_p$ its \emph{Hecke--Laplacian}. By Ihara's theorem and the
+Eichler--Shimura and Jacquet--Langlands correspondences, when $\Gamma$ is the unit group
+of an Eichler order the spectrum of $T_p$ is
+\[
+\Spec T_p=\{q+1\}\ \cup\ \{a_p(f)\ :\ f\ \text{a weight-two newform of the relevant level}\},
+\]
+so the entries of $\Delta_p$ are Frobenius traces in disguise. This section turns that
+disguise into an algorithm.
+
+\subsection{The Hecke correspondence and the Pimsner sequence}
+
+\begin{definition}[Hecke correspondence]\label{I:def:corr}
+Let $A:=C(V_Y)\cong\C^n$ and let $\cE_p$ be the $A$--$A$ correspondence with underlying
+space $C(E_Y)$, right action $(\xi\cdot a)(e)=\xi(e)a(t(e))$, left action
+$(a\cdot\xi)(e)=a(o(e))\xi(e)$, and inner product
+$\langle\xi,\eta\rangle(v)=\sum_{t(e)=v}\overline{\xi(e)}\eta(e)$. Then $\cE_p$ is
+finitely generated projective, full, with injective left action, and its class in
+$KK^0(A,A)=M_n(\Z)$ is
+\[
+[\cE_p]=T_p .
+\]
+Let $\widetilde A:=C_0(V_Y\times\Z)$ with the degree shift $S$, and let
+$\widetilde\cE_p$ be the corresponding correspondence over $\widetilde A$ recording the
+valuation of the determinant, so that
+$[\widetilde\cE_p]=u\,T_p$ on $K_0(\widetilde A)=\Z[u^{\pm1}]^n$, $u:=[S]$.
+\end{definition}
+
+\begin{theorem}[Hecke--Pimsner sequence; equivariant PV]\label{I:thm:pimsner}
+For any $A$--$A$ correspondence $\cE$ as above, the Cuntz--Pimsner algebra $\cO_\cE$ sits
+in the six-term exact sequence
+\[
+\begin{array}{ccccc}
+K_0(A)&\xrightarrow{\ 1-[\cE]\ }&K_0(A)&\longrightarrow&K_0(\cO_\cE)\\
+\uparrow& & & &\downarrow\\
+K_1(\cO_\cE)&\longleftarrow&K_1(A)&\xleftarrow{\ 1-[\cE]\ }&K_1(A)
+\end{array}
+\]
+which for $A=\C^n$ collapses to the short exact sequence
+\begin{equation}\label{I:eq:pimsnershort}
+0\longrightarrow K_1(\cO_\cE)\longrightarrow\Z^n
+\xrightarrow{\ (1-[\cE])^{t}\ }\Z^n\longrightarrow K_0(\cO_\cE)\longrightarrow0 .
+\end{equation}
+When $\cE$ is the correspondence of a single automorphism, \\eqref{I:eq:pimsnershort} is the
+Pimsner--Voiculescu sequence; when $A$ carries an action of a finite group $C$ and $\cE$
+is $C$-equivariant, the same sequence holds with $\Z^n$ replaced by the
+$R(C)$-module $K_0^C(A)$ and $1-[\cE]$ by its $R(C)$-linear extension.
+\end{theorem}
+
+\begin{definition}[Ihara module]\label{I:def:ihara}
+The \emph{Ihara module} of $(\Gamma,p)$ is the $\Z[u^{\pm1}]$-module
+\[
+M_\Gamma(p):=\Z[u^{\pm1}]^{\,n}\big/\bigl(1-u\,T_p+q\,u^2\bigr)\Z[u^{\pm1}]^{\,n},
+\]
+the presentation matrix being the Hecke pencil of Lemma~\\ref{I:lem:recursion}.
+\end{definition}
+
+\begin{proposition}[Bass's identity; the two channels]\label{I:prop:bass}
+With $A^{\mathrm{nb}}_Y$ as in Definition~\\ref{I:def:groupoid},
+\begin{equation}\label{I:eq:bass}
+\det\bigl(I_{2m}-u\,A^{\mathrm{nb}}_Y\bigr)
+=(1-u^2)^{\,m-n}\,\det\bigl((1+qu^2)I_n-u\,T_p\bigr),
+\end{equation}
+so the $0$-th Fitting ideal of $M_\Gamma(p)$ is generated by the reciprocal
+$Z_Y(u)^{-1}(1-u^2)^{-(m-n)}$ of the Ihara zeta function of $Y$. Identity
+\\eqref{I:eq:bass} has been verified symbolically for all graphs of
+Table~\\ref{I:tab:snf}. Specialising $u=1$:
+\[
+\bigl(1-uT_p+qu^2\bigr)\big|_{u=1}=(q+1)I_n-T_p=\Delta_p .
+\]
+\end{proposition}
+
+Proposition~\\ref{I:prop:bass} isolates the two channels available for computation. The
+\emph{boundary channel} uses $A^{\mathrm{nb}}_Y$ and computes the $K$-theory of
+$C(\partial X)\rtimes\Gamma$ directly. The \emph{Laplacian channel} uses $\Delta_p$, that
+is the $u=1$ specialisation of the Ihara module. They are related by \\eqref{I:eq:bass},
+and --- this is the point of the section --- they carry completely different arithmetic.
+
+\subsection{The structure theorem}
+
+\begin{theorem}[Hecke--Laplacian structure theorem]\label{I:thm:structure}
+Let $\Delta_p=(q+1)I_n-T_p$ and let
+$\SNF(\Delta_p)=\mathrm{diag}(d_1\mid d_2\mid\dots\mid d_{n-1},0)$ be its Smith normal
+form over $\Z$. Then:
+\begin{enumerate}
+\item[(i)] $\ker\Delta_p=\Z$ and
+$\coker\Delta_p\cong\Z\oplus\bigoplus_{i=1}^{n-1}\Z/d_i\Z
+=\Z\oplus\Jac(Y)$,
+where $\Jac(Y)$ is the Jacobian $($critical, sandpile$)$ group of $Y$;
+\item[(ii)] $\coker\Delta_p$ and $\ker\Delta_p$ are the $u=1$ specialisation
+\[
+M_\Gamma(p)\otimes_{\Z[u^{\pm1}]}\Z_{u=1}\cong\Z\oplus\Jac(Y),
+\qquad
+\mathrm{Tor}_1^{\Z[u^{\pm1}]}\bigl(M_\Gamma(p),\Z_{u=1}\bigr)\cong\Z,
+\]
+of the Ihara module of Definition~\\ref{I:def:ihara}, and they are the integral index
+groups of the \emph{Hecke--Dirac operator} of $Y$: choosing an orientation $E_Y^+$ and
+writing $\partial\colon\Z^{E_Y^+}\to\Z^{V_Y}$, $\partial f=t(f)-o(f)$, for the simplicial
+boundary map, the self-adjoint operator
+\[
+\mathsf{D}:=\begin{pmatrix}0&\partial\\ \partial^{\,t}&0\end{pmatrix}
+\quad\text{on}\quad \ell^2(V_Y)\oplus\ell^2(E_Y^+),
+\qquad
+\mathsf{D}^2=\Delta_p\oplus\partial^{\,t}\partial ,
+\]
+has $\ker\mathsf{D}=\Z\oplus H_1(Y;\Z)=\Z\oplus\Z^{\,r}$, and the integral cokernel of
+the even part $\mathsf{D}^2|_{\ell^2(V_Y)}=\Delta_p$ is $\Z\oplus\Jac(Y)$. \emph{No
+existence claim for a $C^*$-algebra is made here}; see Remark~\\ref{I:rem:noalgebra};
+\item[(iii)] the order of the torsion is a product of Frobenius data: by Kirchhoff's
+matrix-tree theorem and Ihara's theorem,
+\begin{equation}\label{I:eq:torsionorder}
+\bigl|\Tors K_0(\cO)\bigr|=|\Jac(Y)|=\kappa(Y)
+=\frac1n\prod_{\lambda\in\Spec T_p\setminus\{q+1\}}\bigl(q+1-\lambda\bigr)
+=\frac1n\prod_f\bigl(p+1-a_p(f)\bigr),
+\end{equation}
+$f$ running over the weight-two newforms occurring in $Y$; and if $E_f$ is the elliptic
+curve attached to $f$ by Eichler--Shimura, then $p+1-a_p(f)=\#E_f(\F_p)$, so
+\[
+\bigl|\Tors K_0(\cO)\bigr|=\frac1n\prod_f\#E_f(\F_p).
+\]
+\end{enumerate}
+The Smith normal form computes not merely the order but the group: the elementary
+divisors $d_1\mid\dots\mid d_{n-1}$ are the invariant factors of $\Jac(Y)$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+(i) is the standard theory of the critical group: $\Delta_p$ is the Laplacian of the
+$(q+1)$-regular graph $Y$, symmetric with kernel the constants, and its cokernel splits
+as $\Z\oplus K(Y)$ with $K(Y)$ the critical group. (ii) is
+Theorem~\\ref{I:thm:pimsner} applied with index map $\Delta_p$. In (iii), Kirchhoff gives
+$\kappa(Y)=\frac1n\prod_{i\ge2}\mu_i$ for the non-zero Laplacian eigenvalues
+$\mu_i=(q+1)-\lambda_i$, $|K(Y)|=\kappa(Y)$, and Ihara--Eichler--Jacquet--Langlands
+identifies $\Spec T_p\setminus\{q+1\}$ with the $a_p(f)$. The last identity is the
+definition of $a_p$.
+\end{proof}
+
+\begin{remark}[Bulk and boundary: what is, and is not, an algebra]\label{I:rem:noalgebra}
+Since $A=\C^n$ we have $KK^0(A,A)\cong M_n(\Z)$, so
+\[
+x_p:=[\cE_p]-q\cdot 1_A=T_p-qI_n\ \in\ KK^0(A,A)
+\]
+is a bona fide Kasparov class, and $1-x_p=\Delta_p$. What fails is not the class but its
+\emph{realisation}: a class is the class of a $C^*$-correspondence only if its matrix has
+non-negative entries, and $T_p-qI_n$ has $-q$ on the diagonal. Hence $x_p$ is a formal
+difference of correspondences, no Cuntz--Pimsner algebra $\cO_\cE$ has index map
+$\Delta_p$, and we assert none. The asymmetry between the two channels is therefore not
+only arithmetic but ontological:
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+& realisation & invariant\\
+\midrule
+boundary channel & a $C^*$-algebra, $\cO_{A^{\mathrm{nb}}_Y}\simeq C(\partial X)\rtimes\Gamma$
+& $\Z^r\oplus\Z/(r-1)$, no arithmetic\\
+bulk (Laplacian) channel & a $\Z[u^{\pm1}]$-module and an index & $\Z\oplus\Jac(Y)$, all the arithmetic\\
+\bottomrule
+\end{tabular}
+\end{center}
+Everything asserted in Theorem~\\ref{I:thm:structure} is unconditional at the level of the
+Ihara module, of the index of $\mathsf{D}$, and of the integers; what is missing is an
+honest $C^*$-algebra whose $K_0$ is $\Z\oplus\Jac(Y)$. Producing one --- equivalently,
+realising the virtual correspondence $x_p$ by a genuine, possibly non-unital or
+$\Z/2$-graded, construction --- is the main open problem of this paper.
+
+There is a purely algebraic first step, and it isolates exactly where the difficulty
+lives. The Ihara pencil $1-uT_p+qu^2$ of Definition~\\ref{I:def:ihara} is a quadratic
+matrix polynomial, and it linearises in the standard way over $A^{\oplus2}$,
+$A=\C^n$: setting
+\[
+C:=\begin{pmatrix}T_p&-qI_n\\ I_n&0\end{pmatrix}\ \in\ M_{2n}(\Z),
+\qquad
+\det\bigl(I_{2n}-uC\bigr)=\det\bigl(I_n-uT_p+qu^2I_n\bigr),
+\]
+a companion-matrix identity verified directly by block Gaussian elimination on
+$I-uC$. Thus $C$ is a single, honest $\Z$-linear class in $KK^0(A^{\oplus2},A^{\oplus2})$
+representing the whole Ihara pencil at once, with $[\cE_p]=T_p$ visible in its upper
+left block; the obstruction of the previous paragraph has been moved, not removed, since
+$C$ still has the non-positive block $-qI_n$ in its upper right corner and so is still
+not the matrix of a $C^*$-correspondence over $A^{\oplus2}$.
+
+The problem left for the sequel is accordingly sharp: \emph{dilate} $C$, in the sense of
+dilation theory, to a genuinely non-negative matrix over a larger vertex algebra
+$\widetilde A\supset A^{\oplus2}$ --- for instance by the Drinen--Tomforde
+desingularisation of a directed graph carrying $C$ as a signed incidence matrix, with the
+negative entries reinterpreted as sinks absorbing mass at rate $q$ per vertex --- in such
+a way that the resulting Cuntz--Pimsner (or graph) algebra $\cO_{\widetilde C}$ receives
+$A^{\oplus2}$ as a full corner and has $K_0(\cO_{\widetilde C})\cong\Z\oplus\Jac(Y)$ by
+Morita reduction back to $\Delta_p$. We do not carry this out here; it is the intended
+content of a sequel to this paper, and the companion linearisation above is offered as
+its starting point.
+\end{remark}
+
+\begin{theorem}[Boundary channel is arithmetically blind]\label{I:thm:blind}
+Let $Y$ be any finite connected $(q+1)$-regular graph and $\Gamma$ the corresponding
+torsion-free cocompact lattice, $r=\rank\Gamma=m-n+1\ge2$. Then
+\[
+K_0\bigl(C(\partial X)\rtimes\Gamma\bigr)\cong\Z^{\,r}\oplus\Z/(r-1)\Z,
+\qquad
+K_1\bigl(C(\partial X)\rtimes\Gamma\bigr)\cong\Z^{\,r},
+\qquad r=\rank\Gamma=\tfrac{(q-1)n}{2}+1 .
+\]
+The torsion of the boundary quotient therefore depends only on the Euler characteristic
+$r-1=|E_Y|-|V_Y|$ of $Y$, hence only on the isomorphism class of $\Gamma$ as an abstract
+free group: \emph{no Hecke eigenvalue is visible in the boundary channel.}
+\end{theorem}
+
+\begin{proof}
+Write $A^{\mathrm{nb}}=T^{t}S-J$, where $S,T\in M_{n\times2m}(\Z)$ are the incidence
+matrices $S_{v,e}=[o(e)=v]$, $T_{v,e}=[t(e)=v]$ and $J$ is the edge-reversal involution,
+and put $M:=I_{2m}-A^{\mathrm{nb}}=I+J-T^{t}S$. Since $\SNF(M)=\SNF(M^{t})$ it suffices
+to compute $\coker M=\Z^{E_Y}/M\Z^{E_Y}$, and by Theorem~\\ref{I:thm:pimsner} this is
+$K_0$, with $K_1=\ker M^t$.
+
+Reading off the columns of $M$, the presentation of $\coker M$ has generators $[e]$,
+$e\in E_Y$, and one relation for each $f\in E_Y$,
+\begin{equation}\label{I:eq:blindrel}
+[f]+[\bar f]=c_{o(f)},\qquad\text{where}\quad c_v:=\sum_{t(e)=v}[e].
+\end{equation}
+Applying \\eqref{I:eq:blindrel} to $f$ and to $\bar f$ gives $c_{o(f)}=c_{t(f)}$ for every
+edge, so $c_v=:c$ is independent of $v$ because $Y$ is connected. Fix an orientation
+$E_Y^+$, use $[\bar f]=c-[f]$ to eliminate the reversed generators, and let
+$d^-(v):=\#\{f\in E_Y^+:o(f)=v\}$. Expanding $c_v$ in the surviving generators turns the
+$n$ remaining relations into
+\[
+R_v:\qquad \bigl(\partial^{\,t}\text{-column at }v\bigr)\ :\
+\sum_{f\in E_Y^+,\,t(f)=v}[f]-\sum_{f\in E_Y^+,\,o(f)=v}[f]
+=\bigl(1-d^-(v)\bigr)\,c .
+\]
+Hence $\coker M\cong\coker B$ for the $(m+1)\times n$ integer matrix
+\[
+B=\begin{pmatrix}\partial^{\,t}\\ -\lambda^{t}\end{pmatrix},
+\qquad \lambda_v:=1-d^-(v),
+\]
+on generators $E_Y^+\cup\{c\}$. Projecting away the last coordinate gives the exact
+sequence
+\[
+0\longrightarrow\langle c\rangle\longrightarrow\coker B
+\longrightarrow\coker\bigl(\partial^{\,t}\bigr)=H^1(Y;\Z)\cong\Z^{\,r}
+\longrightarrow0 ,
+\]
+$H^1$ of a graph being free of rank $r$. Finally $t\,c=0$ in $\coker B$ if and only if
+$(0,\dots,0,t)\in\operatorname{im}B$, i.e. if and only if there is $x\in\Z^{V_Y}$ with
+$\partial^{\,t}x=0$ and $-\lambda\cdot x=t$; the first condition forces $x=a\mathbf1$,
+and then
+\[
+-\lambda\cdot x=-a\sum_{v}\bigl(1-d^-(v)\bigr)=-a\,(n-m)=a\,(r-1),
+\]
+so $c$ has order exactly $r-1$. The quotient $\Z^r$ being free, the sequence splits and
+$\coker M\cong\Z^{r}\oplus\Z/(r-1)$; $\ker M^t$ is free of rank $2m-\rank M=r$.
+\end{proof}
+
+\begin{remark}[Where the spectrum goes]\label{I:rem:wherespectrum}
+The proof shows exactly how the Hecke data disappear, and it is worth recording that the
+mechanism is \emph{not} the one suggested by Bass's identity \\eqref{I:eq:bass}: at $u=1$
+both factors of \\eqref{I:eq:bass} vanish, so \\eqref{I:eq:bass} degenerates to $0=0$ and
+carries no integral information there. What kills the spectrum is the local relation
+\\eqref{I:eq:blindrel}: it forces the $n$ a priori distinct classes $c_v$ to collapse to a
+single class $c$, after which the only surviving numerical invariant is
+$\sum_v(1-d^-(v))=n-m$. The orientation-dependent quantities $d^-(v)$ do not survive
+individually --- only their sum does --- and the sum is the Euler characteristic. The
+adjacency matrix $T_p$ never enters the computation at all.
+\end{remark}
+
+\begin{remark}[The dichotomy]\label{I:rem:dichotomy}
+Theorems~\\ref{I:thm:structure} and \\ref{I:thm:blind} together are the main structural finding
+of this paper. The boundary quotient --- the natural non-commutative object, the simple
+purely infinite Cuntz--Krieger algebra of the tail relation --- has $K$-theory of purely
+topological content. The arithmetic sits one specialisation away, in the Hecke pencil
+$1-uT_p+qu^2$ at $u=1$; equivalently, the arithmetic is the \emph{first-order} datum of
+the Ihara zeta function at its trivial zero. This is the exact non-commutative analogue
+of the classical statement that $\zeta_Y(u)$ has a trivial factor $(1-u^2)^{m-n}$ and
+that the interesting arithmetic is in the reduced factor.
+\end{remark}
+
+\begin{corollary}[Frobenius traces as torsion]\label{I:cor:frobenius}
+Let $Y$ carry a single non-trivial Hecke eigenvalue $a_p$ with multiplicity $n-1$. Then
+$\Jac(Y)\cong(\Z/(p+1-a_p))^{\,n-2}$ whenever the Laplacian is of the form
+$cI-J$, and in general $|\Jac(Y)|=\frac1n\prod_f\#E_f(\F_p)$ exactly. In particular the
+Frobenius trace $a_p$ is recovered from $K_0$ by
+\[
+a_p=p+1-\bigl(n\cdot|\Tors K_0|\bigr)^{1/(n-1)}
+\]
+in the eigenvalue-homogeneous case, and in general from the elementary divisors by the
+inverse of the Smith algorithm.
+\end{corollary}
+
+\begin{corollary}[Ramanujan bound; strict, and never attained]\label{I:cor:ramanujan}
+If $Y$ is Ramanujan, i.e. $|\lambda|\le2\sqrt q$ for every
+$\lambda\in\Spec T_p\setminus\{\pm(q+1)\}$, then
+\[
+\bigl|\Tors K_0\bigr|\ \le\ \frac1n\bigl(q+1+2\sqrt q\bigr)^{\,n-1}
+=\frac1n\bigl(1+\sqrt q\bigr)^{2(n-1)},
+\]
+so that, with $B(q):=2\log(1+\sqrt q)$,
+\[
+\limsup_{n\to\infty}\frac1n\log\bigl|\Tors K_0\bigr|\ \le\ B(q).
+\]
+The bound is unconditional on the Ramanujan locus, but it is \emph{never} an equality,
+and the deficit is exponential in $n$: see Theorem~\\ref{I:thm:bstorsion} and
+Remark~\\ref{I:rem:bsnumerics}.
+\end{corollary}
+
+\begin{theorem}[Benjamini--Schramm asymptotic torsion]\label{I:thm:bstorsion}
+Let $(Y_j)_{j\ge1}$ be finite connected $(q+1)$-regular graphs, $n_j=|V_{Y_j}|\to\infty$,
+which Benjamini--Schramm converge to the $(q+1)$-regular tree $T_{q+1}$ --- for instance
+any family of girth tending to infinity, such as the Lubotzky--Phillips--Sarnak graphs
+$X^{p,\ell}$ at fixed $p=q$. Let $\cO_j$ be the associated Hecke--Laplacian invariant of
+Theorem~\\ref{I:thm:structure}. Then the torsion density converges, and its limit is Lyons'
+tree entropy of $T_{q+1}$:
+\begin{equation}\label{I:eq:bslimit}
+\lim_{j\to\infty}\frac1{n_j}\log\bigl|\Tors K_0(\cO_j)\bigr|
+\;=\;h(q)\;:=\;q\log q-\frac{q-1}{2}\log\bigl(q^2-1\bigr)
+\;=\;\log\frac{q^{\,q}}{(q^2-1)^{(q-1)/2}} ,
+\end{equation}
+equivalently $h(q)=\int_{-2\sqrt q}^{2\sqrt q}\log\bigl(q+1-x\bigr)\,d\mu_{\mathrm{KM}}(x)$
+against the Kesten--McKay measure
+\[
+d\mu_{\mathrm{KM}}(x)=\frac{(q+1)\sqrt{4q-x^2}}{2\pi\bigl((q+1)^2-x^2\bigr)}\,dx ,
+\]
+the spectral measure of the simple random walk on $T_{q+1}$ \cite{Kesten1959,McKay1981}.
+Moreover $h(q)<B(q)$ for every $q$, with
+\[
+\frac{B(q)}{h(q)}=2.1061,\ 1.3889,\ 1.2340,\ 1.0957,\ 1.0089
+\quad\text{for}\quad q=2,5,9,29,999.
+\]
+\end{theorem}
+
+\begin{corollary}[The deficit, to two orders]\label{I:cor:deficit}
+As $q\to\infty$,
+\begin{equation}\label{I:eq:deficit}
+B(q)-h(q)\;=\;2q^{-1/2}-\tfrac32q^{-1}+O\bigl(q^{-3/2}\bigr) ,
+\end{equation}
+an asymptotic equality, not a numerical fit. Consequently, on graphs with $n$
+vertices, the Ramanujan bound overstates $|\Tors K_0|$ by the factor
+\[
+\exp\bigl((B(q)-h(q))\,n\bigr)
+\;=\;
+\exp\bigl(2n\,q^{-1/2}+O(n\,q^{-1})\bigr) ;
+\]
+at $q=2$, $n=2000$ this factor is $e^{1852}$.
+\end{corollary}
+
+\begin{proof}
+Write $h(q)=\log q-\tfrac{q-1}2\log(1-q^{-2})$ and expand
+$-\log(1-q^{-2})=q^{-2}+\tfrac12q^{-4}+O(q^{-6})$, so
+\[
+h(q)=\log q+\tfrac{q-1}2\bigl(q^{-2}+O(q^{-4})\bigr)
+=\log q+\tfrac12q^{-1}-\tfrac12q^{-2}+O(q^{-3}) .
+\]
+Write $B(q)=\log q+2\log(1+q^{-1/2})$ and expand
+$\log(1+q^{-1/2})=q^{-1/2}-\tfrac12q^{-1}+\tfrac13q^{-3/2}+O(q^{-2})$, so
+\[
+B(q)=\log q+2q^{-1/2}-q^{-1}+\tfrac23q^{-3/2}+O(q^{-2}) .
+\]
+Subtracting, the $\log q$ terms cancel and
+$B(q)-h(q)=2q^{-1/2}-q^{-1}-\tfrac12q^{-1}+O(q^{-3/2})
+=2q^{-1/2}-\tfrac32q^{-1}+O(q^{-3/2})$, which is \\eqref{I:eq:deficit}. (A direct
+computer-algebra expansion confirms the next two orders as well, and that the
+$q^{-2}$ coefficient vanishes identically --- the $-\tfrac12q^{-2}$ term present in
+$B(q)$ and in $h(q)$ separately cancels exactly on subtraction:
+$B(q)-h(q)=2q^{-1/2}-\tfrac32q^{-1}+\tfrac23q^{-3/2}+\tfrac25q^{-5/2}+O(q^{-3})$.) The
+numerical values of Remark~\\ref{I:rem:bsnumerics} and of the ratios above were computed
+independently of this expansion and agree with it: at $q=10^4$, \\eqref{I:eq:deficit}
+predicts $0.02-0.00015=0.01985$ against the quadrature value $0.019852$.
+\end{proof}
+
+\begin{proof}[Proof]
+By Theorem~\\ref{I:thm:structure}(iii), $|\Tors K_0(\cO_j)|=\kappa(Y_j)$, so
+\\eqref{I:eq:bslimit} is Lyons' theorem on the asymptotics of the number of spanning trees
+along Benjamini--Schramm convergent sequences of bounded degree \cite{Lyons2005},
+applied to the limit $T_{q+1}$, together with Kirchhoff's formula in the form
+$\frac1n\log\kappa=\frac1n\bigl[\sum_{i\ge2}\log(q+1-\lambda_i)-\log n\bigr]$ and the
+convergence of the empirical spectral measures of $T_p$ to $\mu_{\mathrm{KM}}$. The
+closed form and the integral representation of $h(q)$ agree to six decimals for
+$q+1\in\{3,4,6,8,14,30\}$ by numerical quadrature. Strictness of $h<B$ is the strict
+concavity of $\log$ together with the fact that $\mu_{\mathrm{KM}}$ is not a point mass
+at the spectral edge.
+\end{proof}
+
+\begin{remark}[Why the Ramanujan bound is the wrong instrument]\label{I:rem:bsnumerics}
+Corollary~\\ref{I:cor:ramanujan} replaces the whole spectrum by its extreme point
+$2\sqrt q$. But $\mu_{\mathrm{KM}}$ vanishes like a square root at $\pm2\sqrt q$ and puts
+almost no mass there, so the bound is a supremum where the truth is an integral; this,
+and not any slack in the choice of family, is the source of the exponential deficit of
+Theorem~\\ref{I:thm:bstorsion}.
+
+The deeper point is that the Ramanujan property is neither necessary nor sufficient for
+the limit \\eqref{I:eq:bslimit}, and that the invariant which does control the torsion
+density is Benjamini--Schramm convergence. Both halves are visible in exact computation.
+Below, $\lambda_2$ is the largest non-trivial eigenvalue in absolute value,
+$\mathrm{KS}$ the Kolmogorov--Smirnov distance from the empirical spectral distribution
+of $T_p$ to $\mu_{\mathrm{KM}}$, and the last two columns compare the measured torsion
+density with $h(q)$ and with the Ramanujan bound $B(q)$.
+\begin{center}\small
+\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccccccc}
+\toprule
+$Y$ & $n$ & $q$ & $\lambda_2$ & Ram.\ ? & $\mathrm{KS}$
+& ratio to $h(q)$ & ratio to $B(q)$\\
+\midrule
+random $3$-regular   & $200$  & $2$ & $2.8315$ & no  & $0.0142$ & $0.9774$ & $0.4641$\\
+random $3$-regular   & $1000$ & $2$ & $2.8261$ & yes & $0.0032$ & $0.9937$ & $0.4719$\\
+random $3$-regular   & $2000$ & $2$ & $2.8239$ & yes & $0.0021$ & $0.9964$ & $0.4731$\\
+$\mathrm{PG}(2,5)$   & $62$   & $5$ & $2.2361$ & yes & $0.2661$ & $0.9669$ & $0.6962$\\
+LPS $X^{5,13}$       & $2184$ & $5$ & $4.2497$ & yes & $0.0375$ & $0.9982$ & $0.7187$\\
+LPS $X^{5,17}$       & $4896$ & $5$ & $4.3089$ & yes & $0.0307$ & $0.9991$ & $0.7194$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Two rows falsify the spectral-gap reading. The random $3$-regular graph on $200$
+vertices has $\lambda_2=2.8315>2\sqrt2=2.8284$ and is therefore \emph{not} Ramanujan,
+yet its torsion density is already within $2.3\%$ of $h(2)$. The incidence graph of
+$\mathrm{PG}(2,5)$ is Ramanujan with room to spare, $\lambda_2=\sqrt5=2.2361$ against
+the permitted $2\sqrt5=4.4721$, yet it has girth $6$, its spectral distribution is far
+from Kesten--McKay ($\mathrm{KS}=0.27$), and its torsion density falls $3.3\%$
+\emph{below} $h(5)$. The $\mathrm{KS}$ column and the $h$-ratio column move together
+throughout; the $\lambda_2$ column does not track either.
+
+One further datum belongs here, because it bears on Remark~\\ref{I:rem:ghost} and on the
+statistics of arithmetic spectra generally. The graph $X^{5,13}$ has $2184$ vertices but
+only $55$ distinct eigenvalues, of maximal multiplicity $96$, whereas a random
+$3$-regular graph on $2000$ vertices has $2000$ distinct eigenvalues. The degeneracy is
+forced by the $\mathrm{PGL}_2(\F_{13})$ representation theory through which the Hecke
+operator factors, and it is why the empirical spectral distribution of an LPS graph is a
+coarse staircase whose $\mathrm{KS}$ distance decays more slowly than that of a random
+graph of half the size. It is also the mechanism behind the Poisson --- not
+Gaussian-unitary --- level statistics observed in arithmetic quantum chaos: large Hecke
+symmetry produces large degeneracy, and degeneracy is the opposite of level repulsion.
+\end{remark}
+
+\subsection{The algorithm, and its verification}
+
+\begin{algorithm}[Hecke $\to$ torsion]\label{I:alg:main}
+\textbf{Input:} a prime $p$ (so $q=p$), a torsion-free cocompact $\Gamma\le\PGL_2(\Q_p)$
+presented by its quotient graph $Y=\Gamma\backslash X$, i.e. by the integer matrix
+$T_p\in M_n(\Z)$.
+\begin{enumerate}
+\item[(1)] Form $\Delta_p:=(q+1)I_n-T_p\in M_n(\Z)$.
+\item[(2)] Compute the Smith normal form over $\Z$,
+$U\Delta_pW=\mathrm{diag}(d_1,\dots,d_{n-1},0)$ with $d_1\mid\dots\mid d_{n-1}$
+(cost $O(n^3)$ ring operations with the usual bit-length control).
+\item[(3)] Output $K_0=\Z\oplus\bigoplus_i\Z/d_i$, $K_1=\Z$, and
+$|\Tors K_0|=\prod_id_i=\kappa(Y)$.
+\item[(4)] \emph{Certificate.} Independently compute
+$\frac1n\prod_{\lambda\neq q+1}(q+1-\lambda)$ from the characteristic polynomial of
+$T_p$, and $\frac1n\prod_f(p+1-a_p(f))$ from the Hecke eigenvalues; the three numbers
+must agree. Optionally verify Bass's identity \\eqref{I:eq:bass} symbolically as a check on
+the graph data.
+\end{enumerate}
+\textbf{Output:} the torsion subgroup of $K_0$ as an explicit finite abelian group,
+together with its factorisation into Frobenius traces.
+\end{algorithm}
+
+\begin{table}[t]
+\centering\small
+\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccccc c}
+\toprule
+$Y$ & $q$ & $n$ & $\Jac(Y)=\Tors\coker\Delta_p$ & $\kappa(Y)$ & boundary $\Tors K_0$ & $r-1$\\
+\midrule
+$K_4$              &2& 4&$(\Z/4)^2$                   &$16$    &$\Z/2$&2\\
+$K_5$              &3& 5&$(\Z/5)^3$                   &$125$   &$\Z/5$&5\\
+$K_6$              &4& 6&$(\Z/6)^4$                   &$1296$  &$\Z/9$&9\\
+$K_{3,3}$          &2& 6&$\Z/3\oplus\Z/3\oplus\Z/9$   &$81$    &$\Z/3$&3\\
+$Q_3$ (cube)       &2& 8&$\Z/2\oplus\Z/8\oplus\Z/24$  &$384$   &$\Z/4$&4\\
+prism $C_4\times K_2$&2& 8&$\Z/2\oplus\Z/8\oplus\Z/24$&$384$   &$\Z/4$&4\\
+Wagner $V_8$       &2& 8&$\Z/7\oplus\Z/56$            &$392$   &$\Z/4$&4\\
+prism $C_5\times K_2$&2&10&$\Z/19\oplus\Z/95$         &$1805$  &$\Z/5$&5\\
+M\"obius $V_{10}$  &2&10&$\Z/11\oplus\Z/165$          &$1815$  &$\Z/5$&5\\
+Petersen           &2&10&$\Z/2\oplus(\Z/10)^3$        &$2000$  &$\Z/5$&5\\
+Heawood            &2&14&$(\Z/7)^4\oplus\Z/21$        &$50421$ &$\Z/7$&7\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{Exact Smith-normal-form computations. Columns 4--5: the Laplacian channel,
+Theorem~\\ref{I:thm:structure}; the order always equals
+$\frac1n\prod_{\lambda\neq q+1}(q+1-\lambda)$. Columns 6--7: the boundary channel,
+Theorem~\\ref{I:thm:blind}; the torsion is always cyclic of order $r-1=(q-1)n/2$,
+independently of the spectrum, confirming the proof given there. Bass's identity
+\\eqref{I:eq:bass} was verified symbolically in the first five rows.}
+\label{I:tab:snf}
+\end{table}
+
+\begin{example}[Level $37$, $p=2$: two elliptic curves, one torsion group]\label{I:ex:37}
+The space $S_2(\Gamma_0(37))$ is two-dimensional, spanned by the newforms of the
+elliptic curves $37a: y^2+y=x^3-x$ (rank one) and $37b: y^2+y=x^3+x^2-23x-50$ (rank
+zero), with $a_2(37a)=-2$ and $a_2(37b)=0$. Correspondingly
+\[
+\#E_{37a}(\F_2)=2+1-(-2)=5,\qquad \#E_{37b}(\F_2)=2+1-0=3,
+\]
+and the Hecke--Laplacian of the associated $3$-regular Hecke system has non-zero
+eigenvalues $5$ and $3$, so \\eqref{I:eq:torsionorder} gives
+$|\Tors K_0|=\tfrac13\cdot5\cdot3=5$. The Frobenius traces of two distinct elliptic
+curves precipitate into a single cyclic group of order five.
+\end{example}
+
+\begin{example}[Level $11$, $p=3$]\label{I:ex:11}
+For the definite quaternion algebra of discriminant $11$ the Brandt matrix at $p=3$ is
+$B(3)=\begin{psmallmatrix}2&2\\3&1\end{psmallmatrix}$, with spectrum $\{4,-1\}$: the
+Eisenstein eigenvalue $q+1=4$ and $a_3(11a)=-1$, matching
+$\eta(z)^2\eta(11z)^2=q-2q^2-q^3+2q^4+\cdots$. Then
+$q+1-a_3=5=\#E_{11a}(\F_3)=|E_{11a}(\Q)_{\mathrm{tors}}|$.
+\end{example}
+
+\begin{remark}[Weighted quotients]\label{I:rem:weights}
+Examples~\\ref{I:ex:37} and \\ref{I:ex:11} are stated at the level of the eigenvalue identity
+$q+1-a_p=\#E(\F_p)$, which is unconditional. The passage to the critical group in
+Theorem~\\ref{I:thm:structure}(iii) requires $\Gamma$ torsion-free, so that $Y$ is a genuine
+$(q+1)$-regular graph; Brandt and supersingular isogeny graphs are quotients by groups
+with torsion, i.e. graphs of groups with vertex weights $w_i=|\Aut|/2$, and for them
+Theorem~\\ref{I:thm:structure} holds in its weighted form, with $\Delta_p$ the weighted
+Laplacian $w_iB_{ij}=w_jB_{ji}$ and Kirchhoff's theorem replaced by its weighted
+version. Congruence subgroups of sufficiently high level are torsion-free and remove the
+issue at the cost of enlarging $n$.
+
+The structurally correct home for the weighted case is orbifold, i.e. groupoid,
+$K$-theory. A graph of groups $(Y,\Gamma_v,\Gamma_e)$ in the sense of Bass--Serre is the
+same datum as an \'etale groupoid $\cG_{Y}$ with unit space $V_Y$ and isotropy
+$\Gamma_v$; the object to compute is $K_*(C^*(\cG_Y))$, and the Bass--Serre
+Mayer--Vietoris sequence
+\[
+\cdots\to\bigoplus_{e\in E_Y}K_*\bigl(C^*(\Gamma_e)\bigr)
+\xrightarrow{\ \partial\ }\bigoplus_{v\in V_Y}K_*\bigl(C^*(\Gamma_v)\bigr)
+\to K_*\bigl(C^*(\cG_Y)\bigr)\to\cdots
+\]
+replaces $\Z^{E_Y}\to\Z^{V_Y}$ by a sequence of representation rings
+$R(\Gamma_v)=K_0(C^*(\Gamma_v))$, of ranks $|\Irr\Gamma_v|$. The vertex weights are then
+not an ad hoc normalisation but the ranks of these isotropy contributions: the composite
+$\partial\partial^{\,t}$ is the weighted Laplacian $w_iB_{ij}=w_jB_{ji}$ with
+$w_i=|\Aut|/2$, the Kirchhoff count acquires the factor $\prod_vw_v^{-1}$ of the
+Eichler mass formula, and the apparently fractional indices --- the value
+$\tfrac12(4-a_3)$ of Example~\\ref{I:ex:11} is not an integer --- become integral once read
+in the equivariant group of Proposition~\\ref{I:prop:equivariant} rather than in $\Z$. The
+$\GL_2$ analogue of Paper XXXVIII's entanglement law belongs here, and we do not develop
+it in this paper.
+\end{remark}
+
+\subsection{The equivariant refinement}
+
+\begin{proposition}[Equivariant Hecke $K$-theory]\label{I:prop:equivariant}
+Let $C$ be a finite group acting on $Y$ by graph automorphisms commuting with $T_p$ ---
+in the arithmetic case, $C=\Gal(H/K)$ acting through the class group, as in Paper
+XXXVIII. Then $K_0^C(A)=R(C)^{\,n_C}$ for the orbit decomposition, the index map of
+Theorem~\\ref{I:thm:pimsner} is the $R(C)$-linear extension of $\Delta_p$, and
+\[
+K_0^C(\cO)\cong\coker_{R(C)}\bigl(\Delta_p\otimes_\Z R(C)\bigr),
+\qquad
+K_1^C(\cO)\cong\ker_{R(C)}\bigl(\Delta_p\otimes_\Z R(C)\bigr).
+\]
+The entanglement law of Paper XXXVIII transfers verbatim: free $\Z[C]$-strata of the
+vertex module contribute once by Shapiro's lemma, while strata with trivial or sign
+action are doubled or sign-twisted by $R(C)$; the orders of the invariant factors are
+unchanged, only their representation labels.
+\end{proposition}
+
+\subsection{What the two channels say about Langlands}
+
+We summarise the bridge as a table of correspondences, each entry of which is a theorem
+or a definition above, not an analogy.
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lll}
+\toprule
+Automorphic side & Operator-algebraic side & Reference\\
+\midrule
+unramified $\pi_p$, Satake $(\alpha_{p,1},\alpha_{p,2})$
+& Radon--Nikodym cocycle $e^{-\beta c_\pi}$ & Def.~\\ref{I:def:dynamics}\\
+local $L$-factor $L_p(\beta,\pi_p)$
+& partition function $Z_p(\beta;\pi)$ & Thm~\\ref{I:thm:partition}\\
+largest pole of $L_p$
+& critical inverse temperature $\beta_c(\pi_p)$ & Thm~\\ref{I:thm:partition}\\
+temperedness (Ramanujan) at $p$
+& $\beta_c(\pi_p)=w/2$ & Thm~\\ref{I:thm:partition}\\
+Eisenstein locus
+& the only locus carrying $\KMS$ \emph{states} & Thm~\\ref{I:thm:perron}\\
+Rankin--Selberg $L(s,\pi\times\widetilde{\pi'})$
+& Kakutani/Hellinger obstruction $\Xi_\beta$ & Thm~\\ref{I:thm:kakutani}\\
+strong multiplicity one
+& mutual singularity of phases & Cor.~\\ref{I:cor:multone}\\
+motivic weight $w$
+& width of the equilibrium/obstruction gap & Thm~\\ref{I:thm:gap}\\
+Hecke recursion $T T_n=T_{n+1}+qT_{n-1}$
+& Ihara module $\Z[u^{\pm}]^n/(1-uT_p+qu^2)$ & Def.~\\ref{I:def:ihara}\\
+Ihara zeta $Z_Y(u)$
+& Fitting ideal of the Ihara module & Prop.~\\ref{I:prop:bass}\\
+Frobenius trace $a_p(f)$, $\#E_f(\F_p)$
+& invariant factors of $\SNF(\Delta_p)$ & Thm~\\ref{I:thm:structure}\\
+Euler characteristic of $Y$ (no arithmetic)
+& torsion of the boundary quotient & Thm~\\ref{I:thm:blind}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The reading of the table is the thesis of the paper. Along the top half --- the
+thermodynamic rows --- the correspondence is exact but weight-zero: it reproduces class
+field theory and Artin data, and Theorem~\\ref{I:thm:gap} measures precisely how far it
+falls short above weight zero. Along the bottom half --- the $K$-theoretic rows --- the
+correspondence is insensitive to temperature and to positivity, and it does carry
+weight-two data, but only after the specialisation $u=1$ that separates the Laplacian
+channel from the boundary channel. An algorithmic non-commutative class field theory for
+$\GL_2$ is therefore not one bridge but two, and Bass's identity \\eqref{I:eq:bass} is the
+only thing that connects them.
+
+\section*{Acknowledgement of provenance and caveats}
+
+This is an unrefereed preprint and no priority check against the literature has been
+carried out. The following are used as known and are not proved here: the Satake
+isomorphism and the Hecke recursion; Ihara's theorem and Bass's determinant identity;
+Kirchhoff's matrix-tree theorem and the theory of the critical group; the
+Eichler--Shimura and Jacquet--Langlands correspondences; Kakutani's dichotomy for product
+measures; Jacquet--Shalika non-vanishing for Rankin--Selberg $L$-functions; Renault's
+theory of groupoid C*-algebras and the correspondence between $\KMS$ states and conformal
+measures; Cuntz--Krieger and Cuntz--Pimsner $K$-theory and Pimsner's exact sequence. The
+computations of Table~\\ref{I:tab:snf}, and the spectral and torsion-density computations of
+Remark~\\ref{I:rem:bsnumerics}, are exact or numerically controlled and were carried out
+independently of the statements they confirm. Theorem~\\ref{I:thm:bstorsion} rests on
+Lyons' spanning-tree asymptotics \cite{Lyons2005}, which we quote and do not prove, and
+Remark~\\ref{I:rem:bsnumerics} on the Kesten--McKay spectral distribution
+\cite{Kesten1959,McKay1981}. The one substantive gap left open is the one isolated in
+Remark~\\ref{I:rem:noalgebra}: the Laplacian channel is a module and an index, not yet a
+$C^*$-algebra.

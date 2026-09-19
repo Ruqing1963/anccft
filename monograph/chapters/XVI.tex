@@ -1,0 +1,399 @@
+% generated from Paper 16/anccft16.tex
+\renewcommand{\XX}{\mathfrak{X}}
+\chapter{Algorithmic non-commutative class field theory, XVI: the out-covering correspondence of the head map, its $K_0$-index $\et$, and the
+$\KK$-category of the Iwahori tower}\label{chap:XVI}
+\chaptermark{XVI}
+\begin{chapterabstract}
+[Ch.~\ref{chap:VIII}] realized the tail norm of the Iwahori tower on the shadow Kirchberg algebras
+$\cO_k$: the tail map $\tau$ is an in-covering, so it induces a canonical unital
+$*$-homomorphism $\varphi_k\colon\cO_k\to\cO_{k+1}$, whose $K_0$-map is the pullback
+$\taup$ \emph{up} the tower. It left open [Ch.~\ref{chap:VIII}, Rem.~2.5, 2.6, 5.1(a)] the mirror
+question: the head map $\eta$ is an out-covering, the pushforward $\et$ is the one that
+descends on the $K_0$-side ($\et A_{k+1}^{t}=A_k^{t}\et$), yet no $*$-homomorphism
+$\cO_{k+1}\to\cO_k$ can induce it, because $\et[1]=q[1]$ forces non-unitality and the
+Kirchberg--Phillips lift is non-canonical. This paper settles it: the canonical object
+is not a homomorphism but a $C^*$-correspondence. We build from the out-covering
+$\eta^{\sharp}$ a right Hilbert $\cO_k$-module
+$\cX_\eta=\bigoplus_{w}p_{\eta^{\sharp}(w)}\cO_k$, finitely generated and projective, and
+a left action $\phi\colon\cO_{k+1}\to\cK(\cX_\eta)$ by compact operators; the out-covering
+bijection on out-arcs is exactly what makes $\phi$ satisfy (CK2), where the sum-over-lifts
+homomorphism of [Ch.~\ref{chap:VIII}] had failed. The pair $(\cX_\eta,\phi)$ is an injective, full,
+proper correspondence, so it defines a canonical class
+$[\cX_\eta]\in\KK(\cO_{k+1},\cO_k)$, and its $K_0$-index map is precisely the head
+pushforward $\et$; as a right module $[\cX_\eta]=q\,[1_{\cO_k}]$. The correspondence is
+not invertible in $\KK$: its index $\et$ has kernel the $2$-torsion of $\Jac(Y_{k+1})$,
+of order $q^{\,n_k(q-1)-1}$. The two families of morphisms organize the levels into a
+small $\KK$-category with objects $\{\cO_k\}$: alongside the upward homomorphisms
+$[\varphi_k]$ ($K_0$-map $\taup$) sit the downward correspondences $[\cX_\eta]$ ($K_0$-map
+$\et$), and their Kasparov products are the Hecke operators ---
+$[\varphi_k]\otimes[\cX_\eta]$ acts on $K_0(\cO_k)$ as $A_k^{t}$ and
+$[\cX_\eta]\otimes[\varphi_k]$ on $K_0(\cO_{k+1})$ as $A_{k+1}^{t}$. This is the
+$C^*$-bivariant form of the degeneracy calculus $\ta\etp=A_k$, $\etp\ta=A_{k+1}$ of [Ch.~\ref{chap:V}],
+and it completes the two-sided operator-algebraic picture of the tower. Everything is
+verified exactly on the $K_4$ tower at levels $k\le3$.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved. The $C^*$-algebraic inputs are the standard theory of
+$C^*$-correspondences and their Kasparov classes \cite{Kas,Bla}, the graph-algebra
+$K$-theory and gauge-invariant uniqueness of \cite{R}, and Kaminker--Putnam
+Spanier--Whitehead duality \cite{KP} (cited once, for context, in
+Remark~\\ref{XVI:rem:reversal}); the construction of $\cX_\eta$ and the computation of its index
+are done in full. The in-covering homomorphism $\varphi_k$ and the matrix identities of
+the tower are quoted from [Ch.~\ref{chap:VIII}] and re-verified. Every finite identity was
+machine-verified exactly on the $K_4$ tower, $q=2$, at the transitions
+$k+1\to k$ for $k\le3$ (shadow graphs on $24,48,96$ vertices; Table~\\ref{XVI:tab:battery}).
+Section~\\ref{XVI:sec:scope} records what is solved, what stays open, and where the
+specification is corrected.
+
+\section{Setting: the two degeneracy maps and the mirror problem}\label{XVI:sec:setting}
+
+We keep the conventions of [Ch.~\ref{chap:VIII}]. $Y_0$ is a finite connected $(q{+}1)$-regular graph,
+$q\ge2$; for $k\ge1$, $Y_k$ is the Iwahori path graph, a strongly connected $q$-regular
+digraph on $n_k=n(q{+}1)q^{k-1}$ vertices with $Y_{k+1}=L(Y_k)$ its line digraph, so
+$V_{Y_{k+1}}=\mathrm{Arcs}(Y_k)$. The tail and head maps $\tau,\eta\colon Y_{k+1}\to Y_k$
+send an arc to its source and range; $\ta,\et\in M_{n_k\times n_{k+1}}(\Z)$ are their
+pushforwards, $\taup=\ta^{t}$, $\etp=\et^{t}$ the pullbacks, with [Ch.~\ref{chap:V}, Prop.~1.2]
+\begin{equation}\label{XVI:eq:calc}
+\ta\etp=A_k,\quad \etp\ta=A_{k+1},\quad \ta\taup=\et\etp=qI,\quad
+\ta\Delta_{k+1}=\Delta_k\ta,\quad \et\Delta_{k+1}^{t}=\Delta_k^{t}\et,
+\end{equation}
+$\Delta_k=qI-A_k$. The shadow graph $\Ysh{k}$ has vertex set $V_{Y_k}\sqcup V_{Y_k}'$,
+the arcs of $Y_k$, one arc $v\to v'$, $c:=q-1$ return arcs $v'\to v$, and two loops at
+each $v'$; its vertex matrix is $B_k=\begin{psmallmatrix}A_k&I\\cI&2I\end{psmallmatrix}$
+and $\cO_k:=C^*(\Ysh{k})$ is a unital Kirchberg algebra with, in the convention
+$K_0(C^*(E))=\coker(1-A_E^{t})$ of \cite[Thm.~7.16]{R},
+\begin{equation}\label{XVI:eq:ktheory}
+K_0(\cO_k)=\coker(I-B_k^{t})\cong\Z\oplus\Jac(Y_k),\qquad K_1(\cO_k)=\ker(I-B_k^{t})=\Z ,
+\end{equation}
+by the factorization $U(I-B_k^{t})V=\Delta_k^{t}\oplus(-I)$ of [Ch.~\ref{chap:VIII}, Thm.~1.4] with
+$U=\begin{psmallmatrix}I&-cI\\0&I\end{psmallmatrix}$,
+$V=\begin{psmallmatrix}I&0\\-I&I\end{psmallmatrix}$.
+
+[Ch.~\ref{chap:VIII}] proved that $\tau$ extends to a graph morphism $\tau^{\sharp}\colon\Ysh{k+1}\to
+\Ysh{k}$ that is an \emph{in}-covering --- bijective on the in-arcs at every vertex --- and
+that in-coverings induce, by $p_v\mapsto\sum_{\tau^\sharp(w)=v}p_w$,
+$s_a\mapsto\sum_{\tau^\sharp(b)=a}s_b$, a canonical unital injective $*$-homomorphism
+$\varphi_k\colon\cO_k\to\cO_{k+1}$ [Ch.~\ref{chap:VIII}, Lem.~2.2, Thm.~2.5], whose $K_0$-map is the
+pullback $\taup$ (up the tower) and whose $K_1$-map is the identity.
+
+The head map is the mirror. Its shadow extension $\eta^{\sharp}\colon\Ysh{k+1}\to\Ysh{k}$
+is an \emph{out}-covering, bijective on out-arcs and $q$-to-one on in-arcs
+(Table~\\ref{XVI:tab:battery}, line (O)), and the sum-over-lifts formula \emph{fails} to be a
+homomorphism: for two arcs $f\ne f'$ of $\Ysh{k+1}$ over the same arc with the same range,
+the cross term $s_fs_{f'}^{*}$ does not vanish, so $(\sum_bs_b)$ is not a Cuntz--Krieger
+partial isometry [Ch.~\ref{chap:VIII}, Rem.~2.4]. Yet on $K_0$ it is the head pushforward $\et$, not
+$\ta$, that descends:
+\begin{equation}\label{XVI:eq:etdesc}
+\et A_{k+1}^{t}=A_k^{t}\et,\qquad
+H_k:=\begin{pmatrix}\et&0\\0&\et\end{pmatrix}\ \text{satisfies}\
+H_k(I-B_{k+1}^{t})=(I-B_k^{t})H_k ,
+\end{equation}
+the first being the transpose of $\ta A_{k+1}=A_k\ta$ from \\eqref{XVI:eq:calc};
+whereas $\operatorname{diag}(\ta,\ta)$ does \emph{not} intertwine $I-B^{t}$
+[Ch.~\ref{chap:VIII}, Thm.~2.5(iv)]. So the arrow the tower asks for --- a morphism
+$\cO_{k+1}\rightsquigarrow\cO_k$ realizing $\et$ downward --- exists on $K_0$ but cannot be
+a homomorphism, since additionally $H_k\mathbf1=q\mathbf1$ makes $\et[1_{\cO_{k+1}}]=q[1_{\cO_k}]$
+(a unit class cannot map to $q$ times a unit class). The resolution is that the morphism is
+a $C^*$-\emph{correspondence}.
+
+\section{The out-covering correspondence}\label{XVI:sec:corr}
+
+We recall that a $C^*$-correspondence ${}_A\cX_B$ is a right Hilbert $B$-module $\cX$ with a
+$*$-homomorphism $\phi\colon A\to\cL(\cX)$; if $\cX$ is finitely generated projective over a
+unital $B$ then $\cL(\cX)=\cK(\cX)$, and $(\cX,\phi,0)$ is an even Kasparov cycle defining
+$[\cX]\in\KK(A,B)$ whose product with $[e]\in K_0(A)$, $e=e^2=e^*\in M_\infty(A)$, is
+$[\phi(e)\cX]\in K_0(B)$ \cite{Kas,Bla}.
+
+Throughout this section $p:=\eta^{\sharp}\colon F\to E$, $F=\Ysh{k+1}$, $E=\Ysh{k}$, an
+out-covering: $s^{-1}(w)\to s^{-1}(p(w))$ is a bijection for every $w\in F^0$. Write
+$\{p_v,s_e\}$ for the generators of $\cO_k=C^*(E)$ and $\{q_w,t_f\}$ for those of
+$\cO_{k+1}=C^*(F)$.
+
+\begin{definition}[The head module]\label{XVI:def:module}
+Let
+\[
+\cX_\eta:=\bigoplus_{w\in F^0}p_{p(w)}\,\cO_k ,
+\]
+the right Hilbert $\cO_k$-module of finitely supported families $\xi=(\xi_w)_{w\in F^0}$
+with $\xi_w\in p_{p(w)}\cO_k$, right action $(\xi\cdot a)_w=\xi_wa$, and $\cO_k$-valued inner
+product $\langle\xi,\zeta\rangle=\sum_{w\in F^0}\xi_w^{*}\zeta_w$. Let $e_w\in\cX_\eta$ be
+the generator with $w$-component $p_{p(w)}$ and all others $0$.
+\end{definition}
+
+\begin{lemma}[The module is finitely generated projective and full]\label{XVI:lem:fgp}
+$\cX_\eta$ is a right Hilbert $\cO_k$-module with $\langle e_w,e_{w'}\rangle=\delta_{ww'}p_{p(w)}$,
+finite orthogonal generating set $\{e_w\}_{w\in F^0}$, and reconstruction
+$\xi=\sum_we_w\langle e_w,\xi\rangle$; hence $\cX_\eta$ is finitely generated projective,
+$\cL(\cX_\eta)=\cK(\cX_\eta)$, and
+\[
+[\cX_\eta]=\sum_{w\in F^0}[p_{p(w)}]=q\,[1_{\cO_k}]\in K_0(\cO_k),
+\]
+because every fibre of $\eta^{\sharp}$ has exactly $q$ elements. $\cX_\eta$ is full:
+$\overline{\langle\cX_\eta,\cX_\eta\rangle}=\cO_k$.
+\end{lemma}
+
+\begin{proof}
+$\cX_\eta$ is an orthogonal direct sum of the corners $p_{p(w)}\cO_k$, each a Hilbert
+$\cO_k$-module with $\langle a,b\rangle=a^*b$; the displayed inner products and
+reconstruction are immediate, so $\{e_w\}$ is a finite frame and $\cX_\eta\cong\bigoplus_w
+p_{p(w)}\cO_k$ is finitely generated projective with $[\cX_\eta]=\sum_w[p_{p(w)}]$. The
+fibre of $\eta^{\sharp}$ over a $Y$-vertex $v$ is $\{$arcs $f$ of $Y_k$ with $r(f)=v\}$, of
+size the in-degree $q$; over $v'$ it is the $q$ shadow lifts likewise, so each vertex of
+$E$ is hit $q$ times and $\sum_w[p_{p(w)}]=q\sum_v[p_v]=q[1]$. Fullness: $\langle
+e_w,e_w\rangle=p_{p(w)}$ and $\{p_v\}$ generates $\cO_k$ as an ideal (it contains the unit).
+\end{proof}
+
+\begin{theorem}[The left action]\label{XVI:thm:leftaction}
+There is a unique $*$-homomorphism $\phi\colon\cO_{k+1}\to\cK(\cX_\eta)$ with
+\[
+\phi(q_w)=\Theta_{e_w,e_w}\quad(\text{projection onto the }w\text{-summand}),\qquad
+\phi(t_f)\,e_{w}=\delta_{w,r(f)}\;e_{s(f)}\cdot s_{p(f)} .
+\]
+It is injective. The verification of the Cuntz--Krieger relation \emph{(CK2)} for the
+operators $\phi(t_f)$ uses precisely that $\eta^{\sharp}$ is an out-covering.
+\end{theorem}
+
+\begin{proof}
+Define $V_f:=\phi(t_f)$ by the stated formula: $V_f$ maps the $r(f)$-summand
+$p_{p(r(f))}\cO_k$ into the $s(f)$-summand by left multiplication by $s_{p(f)}$, and kills
+the other summands. Since $p$ is a graph morphism, $p(f)$ runs $p(s(f))\to p(r(f))$, so
+$s_{p(f)}=p_{p(s(f))}s_{p(f)}p_{p(r(f))}$ and $V_f$ does land in $p_{p(s(f))}\cO_k$; each
+$V_f$ is adjointable with $V_f^{*}\xi=\delta$-shift back by $s_{p(f)}^{*}$, hence
+$V_f\in\cK(\cX_\eta)$ (finite rank in the frame $\{e_w\}$). Now
+\[
+V_f^{*}V_f\,\xi=s_{p(f)}^{*}s_{p(f)}\,\xi_{r(f)}
+=p_{r(p(f))}\,\xi_{r(f)}=p_{p(r(f))}\,\xi_{r(f)}=\xi_{r(f)}\qquad(\xi\in\cX_\eta),
+\]
+using (CK1) in $\cO_k$ and $r(p(f))=p(r(f))$; so $V_f^{*}V_f=\Theta_{e_{r(f)},e_{r(f)}}=\phi(q_{r(f)})$,
+which is (CK1) for $\phi$. For (CK2), fix $w\in F^0$ and compute $\sum_{s(f)=w}V_fV_f^{*}$.
+Each such $V_fV_f^{*}$ acts on the $w=s(f)$-summand by $\xi\mapsto s_{p(f)}s_{p(f)}^{*}\xi$,
+so
+\[
+\sum_{s(f)=w}V_fV_f^{*}\Big|_{w\text{-summand}}=\sum_{s(f)=w}s_{p(f)}s_{p(f)}^{*}
+=\sum_{s(e)=p(w)}s_es_e^{*}=p_{p(w)} ,
+\]
+where the middle equality is the out-covering property: $f\mapsto p(f)$ is a \emph{bijection}
+from $\{f:s(f)=w\}$ onto $\{e:s(e)=p(w)\}$, so the sum reindexes exactly, and the last
+equality is (CK2) in $\cO_k$. The right side is the identity of the $w$-summand, i.e.\
+$\phi(q_w)$; and $V_fV_f^{*}$ kills every other summand. Hence $\sum_{s(f)=w}\phi(t_f)\phi(t_f)^{*}=\phi(q_w)$,
+which is (CK2) for $\phi$. The universal property of $C^*(F)$ gives the $*$-homomorphism
+$\phi$. Injectivity: $\phi(q_w)\ne0$ for every $w$ (its range $p_{p(w)}\cO_k\ne0$), and
+$\cO_{k+1}$ is simple, so $\ker\phi=0$.
+
+The out-covering hypothesis enters at exactly one point --- the reindexing
+$\{p(f):s(f)=w\}=\{e:s(e)=p(w)\}$ in (CK2) --- and nowhere else. For the in-covering
+$\tau^{\sharp}$ this reindexing holds on \emph{in}-arcs, which is why $\tau^{\sharp}$ gave a
+homomorphism into $\cO_{k+1}$ rather than a correspondence; for $\eta^{\sharp}$ it is the
+out-arcs that biject, and the natural home is $\cK(\cX_\eta)$. The cross terms
+$s_{p(f)}s_{p(f)}^{*}$, $s_{p(f')}s_{p(f')}^{*}$ that obstructed the sum-over-lifts
+homomorphism of [Ch.~\ref{chap:VIII}] are here mutually orthogonal (distinct out-arcs $p(f)\ne p(f')$ of
+$p(w)$), so they add rather than interfere.
+\end{proof}
+
+\begin{definition}[The head correspondence and its Kasparov class]\label{XVI:def:class}
+$\cE_\eta:=(\cX_\eta,\phi)$ is an injective, full, proper $C^*$-correspondence from
+$\cO_{k+1}$ to $\cO_k$; its Kasparov class is
+\[
+[\cE_\eta]:=[(\cX_\eta,\phi,0)]\in\KK(\cO_{k+1},\cO_k).
+\]
+\end{definition}
+
+\section{The index is the head pushforward}\label{XVI:sec:index}
+
+\begin{theorem}[$K_0$-index of the head correspondence]\label{XVI:thm:index}
+The map $\otimes_{\cO_{k+1}}[\cE_\eta]\colon K_0(\cO_{k+1})\to K_0(\cO_k)$ is the head
+pushforward: under \\eqref{XVI:eq:ktheory} it is induced by $H_k=\operatorname{diag}(\et,\et)$,
+i.e.\ the descent of $\et\colon\coker\Delta_{k+1}^{t}\to\coker\Delta_k^{t}$
+\\eqref{XVI:eq:etdesc}. On generators $[q_w]\mapsto[p_{\eta^{\sharp}(w)}]$; the $K_1$-map is
+multiplication by $q$; and $[\cE_\eta]\otimes[1_{\cO_k}]^{\vee}$ recovers
+$[\cX_\eta]=q[1_{\cO_k}]$.
+\end{theorem}
+
+\begin{proof}
+For a vertex projection $q_w\in\cO_{k+1}$, $\phi(q_w)\cX_\eta$ is the $w$-summand
+$p_{p(w)}\cO_k$, of class $[p_{p(w)}]=[p_{\eta^{\sharp}(w)}]$ in $K_0(\cO_k)$; since the
+classes $[q_w]$ generate $K_0(\cO_{k+1})$ and the product is additive, the index map sends
+$[q_w]\mapsto[p_{\eta^{\sharp}(w)}]$, which on the generators $e_w\mapsto e_{\eta^{\sharp}(w)}$
+of $\coker(I-B^{t})$ is the matrix $H_k=\operatorname{diag}(\et,\et)$. That $H_k$ descends to
+$\coker(I-B_{k+1}^{t})\to\coker(I-B_k^{t})$ is \\eqref{XVI:eq:etdesc}; conjugating by $U$ of
+[Ch.~\ref{chap:VIII}, Thm.~1.4] (which commutes with $\operatorname{diag}$ blocks) turns it into $\et$ on
+$\coker\Delta^{t}$. The $K_1$-map: $K_1(\cO_k)=\ker(I-B_k^{t})=\Z(\mathbf1,-\mathbf1)$ and
+$H_k(\mathbf1,-\mathbf1)=q(\mathbf1,-\mathbf1)$ (Table~\\ref{XVI:tab:battery}, line (K)). The last
+statement is Lemma~\\ref{XVI:lem:fgp}.
+\end{proof}
+
+\begin{proposition}[The correspondence is not invertible]\label{XVI:prop:notinv}
+$[\cE_\eta]$ is not a $\KK$-equivalence. Its index $\et$ on $\Jac(Y_{k+1})\to\Jac(Y_k)$ is
+surjective with kernel the $p$-torsion subgroup $\Jac(Y_{k+1})[p]$ when $q=p$ is prime, of
+order $p^{\,n_k(p-1)-1}$; equivalently $\cX_\eta$ is not a Morita equivalence bimodule
+($\phi(\cO_{k+1})\subsetneq\cK(\cX_\eta)$).
+\end{proposition}
+
+\begin{proof}
+By reversal symmetry (Remark~\\ref{XVI:rem:reversal}) $\et$ on $\Tor\coker\Delta_{k+1}^{t}\to
+\Tor\coker\Delta_k^{t}$ is the mirror of the tail norm $\ta$ on $\Jac(Y_{k+1})\to\Jac(Y_k)$
+of [Ch.~\ref{chap:VIII}, Thm.~2.8]: surjective with kernel the $p$-torsion of order $p^{\,n_k(p-1)-1}$
+(Table~\\ref{XVI:tab:battery}, line (N)). A $\KK$-equivalence induces isomorphisms on $K_*$;
+$\et$ is not injective, so $[\cE_\eta]$ is not invertible. Were $\cX_\eta$ an
+imprimitivity bimodule, $\phi$ would be onto $\cK(\cX_\eta)$ and the index an isomorphism.
+\end{proof}
+
+\begin{remark}[Reversal symmetry]\label{XVI:rem:reversal}
+Let $\rho_k$ be the path-reversal permutation of $V_{Y_k}$ (reverse each non-backtracking
+path). Then $\rho_kA_k\rho_k^{-1}=A_k^{t}$ and $\rho_k\ta=\et\rho_{k+1}$
+(Table~\\ref{XVI:tab:battery}, line (R)): reversing all arrows exchanges $\tau\leftrightarrow\eta$,
+$\Delta\leftrightarrow\Delta^{t}$, $\cO_{B}\leftrightarrow\cO_{B^{t}}$, and carries the
+in-covering theory of [Ch.~\ref{chap:VIII}] for $(\tau,\Delta)$ to the out-covering theory of this paper
+for $(\eta,\Delta^{t})$. At the algebra level reversal is Kaminker--Putnam
+Spanier--Whitehead duality \cite{KP}, $\cO_{B}$ and $\cO_{B^{t}}$ dual, which exchanges
+$K_0$ with $K^{1}$; we use only the elementary permutation identity, not the duality, and
+cite \cite{KP} for context.
+\end{remark}
+
+\section{Kasparov products and the Hecke operators}\label{XVI:sec:products}
+
+Write $[\varphi_k]\in\KK(\cO_k,\cO_{k+1})$ for the class of the tail homomorphism
+($K_0$-map $\taup$, upward) and $[\cE_\eta^{(k)}]\in\KK(\cO_{k+1},\cO_k)$ for the head
+correspondence ($K_0$-map $\et$, downward).
+
+\begin{theorem}[Round trips are Hecke operators]\label{XVI:thm:hecke}
+The Kasparov products
+\[
+[\varphi_k]\otimes_{\cO_{k+1}}[\cE_\eta^{(k)}]\in\KK(\cO_k,\cO_k),\qquad
+[\cE_\eta^{(k)}]\otimes_{\cO_k}[\varphi_k]\in\KK(\cO_{k+1},\cO_{k+1})
+\]
+induce on $K_0$ the maps
+\[
+\et\,\taup=A_k^{t}\ \text{on}\ K_0(\cO_k),\qquad
+\taup\,\et=A_{k+1}^{t}\ \text{on}\ K_0(\cO_{k+1}),
+\]
+i.e.\ the level Hecke operators. These are the $C^*$-bivariant form of the degeneracy
+identities $\ta\etp=A_k$, $\etp\ta=A_{k+1}$ of {\rm[Ch.~\ref{chap:V}, Prop.~1.2]}.
+\end{theorem}
+
+\begin{proof}
+The $K_0$-functor takes Kasparov products to composites, so
+$\otimes([\varphi_k]\otimes[\cE_\eta^{(k)}])=(\otimes[\cE_\eta^{(k)}])\circ(\otimes[\varphi_k])
+=H_k\circ T^{k}$ with $T^{k}=\operatorname{diag}(\taup,\taup)=K_0(\varphi_k)$
+(Theorem~\\ref{XVI:thm:index}, [Ch.~\ref{chap:VIII}, Thm.~2.5]). Blockwise
+$H_kT^{k}=\operatorname{diag}(\et\taup,\et\taup)$, and $\et\taup=(\ta\etp)^{t}=A_k^{t}$ by
+transposing \\eqref{XVI:eq:calc}; similarly $T^{k}H_k=\operatorname{diag}(\taup\et,\taup\et)$ with
+$\taup\et=(\etp\ta)^{t}=A_{k+1}^{t}$ (Table~\\ref{XVI:tab:battery}, line (H)). Both descend to
+$\coker(I-B^{t})$, since each factor does.
+\end{proof}
+
+\begin{remark}[The opposite side and the full calculus]\label{XVI:rem:opposite}
+The other two degeneracy maps, $\ta$ and $\etp$, descend not on $K_0$ but on the
+Bowen--Franks group $\coker(I-B)\cong\coker\Delta$, the $K_0$ of the opposite algebra
+$\cO_k^{\mathrm{op}}\cong C^*(\overline{\Ysh{k}})$: there
+$\operatorname{diag}(\ta,\ta)$ and $\operatorname{diag}(\etp,\etp)$ intertwine $I-B$, with
+composites $A_k$ and $A_{k+1}$ (Table~\\ref{XVI:tab:battery}, line (B)). Thus all four
+degeneracy maps of [Ch.~\ref{chap:V}] are realized, two by $\KK$-classes on the $K_0$-side ($\taup$ up,
+$\et$ down) and two by their reversal-dual partners on the Bowen--Franks side; the
+``$qI$'' identities $\ta\taup=\et\etp=qI$ pair one map from each side and are the
+Pontryagin adjointness of [Ch.~\ref{chap:VIII}, Lem.~2.1]. The correspondence $\cE_\eta$ supplies the one
+arrow that was missing: the canonical downward morphism inducing $\et$.
+\end{remark}
+
+\begin{definition}[The $\KK$-category of the tower]\label{XVI:def:cat}
+Let $\mathcal{T}$ be the small category enriched in $\KK$ (a subcategory of the Kasparov
+category $\mathsf{KK}$) with objects $\{\cO_k:k\ge1\}$ and morphisms generated under
+Kasparov product and $\Z$-linear combination by $[\varphi_k]\in\KK(\cO_k,\cO_{k+1})$ and
+$[\cE_\eta^{(k)}]\in\KK(\cO_{k+1},\cO_k)$ for all $k$.
+\end{definition}
+
+\begin{corollary}[Structure of $\mathcal{T}$]\label{XVI:cor:cat}
+In $\mathcal{T}$ the endomorphism $[\varphi_k]\otimes[\cE_\eta^{(k)}]$ of $\cO_k$ acts on
+$K_0(\cO_k)$ as the Hecke operator $A_k^{t}$, and $[\cE_\eta^{(k)}]\otimes[\varphi_k]$ on
+$\cO_{k+1}$ as $A_{k+1}^{t}$; the diagonal composite
+$[\varphi_k]\otimes[\cE_\eta^{(k)}]\otimes\cdots$ over a $\tau$-then-$\eta$ round trip
+realizes, on $K_0$, the polynomial algebra generated by the Hecke operators of the tower.
+No morphism of $\mathcal{T}$ is invertible except the identities: $[\varphi_k]$ has index
+$\taup$ (injective, not onto: cokernel the new $p$-torsion) and $[\cE_\eta^{(k)}]$ has index
+$\et$ (onto, not injective), so $\mathcal{T}$ is a genuinely one-way-plus-one-way category,
+the operator-algebraic shadow of the two-sidedness of the pro-module $X_\infty$ of [Ch.~\ref{chap:V}].
+\end{corollary}
+
+\begin{proof}
+Theorems~\\ref{XVI:thm:index}, \\ref{XVI:thm:hecke}; injectivity/surjectivity from [Ch.~\ref{chap:VIII}, Thm.~2.5]
+and Proposition~\\ref{XVI:prop:notinv}.
+\end{proof}
+
+\section{The verification battery}\label{XVI:sec:battery}
+
+\begin{table}[ht]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & transitions & result\\
+\midrule
+(O) $\eta^{\sharp}$ morphism, bijective on out-arcs, $q$-to-one on in-arcs; $\tau^{\sharp}$ the mirror in-covering & $k\le3$ & exact\\
+(R) $\rho_kA_k\rho_k^{-1}=A_k^{t}$, $\rho_k\ta=\et\rho_{k+1}$ & $k\le3$ & exact\\
+(K) $H_k(I-B_{k+1}^{t})=(I-B_k^{t})H_k$; $\operatorname{diag}(\ta,\ta)$ does not; $H_k\mathbf1=q\mathbf1$; $H_k(\mathbf1,-\mathbf1)=q(\mathbf1,-\mathbf1)$ & $k\le3$ & exact\\
+(H) $H_kT^{k}=\operatorname{diag}(A_k^{t})$, $T^{k}H_k=\operatorname{diag}(A_{k+1}^{t})$; witness $\operatorname{diag}(A^{t}-q)=(I-B^{t})VN$ & $k\le3$ & exact\\
+(B) opposite side: $\operatorname{diag}(\ta,\ta)$, $\operatorname{diag}(\etp,\etp)$ descend on $\coker(I-B)$; composites $A_k$, $A_{k+1}$ & $k\le3$ & exact\\
+(N) $\et$ on $\Tor\coker\Delta^{t}$: surjective, $|\ker|=2^{11},2^{23},2^{47}=2^{\,n_k(q-1)-1}$; $\rank_{\F_2}A_{k+1}=n_k$ & $k\le3$ & exact\\
+(X) $\Ext(K_0(\cO_{k+1}),K_1(\cO_k))=\Jac(Y_{k+1})$ (lift ambiguity); $\Ext(K_0(\cO_k),K_1(\cO_k))=\Jac(Y_k)$ & $k\le3$ & exact\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Exact integer verification (\texttt{head\_correspondence.py}) on the $K_4$ tower,
+$q=2$, at the transitions $k+1\to k$, $k\le3$; shadow matrices of size $24,48,96,192$.
+$\Jac$ data as in [Ch.~\ref{chap:VIII}, Table~1].}
+\label{XVI:tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{XVI:sec:scope}
+
+\begin{remark}[Solved, open, impossible]\label{XVI:rem:scope}
+\emph{Solved:} the open item [Ch.~\ref{chap:VIII}, Rem.~5.1(a)] --- a canonical $C^*$-correspondence
+$\cO_{k+1}\rightsquigarrow\cO_k$ induced by the out-covering $\eta^{\sharp}$ with $K_0$-map
+$\et$. It is $\cE_\eta=(\cX_\eta,\phi)$ of Definition~\\ref{XVI:def:class}: a finitely generated
+projective, full, injective proper correspondence whose class in $\KK(\cO_{k+1},\cO_k)$
+induces $\et$ (Theorem~\\ref{XVI:thm:index}), completing the two-sided realization of the
+degeneracy calculus (Theorem~\\ref{XVI:thm:hecke}, Remark~\\ref{XVI:rem:opposite}) and organizing the
+levels into the $\KK$-category $\mathcal{T}$ (Definition~\\ref{XVI:def:cat},
+Corollary~\\ref{XVI:cor:cat}). \emph{Open:} (a) the Cuntz--Pimsner algebra
+$\cO_{\cX_\eta}$ of the head correspondence, and whether the inductive system it generates
+gives a second model of the limit $\cO_\infty$ of [Ch.~\ref{chap:VIII}] dual to the first; (b) an
+explicit unbounded (spectral-triple) representative of $[\cE_\eta]$ pairing with the
+$\cL$-invariant $KK$-classes of [Ch.~\ref{chap:XIV}]; (c) the Hecke-module structure of $K_0(\cO_\infty)$
+under the operators $[\varphi_k]\otimes[\cE_\eta^{(k)}]$ of Corollary~\\ref{XVI:cor:cat}, and with
+it [Ch.~\ref{chap:V}, Prob.~5.1]. \emph{Impossible:} a unital $*$-homomorphism $\cO_{k+1}\to\cO_k$
+inducing $\et$ (Section~\\ref{XVI:sec:setting}: $\et[1]=q[1]$); and, as throughout the series, a
+$\KK$-equivalence between adjacent levels (Proposition~\\ref{XVI:prop:notinv}).
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{XVI:rem:corrections}
+(1) The correspondence's right module is not ``freely generated by the graph's
+generators''; it is the finitely generated projective module
+$\cX_\eta=\bigoplus_{w}p_{\eta^{\sharp}(w)}\cO_k$, a sum of corners, of $K$-theory class
+$q[1]$. (2) Positive-definiteness and self-adjointness of the inner product are automatic
+(the inner product is $\sum_w\xi_w^{*}\zeta_w$, a sum of positives) and use no
+Cuntz--Krieger relation; what (CK2) --- together with the out-covering bijection on
+\emph{out}-arcs --- establishes is that the \emph{left action} $\phi$ is a
+$*$-homomorphism (Theorem~\\ref{XVI:thm:leftaction}). This is the one place the geometry is
+used, and it is on out-arcs, not on the (CK1) side as the specification suggested. (3) The
+left action lands in $\cK(\cX_\eta)$, not in $\cO_k$; that is exactly why the object is a
+correspondence and not a homomorphism, and why it exists where the sum-over-lifts
+homomorphism of [Ch.~\ref{chap:VIII}] could not. (4) The head pushforward $\et$, not $\ta$, is the map the
+downward correspondence induces; $\ta$ descends on the opposite (Bowen--Franks) side, not on
+$K_0$ (Remark~\\ref{XVI:rem:opposite}). (5) ``All six degeneracy identities in $\KK$'' is made
+precise as the Kasparov products of Theorem~\\ref{XVI:thm:hecke} and the opposite-side identities
+of Remark~\\ref{XVI:rem:opposite}: the two Hecke operators are the two round-trip products, and
+$\ta\taup=\et\etp=qI$ are cross-side adjointness identities, not products of two
+$K_0$-side classes.
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Every numbered statement is proved; the correspondence $\cX_\eta$, its
+left action, and its index are constructed and computed in full, and the tower matrix
+identities are quoted from [Ch.~\ref{chap:VIII}] and re-verified exactly on $K_4$. The bivariant inputs
+--- $C^*$-correspondences define $\KK$-classes, and $K_0$ turns Kasparov products into
+composites --- are standard \cite{Kas,Bla}; \cite{KP} is cited for context only.
+Bibliographic data of \cite{Kas,Bla,R,KP} were checked against publisher or indexing pages.

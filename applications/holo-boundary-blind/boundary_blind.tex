@@ -1,0 +1,471 @@
+% What the boundary algebra of p-adic AdS/CFT does not see
+% Build: pdflatex boundary_blind (x3)
+\documentclass[11pt]{article}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\III}{\mathrm{III}}
+
+\title{\bfseries What the boundary algebra of $p$-adic AdS/CFT does not see}
+\author{Ruqing Chen\\[2pt]
+\normalsize GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec J0P 1R0, Canada\\
+\normalsize\texttt{ruqing@hotmail.com}}
+\date{20 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+In $p$-adic AdS/CFT the bulk is the Bruhat--Tits tree of $\mathrm{PGL}_2$ over a local
+field and the boundary is $\PP^1(F)$. The boundary carries two standard operator algebras,
+the crossed products $C(\PP^1(F))\rtimes\Gamma$ and $L^\infty(\PP^1(F))\rtimes\Gamma$, and
+both have been completely determined: the first is a Cuntz--Krieger algebra with
+$K_0=\Z^{r}\oplus\Z/(r-1)$ depending only on the rank of $\Gamma$, and the second is the
+hyperfinite factor of type $\III_\lambda$ with $\lambda=q^{-2}$ or $q^{-1}$ according as
+the quotient graph is bipartite or not (Robertson, 2005). Neither result has ever been
+cited in the holography literature, and no $p$-adic AdS/CFT paper has used an
+operator-algebraic invariant at all. We import them, and add one arithmetic layer. The
+bulk Hecke--Laplacian channel has $K_0=\Z\oplus\Jac(Y)$, the critical group of the
+quotient graph, whose order is a product of Frobenius traces
+$\frac1n\prod_f(p+1-a_p(f))$. We exhibit two cubic graphs on eight vertices whose boundary
+algebras agree in $K$-theory \emph{and} in von Neumann type, and whose bulk critical groups
+have coprime orders $256=2^8$ and $363=3\cdot11^2$: the boundary data do not determine the
+bulk arithmetic, not even which primes divide it. This is strictly stronger than
+Robertson's own counterexample, which the type does separate. We do not conclude that
+holography fails: Cornelissen and Marcolli proved that the boundary quantum statistical
+mechanical system, with its Busemann time evolution, reconstructs the graph completely, so
+what we exhibit is a precise gap in a hierarchy whose top is a reconstruction theorem.
+Finally we observe that $\lambda\ne1$ is itself a diagnostic. Continuum holography is
+forced to type $\III_1$ by theorems (mixing; half-sided modular inclusion); $p$-adic
+holography is type $\III_\lambda$ with $\lambda<1$, so its modular flow is periodic and its
+boundary algebra is not a Haag--Kastler algebra. All computations are exact and
+machine-verified.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+$p$-adic AdS/CFT \cite{GKPSW,HMSS} replaces anti-de Sitter space by the Bruhat--Tits tree
+$X$ of $\mathrm{PGL}_2(F)$, $F$ a non-archimedean local field with residue field of size
+$q$, and the conformal boundary by $\PP^1(F)$, the space of ends of $X$. A discrete
+torsion-free cocompact lattice $\Gamma\le\mathrm{PGL}_2(F)$ --- free of finite rank $r$ ---
+plays the role of a quotient identification, exactly as a Schottky group does for BTZ
+\cite{HuangJepsen}, and $Y=\Gamma\backslash X$ is a finite $(q{+}1)$-regular graph on $n$
+vertices. The field has matured on correlators, tensor networks, Wilson lines and finite
+temperature \cite{GubserParikh,Marcolli20,HuangJepsen,Mondal}, but it has remained
+kinematic in one specific respect: no invariant from operator algebras has ever been
+computed in it.
+
+That is unfortunate, because the relevant invariants were computed twenty years ago, in a
+literature the holography community does not read. Robertson \cite{Rob05} determined both
+boundary algebras of exactly this situation, and Cornelissen and Marcolli \cite{CM13}
+determined precisely how much of the bulk each one remembers. The purpose of this note is
+to import those results, to add one layer they do not contain, and to draw one physical
+consequence.
+
+\paragraph{What is imported.}
+For $\Gamma$ a free uniform tree lattice of rank $r$, Robertson proved
+\cite[Thm.~1]{Rob05} that $C(\partial X)\rtimes\Gamma$ is a Cuntz--Krieger algebra with
+\begin{equation}\label{eq:K}
+K_0\bigl(C(\partial X)\rtimes\Gamma\bigr)\cong\Z^{r}\oplus\Z/(r-1)\Z,
+\qquad K_1\cong\Z^{r},
+\end{equation}
+$[1]$ generating the torsion summand --- so by Kirchberg--Phillips the algebra
+\emph{depends only on $r$}. (The same $K$-groups were obtained independently in
+\cite{CLM08}.) He proved further \cite[Thm.~2, Cor.~1]{Rob05} that
+\begin{equation}\label{eq:type}
+L^\infty(\partial X)\rtimes\Gamma\ \cong\ \text{hyperfinite }\III_\lambda,\qquad
+\lambda=\begin{cases}q^{-2}&\Gamma\subset\mathrm{PSL}_2(F)\ (\,Y\ \text{bipartite}),\\
+q^{-1}&\text{otherwise},\end{cases}
+\end{equation}
+the ratio set being generated by the Busemann cocycle; the rank-one case goes back to
+Ramagge and Robertson \cite{RR97} and the general hyperbolic-group statement to
+\cite{INO08,Bowen14}. Cornelissen and Marcolli \cite{CM13} then showed that the
+$C^*$-level invariants ``reconstruct only topological information'' --- nine natural
+equivalences all reduce to equality of the first Betti number --- while the boundary
+\emph{quantum statistical mechanical} system, $C(\partial X)\rtimes\Gamma$ equipped with
+the Busemann time evolution, reconstructs $Y$ up to isomorphism.
+
+\paragraph{What is added.}
+The bulk of this geometry has an invariant that none of these papers considers. The
+Hecke--Laplacian $\Delta_p=(q{+}1)I-T_p$ of $Y$ has
+\begin{equation}\label{eq:bulk}
+\operatorname{coker}_\Z\Delta_p\cong\Z\oplus\Jac(Y),
+\qquad
+|\Jac(Y)|=\frac1n\prod_f\bigl(p+1-a_p(f)\bigr),
+\end{equation}
+where $\Jac(Y)$ is the critical (sandpile) group \cite{Biggs,BHN} and the product runs over
+the weight-two newforms attached to $\Gamma$, so that $|\Jac(Y)|$ is a product of Frobenius
+traces \cite[I]{ANCFT}. The critical group has appeared in physics --- as the global
+symmetry group of fracton models on graphs \cite{GLS22,GLSS23} --- but never in holography.
+Our contribution is Theorem~\ref{thm:main}: the boundary data of \eqref{eq:K} and
+\eqref{eq:type} \emph{together} fail to determine \eqref{eq:bulk}, and fail badly enough
+that two bulks in the same boundary class can have coprime arithmetic.
+
+\paragraph{What we do not claim.}
+Not that holography fails. \cite{CM13} is a reconstruction theorem: keep the time
+evolution and the bulk comes back. What Theorem~\ref{thm:main} locates is a gap between two
+rungs of a ladder whose top rung is a positive result. Nor do we claim \eqref{eq:K} or
+\eqref{eq:type}; both are \cite{Rob05}.
+
+\section{Setting}\label{sec:setting}
+
+$Y=\Gamma\backslash X$ is a finite connected $(q{+}1)$-regular graph, $n=|V_Y|$,
+$m=(q{+}1)n/2$, and
+\[
+r=\operatorname{rank}\Gamma=m-n+1,\qquad r-1=m-n=\tfrac{(q-1)n}{2}.
+\]
+The \emph{boundary channel} is the crossed product by the $\Gamma$-action on $\partial X$;
+concretely $C(\partial X)\rtimes\Gamma\cong\mathcal O_{A^{\mathrm{nb}}}$ with
+$A^{\mathrm{nb}}$ the non-backtracking matrix on the $2m$ oriented edges of $Y$
+\cite{Rob05}, and $K_0=\operatorname{coker}(I-(A^{\mathrm{nb}})^{t})$,
+$K_1=\ker(I-(A^{\mathrm{nb}})^{t})$ by \cite{Cuntz81}. The \emph{bulk channel} is
+$\Delta_p$ on the $n$ vertices, with \eqref{eq:bulk}.
+
+\begin{remark}[Two relations, two types]\label{rem:tworel}
+Equation \eqref{eq:type} concerns the orbit relation of $\Gamma$ on $\partial X$. It must
+be distinguished from the tail equivalence relation on the Cantor limit
+$\varprojlim_kV_{Y_k}$ of a tower of covers, whose ratio set is all of $q^{\Z}\cup\{0\}$
+and which therefore gives type $\III_{1/q}$ unconditionally \cite[III]{ANCFT}. The orbit
+relation of a type-preserving lattice realises only $q^{2\Z}$, because the Busemann cocycle
+of such an element has even value; this is the source of the dichotomy in \eqref{eq:type}
+and it is easy to conflate the two.
+\end{remark}
+
+\begin{proposition}\label{prop:coarse}
+The boundary $K$-theory \eqref{eq:K} is a function of $(q,n)$ alone, and the von Neumann
+type \eqref{eq:type} is a function of $q$ and the bipartiteness of $Y$ alone. In
+particular all $(q{+}1)$-regular graphs on $n$ vertices with the same bipartiteness have
+the same boundary data.
+\end{proposition}
+
+\begin{proof}
+$r-1=(q-1)n/2$ and $r=(q-1)n/2+1$ depend only on $(q,n)$; \eqref{eq:type} is as stated.
+\end{proof}
+
+\section{The bulk is not determined}\label{sec:main}
+
+\begin{theorem}\label{thm:main}
+There are two cubic graphs $Y_A,Y_B$ on eight vertices with
+\begin{itemize}
+\item the same boundary $K$-theory, $K_0=\Z^{5}\oplus\Z/4$ and $K_1=\Z^{5}$;
+\item the same von Neumann type, both being non-bipartite and hence $\III_{1/q}$;
+\item coprime bulk critical groups,
+\[
+\Jac(Y_A)=\Z/4\oplus\Z/4\oplus\Z/16,\quad |\Jac(Y_A)|=256=2^{8},
+\]
+\[
+\Jac(Y_B)=\Z/33\oplus\Z/11,\quad\ \ |\Jac(Y_B)|=363=3\cdot11^{2}.
+\]
+\end{itemize}
+Explicitly, with vertices $0,\dots,7$,
+\[
+\begin{aligned}
+E(Y_A)&=\{03,06,07,12,15,16,24,25,34,37,45,67\},\\
+E(Y_B)&=\{02,03,07,14,16,17,24,25,34,35,56,67\}.
+\end{aligned}
+\]
+Consequently the boundary $K$-theory and the boundary von Neumann type, taken together, do
+not determine $|\Jac(Y)|$, nor the set of primes dividing it, nor --- by \eqref{eq:bulk}
+--- the Frobenius traces $a_p(f)$ of the associated automorphic forms.
+\end{theorem}
+
+\begin{proof}
+Direct computation of the three invariants in exact integer arithmetic; this is check~(P)
+of Section~\ref{sec:battery}. Both graphs contain an odd cycle, hence are non-bipartite.
+\end{proof}
+
+\begin{remark}[Comparison with \cite{Rob05}]\label{rem:compare}
+Robertson gives his own counterexample to boundary rigidity \cite[Ex.~1.5]{Rob05}: the
+theta graph and the dumbbell graph, both with $\pi_1=F_2$, non-isomorphic, with the same
+$C(\partial X)\rtimes\Gamma$, realised concretely inside $\mathrm{PGL}_2(\mathbb Q_2)$. His
+example is separated by the von Neumann type, $\III_{1/4}$ against $\III_{1/2}$ --- indeed
+that is his point, that the measure-theoretic invariant is finer. Theorem~\ref{thm:main}
+defeats both invariants at once, and does so in a way that is arithmetically meaningful
+rather than merely graph-theoretic.
+\end{remark}
+
+Table~\ref{tab:named} shows the two channels on a list of standard quotients, and
+Table~\ref{tab:spread} shows how much bulk arithmetic a single boundary class holds.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{lrrrllr}
+\toprule
+$Y$ & $q$ & $n$ & $r$ & $K_0$(boundary) & vN type & $|\Jac(Y)|$\\
+\midrule
+$K_4$            & 2 &  4 &  3 & $\Z^3\oplus\Z/2$    & $\III_{1/q}$   & 16\\
+$K_{3,3}$        & 2 &  6 &  4 & $\Z^4\oplus\Z/3$    & $\III_{1/q^2}$ & 81\\
+prism $C_3\times K_2$ & 2 & 6 & 4 & $\Z^4\oplus\Z/3$ & $\III_{1/q}$   & 75\\
+prism $C_4\times K_2$ & 2 & 8 & 5 & $\Z^5\oplus\Z/4$ & $\III_{1/q^2}$ & 384\\
+M\"obius $M_8$   & 2 &  8 &  5 & $\Z^5\oplus\Z/4$    & $\III_{1/q}$   & 392\\
+M\"obius $M_{10}$& 2 & 10 &  6 & $\Z^6\oplus\Z/5$    & $\III_{1/q^2}$ & 1815\\
+prism $C_5\times K_2$ & 2 & 10 & 6 & $\Z^6\oplus\Z/5$ & $\III_{1/q}$  & 1805\\
+Petersen         & 2 & 10 &  6 & $\Z^6\oplus\Z/5$    & $\III_{1/q}$   & 2000\\
+Heawood          & 2 & 14 &  8 & $\Z^8\oplus\Z/7$    & $\III_{1/q^2}$ & 50421\\
+$K_5$            & 3 &  5 &  6 & $\Z^6\oplus\Z/5$    & $\III_{1/q}$   & 125\\
+$K_6$            & 4 &  6 & 10 & $\Z^{10}\oplus\Z/9$ & $\III_{1/q}$   & 1296\\
+\bottomrule
+\end{tabular}
+\caption{The two channels. $K_1=\Z^r$ throughout. Within a block of equal $(q,n)$ the
+boundary $K$-theory is constant; the type refines it by bipartiteness; $|\Jac(Y)|$ is
+constrained by neither. Compare prism $C_5\times K_2$ and Petersen: same $(q,n)$, same
+type, $|\Jac|=1805$ against $2000$. All entries exact.}
+\label{tab:named}
+\end{table}
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{rrlrr}
+\toprule
+$n$ & $r$ & $K_0$(boundary) & distinct $|\Jac|$ found & range\\
+\midrule
+ 8 & 5 & $\Z^{5}\oplus\Z/4$ &  5 & $256$ -- $392$\\
+10 & 6 & $\Z^{6}\oplus\Z/5$ & 16 & $960$ -- $2000$\\
+12 & 7 & $\Z^{7}\oplus\Z/6$ & 38 & $2808$ -- $9747$\\
+14 & 8 & $\Z^{8}\oplus\Z/7$ & 54 & $12100$ -- $46998$\\
+\bottomrule
+\end{tabular}
+\caption{Bulk critical groups inside a single boundary $K$-theory class, from $60$ random
+cubic quotients at each $n$. Sampled, not exhaustive: the true counts are at least these.}
+\label{tab:spread}
+\end{table}
+
+\section{The type as a physical diagnostic}\label{sec:type}
+
+The recent algebraic program in holography \cite{LL1,LL2,Witten22,CPW23,CLPW23} turns on
+the fact that the large-$N$ algebra of a holographic CFT, and the algebra of a black hole
+exterior, are of type $\III_1$, and that crossed products by the modular flow convert them
+to semifinite type $\mathrm{II}$, which is what makes generalized entropy finite. Type
+$\III_1$ is not an accident there: it is forced. If the correlation functions decay --- if
+the algebra is generated by mixing operators in a KMS state --- the algebra must be
+$\III_1$ \cite{FLMO23}; and the half-sided modular inclusion structure that
+\cite{LL1,LL2} use forces $\III_1$ by Wiesbrock's theorem \cite{Wiesbrock93}. Local
+algebras of relativistic quantum field theory are the hyperfinite $\III_1$ factor
+\cite{BDF87}.
+
+Equation \eqref{eq:type} says that $p$-adic holography is not in that class. Its boundary
+algebra is $\III_\lambda$ with $\lambda=q^{-1}$ or $q^{-2}$, a Powers factor. The physical
+content of $\lambda<1$ is that the modular flow is \emph{periodic}: the flow of weights is
+the translation flow on $\mathbb R/T\mathbb Z$ with
+\[
+T=\frac{2\pi}{\log\lambda^{-1}}=\frac{2\pi}{\kappa\log q},\qquad\kappa\in\{1,2\},
+\]
+so that the modular Hamiltonian has spectrum in $(\log q^{\kappa})\Z$ rather than a
+continuum. A $\III_\lambda$ algebra has a nontrivial discrete invariant --- Connes' $S$
+invariant is $\lambda^{\Z}\cup\{0\}$ --- where a $\III_1$ algebra has none.
+
+We draw one conclusion and refrain from a second. The conclusion: the type is a sharp,
+computable obstruction to any claim that a $p$-adic holographic boundary theory is a local
+quantum field theory in the Haag--Kastler sense, and it identifies precisely what would
+have to change --- the residue field would have to be made continuous, $q\to1$ --- for the
+$\III_1$ of \cite{LL1,Witten22} to be recovered. What we refrain from: we do not propose a
+$p$-adic analogue of the crossed-product construction of \cite{Witten22}. For
+$\III_\lambda$ with $\lambda<1$ the crossed product by the modular flow is a type
+$\mathrm{II}_\infty$ algebra as well, but the relevant flow is periodic, and whether the
+resulting trace has anything to do with an entropy is a question we have not investigated.
+
+\section{Verification}\label{sec:battery}
+
+The script \texttt{boundary\_blind.py} accompanying this note runs the checks of
+Table~\ref{tab:battery} in $0.3$\,s, all passing; its output is archived as
+\texttt{boundary\_blind\_output.txt}. Arithmetic is exact integer throughout except the two
+rows marked \emph{sampled}.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{clc}
+\toprule
+key & check & mode\\
+\midrule
+(K) & \eqref{eq:K} holds on 11 standard quotients, including $q=3,4$ & exact\\
+(B) & $r-1=(q-1)n/2$: the boundary $K$-theory is a function of $(q,n)$ & exact\\
+(J) & witness families at $(q,n)=(2,6),(2,8),(2,10)$: same boundary, different $\Jac$ & exact\\
+(P) & Theorem~\ref{thm:main}: same $K$-theory, same type, coprime $|\Jac|$ & exact\\
+(S) & Table~\ref{tab:spread}: the spread inside one boundary class & sampled\\
+(R) & the Busemann cocycle is $q^{\Z}$-valued (normalisation check only) & exact\\
+\bottomrule
+\end{tabular}
+\caption{The verification battery (\texttt{boundary\_blind.py}), $7/7$ passing.}
+\label{tab:battery}
+\end{table}
+
+Row (R) deserves a caveat we state rather than bury: it verifies only that the cylinder
+measures $\nu(\Omega_v)=q^{1-d(O,v)}$ give a $q^{\Z}$-valued Radon--Nikodym cocycle. That
+the \emph{essential range} of that cocycle is attained --- which is what Krieger's theorem
+\cite{Krieger76} needs --- is quoted from \cite{RR97,Rob05}, not verified here; no finite
+computation could verify it.
+
+\section{Scope}\label{sec:scope}
+
+\emph{Quoted, not proved here.} Equations \eqref{eq:K} and \eqref{eq:type} and the
+rigidity observation \cite{Rob05}; the reconstruction theorem \cite{CM13}; Krieger's
+classification \cite{Krieger76}; the Cuntz machine \cite{Cuntz81}; the forcing of
+$\III_1$ in the continuum \cite{FLMO23,Wiesbrock93,BDF87}.
+
+\emph{New here.} Theorem~\ref{thm:main} and Tables~\ref{tab:named}--\ref{tab:spread}: the
+arithmetic layer, and the observation that $K$-theory and type together are still blind to
+it. The import of \cite{Rob05,CM13} into $p$-adic holography, where no operator-algebraic
+invariant has previously been computed. The reading of $\lambda\ne1$ in
+Section~\ref{sec:type} as a diagnostic separating $p$-adic from continuum holography.
+
+\emph{Open.} (a) Whether the Cornelissen--Marcolli reconstruction \cite{CM13}, which
+recovers $Y$ and hence $\Jac(Y)$, can be made to recover the arithmetic \emph{directly} ---
+an explicit formula for $|\Jac(Y)|$ from the boundary KMS data would be a genuine
+holographic dictionary entry for Frobenius traces. (b) The higher-rank case: for
+$\widetilde A_n$ buildings the boundary type is $\III_{1/q}$ or $\III_{1/q^2}$ according to
+the parity of $n$ \cite{CR03}, and holographic constructions on buildings exist
+\cite{GMP22,Marcolli20}, but none is arithmetic; the bulk invariant there is the rank-two
+critical group of \cite[X]{ANCFT}, and we have not computed the corresponding witnesses.
+(c) Whether the periodicity of the modular flow has an entropic meaning.
+
+\section*{Provenance}
+
+Unrefereed preprint. The three exact computations behind Theorem~\ref{thm:main} --- the
+Cuntz--Krieger $K$-groups, the bipartiteness, and the Smith normal form of the
+Hecke--Laplacian --- are performed by the accompanying script and are reproducible in
+seconds. Everything else in Sections~\ref{sec:intro}--\ref{sec:type} is quoted, with the
+attribution set out in Section~\ref{sec:scope}. We searched the physics literature for any
+prior use of an operator-algebraic invariant in $p$-adic AdS/CFT, and for any occurrence of
+type $\III_\lambda$ with $\lambda\ne1$ in holography, and found none; a search cannot
+establish a negative, and we state this as the limit of our knowledge.
+
+\begin{thebibliography}{99}
+
+\bibitem{BHN} R.~Bacher, P.~de~la~Harpe and T.~Nagnibeda,
+\emph{The lattice of integral flows and the lattice of integral cuts on a finite graph},
+Bull.\ Soc.\ Math.\ France \textbf{125} (1997), 167--198.
+
+\bibitem{Biggs} N.~Biggs,
+\emph{Chip-firing and the critical group of a graph},
+J.\ Algebraic Combin.\ \textbf{9} (1999), 25--45.
+
+\bibitem{Bowen14} L.~Bowen,
+\emph{The type and stable type of the boundary of a Gromov hyperbolic group},
+Geom.\ Dedicata \textbf{172} (2014), 363--386.
+
+\bibitem{BDF87} D.~Buchholz, C.~D'Antoni and K.~Fredenhagen,
+\emph{The universal structure of local algebras},
+Comm.\ Math.\ Phys.\ \textbf{111} (1987), 123--135.
+
+\bibitem{CPW23} V.~Chandrasekaran, G.~Penington and E.~Witten,
+\emph{Large $N$ algebras and generalized entropy},
+JHEP \textbf{04} (2023), 009.
+
+\bibitem{CLPW23} V.~Chandrasekaran, R.~Longo, G.~Penington and E.~Witten,
+\emph{An algebra of observables for de Sitter space},
+JHEP \textbf{02} (2023), 082.
+
+\bibitem{ANCFT} R.~Chen,
+\emph{Algorithmic non-commutative class field theory, I--XVI}, preprints (2026);
+here I (the two channels), III (the tail relation and its type) and X (rank two).
+
+\bibitem{CLM08} G.~Cornelissen, O.~Lorscheid and M.~Marcolli,
+\emph{On the $K$-theory of graph $C^*$-algebras},
+Acta Appl.\ Math.\ \textbf{102} (2008), 57--69.
+
+\bibitem{CM13} G.~Cornelissen and M.~Marcolli,
+\emph{Graph reconstruction and quantum statistical mechanics},
+J.\ Geom.\ Phys.\ \textbf{72} (2013), 110--117.
+
+\bibitem{Cuntz81} J.~Cuntz,
+\emph{A class of $C^*$-algebras and topological Markov chains II: reducible chains and the
+Ext-functor for $C^*$-algebras}, Invent.\ Math.\ \textbf{63} (1981), 23--50.
+
+\bibitem{CR03} P.~Cutting and G.~Robertson,
+\emph{Type III actions on boundaries of $\widetilde A_n$ buildings},
+J.\ Operator Theory \textbf{49} (2003), 25--44.
+
+\bibitem{FLMO23} K.~Furuya, N.~Lashkari, M.~Moosa and S.~Ouseph,
+\emph{Information loss, mixing and emergent type $\mathrm{III}_1$ factors},
+JHEP \textbf{08} (2023), 111.
+
+\bibitem{GMP22} E.~Gesteau, M.~Marcolli and S.~Parikh,
+\emph{Holographic tensor networks from hyperbolic buildings},
+JHEP \textbf{10} (2022), 169.
+
+\bibitem{GLS22} P.~Gorantla, H.~T.~Lam and S.-H.~Shao,
+\emph{Fractons on graphs and complexity},
+Phys.\ Rev.\ B \textbf{106} (2022), 195139.
+
+\bibitem{GLSS23} P.~Gorantla, H.~T.~Lam, N.~Seiberg and S.-H.~Shao,
+\emph{Gapped lineon and fracton models on graphs},
+Phys.\ Rev.\ B \textbf{107} (2023), 125121.
+
+\bibitem{GKPSW} S.~S.~Gubser, J.~Knaute, S.~Parikh, A.~Samberg and P.~Witaszczyk,
+\emph{$p$-adic AdS/CFT},
+Comm.\ Math.\ Phys.\ \textbf{352} (2017), 1019--1059.
+
+\bibitem{GubserParikh} S.~S.~Gubser and S.~Parikh,
+\emph{Geodesic bulk diagrams on the Bruhat--Tits tree},
+Phys.\ Rev.\ D \textbf{96} (2017), 066024.
+
+\bibitem{HMSS} M.~Heydeman, M.~Marcolli, I.~Saberi and B.~Stoica,
+\emph{Tensor networks, $p$-adic fields, and algebraic curves: arithmetic and the
+$\mathrm{AdS}_3/\mathrm{CFT}_2$ correspondence},
+Adv.\ Theor.\ Math.\ Phys.\ \textbf{22} (2018), 93--176.
+
+\bibitem{HuangJepsen} A.~Huang and C.~B.~Jepsen,
+\emph{Finite temperature at finite places},
+JHEP \textbf{03} (2025), 097.
+
+\bibitem{INO08} M.~Izumi, S.~Neshveyev and R.~Okayasu,
+\emph{The ratio set of the harmonic measure of a random walk on a hyperbolic group},
+Israel J.\ Math.\ \textbf{163} (2008), 285--316.
+
+\bibitem{Krieger76} W.~Krieger,
+\emph{On ergodic flows and the isomorphism of factors},
+Math.\ Ann.\ \textbf{223} (1976), 19--70.
+
+\bibitem{LL1} S.~Leutheusser and H.~Liu,
+\emph{Causal connectability between quantum systems and the black hole interior in
+holographic duality}, Phys.\ Rev.\ D \textbf{108} (2023), 086019.
+
+\bibitem{LL2} S.~Leutheusser and H.~Liu,
+\emph{Emergent times in holographic duality},
+Phys.\ Rev.\ D \textbf{108} (2023), 086020.
+
+\bibitem{Marcolli20} M.~Marcolli,
+\emph{Holographic codes on Bruhat--Tits buildings and Drinfeld symmetric spaces},
+Pure Appl.\ Math.\ Q.\ \textbf{16} (2020), 1--33.
+
+\bibitem{Mondal} A.~Mondal, S.~Parikh, P.~Pradhan and R.~Sengar,
+\emph{Toward holography on biregular trees},
+Phys.\ Rev.\ D \textbf{112} (2025), 086011.
+
+\bibitem{RR97} J.~Ramagge and G.~Robertson,
+\emph{Factors from trees},
+Proc.\ Amer.\ Math.\ Soc.\ \textbf{125} (1997), 2051--2055.
+
+\bibitem{Rob05} G.~Robertson,
+\emph{Boundary operator algebras for free uniform tree lattices},
+Houston J.\ Math.\ \textbf{31} (2005), 913--935.
+
+\bibitem{Wiesbrock93} H.-W.~Wiesbrock,
+\emph{Half-sided modular inclusions of von Neumann algebras},
+Comm.\ Math.\ Phys.\ \textbf{157} (1993), 83--92.
+
+\bibitem{Witten22} E.~Witten,
+\emph{Gravity and the crossed product},
+JHEP \textbf{10} (2022), 008.
+
+\end{thebibliography}
+
+\end{document}

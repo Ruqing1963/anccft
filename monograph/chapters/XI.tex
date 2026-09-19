@@ -1,0 +1,459 @@
+% generated from Paper 11/anccft11.tex
+\chapter{Algorithmic non-commutative class field theory, XI: the $\PGL_3$ positive Hecke-dynamical system: shift equivalence over $\Z$ and the geodesic
+edge flow}\label{chap:XI}
+\chaptermark{XI}
+\begin{chapterabstract}
+Paper X left one problem at the top of its list: a non-negative integer matrix shift
+equivalent over $\Z$ to the companion $\Cthree$ of the $\PGL_3$ cubic pencil, which would be
+a positive Hecke-dynamical system carrying the Hecke critical group $\Z\oplus\JacH(Y)$ in its
+$K$-theory. This paper settles what can be settled about that problem and builds the
+positive system that does exist. First, the $\Z/3$ grading $\deg(i,v)=i-\tau(v)$ makes
+$\Cthree$ a period-three cyclic matrix; shift equivalence of $\Cthree$ to a non-negative
+matrix reduces, with an explicit lag formula, to shift equivalence of the return map
+$P_0=\Cthree{}^{3}|_{\deg 0}$ (Perron root $q^{6}$, $\det P_0=q^{3n}$) to a primitive matrix.
+Second, the required statement is identified precisely: since the nonzero spectrum of $P_0$
+satisfies the Perron and net-trace conditions ([Ch.~\ref{chap:X}], Kim--Ormes--Roush), its shift
+equivalence over $\Z$ to a primitive matrix is an instance of the \emph{weak Generalized
+Spectral Conjecture} of Boyle--Handelman, which is open over $\Z$; the specification's
+request for explicit $R,S,\ell$ is a request to prove a case of an open conjecture, and we
+do not claim to. Third, the natural explicit route --- a positive presentation
+$(tI-Y)(tI-P_0)$ with a nilpotent cofactor $Y$ --- is proved impossible on $Y_{21}$ and
+$Y_{24}$ by exact rational Farkas certificates: $P_0$ has a positive right but not left
+Perron vector, no positive power, and a negative-entry digraph with cycles. Fourth, and
+positively: the \emph{geodesic edge flow} $\LE$ on typed edges ($(x,y)\to(y,z)$ with $z$ not
+adjacent to $x$) is a non-negative integer matrix with row sums $q^{2}$, irreducible, and for
+every joint eigenvector $f$ of $(A_1,A_2)$ with eigenvalues $(a,b)$ the three edge functions
+$f\circ\text{tail}$, $f\circ\text{head}$, $m_f$ (sum over the third vertices of the chambers on
+the edge) span an $\LE$-invariant space on which the characteristic polynomial is exactly
+$\lambda^{3}-a\lambda^{2}+qb\lambda-q^{3}$. Hence an explicit integer intertwiner $\Psi$ with
+$\LE\Psi=\Psi C'$, $C'$ lag-one shift equivalent to $\Cthree$, and the whole nontrivial
+$\PGL_3$ Hecke spectrum inside the spectrum of a non-negative matrix; the trivial pair
+contributes only $q^{2}$ ($\rk\Psi=3n-6$), and the complementary spectrum has modulus
+$q^{1/2}$ (numeric on $Y_{168}$). The Cuntz--Krieger algebra $\cO_{\LE}$ is a Kirchberg
+algebra whose gauge dynamics is the gallery flow and whose $K_0$ is finite: the positive
+system sees the cuspidal Hecke spectrum but not the Hecke critical group, the rank-two form
+of the bulk--boundary dichotomy of [Ch.~\ref{chap:I}].
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved except where marked ``numeric'' (floating-point spectra,
+Table~\\ref{XI:tab:battery}). Theorem~\\ref{XI:thm:nocofactor} rests on exact rational Farkas
+certificates verified by integer arithmetic. The classical inputs are the module
+characterization of shift equivalence over $\Z$ \cite[\S2]{BS}, the Spectral Conjecture over
+$\Z$ \cite{KOR}, and the statements (not proofs) of the Generalized Spectral Conjecture
+\cite{BH91,BH93,BS}. Kang--Li \cite{KL} is context for the edge flow. The complexes are those
+of [Ch.~\ref{chap:X}]; the edge-flow theorem uses the flag condition [Ch.~\ref{chap:X}, Def.~1.1(iv)], which holds for
+$Y_{168}$ and fails for the smaller covers, so its numerical checks are on $Y_{168}$.
+Section~\\ref{XI:sec:scope} records what is open and the corrections to the specification;
+Proposition~\\ref{XI:prop:kms} answers its item on KMS states.
+
+\section{The grading, the return map, and the cyclic reduction}\label{XI:sec:grading}
+
+Throughout, $Y$ is an $\Atwo$ complex of order $q$ in the sense of [Ch.~\ref{chap:X}, Def.~1.1] with $n$
+vertices, type function $\tau$, type-raising adjacency $A_1$, $A_2=A_1^{t}$, and companion
+$\Cthree=\begin{psmallmatrix}A_1&-qA_2&q^{3}I\\ I&0&0\\0&I&0\end{psmallmatrix}$ on
+$\Z^{3n}=\bigoplus_{i=0}^{2}\Z^{V}$, $\det(I-u\Cthree)=\det P(u)$ with
+$P(u)=I-uA_1+qu^{2}A_2-q^{3}u^{3}I$ [Ch.~\ref{chap:X}, Thm.~3.3].
+
+\begin{lemma}[Grading]\label{XI:lem:grading}
+Give the coordinate $(i,v)$ of $\Z^{3n}$ the degree $\deg(i,v):=i-\tau(v)\in\Z/3$. Then
+$\Cthree$ maps the degree-$d$ summand $\Z^{3n}_d$ into $\Z^{3n}_{d+1}$: in the graded
+decomposition $\Cthree$ is the cyclic block matrix with blocks $X_d\colon\Z^{3n}_d\to
+\Z^{3n}_{d+1}$, each $\Z^{3n}_d$ of rank $n$, and $\Cthree{}^{3}$ is block diagonal with
+\emph{return maps} $P_d:=X_{d+2}X_{d+1}X_d\in M_n(\Z)$.
+\end{lemma}
+
+\begin{proof}
+$A_1$ sends $(0,y)$ to $(0,x)$ with $\tau(x)=\tau(y)-1$, raising the degree by one; the
+identity blocks send $(0,v)\mapsto(1,v)$ and $(1,v)\mapsto(2,v)$, raising $i$ by one;
+$-qA_2$ sends $(1,v)$ to $(0,x)$ with $\tau(x)=\tau(v)+1$: degree $1-\tau(v)\mapsto
+-\tau(v)-1\equiv1-\tau(v)+1$; $q^{3}I$ sends $(2,v)\mapsto(0,v)$: $2-\tau(v)\mapsto-\tau(v)
+\equiv3-\tau(v)$. Each $\Z^{3n}_d$ has rank $n$ because the $n$ vertices split equally
+among the three types [Ch.~\ref{chap:X}, Lem.~1.2]. Verified as an exact block identity on four complexes
+(Table~\\ref{XI:tab:battery}, line (G)).
+\end{proof}
+
+\begin{proposition}[The return map]\label{XI:prop:P0}
+The nonzero spectrum of $P_0$ is $\Lambda_Q$ of {\rm[Ch.~\ref{chap:X}, Def.~4.4]}: one cube $\lambda^{3}$
+for each $\omega$-orbit of eigenvalues of $\Cthree$, with $q^{6}$ simple and dominant;
+$\det P_0=q^{3n}$; $P_0$ has a positive right Perron vector, namely the restriction of
+$(q^{4}\mathbf1,q^{2}\mathbf1,\mathbf1)$ to $\Z^{3n}_0$. On $Y_{21},Y_{24},Y_{42},Y_{168}$
+(numeric): the left Perron vector of $P_0$ is not positive, no power $P_0^{k}$, $k\le30$, is
+positive, and the digraph of negative entries of $P_0$ contains cycles.
+\end{proposition}
+
+\begin{proof}
+$\Cthree{}^{3}=\bigoplus_dP_d$ and the three $P_d$ are conjugate over $\Z$ ($P_{d+1}X_d=X_dP_d$
+with $X_d$ invertible over $\Q$), so each has the spectrum of $\Cthree{}^{3}$ with
+multiplicities divided by three: $\{\lambda^{3}\}$, one per orbit. $\det\Cthree=(q^{3})^{n}$
+(block expansion), so $\det P_0^{3}=\det\Cthree{}^{3}=q^{9n}$ and $\det P_0=q^{3n}$
+(positive, as $q^{6}$ dominates). For $\lambda=q^{2}$ the vector $(\lambda^{2}\mathbf1,\lambda
+\mathbf1,\mathbf1)$ is a $\Cthree$-eigenvector because $\lambda^{2}(q^{2}+q+1)-q\lambda(q^{2}
++q+1)+q^{3}=\lambda^{3}$; it is positive and graded-homogeneous pieces of it are
+eigenvectors of the $P_d$. The remaining statements are computations.
+\end{proof}
+
+\begin{lemma}[Cyclic lifting of shift equivalence]\label{XI:lem:lift}
+Let $B_0\in M_N(\Z)$ and suppose $(R_0,S_0,\ell)$ is a shift equivalence over $\Z$ between
+$P_0$ and $B_0$: $P_0R_0=R_0B_0$, $S_0P_0=B_0S_0$, $R_0S_0=P_0^{\ell}$, $S_0R_0=B_0^{\ell}$.
+Put $B:=\operatorname{cyc}(I,I,B_0)$, the cyclic block matrix with blocks $I\colon0\to1$,
+$I\colon1\to2$, $B_0\colon2\to0$ on $\Z^{N}\oplus\Z^{N}\oplus\Z^{N}$, and
+\[
+R:=\operatorname{diag}\bigl(R_0,\ X_0R_0,\ X_1X_0R_0\bigr),\qquad
+S:=\operatorname{diag}\bigl(S_2X_1X_0,\ S_2X_1,\ S_2\bigr),\quad S_2:=S_0X_2 .
+\]
+Then $\Cthree R=RB$, $S\Cthree=BS$, $RS=\Cthree{}^{3(\ell+1)}$, $SR=B^{3(\ell+1)}$: a shift
+equivalence over $\Z$ of lag $3(\ell+1)$. If $B_0\ge0$ then $B\ge0$, and $B$ is irreducible
+of period $3$ when $B_0$ is primitive. Conversely a shift equivalence between $\Cthree$ and
+a graded cyclic $B$ restricts to one between the return maps.
+\end{lemma}
+
+\begin{proof}
+Direct verification: $X_0R_0=(X_0R_0)\cdot I$, $X_1(X_0R_0)=(X_1X_0R_0)\cdot I$,
+$X_2(X_1X_0R_0)=P_0R_0=R_0B_0$ give $\Cthree R=RB$; $S_2X_1X_0\cdot X_2=S_0P_0X_2=B_0S_0X_2=
+B_0S_2$ and the two identities $S_{d+1}X_d=S_d$ give $S\Cthree=BS$; on the degree-$d$ block
+$RS$ equals $R_dS_d=(X_{d-1}\cdots X_0R_0)(S_0X_2\cdots X_d)=X_{d-1}\cdots X_0P_0^{\ell}X_2
+\cdots X_d=P_d^{\ell+1}$, and $SR$ equals $S_0P_0R_0=B_0^{\ell+1}$ on each block, while
+$B^{3}=\operatorname{diag}(B_0,B_0,B_0)$. Checked with the trivial equivalence
+$B_0=P_0$ on four complexes (Table~\\ref{XI:tab:battery}, line (L)). The converse is the
+restriction of the four equations to graded pieces.
+\end{proof}
+
+\section{Shift equivalence over \texorpdfstring{$\Z$}{Z}: criterion, cofactors, obstructions}\label{XI:sec:se}
+
+\begin{proposition}[Module criterion]\label{XI:prop:module}
+For square integer matrices $A,B$ (any sizes), $A\SE B$ if and only if the $\Z[t,t^{-1}]$-modules
+$M_A:=\Z[t^{\pm}]^{n}/(tI-A)\Z[t^{\pm}]^{n}$ and $M_B$ are isomorphic \cite[\S2]{BS}. For
+nonsingular $A$, $M_A\cong\Z^{n}[A^{-1}]=\bigcup_kA^{-k}\Z^{n}$ with $t$ acting as $A$. A
+non-negative $B$ with $B\SE P_0$ is therefore the same thing as a finite set of generators
+$g_1,\dots,g_N$ of $M_{P_0}$ over $\Z[t^{\pm}]$ with $t\,g_j=\sum_iB_{ij}g_i$, $B_{ij}\in
+\Z_{\ge0}$: a \emph{positive presentation} of the Hecke module.
+\end{proposition}
+
+\begin{proposition}[Cofactor construction]\label{XI:prop:cofactor}
+Let $U(t)\in GL_n(\Z[t^{\pm}])$ and suppose $F(t):=U(t)(tI-P_0)=t^{K+1}I-\sum_{k=0}^{K}C_kt^{k}$
+with all $C_k\in M_n(\Z_{\ge0})$. Then the companion
+$B_F=\begin{psmallmatrix}C_K&C_{K-1}&\cdots&C_0\\ I&0&\cdots&0\\ &\ddots&&\\ 0&\cdots&I&0
+\end{psmallmatrix}\ge0$ satisfies $B_F\SE P_0$. In particular, if $Y\in M_n(\Z)$ is
+nilpotent with $P_0+Y\ge0$ and $-YP_0\ge0$, then $U=tI-Y$ works and
+$B=\begin{psmallmatrix}P_0+Y&-YP_0\\ I&0\end{psmallmatrix}\ge0$ is shift equivalent over
+$\Z$ to $P_0$, hence $\operatorname{cyc}(I,I,B)\SE\Cthree$ by Lemma~\\ref{XI:lem:lift}.
+\end{proposition}
+
+\begin{proof}
+$\coker(tI-B_F)\cong\coker F$ by the companion reduction (as in [Ch.~\ref{chap:X}, Thm.~3.3]), and
+$\coker F=\coker\bigl(U(tI-P_0)\bigr)\cong\coker(tI-P_0)$ because $U$ is invertible over
+$\Z[t^{\pm}]$; Proposition~\\ref{XI:prop:module}. For $U=tI-Y$: $\det(tI-Y)=t^{n}$ is a unit in
+$\Z[t^{\pm}]$ when $Y$ is nilpotent, and $(tI-Y)(tI-P_0)=t^{2}I-(P_0+Y)t+YP_0$.
+\end{proof}
+
+\begin{theorem}[No nilpotent cofactor on $Y_{21}$, $Y_{24}$]\label{XI:thm:nocofactor}
+For $Y=Y_{21}$ and $Y=Y_{24}$ there is no matrix $Y\in M_n(\Q)$ with $P_0+Y\ge0$,
+$YP_0\le0$ and $\Tr Y=0$; a fortiori no nilpotent integer cofactor exists, and
+Proposition~\\ref{XI:prop:cofactor} with $K=1$ cannot produce a positive presentation.
+\end{theorem}
+
+\begin{proof}
+Write $Y=-P_0+Z$, $Z\ge0$; the system becomes $ZP_0\le P_0^{2}$ entrywise and $\Tr Z=\Tr P_0$.
+By Farkas' lemma it is infeasible iff there exist $\Lambda\in M_n(\Q_{\ge0})$ and $\mu\in\Q$
+with $\Lambda P_0^{t}+\mu I\ge0$ entrywise and $\langle\Lambda,P_0^{2}\rangle+\mu\Tr P_0<0$.
+The script finds such certificates with denominators $2$ ($Y_{21}$, dual value $-4340$) and
+$128$ ($Y_{24}$, dual value $-53185/8$) and verifies both inequalities in exact rational
+arithmetic. (For $Y_{42}$ the LP relaxation is infeasible in floating point but a rational
+certificate was not extracted; we claim nothing there.)
+\end{proof}
+
+\begin{remark}[The precise status of the realization problem]\label{XI:rem:status}
+Let $\Lambda$ be the nonzero spectrum of $P_0$. By [Ch.~\ref{chap:X}, Thm.~4.5] and \cite{KOR}, $\Lambda$ is
+the nonzero spectrum of a primitive integer matrix. The statement the specification asks
+for --- $P_0\SE B_0$ with $B_0$ primitive, equivalently $\Cthree\SE B$ with $B\ge0$
+(Lemma~\\ref{XI:lem:lift}) --- is exactly the \emph{weak form of the Generalized Spectral
+Conjecture} \cite[p.~253]{BH91}, \cite[p.~124]{BH93} for the ring $\Z$ and the matrix $P_0$:
+that the three spectral conditions suffice for shift equivalence over $\Z$ to a primitive
+matrix. Boyle--Schmieding \cite{BS} show that over dense subrings of $\R$ the weak form
+implies the strong form (strong shift equivalence); $\Z$ is not dense and the weak form over
+$\Z$ is, to our knowledge, open. The requested explicit $(B,R,S,\ell)$ would therefore prove
+a case of an open conjecture. This paper does not. What it proves is that the problem is
+equivalent to the primitive-matrix problem for the $n\times n$ return map
+(Lemma~\\ref{XI:lem:lift}), that the first explicit route is closed
+(Theorem~\\ref{XI:thm:nocofactor}), and that a positive system carrying the Hecke spectrum ---
+though not the Hecke module --- exists and is canonical (Section~\\ref{XI:sec:edge}).
+\end{remark}
+
+\section{The geodesic edge flow}\label{XI:sec:edge}
+
+Let $E$ be the set of typed edges $e=(x\to y)$, $\tau(y)=\tau(x)+1$, and for each
+chamber $\{x,y,z\}$ on $e$ call $z$ its third vertex. Let $S,T,M\in M_{n\times|E|}(\Z)$ be the
+tail, head and third-vertex incidence matrices: $S_{v,e}=[v=\text{tail}(e)]$,
+$T_{v,e}=[v=\text{head}(e)]$, $M_{v,e}=[\{v\}\cup e\text{ is a chamber}]$; $M$ has column
+sums $q+1$. For a vertex function $f$ put $f\circ t:=S^{t}f$, $f\circ h:=T^{t}f$,
+$m_f:=M^{t}f$ (the sum of $f$ over the third vertices of the chambers on the edge).
+
+\begin{definition}[Geodesic edge flow]\label{XI:def:LE}
+$\LE\in M_{|E|}(\{0,1\})$, $\LE\bigl((x\to y),(y\to z)\bigr)=1$ iff $\tau(z)=\tau(y)+1$ and
+$z$ is not adjacent to $x$; all other entries $0$. A step of $\LE$ extends a type-raising
+edge to a type-raising path of length two that does not lie in a chamber: the rank-two
+analogue of the non-backtracking condition of the Hashimoto matrix $\Anb$ of [Ch.~\ref{chap:I}].
+\end{definition}
+
+\begin{lemma}[Local counts]\label{XI:lem:local}
+Let $Y$ satisfy {\rm[Ch.~\ref{chap:X}, Def.~1.1(i)--(iv)]} and have vertex links isomorphic to the
+incidence graph of $\PG(2,q)$. For a typed edge $e=(x\to y)$:
+\begin{enumerate}
+\item[(a)] $y$ has $q^{2}+q+1$ type-raising neighbours $z$; exactly $q+1$ of them are
+adjacent to $x$, and those are exactly the third vertices of the chambers on $e$ (flag
+condition); hence the row sum of $\LE$ at $e$ is $q^{2}$;
+\item[(b)] $\sum_{z\colon y\to z,\ z\not\sim x}f(z)=(A_1f)(y)-m_f(e)$;
+\item[(c)] $\sum_{z\colon y\to z,\ z\not\sim x}m_f(y\to z)=q\bigl((A_2f)(y)-f(x)\bigr)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a),(b) are the flag condition. (c) Expand $m_f(y\to z)=\sum_wf(w)$ over third vertices
+$w$ of chambers $\{y,z,w\}$; such $w$ are type-$\tau(x)$ neighbours of $y$, i.e.\ the
+in-neighbours $w\to y$ counted by $A_2$. For fixed $w$ the number of $z$ with $y\to z$,
+$\{y,z,w\}$ a chamber and $z\not\sim x$ is: $0$ if $w=x$ (every chamber on $(x\to y)$ has
+$z\sim x$); and if $w\ne x$, in the link of $y$ --- the incidence graph of $\PG(2,q)$, with
+$x,w$ two distinct points and the $z$'s the $q+1$ lines through $w$ --- the lines through $w$
+that also pass through $x$ number exactly one, so $q$ of them have $z\not\sim x$. Summing,
+$q\sum_{w\to y,\,w\ne x}f(w)=q\bigl((A_2f)(y)-f(x)\bigr)$.
+\end{proof}
+
+\begin{theorem}[The edge flow carries the Hecke pencil]\label{XI:thm:edge}
+Under the hypotheses of Lemma~\\ref{XI:lem:local}, with
+$\Psi:=\bigl[\,S^{t}\ \ T^{t}\ \ M^{t}\,\bigr]\in M_{|E|\times3n}(\Z)$ and
+\[
+C':=\begin{pmatrix}0&0&-qI\\ q^{2}I&A_1&qA_2\\ 0&-I&0\end{pmatrix}\in M_{3n}(\Z):
+\qquad
+\LE\,\Psi\;=\;\Psi\,C' .
+\]
+Consequently, for every joint eigenvector $f$ of $(A_1,A_2)$ with eigenvalues $(a,b)$, the
+space $V_f:=\operatorname{span}\{f\circ t,\ f\circ h,\ m_f\}$ is $\LE$-invariant and the matrix
+of $\LE$ on the ordered basis $(f\circ t,f\circ h,m_f)$ is
+$\begin{psmallmatrix}0&0&-q\\ q^{2}&a&qb\\ 0&-1&0\end{psmallmatrix}$, with characteristic
+polynomial $\lambda^{3}-a\lambda^{2}+qb\lambda-q^{3}$, the cubic pencil of the pair $(a,b)$.
+Every root of the
+cubic pencil attached to a joint eigenpair with $\dim V_f=3$ is an eigenvalue of the
+non-negative matrix $\LE$.
+\end{theorem}
+
+\begin{proof}
+For $g=\alpha\,f\circ t+\beta\,f\circ h+\gamma\,m_f$ and $e=(x\to y)$,
+\begin{align*}
+(\LE g)(e)&=\sum_{z\colon y\to z,\ z\not\sim x}\bigl(\alpha f(y)+\beta f(z)+\gamma m_f(y\to z)\bigr)\\
+&=\alpha q^{2}f(y)+\beta\bigl((A_1f)(y)-m_f(e)\bigr)+\gamma q\bigl((A_2f)(y)-f(x)\bigr)
+\end{align*}
+by Lemma~\\ref{XI:lem:local}, i.e.\ $\LE g=(-q\gamma)\,f\circ t+\bigl(q^{2}\alpha f+\beta A_1f
++q\gamma A_2f\bigr)\circ h+(-\beta)\,m_f$. Read for arbitrary (not necessarily eigen-)
+triples $(f_0,f_1,f_2)$ this is $\LE\Psi(f_0,f_1,f_2)^{t}=\Psi(-qf_2,\ q^{2}f_0+A_1f_1+qA_2f_2,
+\ -f_1)^{t}=\Psi C'(f_0,f_1,f_2)^{t}$. For an eigenvector, $A_1f=af$, $A_2f=bf$ give the
+$3\times3$ matrix; expanding its characteristic determinant along the first row gives
+$\lambda\bigl((\lambda-a)\lambda+qb\bigr)-q^{3}$. Verified as an exact integer identity
+$\LE\Psi=\Psi C'$ on $Y_{168}$ (Table~\\ref{XI:tab:battery}, line (I)).
+\end{proof}
+
+\begin{proposition}[$C'$ is the companion]\label{XI:prop:Cprime}
+With $D:=\begin{psmallmatrix}0&0&qI\\ I&0&0\\0&-I&0\end{psmallmatrix}$, both $D$ and
+$S:=\Cthree D^{-1}$ are integer matrices, and $C'D=D\Cthree$, $S C'=\Cthree S$, $DS=C'$,
+$SD=\Cthree$: $C'$ and $\Cthree$ are shift equivalent over $\Z$ with lag one (indeed
+elementary strong shift equivalent over $\Z$), so $M_{C'}\cong M_{\Cthree}$ and $C'$ has the
+spectrum of the pencil.
+\end{proposition}
+
+\begin{proof}
+$D^{-1}=\begin{psmallmatrix}0&I&0\\0&0&-I\\ q^{-1}I&0&0\end{psmallmatrix}$, and the third block
+column of $\Cthree$ is $(q^{3}I,0,0)^{t}$, so $\Cthree D^{-1}$ has first block column
+$(q^{2}I,0,0)^{t}$ and is integral. The four identities are then formal:
+$C'=D\Cthree D^{-1}$ by direct multiplication (the new coordinates are $f_0=qg_2$, $f_1=g_0$,
+$f_2=-g_1$), $DS=D\Cthree D^{-1}=C'$, $SD=\Cthree$. Verified exactly on $Y_{168}$.
+\end{proof}
+
+\begin{corollary}[What the edge flow sees and what it does not]\label{XI:cor:spectrum}
+Under the hypotheses of Theorem~\\ref{XI:thm:edge}:
+\begin{enumerate}
+\item[(i)] $\ker\Psi\supseteq\{(f,-f,0),\ ((q+1)f,0,-f):\ f=\omega^{k\tau}\mathbf1,\ k=0,1,2\}$,
+a rank-$6$ sublattice: for the trivial pair and its two $\omega$-conjugates the three edge
+functions are proportional, $V_f$ is one-dimensional and carries only the eigenvalue
+$q^{2}\omega^{k}$; hence $\rk\Psi\le3n-6$, with equality on $Y_{168}$ (numeric rank $498$).
+\item[(ii)] On $Y_{168}$ the spectrum of $\LE$ contains every pencil root except the six
+$\{1,\omega,\omega^{2},q,q\omega,q\omega^{2}\}$; the remaining $|E|-(3n-6)=4n+6$ eigenvalues
+all have modulus $q^{1/2}$ (numeric, to $10^{-4}$): with $P(u)=\det(I-u\Cthree)$,
+\begin{gather*}
+\det(I-u\LE)\cdot(1-u^{3})(1-q^{3}u^{3})\;=\;\det P(u)\cdot G(u),\\
+G\in\Z[u],\qquad \deg G=4n+6,\qquad \text{all roots of $G$ on }|u|=q^{-1/2}.
+\end{gather*}
+\item[(iii)] $\LE$ is irreducible with row sums $q^{2}$ (its Perron eigenvalue), and $1$ is
+not an eigenvalue of $\LE$ (numeric, distance $0.58$ to the nearest eigenvalue on $Y_{168}$).
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(i) For $f=\omega^{k\tau}\mathbf1$: $f\circ t=\omega^{k\tau(x)}$, $f\circ h=\omega^{k(\tau(x)+1)}$,
+$m_f=(q+1)\omega^{k(\tau(x)+2)}$ on $(x\to y)$, proportional; the two displayed vectors are
+integral for $k=0$, and over $\Z[\omega]$ for $k=1,2$, so the rational kernel has rank at
+least $6$. (ii),(iii) are computations; the divisibility in (ii) is exact because
+$\det P(u)$ contains $(1-u^{3})(1-q^{3}u^{3})(1-q^{6}u^{3})$ and $\LE$ has the eigenvalues
+$q^{2}\omega^{k}$.
+\end{proof}
+
+\begin{remark}[Kang--Li context]\label{XI:rem:KL}
+Kang--Li \cite{KL} express the zeta function of a $\PGL_3$ complex as a rational function
+in which the vertex factor $\det P(u)$ and a chamber (parahoric) factor appear; the operator
+$\LE$ is the type-$(1,0)$ gallery transfer operator whose determinant computes the zeta
+function counting closed type-raising geodesic galleries, and the modulus-$q^{1/2}$
+remainder of Corollary~\\ref{XI:cor:spectrum}(ii) is the parahoric spectrum, which for a
+Ramanujan complex lies on $|u|=q^{-1/2}$. We use nothing from \cite{KL}; the identity (ii)
+is established here numerically and its general form is left as it stands. The chamber
+flow $\LF$ on oriented chambers ($(a,b,c)\to(b,c,d)$, $d\ne a$), row sums $q$, has spectrum
+of moduli $\{1,q^{1/4},q^{1/2},q\}$ on $Y_{168}$ and contains no nontrivial pencil root: the
+Hecke spectrum lives on edges, not on chambers.
+\end{remark}
+
+\begin{theorem}[The positive Hecke-dynamical algebra]\label{XI:thm:algebra}
+Let $Y$ satisfy the hypotheses of Theorem~\\ref{XI:thm:edge} and let $\cO_{\LE}$ be the
+Cuntz--Krieger algebra of $\LE$ with its gauge action $\gamma$. Then $\cO_{\LE}$ is a unital
+Kirchberg algebra whose gauge dynamics is the geodesic gallery flow; its partition
+function is $\det(I-u\LE)^{-1}$, whose poles include every nontrivial Satake datum
+$\lambda_{j,i}$ of the complex at $u=\lambda_{j,i}^{-1}$; its $K$-theory is
+$K_1(\cO_{\LE})=\ker(I-\LE^{t})=0$ and $K_0(\cO_{\LE})=\coker(I-\LE^{t})$ finite of order
+$|\det(I-\LE)|$ (on $Y_{168}$, $\log|\det(I-\LE)|=603.249$, numeric). The integer intertwiner
+$\Psi$ induces a $\Z[t^{\pm}]$-module map $M_{\Cthree}\cong M_{C'}\to M_{\LE}$ of the Hecke
+module into the edge-flow module. $\cO_{\LE}$ is not shift equivalent to $\Cthree$ (different
+nonzero spectra), and its $K_0$ is not the Hecke critical group $\Z\oplus\JacH(Y)$.
+\end{theorem}
+
+\begin{proof}
+$\LE$ is irreducible with row sums $q^{2}\ge4$ and is not a permutation matrix, so it
+satisfies condition (I) of Cuntz--Krieger and $\cO_{\LE}$ is simple and purely infinite,
+separable, nuclear and in the UCT class, by the criteria quoted in [Ch.~\ref{chap:VI}, Thm.~3.1]; purely
+infinite algebras are traceless. $K$-theory is the
+Cuntz--Krieger formula; $1\notin\spec\LE$ gives the kernel statement and finiteness. The
+module map is Theorem~\\ref{XI:thm:edge} and Proposition~\\ref{XI:prop:Cprime}. The last sentence is
+Corollary~\\ref{XI:cor:spectrum}(ii) and [Ch.~\ref{chap:X}, Thm.~3.3].
+\end{proof}
+
+\begin{proposition}[KMS states of the edge flow]\label{XI:prop:kms}
+Let $\sigma_t(s_e)=e^{it}s_e$ be the gauge dynamics of $\cO_{\LE}$. A $\KMS_\beta$ state exists
+if and only if $\beta=\beta_c:=2\log q=\log\rho(\LE)$, and it is then unique: the state
+attached to the Perron eigenvector of $\LE$ (the Parry measure of the gallery shift), which
+is the constant vector since the row sums are $q^{2}$. The partition function
+$Z(\beta)=\sum_k\Tr(\LE^{k})e^{-k\beta}=-u\,\frac{d}{du}\log\det(I-u\LE)\big|_{u=e^{-\beta}}$
+has poles at $u=\lambda^{-1}$ for every eigenvalue $\lambda$ of $\LE$, hence at the inverses
+of all nontrivial Satake data by Theorem~\\ref{XI:thm:edge}; the $\KMS$ \emph{state} sees only
+$\lambda=q^{2}$. The Perron obstruction of {\rm[Ch.~\ref{chap:I}, Thm.~2.5]} therefore holds verbatim in rank
+two: the cuspidal $\mathrm{GL}_3$ $L$-factors $P_j(u)^{-1}$ are carried by the partition
+function and by the $\KMS$ functionals obtained from the nontrivial eigenvectors of
+$\LE$ (Theorem~\\ref{XI:thm:edge} gives them explicitly, $\Psi(f\circ t,f\circ h,m_f)$-combinations),
+not by any $\KMS$ state.
+\end{proposition}
+
+\begin{proof}
+For an irreducible non-negative matrix with the gauge dynamics, $\KMS_\beta$ states of the
+Cuntz--Krieger algebra correspond to non-negative eigenvectors of $\LE^{t}$ for the
+eigenvalue $e^{\beta}$ (as in [Ch.~\ref{chap:I}, Thm.~2.4]); by Perron--Frobenius the only such eigenvalue is
+$\rho(\LE)=q^{2}$ (row sums), with a unique normalized positive eigenvector. The rest is
+Theorem~\\ref{XI:thm:edge} and the identity $\Tr(\LE^{k})=\sum_\lambda\lambda^{k}$.
+\end{proof}
+
+\begin{remark}[Bulk and boundary, in rank two]\label{XI:rem:dichotomy}
+[Ch.~\ref{chap:I}, Thm.~3.7] found that the natural positive system of a graph --- the boundary algebra
+$\cO_{\Anb}$ --- has $K$-theory blind to the Hecke data, while the Hecke critical group
+$\Z\oplus\Jac(Y)$ lives in the Laplacian channel; [Ch.~\ref{chap:VI}] realized the latter by a
+Hecke-functorial, not Hecke-dynamical, Kirchberg algebra, and [Ch.~\ref{chap:II}] showed no single algebra
+can be both. In rank two the same dichotomy appears with one difference: the positive
+system $\cO_{\LE}$ carries the whole nontrivial Hecke \emph{spectrum} (Theorem~\\ref{XI:thm:edge}),
+and its $K_0$ is a finite group unrelated to $\JacH(Y)$, while $\cO(Y,\DeltaH)$ of [Ch.~\ref{chap:X}] carries
+$\Z\oplus\JacH(Y)$ without dynamics. An algebra carrying both would be $\cO_B$ for a
+non-negative $B\SE\Cthree$; [Ch.~\ref{chap:II}, Thm.~1.6] no longer forbids it (there is no trace
+obstruction, [Ch.~\ref{chap:X}, Thm.~4.2]), and its existence is the open instance of the weak Generalized
+Spectral Conjecture of Remark~\\ref{XI:rem:status}. That is the exact residue of the problem.
+\end{remark}
+
+\section{The verification battery}\label{XI:sec:battery}
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & complexes & result\\
+\midrule
+(G) $\deg=i-\tau$ makes $\Cthree$ degree one; $P_d=\Cthree{}^{3}|_d$; $\spec P_0=\Lambda_Q$; $\det P_0=q^{3n}$ & $Y_{21},Y_{24},Y_{42},Y_{168}$ & exact (spectrum numeric)\\
+(Y) $P_0$: negative entries $147,184,476,5936$; right Perron $>0$; left Perron $\not>0$; no $P_0^{k}>0$, $k\le30$; negative digraph cyclic & same & exact / numeric\\
+(N) LP relaxation $Y\ge-P_0$, $YP_0\le0$, $\Tr Y=0$ infeasible; exact Farkas certificates (denominators $2$, $128$) & $Y_{21},Y_{24}$ ($Y_{42}$ float) & exact\\
+(L) cyclic lift of the trivial shift equivalence: four equations, lag $3$ & four complexes & exact\\
+(E) $\LE$: $1176$ edges, row sums $4=q^{2}$, irreducible; $498$ of $504$ pencil roots present; missing $\{1,\omega,\omega^{2},2,2\omega,2\omega^{2}\}$; remainder $678=4n+6$ of modulus $\sqrt2$ & $Y_{168}$ & numeric\\
+(I) $\LE\Psi=\Psi C'$; $\rk\Psi=498=3n-6$; $D$, $\Cthree D^{-1}$ integral; lag-one equations & $Y_{168}$ & exact\\
+(T) $\Tr\LE^{k}$ vs $\Tr(\Cthree)^{k}$, $k\le10$: unequal (parahoric spectrum) & $Y_{168}$ & exact\\
+(F) $\LF$: $3528$ oriented chambers, row sums $2$, irreducible; spectrum moduli $\{1,2^{1/4},2^{1/2},2\}$; $3$ pencil roots & $Y_{168}$ & numeric\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Verification (\texttt{pgl3\_dynamical.py}). $Y_{168}$ is the only computed complex
+satisfying the flag condition; the edge-flow theorem is checked there. $\log|\det(I-\LE)|
+=603.249$ on $Y_{168}$.}
+\label{XI:tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{XI:sec:scope}
+
+\begin{remark}[Solved, open, impossible]\label{XI:rem:scope}
+\emph{Solved:} the graded structure of $\Cthree$ and the reduction of its realization
+problem to the primitive-matrix problem for the $n\times n$ return map, with an explicit lag
+formula; the module criterion and the cofactor construction; the impossibility of the
+nilpotent-cofactor route on $Y_{21},Y_{24}$ (exact certificates); the geodesic edge flow
+theorem with its explicit intertwiner, giving a non-negative integer matrix whose spectrum
+contains the entire nontrivial $\PGL_3$ Hecke spectrum, and the Kirchberg algebra
+$\cO_{\LE}$ it generates. \emph{Open:} (a) $\Cthree\SE B\ge0$, an instance of the weak
+Generalized Spectral Conjecture over $\Z$ (Remark~\\ref{XI:rem:status}); (b) a proof of the
+determinant identity of Corollary~\\ref{XI:cor:spectrum}(ii) for all $\Atwo$ complexes, and the
+identification of $G(u)$ with Kang--Li's chamber factor; (c) the structure of the finite
+group $K_0(\cO_{\LE})$; (d) whether positive presentations of $M_{P_0}$ of higher degree
+$K\ge2$ exist (Proposition~\\ref{XI:prop:cofactor}) --- the Farkas method extends but the
+search space grows. \emph{Impossible or false as stated:} the ``century deadlock since
+Bost--Connes'' that positive correspondences cannot carry higher automorphic Hecke spectra
+--- Theorem~\\ref{XI:thm:edge} carries it, as Hashimoto's matrix already did in rank one; what
+positive systems have so far failed to carry is the Hecke \emph{module} (the $K$-theory),
+and whether they can is the open conjecture.
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{XI:rem:corrections}
+\begin{sloppypar}
+(1) The specification asked for explicit $(B,R,S,\ell)$ with $B\ge0$ shift equivalent over
+$\Z$ to $\Cthree$, as a corollary of [X]'s ``Boyle--Handelman spectral conditions''. Those conditions give the nonzero spectrum
+(Spectral Conjecture, a theorem over $\Z$ by \cite{KOR}); shift equivalence is the weak
+Generalized Spectral Conjecture, open. No such $(B,R,S,\ell)$ is supplied, and none could
+be without proving a case of that conjecture. (2) ``Method one'' --- a block-cyclic $B$
+whose three-step product cancels $-qA_2$ --- is exactly Lemma~\\ref{XI:lem:lift}: correct as a
+reduction, and it converts the problem into the primitive-matrix problem for $P_0$ rather
+than solving it. (3) ``Method two'' (state splitting) applies to non-negative matrices; it
+cannot start from $\Cthree$, and the algebraic substitute (cofactors,
+Proposition~\\ref{XI:prop:cofactor}) is obstructed at degree two (Theorem~\\ref{XI:thm:nocofactor}).
+(4) The genuine positive $\mathrm{GL}_3$ dynamics is the geodesic edge flow $\LE$, whose
+existence and spectral content are proved here; it is the rank-two Hashimoto matrix, not a
+realization of $\Cthree$. (5) The claim that KMS states at the critical temperature
+``reproduce the $\mathrm{GL}_3$ local $L$-factors'' is false in the same way it was false in
+rank one: the unique $\KMS$ state sees the Perron eigenvalue only, the $L$-factors live in
+the partition function (Proposition~\\ref{XI:prop:kms}); the ``curse'' of [Ch.~\ref{chap:II}] is not broken but
+located --- it concerns the Hecke module, not the Hecke spectrum. (6) Of the specification's
+four checks, $B\ge0$, irreducibility and the spectral containment hold for $\LE$; the four
+shift-equivalence identities hold for the intertwiner pair $(D,\Cthree D^{-1})$ between
+$\Cthree$ and $C'$ (lag one) and for $\Psi$ as a one-sided intertwiner into $\LE$. The trace
+identities $\Tr\LE^{k}=\Tr(\Cthree)^{k}$ fail, and so does the Smith-form identity
+$\coker(I-\LE)\cong\Z\oplus\JacH$; both must fail, because $\LE$ carries the additional
+parahoric spectrum (Table~\\ref{XI:tab:battery}, line (T)).
+\end{sloppypar}
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Every numbered statement is proved except the items marked numeric in
+Table~\\ref{XI:tab:battery}; Theorem~\\ref{XI:thm:nocofactor} is certified by exact rational
+arithmetic. The statement of the weak Generalized Spectral Conjecture and its status are
+taken from the introduction of \cite{BS} (consulted), which attributes the weak form to
+\cite[p.~253]{BH91} and \cite[p.~124]{BH93}; those two pages were not consulted directly.
+The identification of the thick complexes with quotients of the building of $\PGL_3$ over a
+specific field is not claimed. Bibliographic data of \cite{BH91,BH93,BS,KOR,KL} were checked
+against publisher or arXiv pages.

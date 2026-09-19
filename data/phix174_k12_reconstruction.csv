@@ -1,0 +1,7 @@
+segment,start,end,length_nt,gene_context
+A,457,468,12,repeated 12-mer CTTCTGCCGTTT (also 3205..3216)
+B,264,275,12,repeated 12-mer CGTCAAGGACTG (also 2760..2771)
+X,3217,263,2433,wrapping
+U,276,456,181,spans C/D junction
+Z,469,2759,2291,
+Y,2772,3204,433,spans G/H spike junction

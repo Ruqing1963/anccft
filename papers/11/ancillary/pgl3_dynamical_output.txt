@@ -1,0 +1,41 @@
+﻿===== Y_21 (Z/7): n=21 =====
+  (G) C is degree one for deg = i - type: True; pieces of size [21, 21, 21]; P_d = C^3|piece d
+      spec P_0 = cubes of C-spectrum, one per orbit (moduli): True; det P_0 = 2^63 (q^(3n) = 2^63)
+  (Y) P_0: entries in [-62, 40], 147 negative of 441, diagonal values [-6, 8, 29]
+      Perron root 64.000000 = q^6; right Perron vector > 0: True; left Perron vector > 0: False; smallest k <= 30 with P_0^k > 0: None; negative digraph has a cycle: True
+  (N) LP relaxation of the nilpotent-cofactor conditions: status 2 (infeasible); exact rational Farkas certificate: denominator 2, dual value -4340
+  (L) cyclic lift of the trivial shift equivalence: CR=RB True, SC=BS True, RS=C^3 True, SR=B^3 True
+
+===== Y_24 (Z/2xZ/2xZ/2): n=24 =====
+  (G) C is degree one for deg = i - type: True; pieces of size [24, 24, 24]; P_d = C^3|piece d
+      spec P_0 = cubes of C-spectrum, one per orbit (moduli): True; det P_0 = 2^72 (q^(3n) = 2^72)
+  (Y) P_0: entries in [-56, 56], 184 negative of 576, diagonal values [-6, 8, 22]
+      Perron root 64.000000 = q^6; right Perron vector > 0: True; left Perron vector > 0: False; smallest k <= 30 with P_0^k > 0: None; negative digraph has a cycle: True
+  (N) LP relaxation of the nilpotent-cofactor conditions: status 2 (infeasible); exact rational Farkas certificate: denominator 128, dual value -53185/8
+  (L) cyclic lift of the trivial shift equivalence: CR=RB True, SC=BS True, RS=C^3 True, SR=B^3 True
+
+===== Y_42 (Z/14): n=42 =====
+  (G) C is degree one for deg = i - type: True; pieces of size [42, 42, 42]; P_d = C^3|piece d
+      spec P_0 = cubes of C-spectrum, one per orbit (moduli): True; det P_0 = 2^126 (q^(3n) = 2^126)
+  (Y) P_0: entries in [-38, 32], 476 negative of 1764, diagonal values [-6, 8, 13]
+      Perron root 64.000000 = q^6; right Perron vector > 0: True; left Perron vector > 0: False; smallest k <= 30 with P_0^k > 0: None; negative digraph has a cycle: True
+  (N) LP relaxation of the nilpotent-cofactor conditions: status 2 (infeasible); exact rational Farkas certificate: float-only
+  (L) cyclic lift of the trivial shift equivalence: CR=RB True, SC=BS True, RS=C^3 True, SR=B^3 True
+
+===== Y_168 (Z/2xZ/2xZ/14): n=168 =====
+  (G) C is degree one for deg = i - type: True; pieces of size [168, 168, 168]; P_d = C^3|piece d
+      spec P_0 = cubes of C-spectrum, one per orbit (moduli): True; det P_0 = 2^504 (q^(3n) = 2^504)
+  (Y) P_0: entries in [-10, 8], 5936 negative of 28224, diagonal values [-6, 1, 8]
+      Perron root 64.000000 = q^6; right Perron vector > 0: True; left Perron vector > 0: False; smallest k <= 30 with P_0^k > 0: None; negative digraph has a cycle: True
+  (L) cyclic lift of the trivial shift equivalence: CR=RB True, SC=BS True, RS=C^3 True, SR=B^3 True
+  (E) L_E: 1176 typed edges, row sums [4] (q^2 = 4), strongly connected: True, rank-deficiency 0
+      pencil roots in spec(L_E): 498 of 504; missing (rounded): [(-0.5-0.866j), (-0.5+0.866j), (1+0j), (-1-1.732j), (-1+1.732j), (2+0j)]
+      remainder: 678 eigenvalues, moduli [1.4142] (q^(1/2) = 1.4142); remainder arguments (deg, rounded): [-180, -173, -171, -158, -147, -143, -142, -140, -100, -98, -97, -93]...
+      eigenvalue 1 of L_E: distance 0.5817 (so ker(I-L_E) = 0, K_1(O_LE) = 0); log|det(I-L_E)| = 603.2490  (|K_0(O_LE)| = exp of that)
+  (T) Tr L_E^k, k=1..10: [0, 0, 0, 0, 0, 11760, 0, 0, 762048, 0]
+      Tr C^k,  k=1..10: [0, 0, 504, 0, 0, 12264, 0, 0, 773136, 0];  equal: False (they cannot be: L_E has the extra modulus-sqrt(q) spectrum)
+  (I) L_E Psi = Psi C' exactly: True; column sums of M (chambers per edge) [3]; rank Psi = 498 = 3n-6 = 498: True
+      C' = D C D^-1 with integral D and S = C D^-1 integral: True; lag-1 shift equivalence C'D = DC, SC' = CS, DS = C', SD = C: (True, True, True, True)
+  (F) L_F: 3528 oriented chambers, row sums [2], strongly connected: True; pencil roots in spec: 3; moduli of spectrum: [1.0, 1.1892, 1.4142, 2.0] (q^(1/4) = 1.1892)
+
+done.

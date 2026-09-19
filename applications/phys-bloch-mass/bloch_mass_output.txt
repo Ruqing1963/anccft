@@ -1,0 +1,174 @@
+﻿=== PART I: Z^d-periodic lattices from abelian covers of a finite graph ===
+
+--- (S) single-link flux: effective mass from spanning trees ---
+  [ok]   (S) R_eff=1/2, ||h||^2=1/2, kappa_0(1-R_eff)=8 = tau(Y-e)=8, m* = 4/t   [K_4] [exact]
+  [ok]   (S) R_eff=5/9, ||h||^2=4/9, kappa_0(1-R_eff)=36 = tau(Y-e)=36, m* = 27/4/t   [K_{3,3}] [exact]
+  [ok]   (S) R_eff=7/12, ||h||^2=5/12, kappa_0(1-R_eff)=160 = tau(Y-e)=160, m* = 48/5/t   [Q_3] [exact]
+  [ok]   (S) R_eff=2/5, ||h||^2=3/5, kappa_0(1-R_eff)=75 = tau(Y-e)=75, m* = 25/6/t   [K_5] [exact]
+  [ok]   (S) R_eff=3/5, ||h||^2=2/5, kappa_0(1-R_eff)=800 = tau(Y-e)=800, m* = 25/2/t   [Petersen] [exact]
+  [ok]   (S) R_eff=13/21, ||h||^2=8/21, kappa_0(1-R_eff)=19208 = tau(Y-e)=19208, m* = 147/8/t   [Heawood] [exact]
+
+--- K_4  (n=4, m=6, q=2, kappa_0=16)   voltage: single link e_3
+    H = Albanese/Gram matrix of harmonic projections = [[1/2]]
+    kappa_0 * H = [[8]]
+  [ok]   (Q) kappa_0*H integral (det = 8)   [K_4/single link e_3] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[16]])   [K_4/single link e_3] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 2.06e-27   [K_4/single link e_3] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[1/12]]   [K_4/single link e_3] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 4.000000 > 0, lambda_0(0) = 7.77e-16   [K_4/single link e_3] [numeric]
+
+--- K_{3,3}  (n=6, m=9, q=2, kappa_0=81)   voltage: single link e_4
+    H = Albanese/Gram matrix of harmonic projections = [[4/9]]
+    kappa_0 * H = [[36]]
+  [ok]   (Q) kappa_0*H integral (det = 36)   [K_{3,3}/single link e_4] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[72]])   [K_{3,3}/single link e_4] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 9.84e-27   [K_{3,3}/single link e_4] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[4/81]]   [K_{3,3}/single link e_4] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 3.000000 > 0, lambda_0(0) = -1.11e-15   [K_{3,3}/single link e_4] [numeric]
+
+--- Q_3  (n=8, m=12, q=2, kappa_0=384)   voltage: single link e_5
+    H = Albanese/Gram matrix of harmonic projections = [[5/12]]
+    kappa_0 * H = [[160]]
+  [ok]   (Q) kappa_0*H integral (det = 160)   [Q_3/single link e_5] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[320]])   [Q_3/single link e_5] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 1.36e-26   [Q_3/single link e_5] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[5/144]]   [Q_3/single link e_5] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 2.000000 > 0, lambda_0(0) = 1.88e-16   [Q_3/single link e_5] [numeric]
+
+--- K_5  (n=5, m=10, q=3, kappa_0=125)   voltage: single link e_4
+    H = Albanese/Gram matrix of harmonic projections = [[3/5]]
+    kappa_0 * H = [[75]]
+  [ok]   (Q) kappa_0*H integral (det = 75)   [K_5/single link e_4] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[150]])   [K_5/single link e_4] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 3.51e-27   [K_5/single link e_4] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[3/50]]   [K_5/single link e_4] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 5.000000 > 0, lambda_0(0) = -6.66e-16   [K_5/single link e_4] [numeric]
+
+--- Petersen  (n=10, m=15, q=2, kappa_0=2000)   voltage: single link e_2
+    H = Albanese/Gram matrix of harmonic projections = [[2/5]]
+    kappa_0 * H = [[800]]
+  [ok]   (Q) kappa_0*H integral (det = 800)   [Petersen/single link e_2] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[1600]])   [Petersen/single link e_2] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 1.56e-26   [Petersen/single link e_2] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[2/75]]   [Petersen/single link e_2] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 2.000000 > 0, lambda_0(0) = 4.02e-16   [Petersen/single link e_2] [numeric]
+
+--- Heawood  (n=14, m=21, q=2, kappa_0=50421)   voltage: single link e_4
+    H = Albanese/Gram matrix of harmonic projections = [[8/21]]
+    kappa_0 * H = [[19208]]
+  [ok]   (Q) kappa_0*H integral (det = 19208)   [Heawood/single link e_4] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[38416]])   [Heawood/single link e_4] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 6.15e-27   [Heawood/single link e_4] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[8/441]]   [Heawood/single link e_4] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 1.585786 > 0, lambda_0(0) = 2.22e-16   [Heawood/single link e_4] [numeric]
+
+--- cross-validation against the rank-one theory [IX, XIV] ---
+
+--- K_4  (n=4, m=6, q=2, kappa_0=16)   voltage: chords (1, 0, 0)
+    H = Albanese/Gram matrix of harmonic projections = [[1/2]]
+    kappa_0 * H = [[8]]
+  [ok]   (Q) kappa_0*H integral (det = 8)   [K_4/chords (1, 0, 0)] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[16]])   [K_4/chords (1, 0, 0)] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 2.06e-27   [K_4/chords (1, 0, 0)] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[1/12]]   [K_4/chords (1, 0, 0)] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 4.000000 > 0, lambda_0(0) = 7.77e-16   [K_4/chords (1, 0, 0)] [numeric]
+  [ok]   (X) ||h||^2 = 1/2 matches [IX, Tab.1] value 1/2   [K_4/(1, 0, 0)] [exact]
+
+--- K_4  (n=4, m=6, q=2, kappa_0=16)   voltage: chords (1, 1, 1)
+    H = Albanese/Gram matrix of harmonic projections = [[1]]
+    kappa_0 * H = [[16]]
+  [ok]   (Q) kappa_0*H integral (det = 16)   [K_4/chords (1, 1, 1)] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[32]])   [K_4/chords (1, 1, 1)] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 3.98e-29   [K_4/chords (1, 1, 1)] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[1/6]]   [K_4/chords (1, 1, 1)] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 4.000000 > 0, lambda_0(0) = 7.77e-16   [K_4/chords (1, 1, 1)] [numeric]
+  [ok]   (X) ||h||^2 = 1 matches [IX, Tab.1] value 1   [K_4/(1, 1, 1)] [exact]
+
+--- K_4  (n=4, m=6, q=2, kappa_0=16)   voltage: chords (1, 2, 0)
+    H = Albanese/Gram matrix of harmonic projections = [[3/2]]
+    kappa_0 * H = [[24]]
+  [ok]   (Q) kappa_0*H integral (det = 24)   [K_4/chords (1, 2, 0)] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[48]])   [K_4/chords (1, 2, 0)] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 1.54e-29   [K_4/chords (1, 2, 0)] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[1/4]]   [K_4/chords (1, 2, 0)] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 4.000000 > 0, lambda_0(0) = 7.77e-16   [K_4/chords (1, 2, 0)] [numeric]
+  [ok]   (X) ||h||^2 = 3/2 matches [IX, Tab.1] value 3/2   [K_4/(1, 2, 0)] [exact]
+
+--- K_5  (n=5, m=10, q=3, kappa_0=125)   voltage: triangle 0-1-2, stored orientation
+    H = Albanese/Gram matrix of harmonic projections = [[7/5]]
+    kappa_0 * H = [[175]]
+  [ok]   (Q) kappa_0*H integral (det = 175)   [K_5/triangle 0-1-2, stored orientation] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[350]])   [K_5/triangle 0-1-2, stored orientation] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 1.87e-27   [K_5/triangle 0-1-2, stored orientation] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[7/50]]   [K_5/triangle 0-1-2, stored orientation] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 5.000000 > 0, lambda_0(0) = -6.66e-16   [K_5/triangle 0-1-2, stored orientation] [numeric]
+  [ok]   (X) ||h||^2 = 7/5 matches [XIV, Tab.1] value 7/5   [K_5/triangle] [exact]
+
+--- K_5  (n=5, m=10, q=3, kappa_0=125)   voltage: triangle 0-1-2, cyclically oriented
+    H = Albanese/Gram matrix of harmonic projections = [[3]]
+    kappa_0 * H = [[375]]
+  [ok]   (Q) kappa_0*H integral (det = 375)   [K_5/triangle 0-1-2, cyclically oriented] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[750]])   [K_5/triangle 0-1-2, cyclically oriented] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 2.94e-27   [K_5/triangle 0-1-2, cyclically oriented] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[3/10]]   [K_5/triangle 0-1-2, cyclically oriented] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 5.000000 > 0, lambda_0(0) = -6.66e-16   [K_5/triangle 0-1-2, cyclically oriented] [numeric]
+  [ok]   (C) flux pattern a cycle of length 3 => ||h||^2 = 3 exactly, m* = n/(2*3)   [K_5/3-cycle] [exact]
+
+--- (M/Q) d = 2: the effective-mass tensor and its quantized determinant ---
+
+--- K_4  (n=4, m=6, q=2, kappa_0=16)   voltage: two links e_3, e_4
+    H = Albanese/Gram matrix of harmonic projections = [[1/2, -1/4], [-1/4, 1/2]]
+    kappa_0 * H = [[8, -4], [-4, 8]]
+  [ok]   (Q) kappa_0*H integral (det = 48)   [K_4/two links e_3, e_4] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[16, -8], [-8, 16]])   [K_4/two links e_3, e_4] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 3.9e-27   [K_4/two links e_3, e_4] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[1/12, -1/24], [-1/24, 1/12]]   [K_4/two links e_3, e_4] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 4.000000 > 0, lambda_0(0) = 7.77e-16   [K_4/two links e_3, e_4] [numeric]
+
+--- Q_3  (n=8, m=12, q=2, kappa_0=384)   voltage: two links e_5, e_8
+    H = Albanese/Gram matrix of harmonic projections = [[5/12, -1/12], [-1/12, 5/12]]
+    kappa_0 * H = [[160, -32], [-32, 160]]
+  [ok]   (Q) kappa_0*H integral (det = 24576)   [Q_3/two links e_5, e_8] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[320, -64], [-64, 320]])   [Q_3/two links e_5, e_8] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 1.36e-26   [Q_3/two links e_5, e_8] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[5/144, -1/144], [-1/144, 5/144]]   [Q_3/two links e_5, e_8] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 2.000000 > 0, lambda_0(0) = 1.88e-16   [Q_3/two links e_5, e_8] [numeric]
+
+--- K_5  (n=5, m=10, q=3, kappa_0=125)   voltage: two links e_4, e_5
+    H = Albanese/Gram matrix of harmonic projections = [[3/5, -1/5], [-1/5, 3/5]]
+    kappa_0 * H = [[75, -25], [-25, 75]]
+  [ok]   (Q) kappa_0*H integral (det = 5000)   [K_5/two links e_4, e_5] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[150, -50], [-50, 150]])   [K_5/two links e_4, e_5] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 3.51e-27   [K_5/two links e_4, e_5] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[3/50, -1/50], [-1/50, 3/50]]   [K_5/two links e_4, e_5] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 5.000000 > 0, lambda_0(0) = -6.66e-16   [K_5/two links e_4, e_5] [numeric]
+
+--- Heawood  (n=14, m=21, q=2, kappa_0=50421)   voltage: two links e_4, e_5
+    H = Albanese/Gram matrix of harmonic projections = [[8/21, -4/21], [-4/21, 8/21]]
+    kappa_0 * H = [[19208, -9604], [-9604, 19208]]
+  [ok]   (Q) kappa_0*H integral (det = 276710448)   [Heawood/two links e_4, e_5] [exact]
+  [ok]   (M) Hess_k det Delta_k = 2*kappa_0*H  (= [[38416, -19208], [-19208, 38416]])   [Heawood/two links e_4, e_5] [exact]
+  [ok]   (M) lambda_0(k) = k^T H k / n + O(|k|^4), max rel err 2.07e-26   [Heawood/two links e_4, e_5] [numeric]
+  [ok]   (E) sigma^2 = H/m (Green-Kubo) = [[8/441, -4/441], [-4/441, 8/441]]   [Heawood/two links e_4, e_5] [exact]
+  [ok]   (G) spectral gap lambda_1(0) = 1.585786 > 0, lambda_0(0) = 2.22e-16   [Heawood/two links e_4, e_5] [numeric]
+
+=== PART II: rank two (thick A~_2 complexes) ===
+  [ok]   (B) triangle presentation over PG(2,2) with Singer cycle re-verified   [X_3] [exact]
+    Y_21 (Z/7): n=21, |E|=147, |F|=147, b_1=0, H_1(Y;Z)=(Z/2)^6  (0.7s)
+  [ok]   (B) b_1 = 0 and H_1(Y;Z) = (Z/2)^6 finite -> no Z-cover, no Brillouin zone   [Y_21 (Z/7)] [exact]
+    Y_24 (Z/2xZ/2xZ/2): n=24, |E|=168, |F|=168, b_1=0, H_1(Y;Z)=(Z/2)^4 + Z/14  (0.9s)
+  [ok]   (B) b_1 = 0 and H_1(Y;Z) = (Z/2)^4 + Z/14 finite -> no Z-cover, no Brillouin zone   [Y_24 (Z/2xZ/2xZ/2)] [exact]
+    Y_42 (Z/14): n=42, |E|=294, |F|=294, b_1=0, H_1(Y;Z)=(Z/2)^3 + (Z/4)^2  (2.8s)
+  [ok]   (B) b_1 = 0 and H_1(Y;Z) = (Z/2)^3 + (Z/4)^2 finite -> no Z-cover, no Brillouin zone   [Y_42 (Z/14)] [exact]
+
+=== battery summary ===
+  (S)  6/6 passed
+  (M)  30/30 passed
+  (Q)  15/15 passed
+  (E)  15/15 passed
+  (G)  15/15 passed
+  (X)  4/4 passed
+  (C)  1/1 passed
+  (B)  4/4 passed
+  TOTAL 90/90 passed
+  elapsed 13.1s

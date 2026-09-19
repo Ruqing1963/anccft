@@ -1,0 +1,290 @@
+% Algorithmic Non-commutative Class Field Theory, VI
+% The shadow algebra: a functorial Kirchberg realization of the critical group
+% Build: pdflatex anccft6 (x3)
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{booktabs}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\shadow}{Y^{\sharp}}
+
+\title[Algorithmic non-commutative class field theory, VI]
+{Algorithmic non-commutative class field theory, VI:\\
+the shadow algebra --- a functorial Kirchberg realization\\ of the critical group}
+
+\author{Ruqing Chen}
+\address{GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada}
+\email{ruqing@hotmail.com}
+\date{14 September 2026}
+\subjclass[2020]{Primary 46L80, 46L35; Secondary 05C50, 11G20, 37B10}
+\keywords{Kirchberg algebra, Cuntz--Krieger algebra, critical group, sandpile group,
+Hecke--Laplacian, Bowen--Franks group, functorial realization}
+
+\thanks{Paper VI of the series; Papers I--V are cited as [I]--[V]. The verification
+script \texttt{hecke\_kirchberg.py} in the ancillary bundle reproduces every
+computational claim.}
+
+\begin{document}
+
+\begin{abstract}
+The central open problem of this series --- posed in [III, Rem.~1.10] and sharpened
+in [IV, \S6] --- asked for a Kirchberg $C^*$-algebra, functorial in the Hecke data of
+a finite $(q+1)$-regular graph $Y$, whose $K_0$-group realizes the Laplacian-channel
+invariant $\Z\oplus\Jac(Y)$, with $|\Jac(Y)|=\frac1n\prod_f\#E_f(\F_p)$ a product of
+Frobenius point counts. Papers II--III proved two No-Go theorems that appeared to
+surround the problem: no non-negative matrix of any size is shift equivalent to the
+Ihara companion $C$ (the trace obstruction $\Tr(C^2)=-n(q-1)<0$), and the natural
+tail-groupoid algebra is arithmetically blind. This paper solves the single-level
+problem, inside the exact gap those theorems leave open: shift equivalence governs
+spectra, not cokernels. Define the \emph{shadow graph} $\shadow$ on $2n$ vertices,
+with adjacency
+\[
+B(Y)\;=\;\begin{pmatrix}T_p& I_n\\ qI_n & 2I_n\end{pmatrix}:
+\]
+the original graph, one arc from each vertex to its shadow, $q$ return arcs, and a
+double loop at each shadow. The double loops are unimodular pivots of determinant
+$-1$, and a two-line block factorization gives
+$U\,(I-B^t)\,V=\Delta_p\oplus(-I_n)$ with explicit integer unimodular $U,V$; hence
+the graph algebra $\cO_{B(Y)}$ is a unital Kirchberg algebra with
+\[
+K_0\bigl(\cO_{B(Y)}\bigr)\cong\Z\oplus\Jac(Y),\qquad
+K_1\bigl(\cO_{B(Y)}\bigr)\cong\Z,
+\]
+functorially in $Y$. Being purely infinite it carries no trace, so the obstruction of
+[II] has no formulation on it; and it does not contradict [II], because $B(Y)$ shares
+with the Ihara pencil only its Bowen--Franks data, not its spectrum --- the exact
+reconciliation is the per-eigenvalue identity
+$(1-2u)(1-u\lambda)-qu^2\big|_{u=1}=-(q+1-\lambda)$. What remains open, and what [II]
+proves is impossible, are stated with equal precision: tower-level functoriality is
+open; a \emph{Hecke-dynamical} realization is impossible, which is the sense in which
+the present construction is maximal.
+\end{abstract}
+
+\maketitle
+
+\section*{Status of the results}
+
+Theorems~\ref{thm:ktheory} and \ref{thm:kirchberg} are proved in full;
+the unimodular factorization at the heart of Theorem~\ref{thm:ktheory} is a two-line
+block computation reproduced below and machine-verified, together with the Smith-form
+match against [I, Table~1], on $K_4$, $K_5$, $K_{3,3}$ and Petersen
+(Table~\ref{tab:battery}). The classical inputs --- simplicity and pure infiniteness
+criteria for Cuntz--Krieger/graph algebras and their $K$-theory --- are quoted with a
+flagged citation. Section~\ref{sec:scope} states exactly what is solved, what is
+open, and what is impossible; one error in the task specification that prompted this
+paper is corrected there (Remark~\ref{rem:k1}).
+
+\section{The shadow graph}\label{sec:shadow}
+
+Throughout, $Y$ is a finite connected $(q+1)$-regular graph on $n$ vertices, $q\ge2$,
+with adjacency (Hecke) matrix $T_p$ and Hecke--Laplacian $\Delta_p=(q+1)I-T_p$, whose
+cokernel is $\Z\oplus\Jac(Y)$ with $\ker\Delta_p=\Z$ ([I, Thm.~3.5]).
+
+\begin{definition}[Shadow graph]\label{def:shadow}
+The \emph{shadow graph} $\shadow$ is the directed graph on vertex set
+$V_Y\sqcup V_Y^{\,\prime}$ (each $v$ paired with its shadow $v'$) with arcs:
+\begin{enumerate}
+\item[(i)] $v\to w$ for every edge $vw$ of $Y$, in both orientations (the $T_p$
+block);
+\item[(ii)] one arc $v\to v'$ for every $v$;
+\item[(iii)] $q$ parallel arcs $v'\to v$ for every $v$;
+\item[(iv)] two loops at every shadow $v'$.
+\end{enumerate}
+Its adjacency matrix is $B(Y)=\begin{psmallmatrix}T_p&I\\qI&2I\end{psmallmatrix}$,
+and the \emph{shadow algebra} is the graph $C^*$-algebra $\cO_{B(Y)}$.
+\end{definition}
+
+The design principle is worth stating in one sentence, because it is precisely the
+loophole left by the No-Go theorems of [II]. The obstruction
+$\Tr(C^2)=-n(q-1)<0$ forbids any non-negative matrix from carrying the
+\emph{spectrum} of the Ihara companion --- the $-qI$ block cannot be dilated away.
+But $K$-theory sees only the \emph{cokernel}, which is a unimodular-equivalence
+invariant, and unimodular row operations, unlike similarities, may be implemented by
+pivots of determinant $-1$: a shadow vertex with a double loop contributes the
+$1\times1$ block $1-2=-1$, and Schur elimination against it \emph{adds} $q$ back to
+the diagonal --- exactly the operation that is spectrally impossible and
+cohomologically free.
+
+\section{The \texorpdfstring{$K$}{K}-theory}\label{sec:ktheory}
+
+\begin{theorem}[Functorial realization]\label{thm:ktheory}
+With $U=\begin{psmallmatrix}I&-qI\\0&I\end{psmallmatrix}$ and
+$V=\begin{psmallmatrix}I&0\\-I&I\end{psmallmatrix}$, both integer unimodular,
+\begin{equation}\label{eq:factor}
+U\,\bigl(I_{2n}-B(Y)^t\bigr)\,V\;=\;\Delta_p\oplus(-I_n).
+\end{equation}
+Consequently
+\[
+K_0\bigl(\cO_{B(Y)}\bigr)=\coker_\Z\bigl(I-B(Y)^t\bigr)\cong\Z\oplus\Jac(Y),
+\qquad
+K_1\bigl(\cO_{B(Y)}\bigr)=\ker_\Z\bigl(I-B(Y)^t\bigr)\cong\Z ,
+\]
+and the assignment $Y\mapsto\cO_{B(Y)}$ is functorial under graph isomorphisms: any
+automorphism $\pi$ of $Y$ satisfies $(\pi\oplus\pi)B(Y)(\pi\oplus\pi)^{-1}=B(Y)$,
+inducing an action on $\cO_{B(Y)}$ compatible with the induced action on
+$\Z\oplus\Jac(Y)$.
+\end{theorem}
+
+\begin{proof}
+$B^t=\begin{psmallmatrix}T_p&qI\\I&2I\end{psmallmatrix}$, so
+$I-B^t=\begin{psmallmatrix}I-T_p&-qI\\-I&-I\end{psmallmatrix}$. Two lines of block
+multiplication:
+\[
+U(I-B^t)=\begin{pmatrix}I&-qI\\0&I\end{pmatrix}
+\begin{pmatrix}I-T_p&-qI\\-I&-I\end{pmatrix}
+=\begin{pmatrix}(q+1)I-T_p&0\\-I&-I\end{pmatrix},
+\]
+\[
+U(I-B^t)V=\begin{pmatrix}\Delta_p&0\\-I&-I\end{pmatrix}
+\begin{pmatrix}I&0\\-I&I\end{pmatrix}
+=\begin{pmatrix}\Delta_p&0\\0&-I\end{pmatrix}.
+\]
+Cokernel and kernel are unimodular-equivalence invariants, and
+$\coker(\Delta_p\oplus(-I))=\coker\Delta_p=\Z\oplus\Jac(Y)$,
+$\ker=\ker\Delta_p=\Z$ by [I, Thm.~3.5(i)]. The $K$-theory formula for graph
+$C^*$-algebras is the classical
+$K_0=\coker(I-B^t)$, $K_1=\ker(I-B^t)$ \cite{CK}. Equivariance is the visible block
+symmetry, verified explicitly for a transposition on $K_4$.
+\end{proof}
+
+\section{The Kirchberg properties}\label{sec:kirchberg}
+
+\begin{theorem}[Shadow algebra is Kirchberg]\label{thm:kirchberg}
+For $Y$ connected and $q\ge1$, the matrix $B(Y)$ is irreducible (the shadow graph is
+strongly connected), is not a permutation matrix, and has a vertex --- any shadow
+$v'$ --- carrying two distinct loops. Consequently $\cO_{B(Y)}$ is separable,
+nuclear, simple, purely infinite and in the UCT class: a unital Kirchberg algebra.
+Being purely infinite, it admits no nonzero trace, finite or semifinite; the trace
+obstruction of {\rm[II, Thms.~1.5--1.6]} therefore has no formulation on
+$\cO_{B(Y)}$.
+\end{theorem}
+
+\begin{proof}
+Strong connectivity: within the first layer all vertices are mutually reachable
+through the arcs of the connected graph $Y$; layers communicate through
+$v\to v'\to v$. The double loop at $v'$ gives two distinct return paths at one
+vertex and period $1$. Irreducibility with a non-permutation matrix and the
+double-loop witness place $B(Y)$ under the classical simplicity and pure
+infiniteness criteria for Cuntz--Krieger algebras, and graph algebras of finite
+graphs are separable, nuclear and satisfy the UCT \cite{CK}. Pure infiniteness
+excludes traces. Machine confirmation of the witnesses on all four test graphs:
+Table~\ref{tab:battery}.
+\end{proof}
+
+\section{Non-contradiction, and the exact scope of the solution}\label{sec:scope}
+
+\begin{proposition}[Why this does not contradict the No-Go theorems]\label{prop:noncontra}
+$B(Y)$ is not shift equivalent to the Ihara companion $C$ of {\rm[II]}: already
+$\Tr B(Y)=2n\neq0=\Tr C$, and Lemma~{\rm[II,~1.4]} makes traces shift-equivalence
+invariants. The shadow algebra shares with the Ihara pencil its Bowen--Franks data
+and nothing spectral: per eigenvalue $\lambda$ of $T_p$,
+\[
+\det\bigl(I-uB(Y)\bigr)=\prod_{\lambda}\Bigl[(1-2u)(1-u\lambda)-qu^{2}\Bigr],
+\qquad
+(1-2u)(1-u\lambda)-qu^{2}\Big|_{u=1}=-(q+1-\lambda),
+\]
+so the $u=1$ specialization of the shadow zeta reproduces the Laplacian spectrum up
+to sign, while for $u\neq1$ the two polynomial families differ. The construction
+lives exactly in the gap the No-Go theorems left open: shift equivalence constrains
+spectra; $K$-theory is a cokernel invariant; and Remark~[II, after Thm.~1.6]
+anticipated precisely this distinction when it separated existence from canonicity.
+\end{proposition}
+
+\begin{proof}
+The block determinant is computed with the commuting-block formula (three of the
+four blocks are scalars), and the $u=1$ evaluation is
+$(1-2)(1-\lambda)-q=\lambda-1-q$. Traces: immediate.
+\end{proof}
+
+\begin{remark}[A correction to the task specification]\label{rem:k1}
+The specification that prompted this paper asked for $K_1\cong\Z^{\,r}$. That is the
+\emph{boundary}-channel invariant ([I, Thm.~3.7]), not the Laplacian-channel one:
+the target fixed by [I, Thm.~3.5], [III, Thm.~1.x] and [IV] is
+$K_1=\ker\Delta_p=\Z$, and that is what Theorem~\ref{thm:ktheory} delivers.
+Realizing $\Z^r$ in $K_1$ alongside $\Z\oplus\Jac(Y)$ in $K_0$ would require a
+non-square-type presentation and a different target; it is not the series' problem.
+\end{remark}
+
+\begin{remark}[What is solved, what is open, what is impossible]\label{rem:scope}
+\emph{Solved:} the single-level canonicity problem of [III, Rem.~1.10] --- a
+Kirchberg algebra functorial in the Hecke datum $T_p$, traceless, with
+$K_0\cong\Z\oplus\Jac(Y)$, $K_1\cong\Z$, the torsion order
+$\frac1n\prod_f\#E_f(\F_p)$ carried on the nose. \emph{Open:} tower-level
+functoriality --- whether the tail norms of [V, Thm.~3.1] lift to
+$*$-homomorphisms or correspondences
+$\cO_{B(Y_{k+1})}\to\cO_{B(Y_k)}$ inducing the norm maps of [IV--V] on $K_0$; nothing
+here constructs such lifts. \emph{Impossible:} a \emph{Hecke-dynamical} realization,
+i.e.\ an algebra whose gauge dynamics is the Ihara flow itself --- that is exactly
+what [II, Thm.~1.6] forbids for every non-negative presentation of every size. The
+shadow algebra is Hecke-functorial, not Hecke-dynamical, and by [II] no algebra can
+be both: the construction is maximal in a theorem-certified sense.
+\end{remark}
+
+\begin{remark}[Normalization]\label{rem:norm}
+The construction uses the minimal unimodular pivot: loop weight $2$ is the least $m$
+with $\det(1-m)=-1$, and the off-diagonal pair $(1,q)$ is one of the factorizations
+$\alpha\beta=q$; any such choice yields the same $K$-theory by the same
+factorization. We fix $(1,q,2)$ as the normal form and make no uniqueness claim
+beyond it.
+\end{remark}
+
+\section{The verification battery}\label{sec:battery}
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccccc}
+\toprule
+$Y$ & $n$ & $q$ & (S) factorization \eqref{eq:factor} & $\Jac(Y)$ from
+$\mathrm{SNF}(I-B^t)$ & vs [I, Table 1]\\
+\midrule
+$K_4$      & 4  & 2 & exact & $(\Z/4)^2$                 & match\\
+$K_5$      & 5  & 3 & exact & $(\Z/5)^3$                 & match\\
+$K_{3,3}$  & 6  & 2 & exact & $\Z/3\oplus\Z/3\oplus\Z/9$ & match\\
+Petersen   & 10 & 2 & exact & $\Z/2\oplus(\Z/10)^3$      & match\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{Machine verification (\texttt{hecke\_kirchberg.py}): the explicit
+factorization \eqref{eq:factor} holds as an exact matrix identity; the invariant
+factors of $I-B(Y)^t$ reproduce [I, Table~1] exactly; strong connectivity, the
+double-loop witness, $\Tr B=2n\neq0$, and the $u{=}1$ reconciliation identity all
+verified; automorphism equivariance spot-checked on $K_4$.}
+\label{tab:battery}
+\end{table}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Theorems~\ref{thm:ktheory}--\ref{thm:kirchberg} and
+Proposition~\ref{prop:noncontra} are proved; the two-line factorization
+\eqref{eq:factor} can be checked by hand and was machine-verified on four graphs.
+The classical Cuntz--Krieger inputs (graph-algebra $K$-theory; simplicity and pure
+infiniteness criteria) are quoted through \cite{CK}. Remark~\ref{rem:scope} delimits the result: single-level canonicity
+solved, tower functoriality open, Hecke-dynamical realization impossible by [II].
+
+\begin{thebibliography}{9}
+\bibitem{CK} J.~Cuntz and W.~Krieger, \emph{A class of $C^*$-algebras and
+topological Markov chains}, Invent.\ Math.\ \textbf{56} (1980), 251--268; together
+with the standard graph-algebra $K$-theory and simplicity/pure-infiniteness
+criteria descending from it.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,5 @@
+tower,lambda,reading
+"abelian voltage (1,1,1) l=2",2,"normal, abelian"
+dihedral,3,"normal, non-abelian: sign does not detect commutativity"
+generic non-normal,<0,certifies non-normal
+lambda = -1,-1,telescopes from Knuth 1967

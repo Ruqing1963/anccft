@@ -1,0 +1,588 @@
+% generated from Phys 1/bloch_mass.tex
+\chapter{Effective mass from spanning trees, and the absence of Bloch phases on rank-two hyperbolic lattices}\label{chap:Phys1}
+\chaptermark{Phys1}
+\begin{chapterabstract}
+Every $\Z^{d}$-periodic tight-binding model with a finite unit cell is an abelian cover of a
+finite graph, the winding numbers of the hoppings playing the role of a cocycle. We show
+that for such a lattice the inverse effective-mass tensor at the bottom of the band is,
+exactly, the Albanese metric of the unit cell: $(M^{-1})_{ab}=(2t/n)\langle
+h_a,h_b\rangle$, where $h_a$ is the harmonic projection of the $a$-th winding cochain and
+$n$ is the number of sites per cell. Three consequences follow. (i) When the flux threads a
+single link $e$, the effective mass has a closed combinatorial form,
+$M^{*}=n\,\kappa_0/[2t\,\tau(Y_0\!-\!e)]$, where $\kappa_0$ is the number of spanning trees
+of the unit cell and $\tau(Y_0\!-\!e)$ the number of those avoiding $e$. (ii) The tensor
+$\kappa_0\,(n/2t)M^{-1}$ has integer entries: \emph{effective masses on such lattices are
+quantized}, in units fixed by a spanning-tree count. (iii) The diffusion tensor of the
+classical walk on the same lattice obeys $\sigma^{2}=M^{-1}/[t(q{+}1)]$ with $q+1$ the
+coordination number --- an Einstein relation with no other non-universal factor. We then
+prove a no-go theorem in the opposite direction. For a lattice whose unit cell is a free
+quotient of a thick $\Atwo$ building --- the rank-two analogue of the trees and $\{p,q\}$
+tessellations used in circuit-QED hyperbolic lattices --- the first Betti number vanishes,
+so no $\Z^{d}$ cover exists at all: there is no Brillouin zone, no crystal momentum, and no
+band structure, and by property (T) no continuous family of unitary characters deforms the
+trivial one either. The threadable fluxes form a \emph{finite} group, computed exactly as
+$(\Z/2)^{6}$, $(\Z/2)^{4}\oplus\Z/14$ and $(\Z/2)^{3}\oplus(\Z/4)^{2}$ on complexes with
+$21$, $24$ and $42$ sites; on the first of these only $\pi$-fluxes exist. Hyperbolic band
+theory does not survive the passage from rank one to rank two. All statements are verified
+by machine: $90$ checks, exact except where labelled.
+\end{chapterabstract}
+
+\section{Introduction}\label{Phys1:sec:intro}
+
+Band theory is a statement about $\Z^{d}$ symmetry. A tight-binding model on a lattice with
+a finite unit cell and a $\Z^{d}$ translation group decomposes over a Brillouin zone
+$\T^{d}$, and the low-energy physics is controlled by the curvature of the lowest band at
+its minimum --- the effective mass. Two recent developments make it worth asking how far
+this picture is combinatorial rather than geometric.
+
+The first is the experimental realization of \emph{hyperbolic lattices} in circuit quantum
+electrodynamics~\cite{KFH}, where a coplanar-waveguide network is laid out as a $\{p,q\}$
+tessellation of the hyperbolic plane, and the subsequent construction of a hyperbolic band
+theory~\cite{MR1,MR2} in which the role of the Brillouin zone is played by a
+higher-dimensional Jacobian and by a character variety of the (non-abelian) translation
+group. The platform has since broadened to electrical
+circuits~\cite{Leng22}, integrated photonics~\cite{Huang24}, and scalable superconducting
+architectures with the unit cell on a genus-three surface~\cite{Xu25}. The unit cell of such
+a lattice is a finite graph, and what is threaded through it is flux.
+
+The second is the observation, standard in the mathematics of crystal lattices since Kotani
+and Sunada~\cite{KS1,KS2}, that a $\Z^{d}$-periodic graph carries a canonical flat metric
+on $H^{1}$ of its unit cell --- the Albanese metric --- which controls the long-time heat
+kernel and the central limit theorem of the random walk, and that this metric is bound up
+with the \emph{complexity} of the unit cell, i.e.\ its spanning-tree count~\cite{KS3};
+explicit Kirchhoff expressions for it were given by Baker and Faber~\cite{BF}. What does not
+seem to have been said is that this metric \emph{is} the inverse effective-mass tensor of
+the tight-binding band bottom, exactly and without approximation, and that reading it so
+turns those Kirchhoff expressions into a constraint on a measurable quantity. That is the
+content of Secs.~\\ref{Phys1:sec:mass}--\\ref{Phys1:sec:trees}, whose sharpest consequence is a
+quantization statement (Corollary~\\ref{Phys1:cor:quant}): the entries of $M^{-1}$, measured in the
+natural unit $2t/(n\kappa_0)$, are integers.
+
+The paper then turns the question around. Trees and $\{p,q\}$ tessellations are rank-one
+objects: the tree is the Bruhat--Tits building of $\mathrm{GL}_2$ over a local field, and
+its finite quotients are ordinary finite graphs, which always have $b_1\ge2$ and therefore
+always admit $\Z^{d}$ covers. The natural rank-two generalization is a two-dimensional
+building of type $\Atwo$ --- a simplicial complex of sites, links and plaquettes in which
+every vertex link is the incidence graph of a projective plane --- whose finite quotients
+are the Ramanujan complexes~\cite{LSV:Phys1}. These are the higher-rank hyperbolic lattices. We
+show in Sec.~\\ref{Phys1:sec:nogo} that for them band theory does not merely become harder, it
+ceases to exist: $b_1=0$ by Garland's vanishing theorem~\cite{Ga} as extended by Ballmann
+and \'Swi\k{a}tkowski~\cite{BSw}, so there is no $\Z^{d}$ cover, no crystal momentum, and no
+continuous flux parameter. The Aharonov--Bohm phases that a rank-two hyperbolic lattice
+admits form a finite abelian group, which we compute exactly on three complexes.
+
+The two halves meet at a single graph. The Heawood graph --- the incidence graph of the
+Fano plane --- is a perfectly good rank-one unit cell: it has $b_1=8$, $50421=3\cdot7^{5}$
+spanning trees, and a single-link flux gives it the effective mass $M^{*}=147/(8t)$
+(Table~\\ref{Phys1:tab:trees}). It is also exactly the vertex link of a thick $\Atwo$ building of
+order two. Assembling Heawood links into a rank-two complex destroys $b_1$ completely
+(Table~\\ref{Phys1:tab:ranktwo}). The obstruction is not local.
+
+\subsection*{Relation to previous work}
+
+Theorem~\\ref{Phys1:thm:mass} lies close to known mathematics. Once the Albanese metric is
+identified with the covariance of the crystal-lattice central limit theorem~\cite{KS1} and
+with a Kirchhoff ratio~\cite{KS3,BF}, Eq.~\\eqref{Phys1:eq:band} follows from a second-order
+perturbation argument, which we give in full for completeness rather than for novelty. What
+we claim as new is: the tensor form of Theorem~\\ref{Phys1:thm:mass} together with the explicit
+statement that this object is the physical effective-mass tensor; the quantization
+Corollary~\\ref{Phys1:cor:quant} and its reading as a rigid constraint on measurable band
+curvature; the deletion--contraction closed form \\eqref{Phys1:eq:mstar}; the loop-flux
+Corollary~\\ref{Phys1:cor:loop}; and the whole of Sec.~\\ref{Phys1:sec:nogo}. The closest prior result in
+the physics literature that we are aware of is that of Korotyaev and Saburova~\cite{KorS},
+who bound and estimate effective masses at band edges of periodic discrete and metric
+graphs from geometric parameters, without spanning trees or the Albanese metric. An
+``effective-mass approximation'' of a different kind --- the long-distance reduction of the
+hyperbolic tight-binding Hamiltonian to a Laplace--Beltrami operator --- appears
+in Ref.~\onlinecite{MR1}.
+
+For Sec.~\\ref{Phys1:sec:nogo} we have found no prior work: we are not aware of any physics
+literature that places a tight-binding model on an affine building of rank two or on a
+Ramanujan complex, let alone one that asks whether it has a band structure. A literature
+search cannot establish a negative, and we state this only as the limit of our knowledge.
+
+\section{Lattices from abelian covers}\label{Phys1:sec:setup}
+
+Let $Y_0$ be a finite connected $(q{+}1)$-regular graph with $n$ vertices and
+$m=(q{+}1)n/2$ edges, $E^{+}$ a choice of orientation, and $r=m-n+1=b_1(Y_0)$ its cycle
+rank. Write $\partial\colon\Z^{E^{+}}\to\Z^{V}$ for the boundary map, $\partial
+e=t(e)-o(e)$, and $\Delta_0=\partial\partial^{t}=(q{+}1)I-A$ for the graph Laplacian.
+Let $\kappa_0$ denote the number of spanning trees of $Y_0$.
+
+\begin{definition}[The lattice]\label{Phys1:def:lattice}
+A \emph{winding cochain} is a $d$-tuple $\bm\alpha=(\alpha_1,\dots,\alpha_d)$ with
+$\alpha_a\in\Z^{E^{+}}$. The associated lattice $\Yt$ has sites $V\times\Z^{d}$ and a link
+from $(o(e),\bm j)$ to $(t(e),\bm j+\bm\alpha(e))$ for each $e\in E^{+}$ and each
+$\bm j\in\Z^{d}$. We assume throughout that the period map
+$H_1(Y_0;\Z)\to\Z^{d}$, $c\mapsto(\langle\alpha_a,c\rangle)_a$, is surjective, which is
+exactly the condition that $\Yt$ be connected; in particular $d\le r$.
+\end{definition}
+
+This is not a special construction: \emph{every} $\Z^{d}$-periodic tight-binding lattice
+with $n$ sites per cell and uniform hopping is of this form, with $Y_0$ the unit cell and
+$\bm\alpha(e)$ recording how many cells the hopping $e$ crosses. Changing which
+representative of a site one calls ``in cell $\bm 0$'' replaces $\bm\alpha$ by
+$\bm\alpha+\partial^{t}\bm\varphi$; the class $[\bm\alpha]\in H^{1}(Y_0;\Z)^{d}$ is the
+gauge-invariant datum.
+
+The Hamiltonian is $H=t\,\widetilde\Delta$, with $\widetilde\Delta$ the Laplacian of $\Yt$:
+uniform hopping amplitude $-t$ on every link and on-site energy $(q{+}1)t$. Floquet
+transform in the $\Z^{d}$ direction gives
+$\ell^{2}(\Yt)\cong\int^{\oplus}_{\T^{d}}\C^{n}\,d^{d}k/(2\pi)^{d}$ and
+$\widetilde\Delta\cong\int^{\oplus}\Delta_{\bm k}$ with the Peierls-substituted Bloch
+Laplacian
+\begin{equation}\label{Phys1:eq:bloch}
+(\Delta_{\bm k})_{uv}=(q{+}1)\delta_{uv}
+-\!\!\sum_{e\colon u\to v}\!\! e^{i\bm k\cdot\bm\alpha(e)}
+-\!\!\sum_{e\colon v\to u}\!\! e^{-i\bm k\cdot\bm\alpha(e)} ,
+\end{equation}
+a Hermitian positive-semidefinite $n\times n$ matrix, and bands
+$E_j(\bm k)=t\lambda_j(\bm k)$, $\lambda_0\le\dots\le\lambda_{n-1}$. We set $\hbar=1$ and
+the lattice constant to unity, so that
+\begin{equation}\label{Phys1:eq:massdef}
+(M^{-1})_{ab}:=\frac{\partial^{2}E_0}{\partial k_a\partial k_b}\Big|_{\bm k=0}
+=t\,\frac{\partial^{2}\lambda_0}{\partial k_a\partial k_b}\Big|_{\bm k=0}.
+\end{equation}
+Since $\Delta_0$ is a Laplacian of a connected graph its kernel is the constant line, simple,
+with gap $\lambda_1(0)>0$; the band bottom sits at $\bm k=0$ and $\lambda_0$ is analytic
+near it.
+
+\section{The effective-mass tensor is the Albanese metric}\label{Phys1:sec:mass}
+
+Let $\Pi=I-\partial^{t}\Delta_0^{+}\partial$ be the orthogonal projection of
+$\R^{E^{+}}$ onto the cycle space $\ker\partial=H_1(Y_0;\R)$, and let
+$h_a:=\Pi\alpha_a$ be the harmonic representative of the $a$-th winding cochain. Define the
+\emph{Albanese matrix}
+\begin{equation}\label{Phys1:eq:H}
+H_{ab}:=\langle h_a,h_b\rangle=\alpha_a^{t}\,\Pi\,\alpha_b .
+\end{equation}
+
+\begin{theorem}[Effective mass]\label{Phys1:thm:mass}
+Under the hypothesis of Definition~\\ref{Phys1:def:lattice}, $\lambda_0$ is even in $\bm k$,
+simple and analytic near the origin, and
+\begin{equation}\label{Phys1:eq:band}
+\lambda_0(\bm k)=\frac1n\,\bm k^{t}H\bm k+O(|\bm k|^{4}),
+\qquad\text{so}\qquad
+M^{-1}=\frac{2t}{n}\,H .
+\end{equation}
+$H$ is positive definite, and it is the Gram matrix of the classes $[\alpha_a]$ in the flat
+metric of the Jacobian torus $H^{1}(Y_0;\R)/H^{1}(Y_0;\Z)$, dual to the Albanese torus of
+Kotani--Sunada~\cite{KS2}: if $C$ is the matrix of a $\Z$-basis of $H_1(Y_0;\Z)$,
+$G=C^{t}C$ its Gram matrix and $\bm a_a=C^{t}\alpha_a$ the vector of periods, then
+\begin{equation}\label{Phys1:eq:albanese}
+H_{ab}=\bm a_a^{t}\,G^{-1}\bm a_b .
+\end{equation}
+Equivalently, in terms of the Floquet determinant $\Theta(\bm k)=\det\Delta_{\bm k}$,
+\begin{equation}\label{Phys1:eq:floquet}
+\frac{\partial^{2}\Theta}{\partial k_a\partial k_b}\Big|_{\bm k=0}=2\,\kappa_0\,H_{ab}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$\Delta_{-\bm k}=\overline{\Delta_{\bm k}}=\Delta_{\bm k}^{t}$, so the spectrum is even in
+$\bm k$ and all odd Taylor coefficients of $\lambda_0$ vanish. Expanding
+\\eqref{Phys1:eq:bloch} about $\bm k=0$ gives $\Delta_{\bm k}=\Delta_0+\sum_a k_aD^{(1)}_a
++\tfrac12\sum_{ab}k_ak_bD^{(2)}_{ab}+O(|\bm k|^{3})$ with
+$(D^{(1)}_a)_{uv}=-i\sum_{e\colon u\to v}\alpha_a(e)+i\sum_{e\colon v\to u}\alpha_a(e)$ and
+$(D^{(2)}_{ab})_{uv}=\sum_{e\colon u\to v}\alpha_a(e)\alpha_b(e)+(u\!\leftrightarrow\!v)$.
+On the constant vector $\bm1$ one has $D^{(1)}_a\bm1=i\,\partial\alpha_a$,
+$\langle\bm1,D^{(1)}_a\bm1\rangle=0$ and
+$\langle\bm1,D^{(2)}_{ab}\bm1\rangle=2\langle\alpha_a,\alpha_b\rangle$. Second-order
+Rayleigh--Schr\"odinger perturbation theory at the simple eigenvalue $0$ therefore gives
+\[
+\lambda_0(\bm k)=\frac1n\sum_{ab}k_ak_b\Bigl(\langle\alpha_a,\alpha_b\rangle
+-(\partial\alpha_a)^{t}\Delta_0^{+}(\partial\alpha_b)\Bigr)+O(|\bm k|^{4}),
+\]
+and the bracket is $\alpha_a^{t}(I-\partial^{t}\Delta_0^{+}\partial)\alpha_b=H_{ab}$. For
+\\eqref{Phys1:eq:albanese}, $h_a$ is the orthogonal projection of $\alpha_a$ onto the column space
+of $C$, so $h_a=C(C^{t}C)^{-1}C^{t}\alpha_a$ and
+$\langle h_a,h_b\rangle=\alpha_a^{t}CG^{-1}C^{t}\alpha_b$. Positive definiteness is the
+surjectivity hypothesis: $\bm v^{t}H\bm v=0$ forces $\sum_av_a[\alpha_a]=0$ in
+$H^{1}(Y_0;\Q)$, impossible for $\bm v\neq0$ when the periods span. Finally
+$\Theta(\bm k)=\lambda_0(\bm k)\prod_{j\ge1}\lambda_j(\bm k)$, and by the matrix--tree
+theorem $\prod_{j\ge1}\lambda_j(0)=n\kappa_0$, which with \\eqref{Phys1:eq:band} gives
+\\eqref{Phys1:eq:floquet}.
+\end{proof}
+
+For $d=1$ Eq.~\\eqref{Phys1:eq:band} is the effective-mass identity of
+Ref.~\onlinecite{ANCFT14}, where $-n\lambda_0''(0)/2$ was identified with an
+$\mathcal L$-invariant and with a diffusion constant. The content of
+\\eqref{Phys1:eq:albanese} for $d=1$ --- that the Albanese metric evaluates the harmonic energy ---
+is Kotani--Sunada~\cite{KS1,KS3}; what is added here is the $d>1$ tensor, the identification
+of the whole object with $M^{-1}$, and the consequences drawn in
+Secs.~\\ref{Phys1:sec:trees}--\\ref{Phys1:sec:einstein}.
+
+\begin{remark}
+Equation~\\eqref{Phys1:eq:floquet} is the practically useful form: $\Theta(\bm k)$ is a Laurent
+polynomial in $e^{ik_1},\dots,e^{ik_d}$ with integer coefficients, computable exactly, and
+its Hessian at the origin delivers $\kappa_0H$ without any eigenvalue computation. This is
+how the battery of Sec.~\\ref{Phys1:sec:battery} verifies Theorem~\\ref{Phys1:thm:mass} in exact
+arithmetic.
+\end{remark}
+
+\section{Spanning trees and the quantization of effective mass}\label{Phys1:sec:trees}
+
+\begin{theorem}[Single-link flux]\label{Phys1:thm:trees}
+Let $d=1$ and let the winding cochain be the indicator of a single link $e$, so that the
+lattice is the unit cell repeated along one direction with exactly one hopping crossing the
+cell boundary. Then
+\begin{equation}\label{Phys1:eq:trees}
+H=1-\Reff(e)=\frac{\tau(Y_0-e)}{\kappa_0},
+\end{equation}
+where $\Reff(e)$ is the effective resistance across $e$ when every link carries unit
+resistance, $\kappa_0=\tau(Y_0)$ is the number of spanning trees of the unit cell, and
+$\tau(Y_0-e)$ is the number of spanning trees avoiding $e$. Consequently
+\begin{equation}\label{Phys1:eq:mstar}
+M^{*}=\frac{n}{2t}\cdot\frac{\kappa_0}{\tau(Y_0-e)} .
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$H=\Pi_{ee}=1-(\partial^{t}\Delta_0^{+}\partial)_{ee}=1-\Reff(e)$ by the standard
+resistance formula. Kirchhoff's theorem gives $\kappa_0\Reff(e)=\tau(Y_0/e)$, the number of
+spanning trees containing $e$, and deletion--contraction
+$\kappa_0=\tau(Y_0-e)+\tau(Y_0/e)$ finishes it. Equation~\\eqref{Phys1:eq:mstar} is
+\\eqref{Phys1:eq:band}.
+\end{proof}
+
+\begin{corollary}[Quantization of effective mass]\label{Phys1:cor:quant}
+For any winding cochain, $\kappa_0H$ is a matrix of \emph{integers}. Hence every entry of
+the inverse effective-mass tensor is an integer multiple of $2t/(n\kappa_0)$,
+\begin{equation}\label{Phys1:eq:quant}
+\frac{n\kappa_0}{2t}\,(M^{-1})_{ab}\in\Z ,
+\qquad
+\det\Bigl[\frac{n\kappa_0}{2t}M^{-1}\Bigr]\in\Z ,
+\end{equation}
+and the admissible effective masses of a lattice with unit cell $Y_0$ form a discrete set
+determined by the single integer $\kappa_0$.
+\end{corollary}
+
+\begin{proof}
+By Kirchhoff's theorem in its cycle form, the Gram matrix $G$ of any $\Z$-basis of
+$H_1(Y_0;\Z)$ has $\det G=\kappa_0$; since $\mathrm{adj}\,G$ is an integer matrix,
+$G^{-1}\in\kappa_0^{-1}M_r(\Z)$. The period vectors $\bm a_a=C^{t}\alpha_a$ are integral, so
+$\kappa_0H_{ab}=\bm a_a^{t}(\kappa_0G^{-1})\bm a_b\in\Z$ by \\eqref{Phys1:eq:albanese}.
+\end{proof}
+
+This is the most directly falsifiable statement in the paper. The band curvature at the
+$\Gamma$ point of such a lattice cannot be an arbitrary real number: measured in units of
+$2t/n$, it is a rational with denominator dividing $\kappa_0$. Table~\\ref{Phys1:tab:trees}
+lists the values for six unit cells.
+
+The algebra behind Corollary~\\ref{Phys1:cor:quant} is elementary, and in the equivalent form
+``the Albanese lattice of $Y_0$ has covolume $\kappa_0$'' it is classical~\cite{KS3,BF}.
+What is at stake here is only what is being quantized: not a lattice covolume but the
+curvature of a band, which an experiment can measure.
+
+\begin{table}[t]
+\centering
+\begin{ruledtabular}
+\begin{tabular}{lccccccc}
+$Y_0$ & $n$ & $m$ & $q$ & $\kappa_0$ & $\Reff(e)$ & $\tau(Y_0-e)$ & $tM^{*}$\\
+\colrule
+$K_4$        & $4$  & $6$  & $2$ & $16$    & $1/2$   & $8$     & $4$\\
+$K_{3,3}$    & $6$  & $9$  & $2$ & $81$    & $5/9$   & $36$    & $27/4$\\
+$Q_3$        & $8$  & $12$ & $2$ & $384$   & $7/12$  & $160$   & $48/5$\\
+$K_5$        & $5$  & $10$ & $3$ & $125$   & $2/5$   & $75$    & $25/6$\\
+Petersen     & $10$ & $15$ & $2$ & $2000$  & $3/5$   & $800$   & $25/2$\\
+Heawood      & $14$ & $21$ & $2$ & $50421$ & $13/21$ & $19208$ & $147/8$\\
+\end{tabular}
+\end{ruledtabular}
+\caption{Single-link flux. $\kappa_0$ is the number of spanning trees of the unit cell,
+$\tau(Y_0-e)$ the number avoiding the flux link, and $tM^{*}=n\kappa_0/[2\tau(Y_0-e)]$ by
+Eq.~\\eqref{Phys1:eq:mstar}. For the Heawood graph $\kappa_0=3\cdot7^{5}$ and
+$\tau(Y_0-e)=8\cdot7^{4}$. All entries exact.}
+\label{Phys1:tab:trees}
+\end{table}
+
+\begin{corollary}[Loop flux]\label{Phys1:cor:loop}
+If the winding cochain is the indicator of an oriented cycle $C\subset Y_0$ of length
+$\ell$, then $h=\alpha$, $H=\ell$ exactly, and
+\begin{equation}
+M^{*}=\frac{n}{2t\ell} .
+\end{equation}
+The effective mass depends only on the length of the flux loop and on the number of sites
+per cell --- not on the rest of the unit cell.
+\end{corollary}
+
+\begin{proof}
+A cycle lies in $\ker\partial$, so $\Pi\alpha=\alpha$ and $H=\|\alpha\|^{2}=\ell$.
+\end{proof}
+
+Corollary~\\ref{Phys1:cor:loop} is the sharp opposite of Theorem~\\ref{Phys1:thm:trees}: a single link is
+maximally sensitive to the ambient cell (through $\Reff$), a closed loop is completely
+insensitive to it. Both are verified in Sec.~\\ref{Phys1:sec:battery} on $K_5$, where the
+cyclically oriented triangle gives $H=3$ exactly while the same three links with a
+non-cyclic orientation give $H=7/5$.
+
+\begin{table}[t]
+\centering
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+$Y_0$ & $\kappa_0$ & $\kappa_0H$ & $\det(\kappa_0H)$\\
+\colrule
+$K_4$    & $16$    & $\left(\begin{smallmatrix}8&-4\\-4&8\end{smallmatrix}\right)$ & $48$\\[2pt]
+$Q_3$    & $384$   & $\left(\begin{smallmatrix}160&-32\\-32&160\end{smallmatrix}\right)$ & $24576$\\[2pt]
+$K_5$    & $125$   & $\left(\begin{smallmatrix}75&-25\\-25&75\end{smallmatrix}\right)$ & $5000$\\[2pt]
+Heawood  & $50421$ & $\left(\begin{smallmatrix}19208&-9604\\-9604&19208\end{smallmatrix}\right)$ & $276710448$\\
+\end{tabular}
+\end{ruledtabular}
+\caption{The effective-mass tensor for $d=2$, two single-link fluxes in independent
+directions. $\kappa_0H=(n\kappa_0/2t)M^{-1}$ is an integer matrix
+(Corollary~\\ref{Phys1:cor:quant}); the off-diagonal entries are the mass anisotropy. All entries
+exact.}
+\label{Phys1:tab:tensor}
+\end{table}
+
+\section{An Einstein relation}\label{Phys1:sec:einstein}
+
+The same matrix $H$ governs the classical transport problem on $\Yt$. Let $(X_i)$ be the
+simple random walk on $Y_0$ and $\bm S_N=\sum_{i<N}\bm\alpha(X_i,X_{i+1})\in\Z^{d}$ the
+accumulated winding --- the cell coordinate of the lifted walk on $\Yt$.
+
+\begin{theorem}[Diffusion tensor]\label{Phys1:thm:einstein}
+$\bm S_N/\sqrt N$ converges in law to a centred Gaussian with covariance
+$\sigma^{2}_{ab}=H_{ab}/m$, and therefore
+\begin{equation}\label{Phys1:eq:einstein}
+\sigma^{2}=\frac{1}{t\,(q{+}1)}\;M^{-1}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The walk is reversible with uniform stationary law and transition matrix $A/(q{+}1)$; the
+drift is $-\partial\alpha_a/(q{+}1)$ and the Poisson equation $\Delta_0g_a=-\partial\alpha_a$
+has solution $g_a=-\Delta_0^{+}\partial\alpha_a$. Then
+$\alpha_a+\partial^{t}g_a=\Pi\alpha_a=h_a$ are the martingale increments, and the
+martingale central limit theorem gives
+$\sigma^{2}_{ab}=\frac{2}{n(q+1)}\langle h_a,h_b\rangle=H_{ab}/m$. Substituting
+$H=(n/2t)M^{-1}$ and $m=n(q{+}1)/2$ gives \\eqref{Phys1:eq:einstein}.
+\end{proof}
+
+Equation~\\eqref{Phys1:eq:einstein} says that the quantum band curvature and the classical
+diffusion tensor of a lattice of this type differ by the coordination number alone. In
+particular the mass anisotropy and the diffusion anisotropy are the \emph{same} tensor up
+to scale, and both are quantized by Corollary~\\ref{Phys1:cor:quant}. The $d=1$ case is the
+crystal-lattice central limit theorem of Kotani and Sunada~\cite{KS1}, in which the
+covariance is the Albanese metric; Theorem~\\ref{Phys1:thm:mass} is what identifies that covariance
+with a band curvature.
+
+\section{Rank two: no Brillouin zone}\label{Phys1:sec:nogo}
+
+Everything above needs $b_1(Y_0)\ge1$. For an ordinary finite graph this is automatic and
+harmless: a connected $(q{+}1)$-regular graph with $q\ge2$ has $r=m-n+1\ge2$, so $\Z^{d}$
+covers exist for every $d\le r$. The hyperbolic lattices of Refs.~\onlinecite{KFH,MR1} are
+of this type --- their unit cells are finite graphs, and the difficulty there is that the
+\emph{deck} group is non-abelian, not that abelian directions are missing.
+
+We now consider the rank-two analogue. A thick $\Atwo$ building of order $q$ is the
+two-dimensional simplicial complex on which $\mathrm{PGL}_3$ of a local field with residue
+field of size $q$ acts; it is the rank-two counterpart of the $(q{+}1)$-regular tree, and
+every vertex link in it is the incidence graph of the projective plane over $\mathbb F_q$
+(for $q=2$, the Heawood graph). Its finite quotients are lattices of sites, links and
+plaquettes; the Ramanujan complexes of Lubotzky, Samuels and Vishne~\cite{LSV:Phys1} are among
+them, and they are built from groups acting simply transitively on the vertices in the sense
+of Cartwright, Mantero, Steger and Zappa~\cite{CMSZ}. These are the natural candidates for a
+higher-rank hyperbolic lattice.
+
+\begin{theorem}[No band structure in rank two]\label{Phys1:thm:nogo}
+Let $Y=\Gamma\backslash B$ be a finite quotient of a thick $\Atwo$ building of order
+$q\ge2$ by a group $\Gamma$ acting freely. Then
+\begin{enumerate}
+\item[(i)] $b_1(Y)=0$ and $H_1(Y;\Z)$ is finite;
+\item[(ii)] $Y$ admits no connected $\Z^{d}$ cover for any $d\ge1$. There is no
+$\Z^{d}$-periodic lattice with unit cell $Y$, hence no Brillouin zone, no crystal momentum,
+and no band structure;
+\item[(iii)] the abelian covers of $Y$ are exactly those with deck group a quotient of the
+finite group $H_1(Y;\Z)$, so the threadable flux configurations form the finite group
+$\Hom(H_1(Y;\Z),U(1))\cong H_1(Y;\Z)$;
+\item[(iv)] $\Gamma$ has Kazhdan's property (T); the trivial representation is isolated in
+its unitary dual, so no continuous family of unitary characters --- abelian or not ---
+deforms the trivial one.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$\Gamma$ acts properly and cocompactly on $B$, so by Garland's vanishing
+theorem~\cite{Ga} in the form extended to all $q\ge2$ by Ballmann and
+\'Swi\k{a}tkowski~\cite{BSw}, $H^{1}(\Gamma;\R)=0$ and $\Gamma$ has property (T). $Y$ is
+aspherical with $\pi_1(Y)=\Gamma$, so $b_1(Y)=0$ and $H_1(Y;\Z)=\Gamma^{\mathrm{ab}}$ is
+finite. A cover with deck group $\Z^{d}$ requires a surjection $\Gamma\to\Z^{d}$, hence a
+surjection $\Gamma^{\mathrm{ab}}\to\Z^{d}$, impossible for $d\ge1$ from a finite group; this
+is (ii), and (iii) is the classification of abelian covers by
+$H^{1}(Y;\,\cdot\,)=\Hom(H_1(Y;\Z),\,\cdot\,)$. Part (iv) is property (T).
+\end{proof}
+
+\begin{table}[t]
+\centering
+\begin{ruledtabular}
+\begin{tabular}{lccccc}
+$Y$ & sites & links & plaquettes & $b_1$ & $H_1(Y;\Z)$\\
+\colrule
+$Y_{21}$ & $21$ & $147$ & $147$ & $0$ & $(\Z/2)^{6}$\\
+$Y_{24}$ & $24$ & $168$ & $168$ & $0$ & $(\Z/2)^{4}\oplus\Z/14$\\
+$Y_{42}$ & $42$ & $294$ & $294$ & $0$ & $(\Z/2)^{3}\oplus(\Z/4)^{2}$\\
+\end{tabular}
+\end{ruledtabular}
+\caption{Three finite quotients of a thick $\Atwo$ building of order $q=2$, built as
+abelian covers of the three-site type quotient of a triangle presentation over
+$\mathrm{PG}(2,2)$. Every vertex link is a Heawood graph. $b_1=0$ in every case, so none of
+them is the unit cell of any periodic lattice; the entire flux group is the finite group in
+the last column. On $Y_{21}$ the only admissible fluxes are $0$ and $\pi$. All entries
+exact ($p$-adic Smith normal forms; see Sec.~\\ref{Phys1:sec:battery}).}
+\label{Phys1:tab:ranktwo}
+\end{table}
+
+Table~\\ref{Phys1:tab:ranktwo} makes the statement concrete. On $Y_{21}$ the flux group is
+$(\Z/2)^{6}$: there are exactly $64$ distinct flux configurations, each link pattern
+carrying flux $0$ or $\pi$, and nothing in between. There is no knob to turn continuously,
+and no momentum to plot a band against.
+
+\begin{remark}[What this does \emph{not} say]\label{Phys1:rem:notsay}
+Theorem~\\ref{Phys1:thm:nogo} is a statement about translational symmetry, not about spectra. The
+Laplacian and the Hecke operators of $Y$ have perfectly good spectra --- indeed the
+Ramanujan complexes of Ref.~\onlinecite{LSV} have optimal spectral gaps, which is precisely
+what makes them attractive as synthetic lattices. What fails is the specific device of
+labelling eigenstates by a crystal momentum in a torus. Any transport theory on a rank-two
+hyperbolic lattice must be built without a Brillouin zone, and by
+Theorem~\\ref{Phys1:thm:nogo}(iv) not even an infinitesimal one is available near the trivial
+character. The effective mass of Sec.~\\ref{Phys1:sec:mass} is simply not defined there: it is
+the curvature of a band that does not exist.
+\end{remark}
+
+\begin{remark}[The obstruction is global]\label{Phys1:rem:global}
+The Heawood graph appears on both sides of this paper. As a unit cell in its own right it
+is unremarkable: $b_1=8$, $\kappa_0=3\cdot7^{5}$, and a single-link flux gives
+$tM^{*}=147/8$ (Table~\\ref{Phys1:tab:trees}). As the \emph{link} of a rank-two complex it is part
+of a structure with $b_1=0$ (Table~\\ref{Phys1:tab:ranktwo}). No local inspection of a rank-two
+hyperbolic lattice reveals the obstruction; it is a property (T) phenomenon, visible only
+at the level of the fundamental group.
+\end{remark}
+
+\section{Numerical verification}\label{Phys1:sec:battery}
+
+All statements were checked by machine. The script \texttt{bloch\_mass.py} accompanying this
+paper runs $90$ checks in $13$ s and reports every one as passing; its output is archived as
+\texttt{bloch\_mass\_output.txt}. Exact arithmetic is used throughout except where a row is
+labelled \emph{numeric}.
+
+\begin{table}[t]
+\centering
+\begin{ruledtabular}
+\begin{tabular}{clcc}
+key & check & $\#$ & mode\\
+\colrule
+(S) & $H=1-\Reff(e)$ and $\kappa_0H=\tau(Y_0-e)$, Eq.~\\eqref{Phys1:eq:trees} & $6/6$ & exact\\
+(M) & $\partial^2_{ab}\Theta|_0=2\kappa_0H$, Eq.~\\eqref{Phys1:eq:floquet} & $15/15$ & exact\\
+(M) & $\lambda_0(\bm k)=\bm k^{t}H\bm k/n+O(|\bm k|^{4})$ & $15/15$ & numeric\\
+(Q) & $\kappa_0H$ integral, Eq.~\\eqref{Phys1:eq:quant} & $15/15$ & exact\\
+(E) & $\sigma^{2}=H/m$ by Green--Kubo, Eq.~\\eqref{Phys1:eq:einstein} & $15/15$ & exact\\
+(G) & gap $\lambda_1(0)>0$ and $\lambda_0(0)=0$ & $15/15$ & numeric\\
+(X) & $H$ reproduces Refs.~\onlinecite{ANCFT9,ANCFT14} & $4/4$ & exact\\
+(C) & loop flux gives $H=\ell$, Corollary~\\ref{Phys1:cor:loop} & $1/1$ & exact\\
+(B) & $b_1=0$ and $H_1(Y;\Z)$, Table~\\ref{Phys1:tab:ranktwo} & $4/4$ & exact\\
+\colrule
+ & total & $90/90$ & \\
+\end{tabular}
+\end{ruledtabular}
+\caption{The verification battery (\texttt{bloch\_mass.py}). Unit cells: $K_4$,
+$K_{3,3}$, $Q_3$, $K_5$, Petersen, Heawood, with single-link fluxes ($d=1$), two-link
+fluxes ($d=2$), and on $K_4$ and $K_5$ the multi-chord and triangle patterns of
+Refs.~\onlinecite{ANCFT9,ANCFT14}.}
+\label{Phys1:tab:battery}
+\end{table}
+
+A word on the two \emph{numeric} rows. The band identity \\eqref{Phys1:eq:band} is checked by
+evaluating $\lambda_0$ at $|\bm k|=10^{-6}$ and $5\times10^{-7}$ in $40$-digit arithmetic
+and taking one Richardson step, which removes the $O(|\bm k|^{2})$ truncation and leaves a
+residual below $10^{-24}$; the observed relative deviations from $\bm k^{t}H\bm k/n$ range
+from $2\times10^{-27}$ to $2\times10^{-26}$. The exact row (M) above it, which verifies the
+Floquet-determinant form \\eqref{Phys1:eq:floquet} by interpolating $\Theta$ as a Laurent
+polynomial with rational coefficients and differentiating it symbolically, is the
+mathematically complete check; the numeric row is a redundant confirmation that the object
+being differentiated really is the bottom band.
+
+The rank-two rows use the complex builder and the $p$-adic Smith-normal-form routine of
+Ref.~\onlinecite{ANCFT10}: the complexes of Table~\\ref{Phys1:tab:ranktwo} are abelian covers of
+the three-site type quotient of a triangle presentation over $\mathrm{PG}(2,2)$ compatible
+with a Singer cycle, the presentation axioms are re-verified at start-up, and every vertex
+link is confirmed to be a Heawood graph. The Betti numbers are exact ranks; the torsion
+subgroups are exact $p$-adic Smith forms with the prime set certified by the greatest common
+divisor of the maximal minors.
+
+\section{Discussion}\label{Phys1:sec:disc}
+
+\subsection{What is testable}
+
+Corollary~\\ref{Phys1:cor:quant} is a constraint on a measurable quantity. For a synthetic lattice
+assembled from a known unit cell --- a coplanar-waveguide network, a photonic-crystal
+supercell, a cold-atom superlattice --- the number $\kappa_0$ of spanning trees of the cell
+is a finite combinatorial datum, and the band curvature at $\Gamma$ must be an integer
+multiple of $2t/(n\kappa_0)$. Departures measure either the failure of the uniform-hopping
+idealization or the presence of longer-range terms; the statement is rigid enough to be
+diagnostic.
+
+Theorem~\\ref{Phys1:thm:trees} says more: for a single flux link, the mass is set by the ratio of
+two spanning-tree counts, so it can be engineered by choosing where the flux link sits, with
+no computation beyond counting trees. Corollary~\\ref{Phys1:cor:loop} gives the complementary
+design rule --- route the flux around a closed loop of length $\ell$ and the mass becomes
+$n/2t\ell$, insensitive to everything else in the cell.
+
+Equation~\\eqref{Phys1:eq:einstein} is a consistency check available without any quantum
+measurement: the classical diffusion tensor on the same network fixes the effective-mass
+tensor up to the coordination number.
+
+\subsection{What is open}
+
+(a) The non-abelian case. Hyperbolic band theory~\cite{MR1,MR2} replaces $\T^{d}$ by a
+character variety of a non-abelian surface group. Theorem~\\ref{Phys1:thm:mass} is a statement
+about the abelian directions only; whether a ``non-abelian effective mass'' exists at a
+higher-genus analogue of the $\Gamma$ point, and whether it is still a spanning-tree
+quantity, we do not know.
+
+(b) The quartic term. Band non-parabolicity is the next Taylor coefficient of
+$\lambda_0$. It is a rational function of the same combinatorial data, but we have no
+closed form for it and no quantization statement.
+
+(c) Rank two without a Brillouin zone. Theorem~\\ref{Phys1:thm:nogo} removes the tool but not the
+problem: finite quotients of $\Atwo$ buildings are excellent expanders with explicit
+spectra, and the question of what replaces band theory for transport on them --- given that
+property (T) blocks even an infinitesimal character deformation --- seems to us the most
+interesting thing this paper leaves behind.
+
+\subsection{What is impossible}
+
+A $\Z^{d}$-periodic lattice whose unit cell is a free quotient of a thick $\Atwo$ building,
+for any $d\ge1$ and any $q\ge2$ (Theorem~\\ref{Phys1:thm:nogo}). Any construction claiming a
+Brillouin zone for such a lattice is in error, and the error will be that the quotient is
+not free, or the building is not thick, or the complex is not a quotient of a building at
+all. This is a theorem and does not depend on the state of the literature; the remark in
+Sec.~\\ref{Phys1:sec:intro}, that no one appears to have asked the question, does.
+
+\section*{Provenance and caveats}
+
+This is an unrefereed preprint. Every numbered statement is proved from finite linear
+algebra together with three classical inputs that are quoted, not reproved: Kirchhoff's
+matrix--tree theorem in its cycle form, the martingale central limit theorem for additive
+functionals of a finite reversible chain, and the Garland--Ballmann--\'Swi\k{a}tkowski
+vanishing theorem~\cite{Ga,BSw}. Kotani--Sunada~\cite{KS1,KS2,KS3} and Baker--Faber~\cite{BF}
+supply the Albanese metric, its relation to the spanning-tree count, and the
+crystal-lattice central limit theorem; Secs.~\\ref{Phys1:sec:mass}--\\ref{Phys1:sec:einstein} are a
+physical reading of that material and not a replacement for it.
+
+Attribution, statement by statement. The $d=1$ case of Theorem~\\ref{Phys1:thm:mass} is
+Ref.~\onlinecite{ANCFT14}, Theorem~4.2; Eq.~\\eqref{Phys1:eq:trees} for $d=1$ is
+Ref.~\onlinecite{ANCFT9}, Theorem~1.2(iv); Theorem~\\ref{Phys1:thm:nogo}(i) is
+Ref.~\onlinecite{ANCFT12}, Theorem~1.1, which in turn quotes Refs.~\onlinecite{Ga,BSw}. The
+identification of the Albanese metric with a Kirchhoff ratio, and hence the mathematical
+substance of Corollary~\\ref{Phys1:cor:quant}, is in Refs.~\onlinecite{KS3,BF}. What the present
+paper adds is the $d>1$ tensor form, the identification of that tensor with $M^{-1}$, the
+deletion--contraction form \\eqref{Phys1:eq:mstar}, Corollary~\\ref{Phys1:cor:loop}, the Einstein relation
+in the form \\eqref{Phys1:eq:einstein}, and Sec.~\\ref{Phys1:sec:nogo} --- the reading of the rank-two
+vanishing theorem as a no-go theorem for band structure, which is the part we believe to be
+without precedent. We have not found prior physics work on tight-binding models over
+rank-two affine buildings; we cannot prove that none exists.
+
+\begin{acknowledgments}
+The complex builder and the exact $p$-adic Smith normal form used in Sec.~\\ref{Phys1:sec:battery}
+are those of Ref.~\onlinecite{ANCFT10}.
+\end{acknowledgments}

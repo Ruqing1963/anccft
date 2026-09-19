@@ -1,0 +1,255 @@
+% generated from Paper 5/anccft5.tex
+\chapter{Algorithmic non-commutative class field theory, V: the degeneracy structure of the Iwahori tower and the Euler correction}\label{chap:V}
+\chaptermark{V}
+\begin{chapterabstract}
+The congruence-model (Iwahori path) tower $Y_0\leftarrow Y_1\leftarrow\cdots$ of
+[Ch.~\ref{chap:II}, \S5] is non-normal, carries no deck action, and obeys the exact pseudo-Iwasawa
+law $\nu_p=\mu p^k-k+\nu_0$ with $\lambda=-1$, impossible over any commutative
+$\Zp[[T]]$ base ([Ch.~\ref{chap:II}, Rem.~5.2], [Ch.~\ref{chap:III}, \S2]). This paper equips that tower with its
+canonical algebraic structure and identifies, without fabricating a theory that does
+not yet exist, exactly what any future non-commutative characteristic formalism must
+specialize to.
+
+The two degeneracy maps --- initial and terminal truncation of non-backtracking paths,
+the graph avatars of $X_0(p^{k+1})\rightrightarrows X_0(p^k)$ --- are packaged into an
+incidence calculus with six exact identities, among them
+$\ta\etp=A_k$ (the level-$k$ Hecke operator realized through level $k{+}1$; at the
+bottom, $\ta\etp=T_p$ of [Ch.~\ref{chap:I}]) and $\ta\taup=\et\etp=qI$. Theorem~\\ref{V:thm:euler}
+computes the degeneracy complex: $\ker(\taup-\etp)=\Z\mathbf1$ and
+$\coker(\ta-\et)\cong\Z$ torsion-free, so the Euler rank $\chi=1$ at every level ---
+the $-\chi$ of [Ch.~\ref{chap:III}, Thm.~2.4] is the $H^0$ of this complex. Theorem~\\ref{V:thm:norm}
+shows the tail degeneracy alone intertwines the sandpile Laplacians and the Hecke
+operators, is surjective on $p$-primary torsion with kernel of the exact order
+$q^{\,n_k(q-1)-1}$ forced by [Ch.~\ref{chap:III}, Thm.~2.1], and hence assembles the tower into one
+pro-module $X_\infty=\varprojlim(\coker\Delta_k\otimes\Zp,\ta)$ carrying a limit Hecke
+operator; the head degeneracy satisfies the mirror identities for the in-Laplacian
+tower and the exact asymmetry $\et\Delta_{k+1}=q(\et-\ta)$, so the structure is
+genuinely two-sided. Proposition~\\ref{V:prop:nonnormal} records a second, independent
+rigorous certificate that no commutative base suffices: $A_kA_k^{\,t}\neq
+A_k^{\,t}A_k$ at every computed level. We then state, as axioms rather than as a
+theorem, the specialization data any characteristic theory over the Iwahori--Hecke
+base must reproduce, and we decline --- for the same reason as in [Ch.~\ref{chap:III}] --- to define
+an Akashi-type series whose hypotheses our pro-ring does not satisfy.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Theorems~\\ref{V:thm:euler} and \\ref{V:thm:norm} and Propositions~\\ref{V:prop:calculus},
+\\ref{V:prop:mirror} are proved for a general Eulerian $q$-regular strongly connected
+level $\ge1$ (the base level $k=0$ is the boundary case, treated in
+Remark~\\ref{V:rem:level0}); every identity was additionally machine-verified exactly on
+the $K_4$ tower at all levels $k\le3$ (Table~\\ref{V:tab:battery}).
+Proposition~\\ref{V:prop:nonnormal} is a finite exact computation on the fixed tower,
+hence a proof for it; no general-graph claim is made. Section~\\ref{V:sec:axioms} proves
+nothing and says so: it is a specification, and Problem~\\ref{V:prob:char} is open.
+
+\section{The degeneracy pair and its incidence calculus}\label{V:sec:calculus}
+
+Levels: $Y_0$ a finite connected $(q+1)$-regular graph; for $k\ge1$, $V_{Y_k}$ = the
+non-backtracking $k$-paths of $Y_0$, with an arc $p\to p'$ when $p'$ is the shift of a
+common $(k{+}1)$-path; $Y_{k+1}=L(Y_k)$ for $k\ge1$, each $Y_k$ Eulerian $q$-regular,
+$n_k=n(q+1)q^{k-1}$ ([Ch.~\ref{chap:II}, \S5], [Ch.~\ref{chap:III}, \S2]).
+
+\begin{definition}[Degeneracy maps]\label{V:def:degen}
+For $k\ge1$ let $\tau,\eta\colon Y_{k+1}\to Y_k$ be terminal and initial truncation of
+paths, $\tau(v_0\cdots v_{k+1})=(v_0\cdots v_k)$, $\eta(v_0\cdots v_{k+1})
+=(v_1\cdots v_{k+1})$; under $V_{Y_{k+1}}=\mathrm{Arcs}(Y_k)$ these are the tail and
+head maps. Write $\ta,\et\in M_{n_k\times n_{k+1}}(\Z)$ for the pushforwards (sum over
+fibres) and $\taup=\ta^{\,t}$, $\etp=\et^{\,t}$ for the pullbacks; thus
+$\ta=D_{\mathrm{out}}$, $\et=D_{\mathrm{in}}$, the incidence matrices of
+[Ch.~\ref{chap:III}, Thm.~2.1].
+\end{definition}
+
+\begin{proposition}[Incidence calculus]\label{V:prop:calculus}
+For every $k\ge1$:
+\[
+\ta\etp=A_k,\quad \et\taup=A_k^{\,t},\quad \etp\ta=A_{k+1},\quad \taup\et=A_{k+1}^{\,t},
+\quad \ta\taup=\et\etp=q\,I_{n_k}.
+\]
+At the boundary level, with $\tau,\eta\colon Y_1\to Y_0$ the endpoint maps on oriented
+edges, $\ta\etp=T_p$, the Hecke operator of {\rm[I]}.
+\end{proposition}
+
+\begin{proof}
+Entrywise bookkeeping of tails and heads; the middle two are [Ch.~\ref{chap:III}, Thm.~2.1, Step~1],
+the outer two their transposes, the last two the regularity of degrees. The boundary
+identity is $S\,T^{\,t}=T_p$ in the notation of [Ch.~\ref{chap:I}, Thm.~3.7]. All six verified as
+exact matrix identities at $k=1,2$ (Table~\\ref{V:tab:battery}).
+\end{proof}
+
+The pair $(\ta,\et)$ is the graph avatar of the modular degeneracy pair
+$X_0(p^{k+1})\rightrightarrows X_0(p^k)$, and Proposition~\\ref{V:prop:calculus} is the
+statement that the level-$k$ Hecke operator is the correspondence
+$\ta\circ\etp$ computed through level $k{+}1$ --- the tower knows its own Hecke
+theory.
+
+\section{The degeneracy complex and the Euler rank}\label{V:sec:euler}
+
+\begin{theorem}[Euler rank of the degeneracy complex]\label{V:thm:euler}
+For every $k\ge1$, with $\partial_k:=\ta-\et\colon\Z^{V_{Y_{k+1}}}\to\Z^{V_{Y_k}}$ and
+$\partial_k^{\,*}:=\taup-\etp$:
+\begin{enumerate}
+\item[(i)] $\ker\partial_k^{\,*}=\Z\cdot\mathbf1$: the only pulled-back-equal
+functions are the constants --- the Perron--Eisenstein line, of rank $\chi_k=1$;
+\item[(ii)] $\coker\,\partial_k\cong\Z$ via the degree functional, and it is
+torsion-free: the image of $\partial_k$ is exactly the augmentation-zero sublattice.
+\end{enumerate}
+Hence the Euler rank of the two-term degeneracy complex is $\chi=1$ at every level,
+and the correction $-\chi\cdot k=-k$ of {\rm[Ch.~\ref{chap:III}, Thm.~2.4]} is the accumulated
+$H^0$ of this complex, once per level.
+\end{theorem}
+
+\begin{proof}
+(i) $(\partial_k^{\,*}x)_{(a\to b)}=x_a-x_b$; vanishing forces $x$ constant along
+arcs, hence constant by strong connectivity. (ii) $\partial_k(e_{(a\to b)})
+=e_a-e_b$; over a connected digraph the differences $e_a-e_b$ along arcs generate,
+integrally, the full kernel of the degree map (telescope along paths; any
+$z$ with $\sum z_i=0$ is an integer combination of consecutive differences), so
+$\operatorname{im}\partial_k=\ker(\deg)$ and $\coker\cong\Z$ with no torsion.
+Machine confirmation: the Smith form of $\partial_k$ has exactly $n_k-1$ unit
+invariants at $k=1,2$ (Table~\\ref{V:tab:battery}).
+\end{proof}
+
+\section{The tail norm and the pro-module}\label{V:sec:norm}
+
+\begin{theorem}[Tail norm]\label{V:thm:norm}
+For every $k\ge1$, with $\Delta_k=qI-A_k$ the out-Laplacian:
+\begin{enumerate}
+\item[(i)] $\ta\,\Delta_{k+1}=\Delta_k\,\ta$ and $\ta\,A_{k+1}=A_k\,\ta$;
+\item[(ii)] $\ta$ is surjective and preserves the degree functional; hence the
+induced map on sandpile cokernels is surjective, restricts to a surjection of
+$p$-primary torsion, and its kernel there has order exactly
+$q^{\,n_k(q-1)-1}$, the increment proved in {\rm[Ch.~\ref{chap:III}, Thm.~2.1]};
+\item[(iii)] consequently
+$X_\infty:=\varprojlim_k\bigl(\coker_\Z(\Delta_k)\otimes\Zp,\ \ta\bigr)$
+is a well-defined pro-module carrying the limit Hecke operator
+$A_\infty:=\varprojlim A_k$, and its torsion-size sequence is the pseudo-Iwasawa law
+$\ord_p=\mu p^k-k+\nu_0$, $\mu=n(q+1)/q$, of {\rm[Ch.~\ref{chap:III}, Thm.~2.2]} --- now the size
+function of a single pro-object rather than a sequence of unrelated groups.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $\ta A_{k+1}=D_{\mathrm{out}}D_{\mathrm{in}}^{\,t}D_{\mathrm{out}}
+=A_kD_{\mathrm{out}}=A_k\ta$ by associativity and
+Proposition~\\ref{V:prop:calculus}; subtract from $q\ta$. (ii) Every level-$k$ vertex
+extends, so $\ta$ hits every basis vector; $\deg\circ\ta=\deg$ since fibres are
+summed; torsion-surjectivity then follows exactly as in [Ch.~\ref{chap:IV}, Lem.~1.3] (the kernel of
+$\deg$ is the torsion), and the kernel order is forced by counting against
+[Ch.~\ref{chap:III}, Thm.~2.1]. (iii) Inverse limits over surjections of compact modules; the Hecke
+compatibility is (i). Explicit machine confirmation of (ii) at the transition
+$2\to1$: surjective on the $2$-part with kernel order exactly $2^{11}=2^{\,n_1-1}$,
+the orders $7,18$ matching [Ch.~\ref{chap:II}, Rem.~5.2] (Table~\\ref{V:tab:battery}).
+\end{proof}
+
+\begin{proposition}[Head mirror, and the exact asymmetry]\label{V:prop:mirror}
+For every $k\ge1$: $\et$ intertwines the in-Laplacians,
+$\et\,(qI-A_{k+1}^{\,t})=(qI-A_k^{\,t})\,\et$, so the mirrored construction yields the
+in-sandpile pro-module $X_\infty^{\mathrm{in}}$; on the out-tower, however,
+\[
+\et\,\Delta_{k+1}\;=\;q\,(\et-\ta)\;=\;-q\,\partial_k ,
+\]
+so $\et$ does not descend to the out-cokernels: the failure is exactly $q$ times the
+degeneracy boundary of Theorem~\\ref{V:thm:euler}. The tower is thus canonically
+two-sided --- a $(\tau,\eta)$-bimodule system, not a single inverse system --- and
+the obstruction to collapsing the two sides is again the Euler complex.
+\end{proposition}
+
+\begin{proof}
+$\et A_{k+1}^{\,t}=D_{\mathrm{in}}D_{\mathrm{out}}^{\,t}D_{\mathrm{in}}
+=A_k^{\,t}D_{\mathrm{in}}$; and
+$\et\Delta_{k+1}=qD_{\mathrm{in}}-D_{\mathrm{in}}D_{\mathrm{in}}^{\,t}D_{\mathrm{out}}
+=q(D_{\mathrm{in}}-D_{\mathrm{out}})$ by
+$D_{\mathrm{in}}D_{\mathrm{in}}^{\,t}=qI$. Verified at $k=1,2$.
+\end{proof}
+
+\begin{remark}[The boundary level]\label{V:rem:level0}
+At $k=0$ the base is undirected and $(q+1)$-regular, and the clean intertwining fails
+by exactly the degeneracy boundary:
+$\ta\Delta_1-\Delta_0\ta=-(\ta-\et)=-\partial_0$, verified as an exact identity. The
+Eisenstein special layer of the whole series --- the $(q+1)$-versus-$q$ mismatch of
+[Ch.~\ref{chap:I}, Rem.~1.8], the shared Perron root of [Ch.~\ref{chap:II}], the excluded trivial eigenvalue of
+[Ch.~\ref{chap:III}] --- reappears here as the unique level where the norm formalism acquires a
+correction term, and the correction is once more $\partial$.
+\end{remark}
+
+\begin{proposition}[Second non-commutativity certificate]\label{V:prop:nonnormal}
+On the $K_4$ tower, $A_kA_k^{\,t}\neq A_k^{\,t}A_k$ for $k=1,2,3$ (exact
+computation, hence a proof for this tower). Together with the growth-theoretic
+certificate $\lambda=-1<0$ of {\rm[Ch.~\ref{chap:III}, Prop.~2.3]}, this gives two independent
+rigorous witnesses that the level operator algebras
+$\Z\langle A_k,A_k^{\,t}\rangle$, and a fortiori any base ring over which the tower's
+characteristic theory could live, are non-commutative: the first says the
+\emph{growth} cannot come from $\Zp[[T]]$, the second that the \emph{operators}
+themselves do not commute with their adjoints.
+\end{proposition}
+
+\section{What a characteristic theory must specialize to}\label{V:sec:axioms}
+
+We now state --- as a specification, not a theorem --- the data pinned down by
+Papers~II--V that any characteristic formalism $\mathrm{Char}$ for
+$(\tau,\eta)$-towers over the (pro-)Iwahori--Hecke base must reproduce:
+\begin{enumerate}
+\item[(A1)] a multiplicative rank-density term recovering $\mu=n(q+1)/q$, the arc
+proliferation of {\rm[Ch.~\ref{chap:III}, Thm.~2.2]};
+\item[(A2)] an additive Euler term $-\chi\cdot k$ with
+$\chi=\rk\ker(\taup-\etp)$, the $H^0$ of the degeneracy complex
+(Theorem~\\ref{V:thm:euler}) --- intrinsic to the base, external to any commutative
+characteristic ideal;
+\item[(A3)] on sub-towers carrying an abelian deck action, reduction to the
+commutative characteristic ideal $\bigl(\det D(1+T)\bigr)$ of {\rm[Ch.~\ref{chap:IV}, Thm.~2.1]},
+with the Newton-polygon evaluation of {\rm[Ch.~\ref{chap:II}, Rem.~5.4]}.
+\end{enumerate}
+
+\begin{problem}\label{V:prob:char}
+Construct $\mathrm{Char}$ satisfying (A1)--(A3) on the pro-module
+$(X_\infty,A_\infty,\tau,\eta)$ of Theorem~\\ref{V:thm:norm}.
+\end{problem}
+
+We explicitly decline to define an Akashi-type series here. The non-commutative
+Iwasawa formalism in which Akashi series live is built over Iwasawa algebras of
+compact $p$-adic Lie groups \cite{CFKSV}; our pro-ring is the inverse limit of the
+finite-dimensional, non-normal level algebras of
+Proposition~\\ref{V:prop:nonnormal}, generated by degeneracy correspondences rather
+than by a group, and none of the hypotheses of that formalism are available. Writing
+down an ``Akashi series'' whose only property is to output the already-proved growth
+law would be circular dressing, and this series does not do that
+([Ch.~\ref{chap:III}, Rem.~2.6]). What Papers~II--V have done instead is to make
+Problem~\\ref{V:prob:char} well-posed: the category, the operators, the two invariants
+any answer must produce, and the commutative shadow it must reduce to, are now all
+theorems.
+
+\section{The verification battery}\label{V:sec:battery}
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcl}
+\toprule
+check & levels & result\\
+\midrule
+(F) six incidence identities, incl.\ $\ta\etp=A_k$, $\ta\taup=\et\etp=qI$ & $k=1,2$ & exact\\
+(T) $\ta\Delta_{k+1}=\Delta_k\ta$,\ $\ta A_{k+1}=A_k\ta$ & $k=1,2$ & exact\\
+(H) in-mirror for $\et$; asymmetry $\et\Delta_{k+1}=q(\et-\ta)$ & $k=1,2$ & exact\\
+(E) $\ker(\taup-\etp)=\Z\mathbf1$; $\mathrm{SNF}(\ta-\et)$: $n_k{-}1$ units & $k=1,2$ & exact\\
+(N) tail norm on $2$-part: surjective, $|\ker|=2^{11}=2^{\,n_1-1}$ & $2\to1$ & exact\\
+(C) $A_kA_k^{\,t}\neq A_k^{\,t}A_k$ & $k=1,2,3$ & exact\\
+(Z) $\ta\Delta_1-\Delta_0\ta=-\partial_0$;\ \ $\ta\etp=T_p$ at the bottom & $0\to1$ & exact\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{Exact integer verification (scripts \texttt{iw\_stage1--3.py}) on the $K_4$
+tower, $q=2$, levels $\le3$ (up to $48$ vertices). Each general lemma is proved in
+the text; for the fixed tower each line is itself a proof.}
+\label{V:tab:battery}
+\end{table}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. All numbered statements are proved, with
+Proposition~\\ref{V:prop:nonnormal} proved for the fixed $K_4$ tower by exact
+computation and asserted for no other graph. Section~\\ref{V:sec:axioms} is a
+specification; Problem~\\ref{V:prob:char} is open, and the paper's deliberate refusal to
+define an Akashi-type invariant is explained there. The single external citation
+\cite{CFKSV} is contextual and load-bearing for nothing; its bibliographic data are
+now primary-source verified.

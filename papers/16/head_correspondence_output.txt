@@ -1,0 +1,31 @@
+﻿===== transition k+1 -> k with k=1: n_k=12, n_(k+1)=24, shadow sizes 24, 48 =====
+  (O) eta^sharp: morphism True; bijective on OUT-arcs (out-covering) True; bijective on in-arcs False (max Y in-fibre 2 = q: True)
+      tau^sharp: morphism True; bijective on out-arcs False; bijective on IN-arcs (in-covering, [VIII, Prop 2.3]) True
+  (R) reversal: rho A_k rho^-1 = A_k^t: True;  rho_k tau_* = eta_* rho_(k+1): True
+  (K) H_k (I-B_(k+1)^t) = (I-B_k^t) H_k: True;  diag(tau_*,tau_*) descends on the K_0 side: False (false, [VIII, Thm 2.5(iv)]);  H_k 1 = q 1: True;  H_k (1,-1) = q (1,-1): True
+  (H) H_k T^k = diag(A_k^t,A_k^t) and T^k H_k = diag(A_(k+1)^t,A_(k+1)^t): True;  diag(A_k^t - q, A_k^t - q) = (I-B_k^t) V N (so both Hecke composites act as q on K_0): True
+  (B) opposite algebras: D_k = diag(tau_*,tau_*) descends on coker(I-B): True; E^k = diag(eta^*,eta^*) descends: True; D_k E^k = diag(A_k,A_k), E^k D_k = diag(A_(k+1),A_(k+1)): True;  diag(A_k - q, A_k - q) = (I-B_k) U^t N': True
+  (N) Tor coker Delta_(k+1)^t = (Z/2)^8 + Z/4 + Z/16 + Z/48 (order 786432), Tor coker Delta_k^t = Z/2 + Z/8 + Z/24 (order 384); ratio 2048 = 2^{n_k(q-1)-1} = 2^11: True;  rank_F2 A_(k+1) = 12 = n_k: True (kernel of eta_* on torsion = the 2-torsion, by reversal from [VIII, Thm 2.8])
+  (X) Ext(K_0(O_(k+1)), K_1(O_k)) = Ext(Z + Jac_(k+1)^vee, Z) = Jac(Y_(k+1)) of order 786432: KK-lift ambiguity of [VIII, Rem 2.6];  Ext(K_0(O_k), K_1(O_k)) = Jac(Y_k) of order 384: home of the Eisenstein class [H_k] - q[1]
+
+===== transition k+1 -> k with k=2: n_k=24, n_(k+1)=48, shadow sizes 48, 96 =====
+  (O) eta^sharp: morphism True; bijective on OUT-arcs (out-covering) True; bijective on in-arcs False (max Y in-fibre 2 = q: True)
+      tau^sharp: morphism True; bijective on out-arcs False; bijective on IN-arcs (in-covering, [VIII, Prop 2.3]) True
+  (R) reversal: rho A_k rho^-1 = A_k^t: True;  rho_k tau_* = eta_* rho_(k+1): True
+  (K) H_k (I-B_(k+1)^t) = (I-B_k^t) H_k: True;  diag(tau_*,tau_*) descends on the K_0 side: False (false, [VIII, Thm 2.5(iv)]);  H_k 1 = q 1: True;  H_k (1,-1) = q (1,-1): True
+  (H) H_k T^k = diag(A_k^t,A_k^t) and T^k H_k = diag(A_(k+1)^t,A_(k+1)^t): True;  diag(A_k^t - q, A_k^t - q) = (I-B_k^t) V N (so both Hecke composites act as q on K_0): True
+  (B) opposite algebras: D_k = diag(tau_*,tau_*) descends on coker(I-B): True; E^k = diag(eta^*,eta^*) descends: True; D_k E^k = diag(A_k,A_k), E^k D_k = diag(A_(k+1),A_(k+1)): True;  diag(A_k - q, A_k - q) = (I-B_k) U^t N': True
+  (N) Tor coker Delta_(k+1)^t = (Z/2)^12 + (Z/4)^8 + Z/8 + Z/32 + Z/96 (order 6597069766656), Tor coker Delta_k^t = (Z/2)^8 + Z/4 + Z/16 + Z/48 (order 786432); ratio 8388608 = 2^{n_k(q-1)-1} = 2^23: True;  rank_F2 A_(k+1) = 24 = n_k: True (kernel of eta_* on torsion = the 2-torsion, by reversal from [VIII, Thm 2.8])
+  (X) Ext(K_0(O_(k+1)), K_1(O_k)) = Ext(Z + Jac_(k+1)^vee, Z) = Jac(Y_(k+1)) of order 6597069766656: KK-lift ambiguity of [VIII, Rem 2.6];  Ext(K_0(O_k), K_1(O_k)) = Jac(Y_k) of order 786432: home of the Eisenstein class [H_k] - q[1]
+
+===== transition k+1 -> k with k=3: n_k=48, n_(k+1)=96, shadow sizes 96, 192 =====
+  (O) eta^sharp: morphism True; bijective on OUT-arcs (out-covering) True; bijective on in-arcs False (max Y in-fibre 2 = q: True)
+      tau^sharp: morphism True; bijective on out-arcs False; bijective on IN-arcs (in-covering, [VIII, Prop 2.3]) True
+  (R) reversal: rho A_k rho^-1 = A_k^t: True;  rho_k tau_* = eta_* rho_(k+1): True
+  (K) H_k (I-B_(k+1)^t) = (I-B_k^t) H_k: True;  diag(tau_*,tau_*) descends on the K_0 side: False (false, [VIII, Thm 2.5(iv)]);  H_k 1 = q 1: True;  H_k (1,-1) = q (1,-1): True
+  (H) H_k T^k = diag(A_k^t,A_k^t) and T^k H_k = diag(A_(k+1)^t,A_(k+1)^t): True;  diag(A_k^t - q, A_k^t - q) = (I-B_k^t) V N (so both Hecke composites act as q on K_0): True
+  (B) opposite algebras: D_k = diag(tau_*,tau_*) descends on coker(I-B): True; E^k = diag(eta^*,eta^*) descends: True; D_k E^k = diag(A_k,A_k), E^k D_k = diag(A_(k+1),A_(k+1)): True;  diag(A_k - q, A_k - q) = (I-B_k) U^t N': True
+  (N) Tor coker Delta_(k+1)^t = (Z/2)^24 + (Z/4)^12 + (Z/8)^8 + Z/16 + Z/64 + Z/192 (order 928455029464035206174343168), Tor coker Delta_k^t = (Z/2)^12 + (Z/4)^8 + Z/8 + Z/32 + Z/96 (order 6597069766656); ratio 140737488355328 = 2^{n_k(q-1)-1} = 2^47: True;  rank_F2 A_(k+1) = 48 = n_k: True (kernel of eta_* on torsion = the 2-torsion, by reversal from [VIII, Thm 2.8])
+  (X) Ext(K_0(O_(k+1)), K_1(O_k)) = Ext(Z + Jac_(k+1)^vee, Z) = Jac(Y_(k+1)) of order 928455029464035206174343168: KK-lift ambiguity of [VIII, Rem 2.6];  Ext(K_0(O_k), K_1(O_k)) = Jac(Y_k) of order 6597069766656: home of the Eisenstein class [H_k] - q[1]
+
+done.

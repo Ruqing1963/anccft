@@ -1,0 +1,100 @@
+﻿
+=== (K) boundary K-theory = Z^r + Z/(r-1), K_1 = Z^r ===
+    graph             q   n   m    r   K_0(boundary)         K_1    vN type        |Jac(Y)|
+    K_4                 2   4   6    3   Z^3 + Z/2             Z^3    III_(1/q)           16
+    K_{3,3}             2   6   9    4   Z^4 + Z/3             Z^4    III_(1/q^2)         81
+    prism C_3xK_2       2   6   9    4   Z^4 + Z/3             Z^4    III_(1/q)           75
+    prism C_4xK_2       2   8  12    5   Z^5 + Z/4             Z^5    III_(1/q^2)        384
+    Moebius M_8         2   8  12    5   Z^5 + Z/4             Z^5    III_(1/q)          392
+    Moebius M_10        2  10  15    6   Z^6 + Z/5             Z^6    III_(1/q^2)       1815
+    prism C_5xK_2       2  10  15    6   Z^6 + Z/5             Z^6    III_(1/q)         1805
+    Petersen            2  10  15    6   Z^6 + Z/5             Z^6    III_(1/q)         2000
+    Heawood             2  14  21    8   Z^8 + Z/7             Z^8    III_(1/q^2)      50421
+    K_5                 3   5  10    6   Z^6 + Z/5             Z^6    III_(1/q)          125
+    K_6                 4   6  15   10   Z^10 + Z/9            Z^10   III_(1/q)         1296
+  [ok]   (K) K_0(C(dX) x Gamma) = Z^r + Z/(r-1) and K_1 = Z^r on every test graph   [11 graphs] [exact]
+  [ok]   (B) r - 1 = (q-1)n/2, so the boundary K-theory is a function of (q,n) alone   [11 graphs] [exact]
+
+=== (J) witness pairs: identical boundary, different bulk ===
+
+    q=2, n=6:  boundary K_0 = Z^4 + Z/3 for ALL of them
+      K_{3,3}            Jac(Y) = Z/3 + Z/3 + Z/9              |Jac| = 81
+      prism C_3xK_2      Jac(Y) = Z/5 + Z/15                   |Jac| = 75
+      -> same boundary K-theory, |Jac| ranges over [75, 81]  (ratio 1.080)
+
+    q=2, n=8:  boundary K_0 = Z^5 + Z/4 for ALL of them
+      prism C_4xK_2      Jac(Y) = Z/2 + Z/8 + Z/24             |Jac| = 384
+      Moebius M_8        Jac(Y) = Z/7 + Z/56                   |Jac| = 392
+      -> same boundary K-theory, |Jac| ranges over [384, 392]  (ratio 1.021)
+
+    q=2, n=10:  boundary K_0 = Z^6 + Z/5 for ALL of them
+      Moebius M_10       Jac(Y) = Z/11 + Z/165                 |Jac| = 1815
+      prism C_5xK_2      Jac(Y) = Z/19 + Z/95                  |Jac| = 1805
+      Petersen           Jac(Y) = Z/2 + Z/10 + Z/10 + Z/10     |Jac| = 2000
+      -> same boundary K-theory, |Jac| ranges over [1805, 1815, 2000]  (ratio 1.108)
+  [ok]   (J) explicit graphs with identical boundary K-theory and different Jac(Y)   [q=2 at n=6,8,10] [exact]
+
+=== (P) prime supports of Jac(Y) inside one boundary class ===
+    q=2, n=6  (one boundary class):
+      K_{3,3}           |Jac| = 81     primes [3]
+      prism C_3xK_2     |Jac| = 75     primes [3, 5]
+    q=2, n=8  (one boundary class):
+      prism C_4xK_2     |Jac| = 384    primes [2, 3]
+      Moebius M_8       |Jac| = 392    primes [2, 7]
+    q=2, n=10  (one boundary class):
+      Moebius M_10      |Jac| = 1815   primes [3, 5, 11]
+      prism C_5xK_2     |Jac| = 1805   primes [5, 19]
+      Petersen          |Jac| = 2000   primes [2, 5]
+    among the named graphs no two have disjoint prime supports.
+
+    recorded witnesses, both cubic on n = 8:
+      witness A (n=8)    K_0 = Z^5 + Z/4,  type III_(1/q)    Jac = Z/4 + Z/4 + Z/16       |Jac| = 256 = 2^8
+      witness B (n=8)    K_0 = Z^5 + Z/4,  type III_(1/q)    Jac = Z/33 + Z/11            |Jac| = 363 = 3^1*11^2
+      same K-theory: True;  same vN type: True;  gcd of bulk orders = 1  -> COPRIME
+      => neither the boundary K-theory nor the von Neumann type determines the
+         bulk arithmetic, not even which primes divide it.
+  [ok]   (P) two cubic graphs with the same boundary K-theory AND the same von Neumann type but COPRIME bulk orders (256, 363)   [recorded witnesses, n=8] [exact]
+
+=== (S) how much bulk arithmetic hides inside one boundary class? ===
+      n    r-1   boundary K_0        distinct |Jac| found   min .. max
+       8      4   Z^5 + Z/4                      5      256 .. 392
+      10      5   Z^6 + Z/5                     16      960 .. 2000
+      12      6   Z^7 + Z/6                     38      2808 .. 9747
+      14      7   Z^8 + Z/7                     54      12100 .. 46998
+  [ok]   (S) many distinct bulk critical groups share one boundary K-theory class   [60 random cubic graphs per n, n = 8,10,12,14] [sampled]
+
+=== (R) the Radon-Nikodym cocycle takes values in q^Z ===
+    q = 2: cylinder measures nu(L) = 1/((q+1)q^(L-1)); all pairwise ratios are
+    integer powers of q, exponents observed: -7 .. 7
+    => the Busemann cocycle is q^Z-valued.  TWO RELATIONS MUST BE DISTINGUISHED:
+       - the TAIL relation on the Cantor limit of the tower realises all of q^Z,
+         giving type III_(1/q)  [ANCFT III, Thm 2.2];
+       - the ORBIT relation of a lattice Gamma realises only q^(2Z) when Gamma
+         is type-preserving (quotient bipartite), giving III_(1/q^2), and q^Z
+         otherwise  [Robertson, Houston J. Math. 31 (2005), Cor. 1(2)].
+       NOTE: this row is a consistency check on the normalisation only. That the
+       essential range is attained is a quoted theorem, not a finite computation.
+  [ok]   (R) cylinder-measure ratios lie in q^Z (normalisation check only; both ratio-set theorems are quoted, q=2, depth 8)   [15 ratios] [exact]
+
+=== (R) the Radon-Nikodym cocycle takes values in q^Z ===
+    q = 3: cylinder measures nu(L) = 1/((q+1)q^(L-1)); all pairwise ratios are
+    integer powers of q, exponents observed: -7 .. 7
+    => the Busemann cocycle is q^Z-valued.  TWO RELATIONS MUST BE DISTINGUISHED:
+       - the TAIL relation on the Cantor limit of the tower realises all of q^Z,
+         giving type III_(1/q)  [ANCFT III, Thm 2.2];
+       - the ORBIT relation of a lattice Gamma realises only q^(2Z) when Gamma
+         is type-preserving (quotient bipartite), giving III_(1/q^2), and q^Z
+         otherwise  [Robertson, Houston J. Math. 31 (2005), Cor. 1(2)].
+       NOTE: this row is a consistency check on the normalisation only. That the
+       essential range is attained is a quoted theorem, not a finite computation.
+  [ok]   (R) cylinder-measure ratios lie in q^Z (normalisation check only; both ratio-set theorems are quoted, q=3, depth 8)   [15 ratios] [exact]
+
+=== battery summary ===
+  (K)  1/1 passed
+  (B)  1/1 passed
+  (J)  1/1 passed
+  (P)  1/1 passed
+  (S)  1/1 passed
+  (R)  2/2 passed
+  TOTAL 7/7 passed
+  elapsed 0.2s

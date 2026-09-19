@@ -1,0 +1,48 @@
+﻿K4 Iwahori tower, q = 2, shadow return arcs c = q-1 = 1
+
+level k=1: n_k=12, 2n_k=24
+  (S) U(I-B^t)V = Delta^t(+)(-I): True;  V^t(I-B)U^t = Delta(+)(-I): True
+  (K) K_0(O_k) = coker(I-B^t) = Z + Z/2 + Z/8 + Z/24;  coker(Delta_k) = Z + Z/2 + Z/8 + Z/24;  match: True
+      |Tor_k| = 2^7 * 3   (2-adic order 7; odd part 3)
+  (W) c = q instead: coker(I-B^t) = Z/2 + Z/14 + (Z/112)^2  -> K_1 = 0, finite K_0, not Z(+)Jac
+  (G) Kirchberg witnesses (strongly connected, double loop at shadow): True
+  (B) plain C*(Y_k): coker(I-A_k^t) = Z^3 + Z/2
+level k=2: n_k=24, 2n_k=48
+  (S) U(I-B^t)V = Delta^t(+)(-I): True;  V^t(I-B)U^t = Delta(+)(-I): True
+  (K) K_0(O_k) = coker(I-B^t) = Z + (Z/2)^8 + Z/4 + Z/16 + Z/48;  coker(Delta_k) = Z + (Z/2)^8 + Z/4 + Z/16 + Z/48;  match: True
+      |Tor_k| = 2^18 * 3   (2-adic order 18; odd part 3)
+  (W) c = q instead: coker(I-B^t) = (Z/3)^8 + Z/6 + Z/42 + (Z/336)^2  -> K_1 = 0, finite K_0, not Z(+)Jac
+  (G) Kirchberg witnesses (strongly connected, double loop at shadow): True
+  (B) plain C*(Y_k): coker(I-A_k^t) = Z^3 + Z/2
+level k=3: n_k=48, 2n_k=96
+  (S) U(I-B^t)V = Delta^t(+)(-I): True;  V^t(I-B)U^t = Delta(+)(-I): True
+  (K) K_0(O_k) = coker(I-B^t) = Z + (Z/2)^12 + (Z/4)^8 + Z/8 + Z/32 + Z/96;  coker(Delta_k) = Z + (Z/2)^12 + (Z/4)^8 + Z/8 + Z/32 + Z/96;  match: True
+      |Tor_k| = 2^41 * 3   (2-adic order 41; odd part 3)
+  (W) c = q instead: coker(I-B^t) = (Z/3)^12 + (Z/9)^8 + Z/18 + Z/126 + (Z/1008)^2  -> K_1 = 0, finite K_0, not Z(+)Jac
+  (G) Kirchberg witnesses (strongly connected, double loop at shadow): True
+  (B) plain C*(Y_k): coker(I-A_k^t) = Z^3 + Z/2
+
+2-adic orders (7,18,41 predicted by mu p^k - k + nu_0, mu=6, nu_0=-4): [7, 18, 41]  [True, True, True]
+plain tower blind: SNF(I-A_k^t) constant over k=1,2,3: True  (= Z^r (+) Z/(r-1), r=3 [I, Thm 3.7])
+
+transition 1->2:
+  (C) tau^sharp graph morphism: True; surjective: True; bijective on in-arcs: True; bijective on out-arcs: False
+  (U) T^k(I-B_k^t) = (I-B_(k+1)^t)T^k: True;  T^k 1 = 1: True;  ker(I-B^t)=Z(1,-1), T^k(1,-1)=(1,-1): True
+  (D) T_k(I-B_(k+1)) = (I-B_k)T_k: True;  same with transposes: False (must be False);  T_k(1,-c1) = q(1,-c1): True
+  (N) shadow Bowen--Franks: |Tor_(k+1)|=2^18*3, |Tor_k|=2^7*3, surjective: True, |ker| = 2^11 (odd part 1)
+      sandpile tau_*   : surjective: True, |ker| = 2^11;  identical to shadow transfer: True;  predicted 2^11: True
+  (Q) rank_F2(A_(k+1)) = 12 = n_k: True;  2-rank of Jac(Y_(k+1)) = 11 = n_k(q-1)-1: True;  tau_* kills Jac(Y_(k+1))[2]: True;  |Jac[2]| = 2^11 = |ker tau_*|: True
+  (P) <tau_* x, y>_k = <x, tau^* y>_(k+1) in Q/Z on 4 random torsion pairs: True
+  (L) deg(tau^* y) = q deg(y), deg(tau_* x) = deg(x): True
+
+transition 2->3:
+  (C) tau^sharp graph morphism: True; surjective: True; bijective on in-arcs: True; bijective on out-arcs: False
+  (U) T^k(I-B_k^t) = (I-B_(k+1)^t)T^k: True;  T^k 1 = 1: True;  ker(I-B^t)=Z(1,-1), T^k(1,-1)=(1,-1): True
+  (D) T_k(I-B_(k+1)) = (I-B_k)T_k: True;  same with transposes: False (must be False);  T_k(1,-c1) = q(1,-c1): True
+  (N) shadow Bowen--Franks: |Tor_(k+1)|=2^41*3, |Tor_k|=2^18*3, surjective: True, |ker| = 2^23 (odd part 1)
+      sandpile tau_*   : surjective: True, |ker| = 2^23;  identical to shadow transfer: True;  predicted 2^23: True
+  (Q) rank_F2(A_(k+1)) = 24 = n_k: True;  2-rank of Jac(Y_(k+1)) = 23 = n_k(q-1)-1: True;  tau_* kills Jac(Y_(k+1))[2]: True;  |Jac[2]| = 2^23 = |ker tau_*|: True
+  (P) <tau_* x, y>_k = <x, tau^* y>_(k+1) in Q/Z on 4 random torsion pairs: True
+  (L) deg(tau^* y) = q deg(y), deg(tau_* x) = deg(x): True
+
+done.

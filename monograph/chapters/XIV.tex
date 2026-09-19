@@ -1,0 +1,384 @@
+% generated from Paper 14/anccft14.tex
+\chapter{Algorithmic non-commutative class field theory, XIV: the graph $\cL$-invariant as spectral action, Bloch effective mass and Albanese length, and what the cyclic Chern character sees}\label{chap:XIV}
+\chaptermark{XIV}
+\begin{chapterabstract}
+[Ch.~\ref{chap:IX}] identified the graph $\cL$-invariant of an abelian voltage tower as
+$\cL(Y_\bullet)=-\|h_\alpha\|^{2}$, the negative harmonic energy of the voltage cochain, and
+left open ``a cyclic-cohomology formulation''. This paper settles the question in both
+directions. Negatively: for the finite-dimensional spectral triple
+$(C(V)\oplus C(E^{+}),\ell^{2}(V)\oplus\ell^{2}(E^{+}),\Dp)$ of [Ch.~\ref{chap:II}] the odd cyclic
+cohomology vanishes, every Fredholm index is zero, and the pairing proposed in the task
+specification is linear in $\alpha$ (it equals $4\sum_e\alpha(e)$); a non-integer, quadratic
+quantity is not an index and does not pair with $\HC^{1}$. Positively: $\cL(Y_\bullet)$ is
+the second variation of the spectral action of $\Dp$ along the flat $U(1)$-connection
+$\varphi\alpha$, in the infrared,
+\[
+\cL(Y_\bullet)=\frac n2\lim_{t\to\infty}\frac1t\,\partial_\varphi^{2}\Tr e^{-t\Delta_\varphi}\Big|_{\varphi=0},
+\]
+equivalently minus $n/2$ times the effective mass $\lambda_0''(0)$ of the bottom Bloch band
+of the $\Z$-cover $\widetilde Y_\alpha$ whose finite quotients are the tower; equivalently
+$-m\sigma^{2}$, where $\sigma^{2}$ is the diffusion constant of the voltage along simple
+random walk; equivalently minus the squared length of the class $[\alpha]\in H^{1}(Y_0;\Z)$
+in the Jacobian torus of $Y_0$, the dual of the Albanese torus of Kotani--Sunada. The
+$\ell$-adic $L$-function $\Theta(T)=\det D(1+T)$ is the Floquet determinant of
+$\widetilde Y_\alpha$, and its exceptional zero of order two is the parabolic bottom of the
+band; the Kirchhoff identity $\det G=\kappa(Y_0)$ for the cycle Gram matrix gives
+$\kappa(Y_0)\cL(Y_\bullet)\in\Z$. All identities are exact and machine-verified on $K_4$
+and $K_5$.
+\end{chapterabstract}
+
+\section*{Status of the results}
+
+Every numbered statement is proved. The external inputs are the vanishing of odd cyclic
+cohomology of finite-dimensional commutative semisimple algebras \cite[Ch.~2]{Lo}, which is
+also verified by direct linear algebra, the Markov-chain central limit theorem for
+additive functionals of a finite reversible chain, and Kirchhoff's theorem in its cycle
+form. The Kotani--Sunada Albanese torus \cite{KS1,KS2} and the spectral action
+\cite{CC,JLO,Co} supply names and context, not steps. Section~\\ref{XIV:sec:scope} says what
+was asked, what is proved, and what is impossible.
+
+\section{Setting}\label{XIV:sec:setting}
+
+$Y_0$ is a finite connected $(q{+}1)$-regular graph with $n$ vertices and $m=\frac{(q+1)n}2$
+edges, $E^{+}$ an orientation, $r=m-n+1$, $\partial\colon\Z^{E^{+}}\to\Z^{V}$,
+$\partial e=t(e)-o(e)$, $\Delta_0=\partial\partial^{t}=(q{+}1)I-A$, $\kappa_0=\kappa(Y_0)$.
+The Hecke--Dirac operator of [Ch.~\ref{chap:II}, Def.~3.1] is
+\[
+\Dp=\begin{pmatrix}0&\partial\\\partial^{t}&0\end{pmatrix}\ \text{on}\
+\ell^{2}(V)\oplus\ell^{2}(E^{+}),\qquad
+\Dp^{2}=\Delta_0\oplus\partial^{t}\partial ,
+\]
+and $\cA:=C(V)\oplus C(E^{+})$ acts diagonally, so $(\cA,\ell^{2}(V)\oplus\ell^{2}(E^{+}),\Dp)$
+is an even finite-dimensional spectral triple with grading $\gamma=1\oplus(-1)$. A voltage
+$\alpha\in\Z^{E^{+}}$ has harmonic representative $h_\alpha=\Pi\alpha$,
+$\Pi=I-\partial^{t}\Delta_0^{+}\partial$ the projection onto the cycle space
+$\ker\partial=\ker\Dp\cap\ell^{2}(E^{+})$, and [Ch.~\ref{chap:IX}, Def.~1.3]
+\[
+\cL(Y_\bullet)=-\|h_\alpha\|^{2}=-\bigl(\|\alpha\|^{2}-(\partial\alpha)^{t}\Delta_0^{+}(\partial\alpha)\bigr)
+=\frac{\Theta''(0)}{2\kappa_0},\qquad \Theta(T)=\det D(1+T),
+\]
+with $D(t)=(q{+}1)I-A(t)$, $A(t)_{uv}=\sum_{e\colon u\to v}t^{\alpha(e)}$, the voltage
+pencil. On $K_4$ the values are $-\frac12,-1,-\frac32$ for $(1,0,0),(1,1,1),(1,2,0)$
+[Ch.~\ref{chap:IX}, Table~1]; on $K_5$ ($q=3$, $\kappa_0=125$) they are $-\frac35$ for a single edge and
+$-\frac75$ for a triangle (Table~\\ref{XIV:tab:battery}).
+
+\section{What cyclic cohomology sees, and what it cannot}\label{XIV:sec:nogo}
+
+\begin{proposition}[Three impossibilities]\label{XIV:prop:nogo}
+\begin{enumerate}
+\item[(i)] $\HC^{1}(\cA)=0$; more precisely the space $Z^{1}_\lambda(\cA)$ of cyclic
+$1$-cocycles is zero, so there is no class $\mathrm{Ch}^{1}(\Dp)\in\HC^{1}(\cA)$, and
+$\HH_1(\cA)=0$, so there is no class $[\delta_\alpha]\in\HH_1(\cA)$ either.
+\item[(ii)] Every index pairing of the even Fredholm module $(\cA,\cH,\Dp)$ with $K_0(\cA)$
+or of any compression $PuP$ with a unitary $u$ is an integer, and every Fredholm index of an
+operator between finite-dimensional spaces of equal dimension is zero. $\cL(Y_\bullet)\notin\Z$
+in general ($-\frac12,-\frac32,-\frac35,-\frac75$), so it is not an index.
+\item[(iii)] With $\alpha$ acting by multiplication on $\ell^{2}(E^{+})$,
+\[
+\lim_{t\to0^{+}}\Trs\bigl([\Dp,\alpha]\,\Dp\,e^{-t\Dp^{2}}\bigr)=\Trs\bigl([\Dp,\alpha]\Dp\bigr)
+=2\Tr\bigl(\alpha\,\partial^{t}\partial\bigr)=4\sum_{e\in E^{+}}\alpha(e),
+\]
+linear in $\alpha$: the formula proposed in the specification does not compute a quadratic
+invariant.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) $\cA\cong\C^{N}$, $N=n+m$, with minimal idempotents $e_i$. A cyclic $1$-cocycle
+$\tau$ satisfies $\tau(a,b)=-\tau(b,a)$ and $\tau(ab,c)-\tau(a,bc)+\tau(ca,b)=0$. Taking
+$(a,b,c)=(e_i,e_i,e_k)$ with $k\ne i$ gives $\tau(e_i,e_k)=0$, and cyclicity gives
+$\tau(e_i,e_i)=0$; so $\tau=0$. Since $\cA$ is commutative, $b\colon C^{0}\to C^{1}$ is zero
+and $\HC^{1}=Z^{1}_\lambda=0$. This is the case $n=0$ of $\HC^{2n+1}(\C^{N})=0$
+\cite[2.1.12]{Lo}; the linear system is solved by machine for $N=10,15$
+(Table~\\ref{XIV:tab:battery}, line (C)). $\HH_1(\C^{N})=\Omega^{1}_{\C^{N}/\C}=0$ because
+$\C^{N}$ is separable. (ii) is linear algebra. (iii) $[\Dp,\alpha]\Dp=
+\begin{pmatrix}\partial\alpha\partial^{t}&0\\0&-\alpha\partial^{t}\partial\end{pmatrix}$,
+whose supertrace is $\Tr(\partial\alpha\partial^{t})+\Tr(\alpha\partial^{t}\partial)
+=2\Tr(\alpha\partial^{t}\partial)$, and $(\partial^{t}\partial)_{ee}=2$. Continuity in $t$
+gives the limit. Verified on all six assignments: $4,12,12,4,12$.
+\end{proof}
+
+\begin{remark}[What the even Chern character does see]\label{XIV:rem:even}
+$\HC^{\mathrm{even}}(\cA)=\HC^{0}(\cA)$ is the space of traces, $\C^{N}$, and the Chern
+character of the even Fredholm module $(\cA,\cH,\Dp)$ pairs with $K_0(\cA)=\Z^{N}$ to give
+the index of $\Dp$ localized at each idempotent --- the content of [Ch.~\ref{chap:II}, Thm.~3.3]:
+$\ker\Dp\cong\Z\oplus\Z^{r}$. This is topology ($b_0$ and $b_1$) and does not depend on
+$\alpha$. The $\cL$-invariant depends on the metric (the unit-weight inner product on
+edges) and on $\alpha$ quadratically; it lives in the spectral, not the cohomological, side
+of the triple. Section~\\ref{XIV:sec:action} says where.
+\end{remark}
+
+\section{The heat-kernel formulas}\label{XIV:sec:heat}
+
+\begin{theorem}[Infrared, not ultraviolet]\label{XIV:thm:heat}
+For every voltage $\alpha$,
+\begin{gather*}
+\|h_\alpha\|^{2}=\lim_{t\to\infty}\bigl\langle\alpha,e^{-t\Dp^{2}}\alpha\bigr\rangle
+=\|\alpha\|^{2}-\int_0^{\infty}\bigl\langle\partial\alpha,e^{-s\Delta_0}\partial\alpha\bigr\rangle\,ds ,\\
+\bigl\langle\alpha,e^{-t\Dp^{2}}\alpha\bigr\rangle=\|h_\alpha\|^{2}+\sum_{\lambda>0}e^{-t\lambda}\|P_\lambda\alpha\|^{2},
+\end{gather*}
+the sum over the nonzero eigenvalues $\lambda$ of $\partial^{t}\partial$ (equivalently of
+$\Delta_0$) with spectral projections $P_\lambda$. The ultraviolet limit $t\to0^{+}$ gives
+$\|\alpha\|^{2}$, not $\|h_\alpha\|^{2}$.
+\end{theorem}
+
+\begin{proof}
+$\Pi$ is the projection onto $\ker\partial^{t}\partial$, so $e^{-t\partial^{t}\partial}\to\Pi$
+strongly and the spectral expansion follows. For the integral,
+$\Delta_0^{+}=\int_0^{\infty}(e^{-s\Delta_0}-P_{\ker\Delta_0})\,ds$ and $\partial\alpha\perp
+\mathbf1=\ker\Delta_0$. On $K_4$: $\langle\alpha,e^{-t\Dp^{2}}\alpha\rangle=\frac12+\frac12e^{-4t},
+\ 1+2e^{-4t},\ \frac32+\frac72e^{-4t}$; on $K_5$: $\frac35+\frac25e^{-5t}$,
+$\frac75+\frac85e^{-5t}$ (Table~\\ref{XIV:tab:battery}, line (H), symbolic in $t$).
+\end{proof}
+
+\section{The \texorpdfstring{$\Z$}{Z}-cover, its Bloch bands, and the effective mass}\label{XIV:sec:bloch}
+
+\begin{definition}[The $\Z$-cover of the tower]\label{XIV:def:cover}
+$\widetilde Y_\alpha$ is the derived graph of $(Y_0,\alpha)$ with voltage group $\Z$: vertices
+$V\times\Z$, an edge $(o(e),j)\to(t(e),j+\alpha(e))$ for each $e\in E^{+}$. The level-$k$
+graph $Y_k$ of the tower [Ch.~\ref{chap:IV}, \S1] is $\widetilde Y_\alpha/\ell^{k}\Z$. Its Laplacian
+$\widetilde\Delta$ is $\Z$-periodic, and the Floquet transform gives
+$\ell^{2}(\widetilde Y_\alpha)\cong\int^{\oplus}_{[0,2\pi)}\C^{n}\,\frac{d\varphi}{2\pi}$,
+$\widetilde\Delta\cong\int^{\oplus}\Delta_\varphi$, $\Delta_\varphi:=D(e^{i\varphi})$,
+the Hermitian twisted Laplacian. Its eigenvalues $\lambda_0(\varphi)\le\dots\le\lambda_{n-1}(\varphi)$
+are the \emph{Bloch bands}. The block-character decomposition [Ch.~\ref{chap:IV}, Lem.~1.1] says
+\[
+\operatorname{spec}\Delta(Y_k)=\bigcup_{\varphi\in2\pi\ell^{-k}\Z/2\pi\Z}\operatorname{spec}\Delta_\varphi ,
+\qquad
+\Theta(e^{i\varphi}-1)=\det\Delta_\varphi ,
+\]
+so the tower spectra sample the bands at the $\ell^{k}$-th roots of unity and the
+$\ell$-adic $L$-function is the Floquet determinant of the $\Z$-cover.
+\end{definition}
+
+\begin{theorem}[Effective mass]\label{XIV:thm:bloch}
+$\lambda_0$ is even in $\varphi$, simple near $\varphi=0$, and
+\[
+\lambda_0(\varphi)=\frac{\|h_\alpha\|^{2}}{n}\,\varphi^{2}+O(\varphi^{4}),\qquad\text{i.e.}\qquad
+\cL(Y_\bullet)=-\frac n2\,\lambda_0''(0).
+\]
+The exceptional zero of order two of $\Theta$ {\rm[Ch.~\ref{chap:IX}, Thm.~1.2]} is the parabolic bottom of
+the band: $\det\Delta_\varphi=\lambda_0(\varphi)\prod_{j\ge1}\lambda_j(\varphi)
+=n\kappa_0\cdot\frac{\|h_\alpha\|^{2}}n\varphi^{2}+O(\varphi^{3})$, and $\varphi^{2}=-T^{2}+O(T^{3})$
+for $T=e^{i\varphi}-1$ gives $a_2=-\kappa_0\|h_\alpha\|^{2}$ again.
+\end{theorem}
+
+\begin{proof}
+$D(t^{-1})=D(t)^{t}$ [Ch.~\ref{chap:IX}, Lem.~1.1] gives $\operatorname{spec}\Delta_{-\varphi}=
+\operatorname{spec}\Delta_\varphi$, so $\lambda_0$ is even and the odd Taylor terms vanish.
+At $\varphi=0$ the kernel of $\Delta_0$ is $\C\mathbf1$, simple, with gap $\lambda_1(0)>0$; so
+$\lambda_0$ is analytic near $0$ and Rayleigh--Schr\"odinger applies. Write
+$\Delta_\varphi=\Delta_0+\varphi D_1+\varphi^{2}D_2+O(\varphi^{3})$ with
+$(D_1)_{uv}=-\sum_{e\colon u\to v}i\alpha(e)$, $(D_2)_{uv}=\sum_{e\colon u\to v}\alpha(e)^{2}/2$
+(both sums over both orientations). Then $(D_1\mathbf1)_u=i(\partial\alpha)_u$,
+$\langle\mathbf1,D_1\mathbf1\rangle=0$, $\langle\mathbf1,D_2\mathbf1\rangle=\|\alpha\|^{2}$, and
+\[
+\lambda_0(\varphi)=\frac{\varphi^{2}}n\Bigl(\langle\mathbf1,D_2\mathbf1\rangle
+-\langle D_1\mathbf1,\Delta_0^{+}D_1\mathbf1\rangle\Bigr)+O(\varphi^{4})
+=\frac{\varphi^{2}}n\bigl(\|\alpha\|^{2}-(\partial\alpha)^{t}\Delta_0^{+}\partial\alpha\bigr)+O(\varphi^{4}).
+\]
+This is the Schur-complement branch $\lambda(1+s)=-\frac{\|h_\alpha\|^{2}}ns^{2}$ of
+[IX, proof of Thm.~3.4] with $s=e^{i\varphi}-1$. The coefficient is computed exactly and
+checked to $10^{-12}$ numerically on all six assignments ($\frac18,\frac14,\frac38,\frac3{25},\frac7{25}$;
+Table~\\ref{XIV:tab:battery}, line (B)).
+\end{proof}
+
+\section{The spectral action}\label{XIV:sec:action}
+
+$\Delta_\varphi=\partial_\varphi\partial_\varphi^{*}$ with $\partial_\varphi=\partial U_\varphi$,
+$U_\varphi=\operatorname{diag}(e^{i\varphi\alpha(e)})$ on $\ell^{2}(E^{+})$, is the Hodge
+Laplacian of the flat $U(1)$-connection with holonomy $e^{i\varphi\alpha(C)}$ around each
+cycle $C$; the twisted Dirac operator is
+$\Dp^{\varphi}=\begin{pmatrix}0&\partial U_\varphi\\U_\varphi^{*}\partial^{t}&0\end{pmatrix}$,
+$(\Dp^{\varphi})^{2}=\Delta_\varphi\oplus U_\varphi^{*}\partial^{t}\partial U_\varphi$, and the
+\emph{spectral action} \cite{CC} of the fluctuated triple is $\Tr f\bigl((\Dp^{\varphi})^{2}\bigr)$.
+
+\begin{theorem}[$\cL$ as second variation of the spectral action]\label{XIV:thm:action}
+For the heat cutoff $f(x)=e^{-tx}$,
+\[
+\cL(Y_\bullet)=\frac n2\lim_{t\to\infty}\frac1t\,\partial_\varphi^{2}\Tr e^{-t\Delta_\varphi}\Big|_{\varphi=0}
+=\frac n4\lim_{t\to\infty}\frac1t\,\partial_\varphi^{2}\Tr e^{-t(\Dp^{\varphi})^{2}}\Big|_{\varphi=0},
+\]
+with error $O(t\,e^{-t\lambda_1(0)})$. For an arbitrary smooth cutoff $f$,
+\[
+\partial_\varphi^{2}\Tr f(\Delta_\varphi)\big|_{0}=f'(0)\,\lambda_0''(0)+\sum_{j\ge1}\partial_\varphi^{2}f\bigl(\lambda_j(\varphi)\bigr)\big|_0 ,
+\]
+and $\cL(Y_\bullet)=-\frac n2$ times the coefficient of $f'(0)$ in the ground-band term.
+\end{theorem}
+
+\begin{proof}
+$\Tr e^{-t\Delta_\varphi}=e^{-t\lambda_0(\varphi)}+\sum_{j\ge1}e^{-t\lambda_j(\varphi)}$, the
+first term analytic near $0$ by Theorem~\\ref{XIV:thm:bloch}, the remainder smooth in $\varphi$
+(a symmetric function of the other eigenvalues of an analytic Hermitian family) with
+$\varphi$-derivatives bounded by $Ct^{2}e^{-t\lambda_1(0)}$ near $0$. Since
+$\lambda_0'(0)=0$, $\partial_\varphi^{2}e^{-t\lambda_0}|_0=-t\lambda_0''(0)=-2t\|h_\alpha\|^{2}/n$.
+For the Dirac version,
+$(\Dp^{\varphi})^{2}=\partial_\varphi\partial_\varphi^{*}\oplus\partial_\varphi^{*}\partial_\varphi$, and the two
+blocks have the same nonzero spectrum, so $\Tr e^{-t(\Dp^{\varphi})^{2}}=2\Tr e^{-t\Delta_\varphi}+(m-n)$.
+The general-$f$ statement is the chain rule. Numerically on all six assignments the
+$t=10$ value agrees with $\cL$ to $10^{-14}$ (Table~\\ref{XIV:tab:battery}, line (S)).
+\end{proof}
+
+\begin{remark}[Reading]\label{XIV:rem:reading}
+The Chern character of \cite{JLO,Co} is the ultraviolet ($t\to0$), cohomological, integer-valued
+side of the spectral triple; Proposition~\\ref{XIV:prop:nogo} shows that side is blind to
+$\alpha$. The $\cL$-invariant is on the infrared ($t\to\infty$), spectral, rational side:
+the curvature of the ground state energy along the moduli of flat connections. On a
+Riemannian manifold the analogous quantity is the Hessian of the bottom of the spectrum of
+the twisted Laplacian at the trivial character, which is the Albanese metric
+\cite{KS1}; the graph statement is Theorem~\\ref{XIV:thm:albanese} below. The Greenberg--Stevens
+shape of [Ch.~\ref{chap:IX}, Rem.~3.5] --- $\cL$ as the ratio of a second character derivative to a first
+temperature derivative --- is here the statement that the band is parabolic while the
+Perron eigenvalue moves linearly with $\beta$.
+\end{remark}
+
+\section{Diffusion}\label{XIV:sec:diffusion}
+
+Let $(X_i)$ be simple random walk on $Y_0$ started from the uniform distribution, and let
+\[
+S_N=\sum_{i<N}\alpha(X_i,X_{i+1}),\qquad \alpha(y,x)=-\alpha(x,y),
+\]
+be the accumulated voltage; on the $\Z$-cover, $S_N$ is the fibre coordinate of the lifted
+walk.
+
+\begin{theorem}[$\cL$ as diffusion constant]\label{XIV:thm:diffusion}
+$\mathbb E S_N=0$, $\Var(S_N)=N\sigma^{2}+O(1)$ and $S_N/\sqrt N\Rightarrow\mathcal N(0,\sigma^{2})$
+with
+\[
+\sigma^{2}=\frac{\|h_\alpha\|^{2}}{m}=-\frac{\cL(Y_\bullet)}{m}.
+\]
+\end{theorem}
+
+\begin{proof}
+The chain is reversible with uniform stationary law $\pi$ and transition matrix
+$P=A/(q{+}1)$. Let $F(x)=\sum_yP(x,y)\alpha(x,y)=-(\partial\alpha)(x)/(q{+}1)$ be the
+drift; $\pi(F)=0$. The Poisson equation $(I-P)g=F$, i.e.\ $\Delta_0g=-\partial\alpha$, has
+the solution $g=-\Delta_0^{+}\partial\alpha$, and $M_i=\alpha(X_i,X_{i+1})+g(X_{i+1})-g(X_i)$
+are stationary martingale increments with $S_N=\sum M_i+g(X_0)-g(X_N)$. The martingale
+CLT gives the limit law with $\sigma^{2}=\mathbb E_\pi M_0^{2}=\sum_{x,y}\pi(x)P(x,y)
+\bigl(\alpha+\partial^{t}g\bigr)(x,y)^{2}$. Now $\alpha+\partial^{t}g=\alpha-\partial^{t}\Delta_0^{+}\partial\alpha
+=h_\alpha$, and summing over both orientations of each edge,
+$\sigma^{2}=\frac{2}{n(q+1)}\|h_\alpha\|^{2}=\|h_\alpha\|^{2}/m$. The $O(1)$ term is
+$2\mathbb E[g(X_0)^2]-2\mathbb E[g(X_0)g(X_N)]+\dots$, convergent geometrically. The
+Poisson-equation value of $\sigma^{2}$ is computed exactly, and $\Var(S_N)$ is computed
+exactly for $N\le24$ from the moment-generating matrix over $\Q[s]/(s^{3})$: on $K_4$,
+$\sigma^{2}=\frac1{12},\frac16,\frac14$ and $\Var(S_N)-N\sigma^{2}\to\frac1{16},\frac14,\frac7{16}$;
+on $K_5$, $\sigma^{2}=\frac3{50},\frac7{50}$ (Table~\\ref{XIV:tab:battery}, line (V)).
+\end{proof}
+
+This is the one-dimensional case of the Kotani--Sunada central limit theorem for periodic
+random walks on crystal lattices \cite{KS1}, where the covariance is the Albanese metric.
+
+\section{Albanese length and integrality}\label{XIV:sec:albanese}
+
+Let $c_1,\dots,c_r$ be a $\Z$-basis of the cycle lattice $H_1(Y_0;\Z)=\ker\partial\cap\Z^{E^{+}}$,
+$C=[c_1\cdots c_r]$, $G=C^{t}C$ its Gram matrix, and $a_c=C^{t}\alpha$ the vector of
+periods $\langle\alpha,c_j\rangle$, which depends only on the class $[\alpha]\in H^{1}(Y_0;\Z)
+=\operatorname{Hom}(H_1(Y_0;\Z),\Z)$.
+
+\begin{theorem}[$\cL$ as Albanese length]\label{XIV:thm:albanese}
+\[
+\|h_\alpha\|^{2}=a_c^{t}\,G^{-1}a_c=\bigl\|[\alpha]\bigr\|^{2}_{H^{1}},
+\]
+the squared norm of $[\alpha]$ in $H^{1}(Y_0;\R)$ for the inner product dual to the cycle
+inner product on $H_1(Y_0;\R)\subset\R^{E^{+}}$ --- the flat metric of the Jacobian torus
+$H^{1}(Y_0;\R)/H^{1}(Y_0;\Z)$, dual to the Albanese torus
+$\Alb(Y_0)=H_1(Y_0;\R)/H_1(Y_0;\Z)$ of \cite{KS2} in the unit-weight normalization. Hence
+$\cL(Y_\bullet)=-\|[\alpha]\|^{2}_{H^{1}}$ depends only on $[\alpha]$, is invariant under
+switching $\alpha\mapsto\alpha+\partial^{t}\varphi$, and
+\[
+\det G=\kappa(Y_0),\qquad \kappa(Y_0)\,\cL(Y_\bullet)\in\Z ,
+\]
+which is the integrality $a_2\in\Z$ of {\rm[Ch.~\ref{chap:IX}, Thm.~1.2(ii)]} seen from the cycle side.
+\end{theorem}
+
+\begin{proof}
+$h_\alpha$ is the orthogonal projection of $\alpha$ onto the column space of $C$, so
+$h_\alpha=C(C^{t}C)^{-1}C^{t}\alpha$ and $\|h_\alpha\|^{2}=\alpha^{t}CG^{-1}C^{t}\alpha$. The
+harmonic form $h_\alpha$ is the unique cycle with periods $a_c$, so $\|h_\alpha\|$ is the
+dual norm of the functional $[\alpha]$ on $(H_1(Y_0;\R),\langle\,,\rangle)$. Kirchhoff's
+theorem in its cycle form (the Gram determinant of a fundamental cycle basis equals the
+number of spanning trees) gives $\det G=\kappa_0$; a $\Z$-basis change has determinant $\pm1$,
+so $\det G=\kappa_0$ for every $\Z$-basis, and $G^{-1}\in\kappa_0^{-1}M_r(\Z)$. Verified:
+$\det G=16,125$; $\kappa_0\cL=-8,-16,-24,-75,-175$ (Table~\\ref{XIV:tab:battery}, lines (A),(T)).
+\end{proof}
+
+\begin{corollary}[Five faces of one number]\label{XIV:cor:faces}
+For an abelian voltage tower over $Y_0$ the following are equal:
+$\cL(Y_\bullet)=\Theta''(0)/2\kappa_0$; $-\|h_\alpha\|^{2}$; $-\frac n2\lambda_0''(0)$;
+$\frac n2\lim_{t\to\infty}t^{-1}\partial^{2}_\varphi\Tr e^{-t\Delta_\varphi}|_0$;
+$-m\sigma^{2}$; $-\|[\alpha]\|^{2}_{H^{1}}$.
+\end{corollary}
+
+\section{The verification battery}\label{XIV:sec:battery}
+
+\begin{table}[ht]
+\centering\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+check & cases & result\\
+\midrule
+(C) $\dim Z^{1}_\lambda(\cA)=\dim\HC^{1}(\cA)=0$, $\cA=\C^{10},\C^{15}$ & $K_4,K_5$ & exact\\
+(N) $\Trs([\Dp,\alpha]\Dp)=4\sum\alpha(e)=4,12,12,4,12$ & all six & exact\\
+(H) $\langle\alpha,e^{-t\Dp^{2}}\alpha\rangle=\|h_\alpha\|^{2}+ce^{-t\lambda_1}$, limit and Duhamel integral $=\|h_\alpha\|^{2}$ & all six & exact, symbolic $t$\\
+(B) $\lambda_0(\varphi)=\frac{\|h_\alpha\|^{2}}n\varphi^{2}+O(\varphi^{4})$: exact coefficient $\frac18,\frac14,\frac38,\frac3{25},\frac7{25}$; Richardson numerics & all six & exact $+$ $40$ digits\\
+(S) $\frac n2t^{-1}\partial^{2}_\varphi\Tr e^{-t\Delta_\varphi}|_0$ at $t=5,10,20,40$: $\cL$ to $10^{-8},10^{-14},10^{-14},10^{-13}$ & all six & numeric\\
+(V) $\sigma^{2}=\|h_\alpha\|^{2}/m=\frac1{12},\frac16,\frac14,\frac3{50},\frac7{50}$; $\Var(S_N)$ exact, $N\le24$ & all six & exact\\
+(A) $a_c^{t}G^{-1}a_c=\|h_\alpha\|^{2}$; switching invariance; $\det G=\kappa_0$; $\kappa_0\cL\in\Z$ & all six & exact\\
+(T) [Ch.~\ref{chap:IX}, Thm.~1.2(ii)] on $K_5$: $a_2=-75,-175=-\kappa_0\|h_\alpha\|^{2}$ & $K_5$ & exact\\
+\bottomrule
+\end{tabular}}
+\medskip
+\caption{Verification (\texttt{cyclic\_index.py}). ``All six'' = $K_4$ with $(1,0,0)$, $(1,1,1)$,
+$(1,2,0)$ [the $(1,0,0)$, $\ell=3$ tower has the same voltage and $\cL$] and $K_5$ with a
+single-edge and a triangle voltage.}
+\label{XIV:tab:battery}
+\end{table}
+
+\section{Scope, residue, corrections}\label{XIV:sec:scope}
+
+\begin{remark}[Solved, open, impossible]\label{XIV:rem:scope}
+\begin{sloppypar}
+\emph{Solved:} open item (a) of [Ch.~\ref{chap:IX}, Rem.~5.1], ``a cyclic-cohomology formulation of
+Theorem~3.4(iii)'', in the only form it admits: the $\cL$-invariant is the infrared second
+variation of the spectral action of the Hecke--Dirac triple along the flat-connection
+direction $\alpha$ (Theorem~\\ref{XIV:thm:action}), the effective mass of the $\Z$-cover
+(Theorem~\\ref{XIV:thm:bloch}), its diffusion constant (Theorem~\\ref{XIV:thm:diffusion}), and the
+Albanese length of $[\alpha]$ (Theorem~\\ref{XIV:thm:albanese}); the exceptional zero is the
+parabolic band bottom, and $\kappa_0\cL\in\Z$ is Kirchhoff. \emph{Open:} (a) whether a
+nonzero odd cyclic class on a genuinely non-commutative algebra of the tower, such as the
+crossed product $C_0(\widetilde Y_\alpha)\rtimes\Z$ or the Cuntz--Krieger algebra of [Ch.~\ref{chap:VIII}],
+pairs to $\|h_\alpha\|^{2}$ or to its integer multiple $\kappa_0\|h_\alpha\|^{2}$; the
+integrality of Theorem~\\ref{XIV:thm:albanese} makes the latter the only candidate for an index.
+(b) The rank-two analogue for the $\widetilde A_2$ towers of [X]--[Ch.~\ref{chap:XII}], where $b_1=0$ [Ch.~\ref{chap:XII}]
+and there is no $\alpha$: the Bloch picture survives (the Hecke pencil of [Ch.~\ref{chap:X}] is a Floquet
+determinant over a $2$-torus when a $\Z^{2}$-cover exists) but the $\cL$-invariant does not.
+\emph{Impossible as stated:} Proposition~\\ref{XIV:prop:nogo}, all three items.
+\end{sloppypar}
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{XIV:rem:corrections}
+(1) There is no ``$\mathrm{Ch}^{1}(\Dp)\in\HC^{1}(\cA)$'' and no ``$[\delta_\alpha]\in H_1(\cA)$'':
+both groups vanish for $\cA=C(V)\oplus C(E^{+})$, and every derivation of $\cA$ is zero.
+(2) The proposed pairing $\lim_{t\to0^{+}}\Trs([\Dp,\alpha]\Dp e^{-t\Dp^{2}})$ equals
+$4\sum_e\alpha(e)$; it is linear in $\alpha$ and cannot equal $-\|\Pi\alpha\|^{2}$. (3) The
+$\cL$-invariant is not an index: it is rational and non-integral, and finite-dimensional
+Fredholm indices vanish. (4) The correct limit is $t\to\infty$, not $t\to0^{+}$
+(Theorem~\\ref{XIV:thm:heat}); the $t\to0^{+}$ side of the JLO cocycle is the topological Chern
+character, which does not see $\alpha$. (5) The theorem that does hold is a second-variation
+(curvature) statement for the spectral action, Theorem~\\ref{XIV:thm:action}, and its
+geometric name is the Albanese metric, not ``quantum topological index''. (6) The
+$(1,0,0)$, $\ell=3$ tower is not a separate case: $\cL$ depends on $\alpha$ only, and
+$\ell$ enters through [Ch.~\ref{chap:IX}, \S2] alone. The battery adds $K_5$ ($q=3$) as asked.
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+Unrefereed preprint. Every numbered statement is proved from Papers II, IV and IX and
+finite linear algebra, plus the Markov-chain CLT and Kirchhoff's theorem in cycle form.
+The vanishing of $\HC^{1}(\C^{N})$ is both quoted \cite{Lo} and verified directly.
+Bibliographic data of \cite{KS1,KS2,JLO,CC,Lo,Co} were checked against publisher or
+indexing pages; \cite{KS1,KS2} are cited for the definition of the Albanese torus and the
+crystal-lattice CLT, and no statement of this paper depends on them.

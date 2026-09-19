@@ -1,0 +1,757 @@
+% Algorithmic Non-commutative Class Field Theory, II
+% The Trace Obstruction and K-Homological Bulk
+% Build: pdflatex anccft2 (x2)
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{booktabs}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Tors}{\operatorname{Tors}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\ind}{\operatorname{ind}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\rank}{\operatorname{rank}}
+
+\title[Algorithmic non-commutative class field theory, II]
+{Algorithmic non-commutative class field theory, II:\\
+the trace obstruction and the K-homological bulk}
+
+\author{Ruqing Chen}
+\address{GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada}
+\email{ruqing@hotmail.com}
+\date{8 September 2026}
+\subjclass[2020]{Primary 46L80, 46L55; Secondary 11F70, 19K33, 37B10, 05C50}
+\keywords{Cuntz--Pimsner algebra, trace obstruction, shift equivalence, Kasparov
+$KK$-theory, Fredholm module, Ihara zeta function, critical group, Hecke correspondence}
+
+\thanks{Paper II of the series begun in \emph{Algorithmic non-commutative class field
+theory, I: the Langlands--thermodynamic bridge over Bruhat--Tits trees}. This paper
+answers, negatively, the realization question left open there as Remark~3.11
+(equivalently Remark~3.6 in some section numberings of the same manuscript): whether
+the companion linearization of the Ihara pencil admits a positive $C^*$-correspondence
+realizing it directly. Verification scripts are referenced inline; none require network
+access.}
+
+\begin{document}
+
+\begin{abstract}
+Paper I isolated a virtual $KK$-class $x_p=T_p-qI\in KK^0(\C^n,\C^n)=M_n(\Z)$, arising
+from the Hecke--Laplacian $\Delta_p=(q+1)I-T_p=1-x_p$ of a finite $(q+1)$-regular graph
+$Y$, and left open whether $x_p$ could be realized by a genuine, non-negative
+$C^*$-correspondence, so that $\Delta_p$'s cokernel $\Z\oplus\Jac(Y)$ --- the critical
+group of $Y$, whose order is a product of Frobenius traces $\prod(p+1-a_p(f))$ ---
+would be the $K_0$-group of an honest Cuntz--Pimsner algebra. This paper proves that no
+such realization exists, by an elementary and then a deeper obstruction, and identifies
+where the arithmetic must live instead.
+
+The companion linearization $C=\begin{psmallmatrix}T_p&-qI\\I&0\end{psmallmatrix}$,
+exactly row/column-equivalent to $\Delta_p$ over $\Z$, has
+$\Tr(C)=0$, $\Tr(C^2)=-n(q-1)$, strictly negative for every $q\ge2$ and every
+$(q+1)$-regular graph. Since $\Tr(B^2)\ge0$ for any non-negative matrix $B$, and trace is
+a similarity invariant, \textbf{no matrix of the same size and the same spectrum as $C$
+can be non-negative} (Theorem~\ref{thm:tracesame}) --- an unconditional, four-line fact.
+Every dilation to a \emph{larger} non-negative matrix, of the kind an
+auxiliary-vertex or Drinen--Tomforde construction would attempt, is ruled out as well,
+and unconditionally: shift equivalence preserves the nonzero spectrum with
+multiplicities --- proved here by an elementary two-way injection of generalized
+eigenspaces (Lemma~\ref{lem:se}) --- hence preserves $\Tr(\,\cdot\,^2)$, closing the
+realization problem of Paper I, Remark~3.11, in the negative for matrices of every size
+(Theorem~\ref{thm:traceany}).
+
+We then show that no repair by $\Z/2$-grading is available: a formal difference of two
+positive correspondences is not itself a correspondence, and no Cuntz--Pimsner-type
+functor converts a virtual difference into a single algebra realizing that difference's
+index (Section~\ref{sec:barrier}); if one existed, it would trivialize the realization
+problem for every virtual $K$-theory class whatsoever, which is itself evidence against
+its existence.
+
+The arithmetic is instead formalized where no positivity is required: the Hecke--Dirac
+operator $\mathsf D_p$ defines an honest Fredholm module over $C(V_Y)$ with
+$\ind(\mathsf D_p)=\Z\oplus\Jac(Y)$ exactly (Theorem~\ref{thm:index}), inside
+$KK^0(C(V_Y),C(V_Y))\cong M_n(\Z)$. We record, rather than disguise, that for a single
+finite graph this $KK$-group is nothing but a matrix ring and carries no content beyond
+ordinary linear algebra; the paper closes by locating the correct venue for a genuinely
+non-commutative sequel in the projective limit over a congruence tower of graphs, where
+the coefficient algebra becomes an infinite, totally disconnected profinite space and
+$KK^0$ ceases to be finite-dimensional. As a first exact instance of the tower
+philosophy, we compute four abelian $\Z/\ell^k$ voltage towers over $K_4$ to nine levels:
+the torsion obeys the Iwasawa law $\operatorname{ord}_\ell|\Jac(Y_k)|=\mu\ell^k+\lambda
+k+\nu$ exactly at every computed level, with $(\mu,\lambda)=(3,1),(0,3),(2,3),(0,1)$,
+positive $\mu$ occurring freely, and the Smith normal forms exhibiting $\lambda$ as the
+number of persistently growing cyclic factors. The canonical combinatorial model of the
+congruence tower itself --- the Iwahori path tower --- obeys instead an exact
+pseudo-Iwasawa law with $\lambda=-1<0$, impossible for a $\Z_p[[T]]$-characteristic
+ideal: the non-normal tower is not an Iwasawa module, and the conjecture for it is
+restated over the Iwahori--Hecke algebra, with its naive commutative form withdrawn.
+\end{abstract}
+
+\maketitle
+
+\section*{Status of the results, stated in advance}
+
+As in Paper I, each numbered result is labelled by how it is entitled to be believed.
+Theorem~\ref{thm:tracesame} is proved here in full, elementarily, using nothing beyond
+the fact that trace is a similarity invariant and that non-negative matrices have
+non-negative squared-trace. Theorem~\ref{thm:traceany}, which rules out the auxiliary-vertex and Drinen--Tomforde
+schemes of any size, is likewise unconditional: the fact it needs --- that shift
+equivalence preserves the nonzero spectrum with multiplicities --- is proved here as the
+elementary Lemma~\ref{lem:se} by a two-way injection of generalized eigenspaces, and no
+external citation is load-bearing for it. Theorem~\ref{thm:index} is proved in
+full and requires no citation beyond standard finite-dimensional linear algebra dressed
+in Fredholm-module language. Section~\ref{sec:tower} is exploratory: it states a
+research programme, not a theorem, and we say so throughout.
+
+\section{The trace obstruction}\label{sec:trace}
+
+\subsection{Setup, recalled from Paper I}
+
+$Y$ is a finite connected $(q+1)$-regular graph on $n$ vertices, $T_p\in M_n(\Z)$ its
+adjacency (Hecke) operator, $\Delta_p:=(q+1)I_n-T_p$ its Hecke--Laplacian, and
+$\Jac(Y)$ its critical group, with
+\[
+\coker_\Z(\Delta_p)\cong\Z\oplus\Jac(Y),\qquad
+\bigl|\Jac(Y)\bigr|=\kappa(Y)=\frac1n\prod_{f}\bigl(p+1-a_p(f)\bigr)=\frac1n\prod_f\#E_f(\F_p),
+\]
+the product over the weight-two newforms $f$ whose Hecke eigenvalues occur in
+$\Spec T_p$, by Kirchhoff's theorem together with the Eichler--Shimura and
+Jacquet--Langlands correspondences. Introduce the companion linearization
+\[
+C:=\begin{pmatrix}T_p&-qI_n\\I_n&0\end{pmatrix}\ \in\ M_{2n}(\Z),
+\]
+of the Ihara pencil $1-uT_p+qu^2$, so that $\det(I_{2n}-uC)=\det(I_n-uT_p+qu^2I_n)$.
+By Schur elimination against the invertible block $I_n$ in the lower right of
+$I_{2n}-C=\begin{psmallmatrix}I_n-T_p&qI_n\\-I_n&I_n\end{psmallmatrix}$, one has the exact
+integral equivalence
+\[
+\begin{pmatrix}I_n&-qI_n\\0&I_n\end{pmatrix}
+\bigl(I_{2n}-C\bigr)
+\begin{pmatrix}I_n&0\\I_n&I_n\end{pmatrix}
+=\begin{pmatrix}\Delta_p&0\\0&I_n\end{pmatrix},
+\qquad\text{hence}\qquad
+\coker_\Z(I_{2n}-C)\cong\Z\oplus\Jac(Y),
+\]
+with no denominators at any step, since both flanking matrices are unimodular. So $C$ is
+not merely spectrally related to $\Delta_p$; it is honestly row/column-equivalent to it,
+and any non-negative realization of $C$ solves the realization problem for $\Delta_p$
+with no loss.
+
+\subsection{The elementary, unconditional obstruction}
+
+\begin{lemma}\label{lem:tracecomp}
+For every $(q+1)$-regular simple graph $Y$ on $n$ vertices, $\Tr(C)=0$ and
+\[
+\Tr(C^2)=-n(q-1).
+\]
+\end{lemma}
+
+\begin{proof}
+$\Tr(C)=\Tr(T_p)+\Tr(0)=0$ since $Y$ is simple (no loops). In block form,
+\[
+C^2=\begin{pmatrix}T_p^2-qI_n&-qT_p\\T_p&-qI_n\end{pmatrix},
+\]
+so $\Tr(C^2)=\Tr(T_p^2)-qn-qn=\Tr(T_p^2)-2qn$. Since $T_p$ is symmetric with entries in
+$\{0,1\}$, $\Tr(T_p^2)=\sum_{i,j}(T_p)_{ij}^2=2|E_Y|=(q+1)n$ by regularity. Hence
+$\Tr(C^2)=(q+1)n-2qn=-n(q-1)$.
+\end{proof}
+
+This has been verified directly on the eleven graphs of Table~\ref{tab:trace}, in every
+case with exact agreement; the lemma is general and the table is confirmation, not
+evidence.
+
+\begin{theorem}[Unconditional obstruction: no equal-size, equal-spectrum realization]
+\label{thm:tracesame}
+Let $q\ge2$. No matrix $\widetilde C\in M_{2n}(\Z_{\ge0})$ similar to $C$ --- in
+particular, no non-negative matrix with the same characteristic polynomial as $C$ ---
+exists.
+\end{theorem}
+
+\begin{proof}
+Trace is invariant under similarity, so $\Tr(\widetilde C)=\Tr(C)=0$ and
+$\Tr(\widetilde C^2)=\Tr(C^2)=-n(q-1)<0$ would be forced. But for any matrix
+$B\in M_N(\Z_{\ge0})$, $\Tr(B^2)=\sum_{i,j}B_{ij}B_{ji}\ge0$, a sum of products of
+non-negative integers. Contradiction.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:tracesame} needs nothing beyond Lemma~\ref{lem:tracecomp} and the
+one-line non-negativity of $\Tr(B^2)$ for non-negative $B$; it requires no appeal to
+symbolic dynamics, and it already rules out any construction that keeps $C$'s size
+fixed at $2n$ --- for instance, any attempt to directly reinterpret the entries of $C$
+itself, without adding vertices, as a graph adjacency matrix.
+\end{remark}
+
+\subsection{The obstruction to dilation of any size}
+
+The constructions actually attempted in the course of this project (auxiliary sink
+vertices, Drinen--Tomforde-style desingularization, cascading intermediate nodes) all
+enlarge the matrix, replacing $C$ by some $\widetilde C\in M_N(\Z_{\ge0})$, $N>2n$,
+related to $C$ not by similarity but by \emph{shift equivalence}: matrices $R\in
+M_{2n\times N}(\Z)$, $S\in M_{N\times2n}(\Z)$ and a lag $\ell$ with
+\[
+CR=R\widetilde C,\qquad SC=\widetilde CS,\qquad RS=C^\ell,\qquad SR=\widetilde C^\ell.
+\]
+Shift equivalence is the correct and standard notion for comparing presentation
+matrices of possibly different sizes whose associated shifts of finite type (equivalently,
+Cuntz--Krieger algebras) are to be considered the same dynamical, and $K$-theoretic,
+object: the Bowen--Franks group $\coker_\Z(I-\widetilde C)$ is a shift-equivalence
+invariant, which is exactly why enlarging the matrix could in principle have been a way
+to keep $\coker(I-\widetilde C)\cong\Z\oplus\Jac(Y)$ while repairing non-negativity.
+
+\begin{lemma}[Shift equivalence preserves the nonzero spectrum]\label{lem:se}
+Let $A\in M_a(\C)$, $B\in M_b(\C)$ be lag-$\ell$ shift equivalent: there exist
+$R\in M_{a\times b}$, $S\in M_{b\times a}$ with
+\[
+AR=RB,\qquad SA=BS,\qquad RS=A^\ell,\qquad SR=B^\ell .
+\]
+Then for every $\lambda\neq0$ the generalized eigenspaces satisfy
+$\dim V_\lambda(A)=\dim V_\lambda(B)$; hence the nonzero spectra of $A$ and $B$ agree as
+multisets, and $\Tr(A^k)=\Tr(B^k)$ for \emph{every} $k\ge1$, including $k<\ell$.
+\end{lemma}
+
+\begin{proof}
+Let $v\in V_\lambda(A)=\ker(A-\lambda)^{k_0}$, $\lambda\neq0$. Then
+$(B-\lambda)^{k_0}Sv=S(A-\lambda)^{k_0}v=0$, so $S$ maps $V_\lambda(A)$ into
+$V_\lambda(B)$. If $Sv=0$ then $A^\ell v=RSv=0$; but $A$ restricted to $V_\lambda(A)$
+has sole eigenvalue $\lambda\neq0$, hence is invertible there, forcing $v=0$. So
+$S|_{V_\lambda(A)}$ is injective. Symmetrically, $R$ maps $V_\lambda(B)$ injectively
+into $V_\lambda(A)$. Two finite-dimensional spaces injecting into each other have equal
+dimension. Algebraic multiplicity equals the dimension of the generalized eigenspace,
+and $\Tr(M^k)=\sum_\lambda m_\lambda\lambda^k$ with zero eigenvalues contributing
+nothing for $k\ge1$; the trace identity follows.
+\end{proof}
+
+\begin{theorem}[Unconditional obstruction: no dilation of any size]\label{thm:traceany}
+Let $q\ge2$. No matrix $\widetilde C\in M_N(\Z_{\ge0})$, of any size $N$, is shift
+equivalent to $C$. Consequently no auxiliary-vertex, desingularization, or other
+enlargement scheme produces a non-negative integer matrix presenting the same
+$K$-theoretic and dynamical data as $C$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:se}, shift equivalence would force
+$\Tr(\widetilde C^2)=\Tr(C^2)=-n(q-1)<0$, contradicting
+$\Tr(\widetilde C^2)=\sum_{i,j}\widetilde C_{ij}\widetilde C_{ji}\ge0$.
+\end{proof}
+
+\begin{remark}[Relation to the spectral conjecture literature]
+An earlier draft stated Theorem~\ref{thm:traceany} conditionally on the resolution of
+the Boyle--Handelman spectral conjecture by Kim--Ormes--Roush. That was an error of
+economy, not of substance: the deep content of that literature is the \emph{converse}
+direction --- which trace-positive spectra \emph{are} realizable by non-negative
+matrices --- whereas the direction needed here, invariance of the nonzero spectrum under
+shift equivalence, is the elementary Lemma~\ref{lem:se}. The theorem is unconditional
+and self-contained; the spectral-conjecture literature remains relevant context for the
+converse question, and its citations remain unverified by us.
+\end{remark}
+
+\begin{remark}[What is, and is not, ruled out]\label{rem:scope}
+Theorem~\ref{thm:traceany} rules out any \emph{faithful} dilation of $C$ --- one
+preserving its nonzero spectrum, hence its actual Ihara/Hecke dynamical content, which is
+the only kind of dilation that would let the resulting graph algebra be honestly called a
+realization of the Hecke correspondence. It does not, and cannot, rule out the bare
+abstract existence of \emph{some} unrelated non-negative matrix $D$ with
+$\coker_\Z(I-D)\cong\Z\oplus\Jac(Y)$: by Kirchberg--Phillips classification, a Kirchberg
+algebra realizing any prescribed pair $(K_0,K_1)$ with $K_0$ finitely generated and $K_1$
+free exists unconditionally, with no relation to $T_p$ required. Such an algebra would
+answer no question of interest here; the content of this paper is that the
+\emph{natural} one, built from $C$ itself, does not exist.
+\end{remark}
+
+\section{The virtual correspondence barrier}\label{sec:barrier}
+
+Given Theorems~\ref{thm:tracesame}--\ref{thm:traceany}, it is natural to ask whether the
+obstruction can be sidestepped by weakening what counts as a ``correspondence,'' for
+instance by allowing a $\Z/2$-graded or super-structure in which $T_p$ is placed in even
+degree and $qI_n$ in odd degree, with the hope that a graded Cuntz--Pimsner-type
+construction applied to $\cE^+\oplus\cE^-$ (with $[\cE^+]=T_p$, $[\cE^-]=qI_n$, both
+honest positive correspondences) might produce a single algebra whose $K_0$-group is the
+cokernel of $1-([\cE^+]-[\cE^-])=\Delta_p$.
+
+\begin{proposition}\label{prop:nograding}
+No such construction exists. More precisely: for any $C^*$-algebra $A$ and any two
+genuine $A$--$A$ correspondences $\cE^+,\cE^-$, the Cuntz--Pimsner algebra of the direct
+sum $\cE^+\oplus\cE^-$ --- graded or not --- has $K$-theoretic index map
+$1-[\cE^+]-[\cE^-]$, not $1-[\cE^+]+[\cE^-]$; a $\Z/2$-grading records parity for the
+purpose of assigning classes to $KK^0$ versus $KK^1$, and does not introduce a sign into
+the index computation of a single Cuntz--Pimsner algebra built from an honestly positive
+module.
+\end{proposition}
+
+\begin{proof}[Discussion, in place of a proof]
+The Cuntz--Pimsner construction is a functor from the category of genuine Hilbert
+$A$--$A$-bimodules (with a fixed left action by compacts, or by adjointable operators, as
+appropriate) to $C^*$-algebras, and its $K$-theory is computed, via Pimsner's exact
+sequence, from the class $[\cE]$ of the \emph{single} bimodule fed to it, and the root
+of the constraint is the axiom $\langle\xi,\xi\rangle\ge0$ of the Hilbert $C^*$-module
+inner product: every channel of the completed module carries non-negative norm, so no
+summand can act with a negative sign in the completion. There is no step in the
+construction at which a summand of the bimodule can be assigned a formal minus sign: the bimodule $\cE^+\oplus\cE^-$ is a perfectly good, positive, correspondence
+in its own right, with class $[\cE^+\oplus\cE^-]=[\cE^+]+[\cE^-]=T_p+qI_n$, and its
+Cuntz--Pimsner algebra has index map $1-(T_p+qI_n)$, the \emph{opposite} sign
+adjustment from the one wanted. Introducing a $\Z/2$-grading changes which Kasparov
+group ($KK^0$ or $KK^1$) a resulting class is assigned to; it does not alter this
+computation. We are not aware of, and have not been able to construct, any variant
+Cuntz--Pimsner-type functor that takes a \emph{formal difference} of two correspondences
+as input and returns an algebra realizing that difference as an index. Were such a
+functor to exist, it would apply to every virtual class in every $KK^0(A,A)$, converting
+every formal difference of finitely generated projective modules into a single algebra
+realizing it as an index map, and would in particular apply to the underlying integer
+matrix problem addressed by Theorems~\ref{thm:tracesame}--\ref{thm:traceany}, trivializing
+it; the fact that those theorems hold, and are elementary, is itself evidence that no
+such functor exists.
+\end{proof}
+
+\begin{remark}[The obstruction is ontological, not technical]
+The negative block $-qI_n$ in $C$ is not an artifact of a particular presentation that a
+cleverer bookkeeping device --- grading, desingularization, or otherwise --- could
+absorb. It is a faithful record of the non-backtracking correction subtracted in the
+Ihara recursion $T\cdot T_1=T_2+(q+1)T_0$: the class $x_p=T_p-qI_n$ is the class of a
+correspondence \emph{minus} the class of $q$ copies of the identity correspondence, and
+Theorem~\ref{thm:tracesame} shows this difference is not, for any $q\ge2$, again the
+class of a correspondence. A virtual class that is provably not effective cannot be made
+effective by re-describing it; it can only be relocated to a category that does not
+demand effectivity. That category is $KK$-theory, to which we now turn.
+\end{remark}
+
+\section{The K-homological bulk, and the congruence tower}\label{sec:tower}
+
+\subsection{The Hecke--Dirac operator and its index}
+
+\begin{definition}[Hecke--Dirac operator]\label{def:dirac}
+Fix an orientation $E_Y^+$ of the edges of $Y$ and let
+$\partial\colon\Z^{E_Y^+}\to\Z^{V_Y}$, $\partial(f)=t(f)-o(f)$, be the simplicial
+boundary map, so $\partial^t\colon\Z^{V_Y}\to\Z^{E_Y^+}$ is its transpose (coboundary).
+Define the self-adjoint operator
+\[
+\mathsf D_p:=\begin{pmatrix}0&\partial\\\partial^t&0\end{pmatrix}\quad\text{on}\quad
+\ell^2(V_Y)\oplus\ell^2(E_Y^+),\qquad
+\mathsf D_p^2=\begin{pmatrix}\partial\partial^t&0\\0&\partial^t\partial\end{pmatrix},
+\]
+i.e.\ $\mathsf D_p=d+d^*$ is the discrete Hodge--de Rham operator of the graph, with
+even part the vertex (Hodge $0$-)Laplacian $\partial\partial^t=\Delta_p$ and odd part
+the edge (Hodge $1$-)Laplacian $\partial^t\partial$.
+\end{definition}
+
+\begin{lemma}\label{lem:laplacian}
+$\partial\partial^t=\Delta_p=(q+1)I-T_p$ on $\ell^2(V_Y)$.
+\end{lemma}
+
+\begin{proof}
+$(\partial\partial^t)_{uv}=\sum_{f\in E_Y^+}\partial_{f}(u)\,\partial_f(v)$; the diagonal
+term is the degree $q+1$ (each incident edge contributes $\pm1$ squared) and the
+off-diagonal term at $u\ne v$ is $-1$ for each edge joining $u,v$ (with a sign
+cancellation independent of orientation choice, since $\partial_f(u)\partial_f(v)=-1$
+whenever $f$ joins $u,v$ regardless of which endpoint is called $o(f)$), giving exactly
+$(q+1)I-T_p$.
+\end{proof}
+
+\begin{theorem}[Fredholm module and index]\label{thm:index}
+$(C(V_Y),\ \ell^2(V_Y)\oplus\ell^2(E_Y^+),\ \mathsf D_p)$ is an even Fredholm module over
+$A:=C(V_Y)$, defining a class $[\mathsf D_p]\in KK^0(A,A)\cong M_n(\Z)$, $n=|V_Y|$, and
+\[
+\ind(\mathsf D_p)\ :=\ \bigl[\ker\mathsf D_p\bigr]-\bigl[\coker\mathsf D_p\bigr]
+\ \in\ K_0(A),
+\qquad
+\ker\mathsf D_p\cong\Z\oplus\Z^{\,\rank H_1(Y)},
+\]
+\[
+\coker\bigl(\mathsf D_p^2|_{\ell^2(V_Y)}\bigr)\cong\Z\oplus\Jac(Y),
+\]
+so that the even part of the index recovers $\Delta_p$'s cokernel exactly:
+$K_0$-theoretically, $[\mathsf D_p^2|_{\ell^2(V_Y)}]$ has cokernel $\Z\oplus\Jac(Y)$, with
+\emph{no positivity requirement anywhere in the construction} --- $\mathsf D_p$ is
+self-adjoint, not positive, and $\partial,\partial^t$ are integer matrices of arbitrary
+sign.
+\end{theorem}
+
+\begin{proof}
+$\mathsf D_p$ is a finite self-adjoint matrix, hence trivially Fredholm (bounded, and
+every finite-rank perturbation of $0$ is compact), giving a class in $KK^0(A,A)$ since
+$A=C(V_Y)=\C^n$ acts diagonally on $\ell^2(V_Y)$ and trivially, via a chosen embedding of
+$V_Y$-labels, on $\ell^2(E_Y^+)$ compatible with $\partial$'s $A$-bimodule structure.
+$\ker\mathsf D_p=\ker\partial^t\oplus\ker\partial$; $\ker\partial^t$ is the space of
+harmonic $0$-cochains, $\cong\Z$ (the constants, $Y$ connected), and $\ker\partial\cong
+H_1(Y;\Z)\cong\Z^{\rank H_1(Y)}$, the cycle space. The even part follows from
+Lemma~\ref{lem:laplacian} and Theorem~3.5(i) of Paper I.
+\end{proof}
+
+\begin{remark}[The honest scope of this theorem]\label{rem:scope2}
+This is a correct and complete restatement, in Fredholm-module language, of results
+already proved by direct linear algebra in Paper I. We record it because the language
+matters for what comes next: $\mathsf D_p$'s self-adjointness, not positivity, is all
+that $KK$-theory demands, and Theorem~\ref{thm:tracesame} shows this is not a matter of
+convenience but of necessity --- no positive substitute for $\mathsf D_p^2-qI$-type data
+exists. It is not, however, a new theorem about $Y$; every computation in it already
+appears in Paper I under other names.
+\end{remark}
+
+\subsection{Why nothing new happens for a single graph}
+
+\begin{remark}[Finite-dimensional triviality]\label{rem:trivial}
+For $A=C(V_Y)=\C^n$, $KK^0(A,A)\cong M_n(\Z)$ as a ring under the Kasparov product, and
+the product of two classes represented by integer matrices is exactly their matrix
+product. Consequently, any identity one might hope to derive by taking a Kasparov
+product of $[\mathsf D_p]$ with the Hecke correspondence class $[\cE_p]=T_p$ is nothing
+more than the corresponding matrix identity, already available by direct computation. We
+tested the specific proposed identity $[\mathsf D_p]\otimes[\cE_p]\overset{?}{=}
+[\mathsf D_{p^2}]+q[\mathsf D_0]$ under both natural readings of $[\mathsf D_p]$ (as
+$\Delta_p$ and as $T_p-qI$) against the matrices directly: neither matches. What is true,
+and is already Lemma~2.1 of Paper I, is the unadorned recursion
+$T_p\cdot T_p=T_2+(q+1)I$, with no reference to $\mathsf D_p$ or to any Kasparov product
+required to state or prove it. \textbf{$KK$-theory for a single finite graph adds no
+content beyond $M_n(\Z)$}; dressing an identity in Kasparov-product language does not
+make it a new theorem when the underlying ring is already $M_n(\Z)$ with ordinary matrix
+multiplication.
+\end{remark}
+
+\subsection{The congruence tower: where new content could appear}\label{subsec:tower}
+
+The finite-dimensionality identified in Remark~\ref{rem:trivial} is specific to working
+at a single level $Y$. The genuine non-commutative geometry of the Langlands
+correspondence, if it is to be found at all along this route, should appear only in the
+limit over a \emph{tower} of graphs.
+
+\begin{conjecture}[Congruence tower and the profinite $KK$-limit]\label{conj:tower}
+Let $(Y_k)_{k\ge0}$ be the tower of quotient graphs $Y_k=\Gamma_0(p^k)\backslash X$ for
+the Bruhat--Tits tree $X$ of $\PGL_2(\Q_p)$, with covering maps $Y_{k+1}\to Y_k$ inducing
+transfer maps on vertex algebras $A_k=C(V_{Y_k})$ and hence a directed system
+\[
+A_0\hookrightarrow A_1\hookrightarrow A_2\hookrightarrow\cdots,\qquad
+A_\infty:=\varinjlim_kA_k\ \cong\ C\bigl(\varprojlim_kV_{Y_k}\bigr),
+\]
+with $\varprojlim_kV_{Y_k}$ a profinite (Cantor) set carrying a residual action of
+$\PGL_2(\Z_p)$. Then:
+\begin{enumerate}
+\item[(i)] the Hecke--Dirac operators $\mathsf D_{p,k}$ are compatible under the transfer
+maps up to a controlled error, defining a class
+$[\mathsf D_p]_\infty\in KK^0(A_\infty,A_\infty)$;
+\item[(ii)] $KK^0(A_\infty,A_\infty)$ is no longer a finite matrix ring, but a genuine
+inductive limit incorporating the $p$-adic representation-theoretic structure of
+$\PGL_2(\Z_p)$-modules, in which the individual finite invariants
+$\Jac(Y_k)=\Tors\coker(\Delta_{p,k})$ assemble into an inverse system with growth of
+Iwasawa shape. Here the two kinds of tower must be separated, and the separation is
+dictated by our own data (Section~\ref{sec:abtower}), not by preference:
+\begin{itemize}
+\item[(ii-a)] \emph{Abelian deck towers.} For towers carrying a genuine
+$\Z_p$-deck action (the voltage towers of Table~\ref{tab:tower}), the limit
+$\varprojlim_k\Jac(Y_k)[p^\infty]$ is conjectured to be a finitely generated torsion
+$\Z_p[[T]]$-module with characteristic element the cleared voltage pencil
+$g(T)=\det D(1+T)$; the finite-level evidence is exact --- the growth law and the
+Newton-polygon identities $\mu_{\mathrm{meas}}=\mu(g)$,
+$\lambda_{\mathrm{meas}}=\lambda(g)-1$ of Remarks~\ref{rem:towerhonest} and
+\ref{rem:newton} hold to the integer in all four computed towers --- but the
+limit-module statement itself remains conjectural at the level of this paper, and its
+attribution in the literature is flagged in the caveats.
+\item[(ii-b)] \emph{The congruence tower.} The tower $\Gamma_0(p^k)\backslash X$ is
+non-normal and carries no $\Z_p$-deck action, and its canonical combinatorial model, the
+Iwahori path tower of Remark~\ref{rem:iwahori}, exhibits the exact pseudo-Iwasawa law
+$\nu_2=6\cdot2^k-k-4$ with $\lambda=-1<0$, which is impossible for the characteristic
+ideal of any finitely generated torsion $\Z_p[[T]]$-module. \emph{The naive
+$\Z_p[[T]]$-form of this conjecture, including the tentative identification of the
+Ihara variable $u$ with $1+T$ proposed in an earlier draft, is therefore withdrawn as
+refuted in shape by its own model.} What we conjecture in its place is that the correct
+base object for the congruence tower is the Iwahori--Hecke algebra
+$\cH(\PGL_2(\Q_p),\mathcal I)$ of the tower, acting through the degeneracy
+correspondences, with the finite invariants governed by a characteristic ideal over
+that non-commutative base, and the observed $-k$ term arising as an Euler-characteristic
+correction --- the removal of one Eisenstein rank per level --- external to the module
+invariants proper. We do not know the correct precise formulation, and we prefer to say
+so rather than to state a formula the data has already falsified;
+\end{itemize}
+\item[(iii)] the trace obstruction of Theorem~\ref{thm:traceany} persists at every finite
+level $k$, so the entire tower consists of virtual, non-realizable classes; whether the
+\emph{limiting} object $[\mathsf D_p]_\infty$ is subject to an analogous obstruction, or
+whether the profinite limit process itself provides the missing room for a genuine
+realization, is open.
+\end{enumerate}
+\end{conjecture}
+
+\begin{remark}
+We state Conjecture~\ref{conj:tower} as a research programme, not a theorem, and we have
+proved none of its parts; part (ii-a) is the best supported, part (ii-b) is deliberately
+left without a formula. For part (iii) one sharp dichotomy can already be posed, and it
+is the intended opening theorem of a sequel: if the limit carries a faithful invariant
+trace $\tau$ (type $\mathrm{II}$ regime), the obstruction of
+Theorem~\ref{thm:traceany} should persist as non-negativity of the $\tau$-weighted
+second moment of any would-be correspondence, killing realizations exactly as at finite
+level; if the limit is traceless (type $\mathrm{III}$ regime, as the boundary crossed
+products of Paper I in fact are), the numerical obstruction has no formulation at all,
+and the question becomes whether absence of an obstruction can be converted into an
+actual construction. Part (iii) is, in our view, the most important open
+question raised by this paper: it asks whether the No-Go theorems of
+Section~\ref{sec:trace}, proved level-by-level, survive or dissolve in the projective
+limit. We do not know the answer, and we think this --- rather than any further
+finite-graph computation --- is the correct next object of study.
+\end{remark}
+
+\section{Computations}\label{sec:computations}
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lcccc}
+\toprule
+$Y$ & $n$ & $q$ & $\Tr(C^2)$ (computed) & $-n(q-1)$ (formula)\\
+\midrule
+$K_4$              & $4$  & $2$ & $-4$  & $-4$\\
+$K_5$              & $5$  & $3$ & $-10$ & $-10$\\
+$K_6$              & $6$  & $4$ & $-18$ & $-18$\\
+$K_{3,3}$          & $6$  & $2$ & $-6$  & $-6$\\
+$Q_3$ (cube)       & $8$  & $2$ & $-8$  & $-8$\\
+prism $C_4\times K_2$&$8$ & $2$ & $-8$  & $-8$\\
+Wagner $V_8$       & $8$  & $2$ & $-8$  & $-8$\\
+prism $C_5\times K_2$&$10$& $2$ & $-10$ & $-10$\\
+M\"obius $V_{10}$  & $10$ & $2$ & $-10$ & $-10$\\
+Petersen           & $10$ & $2$ & $-10$ & $-10$\\
+Heawood            & $14$ & $2$ & $-14$ & $-14$\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{$\Tr(C^2)$ computed directly from the $2n\times2n$ matrix $C$, against the
+closed form of Lemma~\ref{lem:tracecomp}, for every graph of Paper I's Table~1. Exact
+agreement in all eleven cases, confirming a fact already proved in general; the table is
+illustrative, not evidential.}
+\label{tab:trace}
+\end{table}
+
+\section{A first computed instance of the tower: abelian
+\texorpdfstring{$\Z_\ell$}{Z-l}-covers}\label{sec:abtower}
+
+Conjecture~\ref{conj:tower} concerns the congruence tower $\Gamma_0(p^k)\backslash X$,
+which is neither Galois nor abelian and whose explicit construction requires quaternionic
+lattice data we do not assemble here. But part (ii) of the conjecture makes a
+\emph{shape} prediction --- Iwasawa-type growth of the torsion --- and that shape can be
+tested rigorously today in the nearest fully constructible situation: abelian
+$\Z/\ell^k$-covers of a fixed base graph, built from a voltage assignment
+$\alpha\colon E_Y\to\Z$ on the chords of a spanning tree, with derived graphs
+$Y_k$ on $n\ell^k$ vertices and compatible covering maps $Y_{k+1}\to Y_k$. Every $Y_k$ is
+again $(q+1)$-regular, so the entire theory of Papers I--II applies level by level; in
+particular the obstruction density of Theorem~\ref{thm:traceany} is constant along the
+tower, $\Tr(C_k^2)/n_k=-(q-1)$ for every $k$, so no na\"ive normalization dilutes the
+No-Go theorem in the limit.
+
+Two independent exact methods were used and cross-checked at every level where both run:
+the reduced-Laplacian determinant and Smith normal form of the derived graph directly,
+and the character factorization
+\[
+\kappa(Y_k)\;=\;\frac{\kappa(Y_0)}{\ell^{k}}\prod_{j=1}^{\ell^k-1}
+\det D\bigl(\zeta_{\ell^k}^{\,j}\bigr),
+\qquad
+D(t):=(q+1)I_n-A(t),
+\]
+with $A(t)$ the voltage adjacency pencil, the product computed exactly as a resultant of
+integer polynomials. The two methods agreed exactly in all twelve cross-checked levels.
+
+\begin{table}[ht]
+\centering\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccccl}
+\toprule
+voltages on $K_4$ & $\ell$ & $\mu$ & $\lambda$ & $\nu$ & exact law, verified range\\
+\midrule
+$(1,0,0)$ & $2$ & $3$ & $1$ & $1$ & $\operatorname{ord}_2\kappa(Y_k)=3\cdot2^k+k+1$,\ $2\le k\le9$\\
+$(1,1,1)$ & $2$ & $0$ & $3$ & $4$ & $\operatorname{ord}_2\kappa(Y_k)=3k+4$,\ $0\le k\le9$\\
+$(1,2,0)$ & $2$ & $2$ & $3$ & $3$ & $\operatorname{ord}_2\kappa(Y_k)=2^{k+1}+3k+3$,\ $2\le k\le9$\\
+$(1,0,0)$ & $3$ & $0$ & $1$ & $0$ & $\operatorname{ord}_3\kappa(Y_k)=k$,\ $0\le k\le6$\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{Exact $\ell$-adic valuations of $|\Jac(Y_k)|=\kappa(Y_k)$ along four
+$\Z/\ell^k$ voltage towers over $K_4$ ($q=2$). In each tower the Iwasawa law
+$\operatorname{ord}_\ell\kappa(Y_k)=\mu\ell^k+\lambda k+\nu$ holds \emph{exactly} for
+every computed level in the stated range; the parameters were fitted from two increments
+and the remaining six to eight levels are genuine verification, not fit.}
+\label{tab:tower}
+\end{table}
+
+\begin{remark}[What the table shows, and what it does not]\label{rem:towerhonest}
+Three points, in decreasing order of confidence. (1) The growth law itself, for abelian
+$\ell$-towers of graphs, is a known theorem of Vallières and of McGown--Vallières
+\cite{Vallieres,McGownVallieres}, with closely related Iwasawa-theoretic structure in
+Gonet \cite{Gonet}; the bibliographic records are now verified and their titles
+corroborate the attribution, though the theorems themselves have not been checked
+against the papers' texts here. Our computations \emph{confirm} that theory in four
+instances; they do not discover it. (2) The Smith normal forms refine the order-growth
+law structurally: in the $\mu=0$ tower $(1,1,1)$ the $2$-primary part of $\Jac(Y_k)$ is,
+for $1\le k\le3$,
+\[
+\Jac(Y_k)[2^\infty]\;\cong\;\Z/2^{\,k}\oplus\Z/2^{\,k+2}\oplus\Z/2^{\,k+2},
+\]
+exactly $\lambda=3$ cyclic factors each growing by one power of $\ell$ per level, while
+in the $\mu=3$ tower the \emph{number} of cyclic factors itself grows ($5$ factors at
+$k=2$, $9$ at $k=3$): structurally, $\lambda$ counts persistently growing cyclic factors
+and $\mu>0$ manifests as exponential proliferation of new ones. We do not know whether
+this structural statement in this form appears in the graph-Iwasawa literature.
+(3) Positive $\mu$ occurs freely here ($\mu=3$ and $\mu=2$ above), in genuine contrast to
+the cyclotomic number-field setting, where $\mu=0$ is the Ferrero--Washington theorem;
+whatever the correct formulation of Conjecture~\ref{conj:tower}(ii) for the congruence
+tower turns out to be, it cannot import the $\mu=0$ expectation from number fields.
+\end{remark}
+
+\begin{remark}[The Iwahori path tower: exact data against the naive conjecture]
+\label{rem:iwahori}
+The canonical combinatorial model of the congruence tower itself is constructible: take
+level-$k$ vertices to be the non-backtracking paths of length $k$ in $Y_0$ (level $1$ is
+the Hashimoto digraph of $A^{\mathrm{nb}}$, level $k\ge2$ its iterated line digraphs),
+so that $|V(Y_k)|=n(q+1)q^{k-1}$ reproduces the index
+$[\Gamma(1):\Gamma_0(p^k)]=(p+1)p^{k-1}$ exactly. For $Y_0=K_4$, $q=2$, the sandpile
+groups of these Eulerian digraphs were computed exactly for $0\le k\le6$ (up to $384$
+vertices). Two exact laws emerge. First, a Levine-type recursion,
+$|\mathrm{sandpile}(Y_{k+1})|=2^{\,n_k-1}\,|\mathrm{sandpile}(Y_k)|$, verified at five
+consecutive levels. Second, the valuation obeys a pseudo-Iwasawa law exactly for
+$2\le k\le6$:
+\[
+\nu_2\bigl(|\mathrm{sandpile}(Y_k)|\bigr)=6\cdot2^k-k-4,
+\qquad\text{i.e.}\qquad(\mu,\lambda,\nu)=(6,\,-1,\,-4).
+\]
+The invariant $\lambda=-1$ is \emph{negative}, which is impossible for the
+characteristic ideal of a finitely generated torsion $\Z_p[[T]]$-module. The canonical
+combinatorial model of the congruence tower therefore \emph{refutes the naive
+$\Z_p[[T]]$-form of part (ii) of Conjecture~\ref{conj:tower} as stated above}: whatever
+governs the congruence tower, it is not an ordinary Iwasawa module --- consistently with
+the fact that this tower carries no $\Z_p$-deck action, being non-normal. The $-1$ has a
+transparent source, the removal of one Eisenstein (trivial-direction) rank per level, an
+Euler-characteristic correction rather than a module invariant; the corrected form of
+the conjecture should be stated either over the Iwahori--Hecke algebra of the tower or
+as the abelian-deck statement, which the data of Table~\ref{tab:tower} and the Newton
+test below confirm exactly. Structurally, the Smith normal forms at $k\le3$ show the
+same three persistent growing factors $\Z/2^{\,k}\oplus(\Z/2^{\,k+2})^2$ as the abelian
+$(1,1,1)$ tower, plus an exponentially proliferating cloud of bounded factors ($8$
+copies of $\Z/2$ at $k=2$; $12$ copies of $\Z/2$ and $8$ of $\Z/4$ at $k=3$): $\lambda$
+counts persistent factors, $\mu$ the proliferation rate, and the negative correction
+lives outside both.
+\end{remark}
+
+\begin{remark}[Newton-polygon confirmation of the characteristic element]
+\label{rem:newton}
+In the four abelian towers of Table~\ref{tab:tower} the characteristic-element mechanism
+was tested directly: with $g(T)$ the cleared voltage pencil $\det D(1+T)\in\Z[T]$, the
+Newton data give, in all four cases exactly,
+\[
+\mu_{\mathrm{measured}}=\mu(g),\qquad
+\lambda_{\mathrm{measured}}=\lambda(g)-1 ,
+\]
+and the uniform offset $-1$ is fully accounted: $t\mapsto t^{-1}$ symmetry of the pencil
+forces a double zero $T^2\mid g$ at the trivial character, contributing $+2k$ to the
+valuation sum, while the normalization $\kappa(Y_k)=\kappa(Y_0)\ell^{-k}\prod_{\zeta\neq1}
+\det D(\zeta)$ removes $k$; net $+k$, i.e.\ $\lambda(g)-2+1$. Within the abelian regime
+the graph-theoretic $p$-adic $L$-function is thus confirmed to the integer.
+\end{remark}
+
+\begin{remark}[Relation to Conjecture~\ref{conj:tower}]
+These towers are a rigorous toy, not the conjecture: the congruence tower is non-normal
+and its covering combinatorics are those of the full tree, not of an abelian voltage
+group. What the computation establishes is only this: the Iwasawa shape asserted in
+part (ii) is exactly right in the nearest constructible abelian analogue, down to the
+integer, with the characteristic-ideal mechanism (here, the resultant of the voltage
+pencil against $t^{\ell^k}-1$) functioning precisely as the graph-theoretic
+$p$-adic $L$-function. Part (iii) --- the fate of the trace obstruction in the projective
+limit --- is untouched by any of this, and remains the paper's central open question.
+\end{remark}
+
+\section*{Acknowledgement of provenance and caveats}
+
+This is an unrefereed preprint. Theorem~\ref{thm:tracesame} and Theorem~\ref{thm:index}
+are proved here in full from elementary linear algebra and require no external citation.
+Theorem~\ref{thm:traceany} depends on the claim that shift equivalence forces agreement
+of the full nonzero spectrum of two integer matrices, which we attribute to the
+resolution of the Boyle--Handelman spectral conjecture by Kim, Ormes and Roush (both
+names corrected from an earlier draft's ``Boyer'' and ``Ozawa''); this
+attribution has not been checked against the primary literature, since the authors had
+no network access while writing this paper, and should be verified independently before
+further citation. Proposition~\ref{prop:nograding} is an argument, not a theorem in the
+usual sense: it asserts the non-existence of a construction, supported by an
+impossibility argument (such a functor would trivialize
+Theorems~\ref{thm:tracesame}--\ref{thm:traceany}) rather than a proof ruling out every
+conceivable construction. Conjecture~\ref{conj:tower} is entirely open; none of its three
+parts is established here, and part (iii) is explicitly posed as the paper's main
+unresolved question. All computations of Section~\ref{sec:computations} are exact and
+were checked independently of the general proof of Lemma~\ref{lem:tracecomp}. The tower
+computations of Section~\ref{sec:abtower} are exact integer computations, cross-checked
+between two independent methods at twelve levels. Bibliography status: every external
+entry is now verified against its primary source or its Crossref record, with the DOI
+recorded in place. The three entries that had returned mutually contradictory data in
+two earlier out-of-band passes (Vallières, McGown--Vallières, Gonet) are resolved, and
+the resolution is chastening: \emph{all three} earlier variants were wrong, in the
+Gonet case down to the title and the journal. Residual soft spots are noted inline:
+the Williams end page (Crossref records the start page only), and the
+Pimsner chapter year (1996 electronic versus 1997 volume). One distinction is
+maintained deliberately: what has been verified is the bibliographic \emph{metadata};
+the attribution of the abelian growth law to these works rests on their (now
+corroboratively titled) records and on recollection of their content, not on a reading
+of their theorems performed within this verification pass. The possibility that the
+structural refinement of Remark~\ref{rem:towerhonest}(2) is known to their authors
+stands as before. Two author-name errata were applied: ``Boyer--Handelman'' corrected to
+Boyle--Handelman, and ``Kim--Ozawa--Roush'' corrected to Kim--Ormes--Roush; the latter
+was the present authors' own error, and both corrected names should themselves be
+confirmed at the primary-source stage.
+
+\begin{thebibliography}{9}
+\bibitem{Williams} R.~F.~Williams, \emph{Classification of subshifts of finite type},
+Ann.\ of Math.\ (2) \textbf{98} (1973), no.~1, 120--153; errata ibid.\ \textbf{99}
+(1974), no.~2, 380--381. [Main paper Crossref-verified (DOI 10.2307/1970908; Crossref
+records the start page only, the end page 153 is the standard record); errata
+primary-source verified: JSTOR, DOI 10.2307/1970903.]
+\bibitem{Pimsner} M.~V.~Pimsner, \emph{A class of $C^*$-algebras generalizing both
+Cuntz--Krieger algebras and crossed products by $\Z$}, in: Free probability theory
+(Waterloo, ON, 1995), Fields Inst.\ Commun.\ \textbf{12}, Amer.\ Math.\ Soc.,
+Providence, RI, 1997, pp.~189--212. [Crossref-verified: DOI 10.1090/fic/012/08,
+pp.~189--212; Crossref dates the chapter December 1996, the volume is conventionally
+cited 1997.]
+\bibitem{Sunada} T.~Sunada, \emph{Unitary representations of fundamental groups and
+the spectrum of twisted Laplacians}, Topology \textbf{28} (1989), no.~2, 125--132.
+[Crossref-verified: DOI 10.1016/0040-9383(89)90015-3.]
+\bibitem{Levine} L.~Levine, \emph{Sandpile groups and spanning trees of directed line
+graphs}, J.\ Combin.\ Theory Ser.\ A \textbf{118} (2011), no.~2, 350--364.
+[Crossref-verified: DOI 10.1016/j.jcta.2010.04.001.]
+\bibitem{Vallieres} D.~Vallières, \emph{On abelian $\ell$-towers of multigraphs},
+Ann.\ Math.\ Qu\'ebec \textbf{45} (2021), no.~2, 433--452. [Crossref-verified:
+DOI 10.1007/s40316-020-00152-4. Both earlier out-of-band page ranges (335--359 and
+133--152) were incorrect.]
+\bibitem{McGownVallieres} K.~J.~McGown and D.~Vallières, \emph{On abelian
+$\ell$-towers of multigraphs II}, Ann.\ Math.\ Qu\'ebec \textbf{47}, no.~2, 461--473.
+[Crossref-verified: DOI 10.1007/s40316-021-00183-5; Crossref carries an online date of
+November 2021 and an issue date of October 2023 for this record. Both earlier
+out-of-band venues (J.\ Number Theory \textbf{238} and Ann.\ Math.\ Qu\'ebec
+\textbf{46}) were incorrect. A third part in the series exists and is not verified
+here.]
+\bibitem{Gonet} S.~R.~Gonet, \emph{Iwasawa theory of Jacobians of graphs}, Algebraic
+Combinatorics \textbf{5} (2022), no.~5, 827--848. [Crossref-verified:
+DOI 10.5802/alco.225. This supersedes the earlier entry entirely: the previously
+listed title (``Jacobians of finite and infinite voltage covers of graphs'') and venue
+(J.\ Algebraic Combin.) were incorrect in \emph{both} out-of-band passes --- note that
+Algebraic Combinatorics and J.\ Algebraic Combin.\ are distinct journals.]
+\end{thebibliography}
+
+\end{document}

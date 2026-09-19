@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Algorithmic Non-commutative Class Field Theory: Hecke operators, sandpile groups and operator algebras on trees and buildings, with applications"
+authors:
+  - family-names: Chen
+    given-names: Ruqing
+    affiliation: "GUT Geoservice Inc., Rivière-Beaudette, Québec, Canada"
+    email: ruqing@hotmail.com
+type: software
+version: "1.0.0"
+date-released: "2026-09-25"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/Ruqing1963/anccft"
+keywords:
+  - sandpile group
+  - critical group
+  - Bruhat-Tits tree
+  - Hecke operator
+  - Ihara zeta function
+  - Cuntz-Krieger algebra
+  - Kirchberg algebra
+  - KK-theory
+  - Iwasawa theory of graphs
+  - line digraph
+  - affine building
+  - Ramanujan complex
+  - de Bruijn graph
+  - genome assembly
+  - Smith normal form
+abstract: "Sixteen papers and eight applied notes, assembled into a monograph, on the sandpile groups of Hecke-Laplacians over quotients of Bruhat-Tits trees and A~2 buildings, their towers, and the operator algebras that carry them; with verification scripts, data and figures reproducing every numerical claim."
