@@ -42,5 +42,7 @@ Text of the papers and the monograph: CC BY 4.0. Code: MIT. See `LICENSE` and `L
 
 ## Citing
 
-See `CITATION.cff`. The Zenodo record for this repository carries a DOI; cite the monograph as
-*R. Chen, Algorithmic Non-commutative Class Field Theory, 2026, Zenodo.*
+Repository: https://github.com/Ruqing1963/anccft — Zenodo DOI: *(inserted at the first release)*.
+See `CITATION.cff`. Cite the monograph as
+*R. Chen, Algorithmic Non-commutative Class Field Theory: Hecke operators, sandpile groups and operator algebras on trees and buildings, with applications, 2026, Zenodo.*
+Inside the book the papers cite one another as chapters; none of them has been published elsewhere, and the bibliography lists only the external literature.
