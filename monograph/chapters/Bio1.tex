@@ -42,7 +42,7 @@ $\K(G_k)$ being the group of spanning arborescences --- the \emph{critical} or
 prokaryotic genomes as a measure of assembly complexity; Loukides, Pissis and co-authors
 \cite{Loukides} gave fast algorithms for assessing it.
 
-Equation~\\eqref{Bio1:eq:best} splits the ambiguity into two factors of different character. The
+Equation~\eqref{Bio1:eq:best} splits the ambiguity into two factors of different character. The
 product of factorials is a function of the out-degree multiset alone --- the \emph{branch
 statistics}, read off the graph by inspection. The other factor is not. This paper is
 about what the other factor knows.
@@ -62,19 +62,19 @@ covered by \cite{Levine,CHP}.
 
 \paragraph{What is new here.}
 \begin{enumerate}
-\item[(i)] \textbf{Theorem~\\ref{Bio1:thm:notdeg}}: the global factor is not a function of the
+\item[(i)] \textbf{Theorem~\ref{Bio1:thm:notdeg}}: the global factor is not a function of the
 degree data. Two explicit sequences have identical branch statistics and reconstruction
 counts differing by $64\times$.
-\item[(ii)] \textbf{Theorem~\\ref{Bio1:thm:repeat}}: for a single repeat of length $L$ and
+\item[(ii)] \textbf{Theorem~\ref{Bio1:thm:repeat}}: for a single repeat of length $L$ and
 multiplicity $r$, $\K(G_k)\cong(\Z/r)^{L-k}$.
-\item[(iii)] \textbf{Theorem~\\ref{Bio1:thm:interleave}} (new in this version): for two repeats
+\item[(iii)] \textbf{Theorem~\ref{Bio1:thm:interleave}} (new in this version): for two repeats
 the group is additive in the disjoint and nested arrangements and picks up exactly one
 extra $\Z/2$ in the interleaved arrangement. Since interleaved repeats are the notoriously
 hard case for assembly, this is the first place the algebra and the practice visibly
-agree. Proposition~\\ref{Bio1:prop:three} then shows that for three repeats the correction is
+agree. Proposition~\ref{Bio1:prop:three} then shows that for three repeats the correction is
 the sandpile group of a small digraph and not a chord-diagram rank --- it can be $\Z/3$.
-\item[(iv)] \textbf{Lemma~\\ref{Bio1:lem:contract}} makes the invariant computable on the
-compacted graph, and Section~\\ref{Bio1:sec:real} computes it on a real genome.
+\item[(iv)] \textbf{Lemma~\ref{Bio1:lem:contract}} makes the invariant computable on the
+compacted graph, and Section~\ref{Bio1:sec:real} computes it on a real genome.
 \end{enumerate}
 
 \paragraph{Relation to \cite{KSP}.}
@@ -82,8 +82,8 @@ Kingsford, Schatz and Pop already argue that repeat counting is insufficient, wi
 example that three repeats in two copies each ($8$ reconstructions) is easier than one
 repeat in six copies ($720$). Their two situations have \emph{different} out-degree
 multisets, $(2,2,2)$ against $(6)$, so the local factor already distinguishes them.
-Theorem~\\ref{Bio1:thm:notdeg} fixes the out-degree multiset and still finds a $64$-fold spread,
-and Theorem~\\ref{Bio1:thm:interleave} says what the residual information is: not how many
+Theorem~\ref{Bio1:thm:notdeg} fixes the out-degree multiset and still finds a $64$-fold spread,
+and Theorem~\ref{Bio1:thm:interleave} says what the residual information is: not how many
 repeats or how many copies, but how they are wired to one another.
 
 \section{Setting}\label{Bio1:sec:setting}
@@ -98,7 +98,7 @@ out-degree (the number of occurrences of $v$), and $\Loc(G):=\prod_v(d^{+}(v)-1)
 
 \begin{remark}[Counting convention]\label{Bio1:rem:convention}
 Throughout, reconstruction counts are \emph{arc-rooted}: circuits are counted as beginning
-with a fixed arc, which is the convention under which \\eqref{Bio1:eq:best} holds
+with a fixed arc, which is the convention under which \eqref{Bio1:eq:best} holds
 \cite{AEdB,SmithTutte}. Circular sequences up to cyclic shift are counted by dividing by
 $N$ when $S$ is aperiodic, and by Burnside's lemma otherwise; none of the algebra below
 depends on which convention is chosen, since the correction is a function of $N$ alone.
@@ -126,7 +126,7 @@ $|\K(G_k)|\cdot\Loc(G_k)$. The factor $\Loc(G_k)$ depends only on the multiset
 $\{d^{+}(v)\}$; the factor $|\K(G_k)|$ does not.
 \end{proposition}
 
-The first sentence is \\eqref{Bio1:eq:best}. The second is Theorem~\\ref{Bio1:thm:notdeg}.
+The first sentence is \eqref{Bio1:eq:best}. The second is Theorem~\ref{Bio1:thm:notdeg}.
 
 \section{Contraction, and a single repeat}\label{Bio1:sec:repeat}
 
@@ -175,7 +175,7 @@ occurrences can be arranged in three ways around the circle:
 \text{interleaved}\ A\,B\,A\,B.
 \]
 The $k$-mer spectra of the three sequences have identical multiplicity profiles, so
-$n_k$, the out-degree multiset, and hence $\Loc(G_k)$ agree. This is Theorem~\\ref{Bio1:thm:notdeg}'s
+$n_k$, the out-degree multiset, and hence $\Loc(G_k)$ agree. This is Theorem~\ref{Bio1:thm:notdeg}'s
 setting one level up, and the question is whether $\K$ can tell them apart.
 
 \begin{theorem}[Two repeats]\label{Bio1:thm:interleave}
@@ -185,7 +185,7 @@ With $a_1,\dots,a_s$ and $b_1,\dots,b_s$ the $k$-mers of $A$ and $B$:
 \[
 \K(G_k)\;\cong\;(\Z/2)^{2s-2}\;=\;(\Z/2)^{s-1}\oplus(\Z/2)^{s-1},
 \]
-the direct sum of the two single-repeat groups of Theorem~\\ref{Bio1:thm:repeat};
+the direct sum of the two single-repeat groups of Theorem~\ref{Bio1:thm:repeat};
 \item[(ii)] the interleaved arrangement has
 \[
 \K(G_k)\;\cong\;(\Z/2)^{2s-1}.
@@ -197,7 +197,7 @@ contributions have become trivial.
 \end{theorem}
 
 \begin{proof}
-Contract by Lemma~\\ref{Bio1:lem:contract}. The surviving vertices are the $2s$ shared $k$-mers,
+Contract by Lemma~\ref{Bio1:lem:contract}. The surviving vertices are the $2s$ shared $k$-mers,
 each of in- and out-degree $2$. The spine arcs $a_i\to a_{i+1}$ and $b_i\to b_{i+1}$ have
 multiplicity $2$. The four spacer paths contract to four connector arcs from
 $\{a_s,b_s\}$ to $\{a_1,b_1\}$, one per transition between consecutive occurrences around
@@ -247,7 +247,7 @@ choice: whichever way one threads $A$, the two $B$'s are traversed consecutively
 the algebraic form of the folklore that interleaved repeats are what makes assembly hard.
 Additivity of $\K$ over repeats, asked for in version~1, therefore holds exactly when the
 repeats do not interleave; the general correction term is indexed by the interleaving
-pattern, and Theorem~\\ref{Bio1:thm:interleave} is its two-repeat case.
+pattern, and Theorem~\ref{Bio1:thm:interleave} is its two-repeat case.
 \end{remark}
 
 Check~(I) verifies the theorem three ways: on clean random sequence instances (the
@@ -284,7 +284,7 @@ In every case $\K(G_k)\cong(\Z/2)^{3(s-1)}\oplus\K(D_w)$ for $s=1,2$.
 \end{proposition}
 
 \begin{proof}
-At $s=1$ the compacted graph is $D_w$ by construction (Lemma~\\ref{Bio1:lem:contract} deletes
+At $s=1$ the compacted graph is $D_w$ by construction (Lemma~\ref{Bio1:lem:contract} deletes
 the loops), which gives $\K(G_L)=\K(D_w)$; the four values are the sandpile groups of the
 four $2$-regular digraphs on three vertices that occur. For instance the path pattern
 $A\,B\,A\,C\,B\,C$ gives the complete symmetric digraph on three vertices, whose sandpile
@@ -298,7 +298,7 @@ Three of the four patterns have intersection rank $2$ and give three different g
 one of them of odd order: multiplicity-two repeats can interleave into $3$-torsion. So the
 correction is not a chord-diagram rank, nor even a $2$-group. The right object is the
 sandpile group of the connector digraph $D_w$, which for two repeats is trivial or $\Z/2$
-(Theorem~\\ref{Bio1:thm:interleave}) and for three is the table above.
+(Theorem~\ref{Bio1:thm:interleave}) and for three is the table above.
 \end{remark}
 
 \section{Branch statistics are insufficient}\label{Bio1:sec:notdeg}
@@ -337,7 +337,7 @@ group (check~(N), sampled).
 
 Computing $\K(G_k)$ directly is one Smith normal form of an $(n_k-1)\times(n_k-1)$ integer
 matrix, $O(n_k^{3})$ with the usual bit-length control \cite[I]{ANCFT}, which for a genome
-is impractical. Lemma~\\ref{Bio1:lem:contract} removes the difficulty: the critical group of $G_k$
+is impractical. Lemma~\ref{Bio1:lem:contract} removes the difficulty: the critical group of $G_k$
 equals that of its compacted graph, whose vertices are the branch points. The compaction is
 linear in $N$ --- one pass to find the branch vertices, one walk per outgoing arc --- and
 assemblers already build this graph. The cost is therefore governed by repeat content, not
@@ -347,7 +347,7 @@ genome length; the next section shows what this means in practice.
 
 Bacteriophage $\varphi$X174 (GenBank NC\_001422.1, $5386$ bp, circular) was the first
 genome ever sequenced. Its longest exact circular repeat has length $R=12$.
-Table~\\ref{Bio1:tab:phix} gives the critical-group spectrum around that scale. The compaction
+Table~\ref{Bio1:tab:phix} gives the critical-group spectrum around that scale. The compaction
 is dramatic: at $k=10$ the graph has $5339$ vertices and $47$ branch points, and the Smith
 normal form takes ten milliseconds. The group order at $k=10$, $4.4\times10^{12}$, is the
 global part of the number of $10$-mer reconstructions of the phage; it falls to $132$ at
@@ -375,11 +375,11 @@ no network access is needed.}
 Two remarks. The levels $k\le9$ have compacted graphs of $146$ to $1384$ vertices; they are
 within reach of a sparse or $p$-adic Smith normal form but not of the dense routine used
 here, and we have not pursued them. And $k^{*}=R+1$ for this genome. A single isolated repeat collapses at $k=R$
-(Theorem~\\ref{Bio1:thm:repeat}), so a surviving $\Z/2$ at $k=12$ is \emph{consistent with}
-Theorem~\\ref{Bio1:thm:interleave} rather than implied by it; the companion paper \cite{Bio2}
+(Theorem~\ref{Bio1:thm:repeat}), so a surviving $\Z/2$ at $k=12$ is \emph{consistent with}
+Theorem~\ref{Bio1:thm:interleave} rather than implied by it; the companion paper \cite{Bio2}
 settles the question by exhibiting the two reconstructions: the longest $12$-mer repeat is
 interleaved with a second repeated $12$-mer, and the residual bit is exactly the one of
-Theorem~\\ref{Bio1:thm:interleave} at $s=1$.
+Theorem~\ref{Bio1:thm:interleave} at $s=1$.
 
 \section{What is open, and what is false}\label{Bio1:sec:open}
 
@@ -389,11 +389,11 @@ $40$ random sequences of length $100$ we find $k^{*}=R$ in $26$ cases and $k^{*}
 $13$ (check~(C)). Exhaustive search over short binary sequences gives minimal witnesses:
 \texttt{AACAC} has $R=3$, $k^{*}=3$; \texttt{AACACC} has $R=2$, $k^{*}=3$; and homopolymer
 runs such as \texttt{AAAA} have $k^{*}<R$, because a repeat that always extends the same
-way branches nowhere. Theorem~\\ref{Bio1:thm:repeat} explains the first family and
-Theorem~\\ref{Bio1:thm:interleave} the second, but we have no closed form for $k^{*}$ in general.
+way branches nowhere. Theorem~\ref{Bio1:thm:repeat} explains the first family and
+Theorem~\ref{Bio1:thm:interleave} the second, but we have no closed form for $k^{*}$ in general.
 
-\paragraph{Open.} (a) \emph{Additivity beyond two repeats.} Theorem~\\ref{Bio1:thm:interleave}
-and Proposition~\\ref{Bio1:prop:three} identify the correction at $s=1$ with the sandpile group
+\paragraph{Open.} (a) \emph{Additivity beyond two repeats.} Theorem~\ref{Bio1:thm:interleave}
+and Proposition~\ref{Bio1:prop:three} identify the correction at $s=1$ with the sandpile group
 of the connector digraph $D_w$ of the circular word of occurrences, and show it is not a
 function of the chord diagram's intersection rank. We conjecture
 $\K(G_k)\cong\bigoplus_i(\Z/r_i)^{s_i-1}\oplus\K(D_w)$ for $m$ repeats of multiplicities
@@ -425,14 +425,14 @@ key & check & \# & mode\\
 \midrule
 (T) & $\DB(\sigma,k{+}1)=L(\DB(\sigma,k))$; $|\K|=\sigma^{\sigma^{k}-k-1}$ & 8/8 & exact\\
 (L) & $\K(\DB(2,n))$ reproduces Levine \cite{Levine}, $n\le5$ & 4/4 & exact\\
-(E) & BEST \\eqref{Bio1:eq:best} against brute-force arc-rooted enumeration & 6/6 & exact\\
-(R) & Theorem~\\ref{Bio1:thm:repeat}, $54$ parameter settings & 1/1 & exact\\
-(I) & Theorem~\\ref{Bio1:thm:interleave}: sequences, compacted graphs, symbolic SNF & 3/3 & exact\\
-(M) & Proposition~\\ref{Bio1:prop:three}: all $90$ circular words of three repeats, $s=1,2$ & 1/1 & exact\\
-(N) & Theorem~\\ref{Bio1:thm:notdeg} witnesses; degree-class splitting rate & 2/2 & exact / sampled\\
+(E) & BEST \eqref{Bio1:eq:best} against brute-force arc-rooted enumeration & 6/6 & exact\\
+(R) & Theorem~\ref{Bio1:thm:repeat}, $54$ parameter settings & 1/1 & exact\\
+(I) & Theorem~\ref{Bio1:thm:interleave}: sequences, compacted graphs, symbolic SNF & 3/3 & exact\\
+(M) & Proposition~\ref{Bio1:prop:three}: all $90$ circular words of three repeats, $s=1,2$ & 1/1 & exact\\
+(N) & Theorem~\ref{Bio1:thm:notdeg} witnesses; degree-class splitting rate & 2/2 & exact / sampled\\
 (C) & collapse order: statistics; minimal binary witnesses & 2/2 & sampled / exact\\
-(P) & Lemma~\\ref{Bio1:lem:contract}: contraction and self-loops & 2/2 & exact\\
-(F) & Table~\\ref{Bio1:tab:phix}: $\varphi$X174 & 1/1 & exact\\
+(P) & Lemma~\ref{Bio1:lem:contract}: contraction and self-loops & 2/2 & exact\\
+(F) & Table~\ref{Bio1:tab:phix}: $\varphi$X174 & 1/1 & exact\\
 \midrule
  & total & 30/30 & \\
 \bottomrule
@@ -446,17 +446,17 @@ key & check & \# & mode\\
 Unrefereed preprint. The classical inputs are the BEST theorem \cite{AEdB,SmithTutte},
 Knuth's recursion \cite{Knuth} and the matrix--tree theorem for digraphs; the critical
 groups of complete de Bruijn graphs \cite{Levine,BidkhoriKishore,CHP} are used only as
-checks. Proposition~\\ref{Bio1:prop:decomp} is a reading of \\eqref{Bio1:eq:best}; the use of BEST to
+checks. Proposition~\ref{Bio1:prop:decomp} is a reading of \eqref{Bio1:eq:best}; the use of BEST to
 count genome reconstructions is due to \cite{KSP}. What we claim as new is
-Theorems~\\ref{Bio1:thm:repeat}, \\ref{Bio1:thm:interleave} and \\ref{Bio1:thm:notdeg} with
-Corollary~\\ref{Bio1:cor:insufficient}, and Lemma~\\ref{Bio1:lem:contract} with its use in
-Sections~\\ref{Bio1:sec:compute}--\\ref{Bio1:sec:real}.
+Theorems~\ref{Bio1:thm:repeat}, \ref{Bio1:thm:interleave} and \ref{Bio1:thm:notdeg} with
+Corollary~\ref{Bio1:cor:insufficient}, and Lemma~\ref{Bio1:lem:contract} with its use in
+Sections~\ref{Bio1:sec:compute}--\ref{Bio1:sec:real}.
 
-Version 2 adds Theorem~\\ref{Bio1:thm:interleave} (resolving the two-repeat case of the
-additivity question left open in version 1), Proposition~\\ref{Bio1:prop:three} (three repeats,
+Version 2 adds Theorem~\ref{Bio1:thm:interleave} (resolving the two-repeat case of the
+additivity question left open in version 1), Proposition~\ref{Bio1:prop:three} (three repeats,
 refuting the chord-rank guess), the real-genome computation of
-Section~\\ref{Bio1:sec:real}, the counting convention of Remark~\\ref{Bio1:rem:convention}, the
-self-loop clause of Lemma~\\ref{Bio1:lem:contract}, the minimal collapse witnesses, and the
+Section~\ref{Bio1:sec:real}, the counting convention of Remark~\ref{Bio1:rem:convention}, the
+self-loop clause of Lemma~\ref{Bio1:lem:contract}, the minimal collapse witnesses, and the
 warning about eigenspace decompositions in Open~(c). These changes respond to a detailed
 reading of version 1, for which we are grateful; the referee's four corrections were all
 right and are all incorporated.

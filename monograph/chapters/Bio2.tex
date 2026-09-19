@@ -56,12 +56,12 @@ Chan--Hollmann--Pasechnik extended this \cite{BK,CHP}. None concern genome graph
 \end{itemize}
 
 \paragraph{What is here.} We compose these into a statement about assembly
-(Theorem~\\ref{Bio2:thm:torsor}): the set of reconstructions, modulo the local exit choices, is
+(Theorem~\ref{Bio2:thm:torsor}): the set of reconstructions, modulo the local exit choices, is
 a torsor for $\K(G)$. Consequences: a chip placed on a $k$-mer is an explicit
-rearrangement between two candidate genomes (Section~\\ref{Bio2:sec:moves}); the difference of
+rearrangement between two candidate genomes (Section~\ref{Bio2:sec:moves}); the difference of
 two candidates is a group element, computable as a chip word; and the classical uniform
 sampler is the torsor written in Smith-normal-form coordinates
-(Section~\\ref{Bio2:sec:sampling}). Section~\\ref{Bio2:sec:phix} applies this to $\varphi$X174, where
+(Section~\ref{Bio2:sec:sampling}). Section~\ref{Bio2:sec:phix} applies this to $\varphi$X174, where
 the $12$-mer spectrum leaves one binary choice and we show what that choice is.
 
 \paragraph{What we do not claim.} Not the torsor theorem, which is \cite[\S3]{HLMPPW}; not
@@ -118,7 +118,7 @@ by a unique group element, and $|\Rec(G)|=|\K(G)|\cdot\prod_v(d^+(v)-1)!$.
 \end{theorem}
 
 The theorem is a composition of two results of \cite{HLMPPW}; what we add is (iii) as a
-statement about genomes, and the two verifications of Section~\\ref{Bio2:sec:battery}: check~(A)
+statement about genomes, and the two verifications of Section~\ref{Bio2:sec:battery}: check~(A)
 enumerates $\Arb(G)$ for six assembly graphs, builds the permutation representation of the
 chip generators, and confirms that the generated group has order $|\K(G)|$, a single orbit,
 and no fixed points; check~(B) implements the walk of (ii) and confirms it is a bijection
@@ -130,7 +130,7 @@ The local choices at a branch vertex of out-degree $d$ --- which of the $d-1$ no
 exits to take first --- are what the local factor $\prod(d-1)!$ counts, and they are
 independent of one another and of the arborescence. They are the ambiguity that branch
 statistics \emph{do} see. The torsor lives on what remains, which \cite{Bio1} showed is
-invisible to branch statistics; Theorem~\\ref{Bio2:thm:torsor} says it nevertheless has the
+invisible to branch statistics; Theorem~\ref{Bio2:thm:torsor} says it nevertheless has the
 structure of a finite abelian group, given explicitly by the Smith normal form of the
 out-Laplacian.
 \end{remark}
@@ -173,7 +173,7 @@ branch vertex it passes on its way to the sink, so one chip can change the tree 
 several junctions at once. On the compacted $\varphi$X174 graph at $k=11$, which has ten
 branch vertices, the nine generators change $6,5,3,2,4,2,3,1,0$ tree arcs respectively
 (check~(J)); only one of them is a single re-threading. The directed distance of
-Proposition~\\ref{Bio2:prop:distance} is therefore not the transposition or reversal distance
+Proposition~\ref{Bio2:prop:distance} is therefore not the transposition or reversal distance
 of comparative genomics, and we see no immediate inequality between them.
 
 \section{Sampling, and what the group adds}\label{Bio2:sec:sampling}
@@ -181,7 +181,7 @@ of comparative genomics, and we see no immediate inequality between them.
 Uniform sampling of $\Rec(G)$ is classical: sample an arborescence uniformly by a
 loop-erased random walk \cite{Wilson,PW} or by unranking \cite{CMN}, then choose exit
 orders uniformly \cite{CC:Bio2}; this is what \cite{AE,KMUW} do and what uShuffle implements
-\cite{uShuffle}. Theorem~\\ref{Bio2:thm:torsor} gives the same distribution in a different form:
+\cite{uShuffle}. Theorem~\ref{Bio2:thm:torsor} gives the same distribution in a different form:
 with $\K(G)\cong\bigoplus\Z/d_i$ from the Smith normal form $U\Delta^{\mathsf T}V=D$, draw
 $r_i$ uniformly mod $d_i$, take $U^{-1}r$ as a chip configuration, and route it from a
 fixed base arborescence. Check~(U) draws $2700$ samples this way on a torsor of order $27$
@@ -214,7 +214,7 @@ disambiguation would have to be a search over the torsor, not a system of congru
 
 The companion paper computed the sandpile spectrum of bacteriophage $\varphi$X174
 (NC\_001422.1, $5386$ bp) and found $\K(G_{12})=\Z/2$ and $\K(G_{11})=\Z/2\oplus\Z/66$
-\cite[Tab.~1]{Bio1}. Theorem~\\ref{Bio2:thm:torsor} says that the $12$-mer spectrum of the phage
+\cite[Tab.~1]{Bio1}. Theorem~\ref{Bio2:thm:torsor} says that the $12$-mer spectrum of the phage
 leaves exactly \emph{two} global reconstructions. Check~(F) exhibits them.
 
 \begin{proposition}[$\varphi$X174 at $k=12$]\label{Bio2:prop:phix}
@@ -261,7 +261,7 @@ named segments.
 
 \section{Verification}\label{Bio2:sec:battery}
 
-The script \texttt{rotor\_assembly.py} runs the eight checks of Table~\\ref{Bio2:tab:battery} in
+The script \texttt{rotor\_assembly.py} runs the eight checks of Table~\ref{Bio2:tab:battery} in
 about five seconds, all passing; its output is archived as
 \texttt{rotor\_assembly\_output.txt}, and the $\varphi$X174 sequence is distributed with it.
 
@@ -271,14 +271,14 @@ about five seconds, all passing; its output is archived as
 \toprule
 key & check & mode\\
 \midrule
-(A) & Theorem~\\ref{Bio2:thm:torsor}(i) on six assembly graphs, $|\K|\le27$: free and transitive & exact\\
-(B) & Theorem~\\ref{Bio2:thm:torsor}(ii): the walk is a bijection onto the enumerated circuits & exact\\
-(M) & Section~\\ref{Bio2:sec:moves}: chips are spectrum-preserving rearrangements & exact\\
+(A) & Theorem~\ref{Bio2:thm:torsor}(i) on six assembly graphs, $|\K|\le27$: free and transitive & exact\\
+(B) & Theorem~\ref{Bio2:thm:torsor}(ii): the walk is a bijection onto the enumerated circuits & exact\\
+(M) & Section~\ref{Bio2:sec:moves}: chips are spectrum-preserving rearrangements & exact\\
 (U) & Smith-coordinate sampler uniform, $\chi^{2}=31.2$ on $26$ df & sampled\\
 (W) & Wilson's sampler agrees; the chip word between two samples & sampled\\
-(F) & Proposition~\\ref{Bio2:prop:phix} & exact\\
+(F) & Proposition~\ref{Bio2:prop:phix} & exact\\
 (J) & junctions re-threaded per chip on $\varphi$X174 at $k=11$: $0$ to $6$ & exact\\
-(N) & Remark~\\ref{Bio2:rem:cosets}: constraint sets are not cosets on $3$ of $4$ graphs & exact\\
+(N) & Remark~\ref{Bio2:rem:cosets}: constraint sets are not cosets on $3$ of $4$ graphs & exact\\
 \bottomrule
 \end{tabular}
 \caption{The verification battery (\texttt{rotor\_assembly.py}), $8/8$.}
@@ -291,10 +291,10 @@ key & check & mode\\
 \cite{CMN,PW,Wilson,CC:Bio2} and its bioinformatic use \cite{AE,KMUW,uShuffle}; counting
 \cite{ABCS,KSP}; the spectrum of $\varphi$X174 and the interleaving theorem \cite{Bio1}.
 
-\emph{New here, as far as we can determine.} Theorem~\\ref{Bio2:thm:torsor}(iii) as a statement
+\emph{New here, as far as we can determine.} Theorem~\ref{Bio2:thm:torsor}(iii) as a statement
 about assemblies; chip-firing as rearrangement and the word metric of
-Proposition~\\ref{Bio2:prop:distance}; the coordinate form of the sampler; and
-Proposition~\\ref{Bio2:prop:phix}.
+Proposition~\ref{Bio2:prop:distance}; the coordinate form of the sampler; and
+Proposition~\ref{Bio2:prop:phix}.
 
 \emph{Open.} (a) \emph{Double strands.} Real assembly graphs are bidirected
 \cite{KM,MB}. The reverse-complement map sends an arc $u\to v$ to $\overline v\to\overline u$,
@@ -304,15 +304,15 @@ as it stands; a sandpile theory for bidirected de Bruijn graphs would have to st
 the signed or bidirected Laplacian \cite{Zaslavsky}, and we know of none. (b) The $132$
 classes of $\varphi$X174 at $k=11$, and more generally what the invariant factors of a
 real genome's group mean position by position. (c) Whether the directed distance of
-Proposition~\\ref{Bio2:prop:distance} relates to any edit distance between assemblies; since a
-single chip can re-thread many junctions (Section~\\ref{Bio2:sec:moves}), it is not the
+Proposition~\ref{Bio2:prop:distance} relates to any edit distance between assemblies; since a
+single chip can re-thread many junctions (Section~\ref{Bio2:sec:moves}), it is not the
 transposition distance, and any relation would have to pass through the structure of
 rotor walks on the compacted graph.
 
 \section*{Provenance of this chapter}
 
-Unrefereed preprint. Theorem~\\ref{Bio2:thm:torsor} is a composition of published results and is
-verified, not reproved; Proposition~\\ref{Bio2:prop:distance} is immediate from it;
-Proposition~\\ref{Bio2:prop:phix} is an exact computation reproducible in seconds. We searched
+Unrefereed preprint. Theorem~\ref{Bio2:thm:torsor} is a composition of published results and is
+verified, not reproved; Proposition~\ref{Bio2:prop:distance} is immediate from it;
+Proposition~\ref{Bio2:prop:phix} is an exact computation reproducible in seconds. We searched
 for prior use of the sandpile torsor on genome graphs and for any critical-group treatment
 of bidirected de Bruijn graphs, and found neither; a search cannot establish a negative.

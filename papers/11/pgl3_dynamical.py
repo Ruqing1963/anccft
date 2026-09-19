@@ -1,3 +1,4 @@
+import os
 """
 Paper XI battery: shift equivalence over Z for the PGL_3 companion, the graded return map, positive
 presentations, and the geodesic edge flow  (pgl3_shift.py).  Reuses the complexes of Paper X.
@@ -16,7 +17,7 @@ presentations, and the geodesic edge flow  (pgl3_shift.py).  Reuses the complexe
       (trivial SE) the lifted R,S satisfy the four equations with lag 3
 """
 import sys, math
-sys.path.insert(0, r"C:\Users\LAPPIE\Desktop\KMS\算法化非交换类域论\Paper 10")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "10"))
 import numpy as np, sympy as sp
 import pgl3_building as pb
 

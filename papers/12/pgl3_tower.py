@@ -1,3 +1,4 @@
+import os
 """
 Paper XII battery: towers of A~_2 complexes  (pgl3_tower.py).  Reuses Papers X and XI.
 
@@ -17,8 +18,8 @@ Paper XII battery: towers of A~_2 complexes  (pgl3_tower.py).  Reuses Papers X a
  (L)  [III, Thm 2.1] sanity check on a small Eulerian 4-regular digraph (line digraph recursion with d = 4)
 """
 import sys, math, itertools
-sys.path.insert(0, r"C:\Users\LAPPIE\Desktop\KMS\算法化非交换类域论\Paper 10")
-sys.path.insert(0, r"C:\Users\LAPPIE\Desktop\KMS\算法化非交换类域论\Paper 11")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "10"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "11"))
 import numpy as np, sympy as sp
 import pgl3_building as pb
 import pgl3_dynamical as pd

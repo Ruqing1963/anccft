@@ -1,3 +1,4 @@
+import os
 """
 Paper XV battery (pgl3_parahoric.py): the parahoric factorization of the geodesic edge flow of an A~_2 complex,
 the unitarity of the parahoric remainder, and the chamber companion.  Complexes of Paper X: Y_21, Y_24, Y_42,
@@ -26,7 +27,7 @@ W = (im Psi)^perp = ker S cap ker T cap ker M,  K = chamber continuation,  P(u) 
  (V)  vertex Ramanujan check: all nontrivial roots of det P(u) have |u| = 1/q (numeric)
 """
 import sys, time
-sys.path.insert(0, r"C:\Users\LAPPIE\Desktop\KMS\算法化非交换类域论\Paper 10")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "10"))
 import numpy as np, sympy as sp
 import pgl3_building as pb
 

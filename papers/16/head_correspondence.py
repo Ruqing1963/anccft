@@ -1,3 +1,4 @@
+import os
 """
 Paper XVI battery (head_correspondence.py): the out-covering correspondence of the head map on the shadow
 graphs of the Iwahori tower over K4 (q = 2), levels k = 1,2,3 (shadow graphs on 2 n_k = 24, 48, 96 vertices).
@@ -24,7 +25,7 @@ two loops at v'.  B = [[A, I],[cI, 2I]].  U = [[I,-cI],[0,I]], V = [[I,0],[-I,I]
       ambiguity of [VIII, Rem 2.6]; Ext(K_0(O_k), K_1(O_k)) = Jac(Y_k) hosts the Eisenstein class [H_k] - q[1]
 """
 import sys
-sys.path.insert(0, r"C:\Users\LAPPIE\Desktop\KMS\算法化非交换类域论\Paper 10")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "10"))
 import numpy as np, sympy as sp
 import pgl3_building as pb
 

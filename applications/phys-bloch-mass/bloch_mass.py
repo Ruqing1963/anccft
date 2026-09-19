@@ -35,7 +35,7 @@ import mpmath as mp
 
 mp.mp.dps = 40
 
-PAPER10 = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Paper 10")
+PAPER10 = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..", "papers", "10")
 
 EXACT, NUM = "exact", "numeric"
 ROWS = []

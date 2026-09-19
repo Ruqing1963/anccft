@@ -44,7 +44,7 @@ interlace polynomial at $1$ \cite{ABS}, the number of Euler circuits of $D_w$
 
 Real genomes have repeats with more than two copies. In $\varphi$X174 the skeleton of
 \cite{Bio3} is $2$-in $2$-out at $k=11$ and $k=10$ but has vertices of out-degree $3$ and
-$4$ at $k=9$ and up to $6$ at $k=7$ (Table~\\ref{Bio4:tab:phix}). This note asks whether the
+$4$ at $k=9$ and up to $6$ at $k=7$ (Table~\ref{Bio4:tab:phix}). This note asks whether the
 two-copy description extends. The answer is: only in the smallest case.
 
 \paragraph{What is known.} For $2$-in $2$-out digraphs the determinant formula
@@ -131,7 +131,7 @@ pivots \cite[Lem.~4.8]{MMN}. For three or more copies the analogous base-pointed
 data --- the linear restriction of $w$ to each pair --- determine the whole word for
 every $m$ (they fix the relative order of any two occurrences), so ``the group is a
 function of them'' is vacuous, and the only genuine pairwise invariants are the rotation
-classes of Proposition~\\ref{Bio4:prop:pair}, which fail already at $m=3$. There is no room
+classes of Proposition~\ref{Bio4:prop:pair}, which fail already at $m=3$. There is no room
 between the two for a sign.
 \end{remark}
 
@@ -155,7 +155,7 @@ computed by splitting it into a two-copy one and applying \cite{MMN}.
 Trivially, the transition matrix $T$: the arrangement group is the sandpile group of the
 transition digraph, which is what \cite{Bio3} says. The content of the two-copy theory is
 that $T$ can be traded for interlacement --- a different, topological parametrisation of
-the same group. Propositions~\\ref{Bio4:prop:pair} and~\\ref{Bio4:prop:detach} say that for three or
+the same group. Propositions~\ref{Bio4:prop:pair} and~\ref{Bio4:prop:detach} say that for three or
 more copies no such trade is available through pairwise data or through two-copy
 surrogates. A Gram-matrix route (the form $x^{\mathsf T}(I-S)y$ of the position cycle
 restricted to consecutive-occurrence differences) was also tried and is not the
@@ -165,12 +165,12 @@ README so that it is not retried.
 
 \section{Census}\label{Bio4:sec:census}
 
-Table~\\ref{Bio4:tab:census} lists, for each multiplicity vector, the number of circular words
+Table~\ref{Bio4:tab:census} lists, for each multiplicity vector, the number of circular words
 (one per rotation class), the number of distinct transition digraphs up to relabelling,
 the number of distinct groups, the largest order, and the non-cyclic groups that occur.
 The last column counts the classes of pairwise patterns and, in parentheses, how many of
 them carry more than one group. For two families the groups are exactly $\Z/c$,
-$c\le\min(r,s)$, as Theorem~\\ref{Bio4:thm:two} predicts, and every pairwise class is pure.
+$c\le\min(r,s)$, as Theorem~\ref{Bio4:thm:two} predicts, and every pairwise class is pure.
 From three families on the arrangement group is far richer than for two-copy repeats
 --- three two-copy repeats give only $0,\Z/2,\Z/3,(\Z/2)^{2}$ \cite[Prop.~8]{Bio1},
 three three-copy repeats give nine groups up to order $9$ --- and most pairwise classes
@@ -198,7 +198,7 @@ $(3,3,3,3)$   & 30804 & 96 & 28 & 27 & those, and $(\Z/2)^{3},(\Z/3)^{3},\Z/2{\o
 
 \section{$\varphi$X174}\label{Bio4:sec:phix}
 
-Table~\\ref{Bio4:tab:phix} gives the out-degree profile of the bundle-contracted skeleton of
+Table~\ref{Bio4:tab:phix} gives the out-degree profile of the bundle-contracted skeleton of
 $\varphi$X174 (NC\_001422.1) at $k=12,\dots,7$. At $k=11$ and $k=10$ every skeleton
 vertex has in- and out-degree $2$, and the signed interlace matrix of an Euler circuit
 found by Hierholzer's algorithm gives $\coker(A+I)=\Z/3\oplus\Z/11$ and
@@ -230,7 +230,7 @@ $\coker(A+I)$ equals $\K(\Sk)$; below, multi-copy vertices appear. Exact.}
 
 \section{Verification}\label{Bio4:sec:battery}
 
-The script \texttt{multicopy.py} runs the four checks of Table~\\ref{Bio4:tab:battery} in
+The script \texttt{multicopy.py} runs the four checks of Table~\ref{Bio4:tab:battery} in
 about forty seconds, all passing; its output is archived as
 \texttt{multicopy\_output.txt}. All arithmetic is exact; groups are compared by
 elementary divisors.
@@ -241,10 +241,10 @@ elementary divisors.
 \toprule
 key & check & mode\\
 \midrule
-(A) & Theorem~\\ref{Bio4:thm:two} on all $119$ two-letter circular words, $r,s\le5$ & exact\\
-(B) & Table~\\ref{Bio4:tab:census}; the witness of Proposition~\\ref{Bio4:prop:pair} & exact\\
-(C) & Proposition~\\ref{Bio4:prop:detach}: $150$ digraphs, $1350$ detachments; the witness & exact\\
-(D) & Table~\\ref{Bio4:tab:phix}; $\coker(A+I)=\K(\Sk)$ at $k=11,10$ & exact\\
+(A) & Theorem~\ref{Bio4:thm:two} on all $119$ two-letter circular words, $r,s\le5$ & exact\\
+(B) & Table~\ref{Bio4:tab:census}; the witness of Proposition~\ref{Bio4:prop:pair} & exact\\
+(C) & Proposition~\ref{Bio4:prop:detach}: $150$ digraphs, $1350$ detachments; the witness & exact\\
+(D) & Table~\ref{Bio4:tab:phix}; $\coker(A+I)=\K(\Sk)$ at $k=11,10$ & exact\\
 \bottomrule
 \end{tabular}
 \caption{The verification battery, $4/4$.}
@@ -253,8 +253,8 @@ key & check & mode\\
 
 \section{Scope}\label{Bio4:sec:scope}
 
-\emph{Proved.} Theorem~\\ref{Bio4:thm:two}; Propositions~\\ref{Bio4:prop:pair}
-and~\\ref{Bio4:prop:detach} by explicit witness.
+\emph{Proved.} Theorem~\ref{Bio4:thm:two}; Propositions~\ref{Bio4:prop:pair}
+and~\ref{Bio4:prop:detach} by explicit witness.
 
 \emph{Quoted.} The splitting theorem \cite{Bio3}; the two-copy presentation \cite{MMN};
 the determinant formula \cite{MacrisPule,Jonsson} and interlace polynomial \cite{ABS};
@@ -264,17 +264,17 @@ sink-independence \cite{HLMPPW}; the rotor torsor for Eulerian ribbon digraphs
 \emph{Open.} (a) Whether any presentation of $\K(D_w)$ for $r\ge3$ exists whose entries
 are ``local'' in a weaker sense than pairwise --- e.g.\ functions of the patterns of
 triples --- and whether Jonsson's unpublished generalised intersection matrix, which
-counts arborescences, has a cokernel equal to $\K$. Theorem~\\ref{Bio4:thm:two} shows that at
+counts arborescences, has a cokernel equal to $\K$. Theorem~\ref{Bio4:thm:two} shows that at
 least for two families the group is a crossing number, so a multi-chord crossing calculus
-is not ruled out; Proposition~\\ref{Bio4:prop:pair} shows it cannot be pairwise. (b) The
+is not ruled out; Proposition~\ref{Bio4:prop:pair} shows it cannot be pairwise. (b) The
 census suggests questions we have not pursued: which groups occur for $(r,r,r)$ as $r$
 grows, and whether the largest order is always attained by an elementary abelian group.
 (c) The $\varphi$X174 skeleton at $k=8$ ($312$ vertices) is beyond the dense exact Smith
-form used here; a modular Smith form would extend Table~\\ref{Bio4:tab:phix} of \cite{Bio3}.
+form used here; a modular Smith form would extend Table~\ref{Bio4:tab:phix} of \cite{Bio3}.
 
 \section*{Provenance of this chapter}
 
-Unrefereed preprint. Theorem~\\ref{Bio4:thm:two} is elementary and, as far as we can find,
+Unrefereed preprint. Theorem~\ref{Bio4:thm:two} is elementary and, as far as we can find,
 unstated in this form; the propositions are negative results established by explicit
 computation and are the reason this note exists: the natural extension of \cite{MMN} to
 multi-copy repeats was the obvious next step after \cite{Bio3}, and it does not exist in

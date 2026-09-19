@@ -37,15 +37,15 @@ the present construction is maximal.
 
 \section*{Status of the results}
 
-Theorems~\\ref{VI:thm:ktheory} and \\ref{VI:thm:kirchberg} are proved in full;
-the unimodular factorization at the heart of Theorem~\\ref{VI:thm:ktheory} is a two-line
+Theorems~\ref{VI:thm:ktheory} and \ref{VI:thm:kirchberg} are proved in full;
+the unimodular factorization at the heart of Theorem~\ref{VI:thm:ktheory} is a two-line
 block computation reproduced below and machine-verified, together with the Smith-form
 match against [Ch.~\ref{chap:I}, Table~1], on $K_4$, $K_5$, $K_{3,3}$ and Petersen
-(Table~\\ref{VI:tab:battery}). The classical inputs --- simplicity and pure infiniteness
+(Table~\ref{VI:tab:battery}). The classical inputs --- simplicity and pure infiniteness
 criteria for Cuntz--Krieger/graph algebras and their $K$-theory --- are quoted with a
-flagged citation. Section~\\ref{VI:sec:scope} states exactly what is solved, what is
+flagged citation. Section~\ref{VI:sec:scope} states exactly what is solved, what is
 open, and what is impossible; one error in the task specification that prompted this
-paper is corrected there (Remark~\\ref{VI:rem:k1}).
+paper is corrected there (Remark~\ref{VI:rem:k1}).
 
 \section{The shadow graph}\label{VI:sec:shadow}
 
@@ -141,7 +141,7 @@ double-loop witness place $B(Y)$ under the classical simplicity and pure
 infiniteness criteria for Cuntz--Krieger algebras, and graph algebras of finite
 graphs are separable, nuclear and satisfy the UCT \cite{CK}. Pure infiniteness
 excludes traces. Machine confirmation of the witnesses on all four test graphs:
-Table~\\ref{VI:tab:battery}.
+Table~\ref{VI:tab:battery}.
 \end{proof}
 
 \section{Non-contradiction, and the exact scope of the solution}\label{VI:sec:scope}
@@ -173,7 +173,7 @@ $(1-2)(1-\lambda)-q=\lambda-1-q$. Traces: immediate.
 The specification that prompted this paper asked for $K_1\cong\Z^{\,r}$. That is the
 \emph{boundary}-channel invariant ([Ch.~\ref{chap:I}, Thm.~3.7]), not the Laplacian-channel one:
 the target fixed by [Ch.~\ref{chap:I}, Thm.~3.5], [Ch.~\ref{chap:III}, Thm.~1.x] and [Ch.~\ref{chap:IV}] is
-$K_1=\ker\Delta_p=\Z$, and that is what Theorem~\\ref{VI:thm:ktheory} delivers.
+$K_1=\ker\Delta_p=\Z$, and that is what Theorem~\ref{VI:thm:ktheory} delivers.
 Realizing $\Z^r$ in $K_1$ alongside $\Z\oplus\Jac(Y)$ in $K_0$ would require a
 non-square-type presentation and a different target; it is not the series' problem.
 \end{remark}
@@ -208,7 +208,7 @@ beyond it.
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{lccccc}
 \toprule
-$Y$ & $n$ & $q$ & (S) factorization \\eqref{VI:eq:factor} & $\Jac(Y)$ from
+$Y$ & $n$ & $q$ & (S) factorization \eqref{VI:eq:factor} & $\Jac(Y)$ from
 $\mathrm{SNF}(I-B^t)$ & vs [Ch.~\ref{chap:I}, Table 1]\\
 \midrule
 $K_4$      & 4  & 2 & exact & $(\Z/4)^2$                 & match\\
@@ -219,7 +219,7 @@ Petersen   & 10 & 2 & exact & $\Z/2\oplus(\Z/10)^3$      & match\\
 \end{tabular}
 \medskip
 \caption{Machine verification (\texttt{hecke\_kirchberg.py}): the explicit
-factorization \\eqref{VI:eq:factor} holds as an exact matrix identity; the invariant
+factorization \eqref{VI:eq:factor} holds as an exact matrix identity; the invariant
 factors of $I-B(Y)^t$ reproduce [Ch.~\ref{chap:I}, Table~1] exactly; strong connectivity, the
 double-loop witness, $\Tr B=2n\neq0$, and the $u{=}1$ reconciliation identity all
 verified; automorphism equivariance spot-checked on $K_4$.}
@@ -228,9 +228,9 @@ verified; automorphism equivariance spot-checked on $K_4$.}
 
 \section*{Acknowledgement of provenance and caveats}
 
-Unrefereed preprint. Theorems~\\ref{VI:thm:ktheory}--\\ref{VI:thm:kirchberg} and
-Proposition~\\ref{VI:prop:noncontra} are proved; the two-line factorization
-\\eqref{VI:eq:factor} can be checked by hand and was machine-verified on four graphs.
+Unrefereed preprint. Theorems~\ref{VI:thm:ktheory}--\ref{VI:thm:kirchberg} and
+Proposition~\ref{VI:prop:noncontra} are proved; the two-line factorization
+\eqref{VI:eq:factor} can be checked by hand and was machine-verified on four graphs.
 The classical Cuntz--Krieger inputs (graph-algebra $K$-theory; simplicity and pure
-infiniteness criteria) are quoted through \cite{CK}. Remark~\\ref{VI:rem:scope} delimits the result: single-level canonicity
+infiniteness criteria) are quoted through \cite{CK}. Remark~\ref{VI:rem:scope} delimits the result: single-level canonicity
 solved, tower functoriality open, Hecke-dynamical realization impossible by [Ch.~\ref{chap:II}].

@@ -1,3 +1,4 @@
+import os
 """
 Paper XIII battery: the degeneracy algebra of the Iwahori tower, the augmentation-zero lattice, and the
 level evaluations of the K_1 class  (cohn_localization.py).  K4 tower, q = 2, levels k = 1,2,3.
@@ -13,7 +14,7 @@ level evaluations of the K_1 class  (cohn_localization.py).  K4 tower, q = 2, le
  (A3) abelian tower (1,1,1), l = 2: pdet(Delta_k) = n kappa_0 prod_{chi != 1} det D(chi) exactly (resultants)
 """
 import sys, math
-sys.path.insert(0, r"C:\Users\LAPPIE\Desktop\KMS\算法化非交换类域论\Paper 10")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "10"))
 import numpy as np, sympy as sp
 import pgl3_building as pb
 

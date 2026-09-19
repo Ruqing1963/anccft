@@ -47,7 +47,7 @@ multiplicity two give $(\Z/2)^{2s-2}$ if they are disjoint or nested and $(\Z/2)
 interleaved, $s=L-k+1$; three repeats give a correction that is $\Z/2$, $\Z/3$ or
 $(\Z/2)^{2}$ according to their crossing pattern; since the three non-trivial patterns
 have intersection matrices of the same rank over $\F_2$, the correction is not a function
-of that rank (Remark~\\ref{Bio3:rem:chord} sharpens this). The second
+of that rank (Remark~\ref{Bio3:rem:chord} sharpens this). The second
 paper \cite{Bio2} used the group as a coordinate system on reconstructions and found that
 for $\varphi$X174 at $k=12$ the single surviving $\Z/2$ is a pair of interleaved
 $12$-mers.
@@ -60,12 +60,12 @@ sandpile group of a repeat-adjacency skeleton.
 
 \paragraph{What is known.} Contracting a vertex of in- and out-degree one leaves the
 sandpile group unchanged \cite[Lem.~4]{Bio1}; this is the $r=1$ case of
-Lemma~\\ref{Bio3:lem:bundle} and is the reason assemblers' compacted (unitig) graphs
+Lemma~\ref{Bio3:lem:bundle} and is the reason assemblers' compacted (unitig) graphs
 \cite{BCALM,KM} carry the same group. For \emph{undirected} graphs with multiple edges
 the sandpile groups of thick trees \cite{ChenSchedler} and thick cycles \cite{Alar} are
 known, and the thick-tree answer, $\bigoplus\Z/m_e$ over the edge multiplicities, looks
-like our formula; but the undirected analogue of Lemma~\\ref{Bio3:lem:bundle} is false
-(Remark~\\ref{Bio3:rem:undirected}), so the lemma is not a corollary of those results. The
+like our formula; but the undirected analogue of Lemma~\ref{Bio3:lem:bundle} is false
+(Remark~\ref{Bio3:rem:undirected}), so the lemma is not a corollary of those results. The
 nearest directed relative is Levine's theorem that $\K(G)$ is a quotient of $\K(LG)$ for
 the line digraph \cite{Levine,PSX}. The Eulerian-path formulation of assembly is due to
 Pevzner, Tang and Waterman \cite{PTW}, and the \emph{repeat graph}, in which repeat
@@ -76,8 +76,8 @@ adjacency of occurrences, so it stands to the repeat graph roughly as a line dig
 its graph; we keep the two apart by name. For two-copy repeats the skeleton is the
 directed medial graph of a one-vertex map, and its sandpile group is the critical group
 of that map in the sense of Merino, Moffatt and Noble \cite{MMN}, which is where the
-question of what determines it has already been answered (Remark~\\ref{Bio3:rem:chord}). We
-have not found the $r>1$ splitting of Lemma~\\ref{Bio3:lem:bundle} in the sandpile literature,
+question of what determines it has already been answered (Remark~\ref{Bio3:rem:chord}). We
+have not found the $r>1$ splitting of Lemma~\ref{Bio3:lem:bundle} in the sandpile literature,
 nor the sandpile group of the repeat graph considered as such; a search cannot establish
 a negative.
 
@@ -200,7 +200,7 @@ and lengths of the chains contracted on the way to a skeleton,
 \end{theorem}
 
 \begin{proof}
-Induction on the number of contractions, using Lemma~\\ref{Bio3:lem:bundle} at each step.
+Induction on the number of contractions, using Lemma~\ref{Bio3:lem:bundle} at each step.
 \end{proof}
 
 Now let $S$ be a sequence with repeats $W_1,\dots,W_m$ of lengths $L_i$ and
@@ -221,7 +221,7 @@ Under the clean hypothesis, with $s_i=L_i-k+1$,
 \begin{proof}
 After unitig contraction the graph consists of the $m$ spines --- bundle chains of
 multiplicity $r_i$ and length $s_i$ --- joined by the connector arcs; contracting the
-spines gives $D_w$. Apply Theorem~\\ref{Bio3:thm:split}.
+spines gives $D_w$. Apply Theorem~\ref{Bio3:thm:split}.
 \end{proof}
 
 \begin{corollary}[The published cases]\label{Bio3:cor:cases}
@@ -242,7 +242,7 @@ multi-arcs between their boundary vertices, unique segments as single arcs, whic
 repeat graph. Each pair $(h_i,t_i)$ is a bundle chain of length two, and contracting it
 identifies the multi-arc with a vertex: $D_w$ is the transition digraph of the repeat
 arcs of $\mathrm{RG}_w$ (the line digraph, restricted to repeat arcs, with unique
-segments as the adjacencies). By Lemma~\\ref{Bio3:lem:bundle},
+segments as the adjacencies). By Lemma~\ref{Bio3:lem:bundle},
 \[
 \K(\mathrm{RG}_w)\;\cong\;\bigoplus_{i=1}^{m}\Z/r_i\;\oplus\;\K(D_w),
 \]
@@ -305,7 +305,7 @@ $|\K(D_w)|$ up to the local factor is the repeat-level form of the decomposition
 
 \section{$\varphi$X174}\label{Bio3:sec:phix}
 
-Table~\\ref{Bio3:tab:phix} applies the theorem to the first sequenced genome (NC\_001422.1,
+Table~\ref{Bio3:tab:phix} applies the theorem to the first sequenced genome (NC\_001422.1,
 $5386$ bp). At each $k$ the compacted graph is bundle-contracted; the chains, the
 skeleton, and the two summands are listed, and where the compacted graph is small enough
 the group is also computed directly for comparison. Two things happen. The direct and
@@ -345,7 +345,7 @@ reduce.
 
 \section{Verification}\label{Bio3:sec:battery}
 
-The script \texttt{repeat\_splitting.py} runs the seven checks of Table~\\ref{Bio3:tab:battery}
+The script \texttt{repeat\_splitting.py} runs the seven checks of Table~\ref{Bio3:tab:battery}
 in about thirty seconds, all passing; its output is archived as
 \texttt{repeat\_splitting\_output.txt}. All arithmetic is exact; groups are compared by
 elementary divisors.
@@ -356,12 +356,12 @@ elementary divisors.
 \toprule
 key & check & mode\\
 \midrule
-(A) & Corollary~\\ref{Bio3:cor:clean} on $120$ clean random sequences, $m\le4$, $r_i\le4$ & exact\\
-(B) & Lemma~\\ref{Bio3:lem:bundle} on $60$ random balanced digraphs with a planted chain, $r\le6$, $s\le4$ & exact\\
-(C) & Corollary~\\ref{Bio3:cor:cases}: the nine published values are the formula on $D_w$ & exact\\
-(D) & Remark~\\ref{Bio3:rem:chord}: all double-occurrence words, $m\le5$; rank, Smith form, graph & exact\\
-(E) & Lemma~\\ref{Bio3:lem:canon} on $100$ relabelled digraphs; Remark~\\ref{Bio3:rem:rg} on $200$ words & exact\\
-(F) & Table~\\ref{Bio3:tab:phix}: decomposition vs.\ direct computation; extension to $k=9$ & exact\\
+(A) & Corollary~\ref{Bio3:cor:clean} on $120$ clean random sequences, $m\le4$, $r_i\le4$ & exact\\
+(B) & Lemma~\ref{Bio3:lem:bundle} on $60$ random balanced digraphs with a planted chain, $r\le6$, $s\le4$ & exact\\
+(C) & Corollary~\ref{Bio3:cor:cases}: the nine published values are the formula on $D_w$ & exact\\
+(D) & Remark~\ref{Bio3:rem:chord}: all double-occurrence words, $m\le5$; rank, Smith form, graph & exact\\
+(E) & Lemma~\ref{Bio3:lem:canon} on $100$ relabelled digraphs; Remark~\ref{Bio3:rem:rg} on $200$ words & exact\\
+(F) & Table~\ref{Bio3:tab:phix}: decomposition vs.\ direct computation; extension to $k=9$ & exact\\
 \bottomrule
 \end{tabular}
 \caption{The verification battery, $7/7$ (check~(E) has two rows).}
@@ -370,7 +370,7 @@ key & check & mode\\
 
 \section{Scope}\label{Bio3:sec:scope}
 
-\emph{Proved.} Lemma~\\ref{Bio3:lem:bundle}, Theorem~\\ref{Bio3:thm:split} and its corollaries, for
+\emph{Proved.} Lemma~\ref{Bio3:lem:bundle}, Theorem~\ref{Bio3:thm:split} and its corollaries, for
 arbitrary balanced multidigraphs and arbitrary multiplicities; the clean hypothesis
 enters only in identifying the skeleton with $D_w$.
 
@@ -382,26 +382,26 @@ line-digraph results that are the lemma's nearest relatives
 
 \emph{Open.} (a) A structure theorem for $\K(D_w)$ itself --- for which circular words is
 it trivial, and what bounds its exponent? For $r_i=2$ this is the critical group of a
-bouquet (Remark~\\ref{Bio3:rem:chord}), and \cite{MMN} note that for $3$-connected regular
+bouquet (Remark~\ref{Bio3:rem:chord}), and \cite{MMN} note that for $3$-connected regular
 delta-matroids the group is well defined on the delta-matroid; whether $\K(D_w)$ is
 determined by the interlace graph whenever that graph is prime (no split) we have not
 examined. For $r_i>2$ nothing of the kind is available. (b) Real genomes are not clean: the
 skeleton of $\varphi$X174 at $k=9$ has $110$ vertices and carries factors as large as
-$2707831823$. All six factors above $100$ in Table~\\ref{Bio3:tab:phix} ($523$, $3779$, $5297$,
+$2707831823$. All six factors above $100$ in Table~\ref{Bio3:tab:phix} ($523$, $3779$, $5297$,
 $7669$, $1076338579$, $2707831823$) are prime, which is what the sandpile group of a
 generic digraph looks like (typically cyclic, or nearly so); we see no reason to expect a
 topological reading of a large prime cyclic factor and claim none. (c) Double strands: reverse complementation reverses arc
-direction, so a bidirected version of Lemma~\\ref{Bio3:lem:bundle} must start from the signed
+direction, so a bidirected version of Lemma~\ref{Bio3:lem:bundle} must start from the signed
 Laplacian; we have not attempted it.
 
 \section*{Provenance of this chapter}
 
-Unrefereed preprint. Lemmas~\\ref{Bio3:lem:bundle} and~\\ref{Bio3:lem:canon} are proved in full
-above and are the only new mathematics; Remark~\\ref{Bio3:rem:chord} is a translation of
+Unrefereed preprint. Lemmas~\ref{Bio3:lem:bundle} and~\ref{Bio3:lem:canon} are proved in full
+above and are the only new mathematics; Remark~\ref{Bio3:rem:chord} is a translation of
 published results \cite{ABS,MMN} into the assembly setting, verified computationally ---
 an earlier draft of this note conjectured that the group was an invariant of the unsigned
 interlace graph, which \cite[Rem.~6.7]{MMN} had already shown to be false; everything
 else is either quoted or an exact computation reproducible in seconds. We searched for the $r>1$ splitting in the sandpile literature and for any use of
 the sandpile group of a repeat graph or repeat-adjacency skeleton and found neither; the
 undirected thick-graph results \cite{ChenSchedler,Alar} are the closest, and
-Remark~\\ref{Bio3:rem:undirected} shows they do not imply the lemma.
+Remark~\ref{Bio3:rem:undirected} shows they do not imply the lemma.

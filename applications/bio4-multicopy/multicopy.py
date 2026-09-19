@@ -33,7 +33,7 @@ from sympy.utilities.iterables import multiset_permutations
 import sympy as sp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(os.path.dirname(HERE), "Bio 3"))
+sys.path.insert(0, os.path.join(os.path.dirname(HERE), "bio3-repeat-splitting"))
 import repeat_splitting as rs
 
 EXACT = "exact"

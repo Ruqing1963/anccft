@@ -244,7 +244,7 @@ def build(papers, outdir):
             body = rewrite_cites(p["body"], {k: v for (l, k), v in remap.items() if l == lab})
             body = rewrite_paper_refs(body)
             body = re.sub(r"\\label\{", f"\\\\label{{{lab}:", body)
-            body = re.sub(r"\\(ref|eqref|pageref|autoref)\{(?!chap:)", lambda m: f"\\\\{m.group(1)}{{{lab}:", body)
+            body = re.sub(r"\\(ref|eqref|pageref|autoref)\{(?!chap:)", lambda m: "\\" + m.group(1) + "{" + lab + ":", body)
             body = re.sub(r"\\section\*\{Provenance\}", r"\\section*{Provenance of this chapter}", body)
             # local macro overrides
             over = [text.replace("\\newcommand", "\\renewcommand", 1)
@@ -256,7 +256,7 @@ def build(papers, outdir):
                 f.write(f"\\chapter{{{p['title']}}}\\label{{chap:{lab}}}\n")
                 f.write(f"\\chaptermark{{{lab}}}\n")
                 if p["abstract"]:
-                    abst = re.sub(r"\\(ref|eqref|pageref|autoref)\{(?!chap:)", lambda m: f"\\\\{m.group(1)}{{{lab}:",
+                    abst = re.sub(r"\\(ref|eqref|pageref|autoref)\{(?!chap:)", lambda m: "\\" + m.group(1) + "{" + lab + ":",
                                   rewrite_paper_refs(p["abstract"]))
                     f.write("\\begin{chapterabstract}\n" + abst + "\n\\end{chapterabstract}\n\n")
                 f.write(body.strip() + "\n")
@@ -277,9 +277,10 @@ def build(papers, outdir):
                 "``[Ch.~$n$, Thm.~$a.b$]'' points to Theorem $n.a.b$ of this book; the papers' own "
                 "section-wise numbering is preserved inside each chapter. References to the applied notes "
                 "(Phys~1, Bio~1--4, \\dots) are by the labels below.\n\n"
-                "\\begin{longtable}{llrl}\n\\toprule\npaper & folder & chapter & title\\\\\n\\midrule\n\\endhead\n")
+                "\\begin{longtable}{llrp{8.2cm}}\n\\toprule\npaper & folder & chapter & title\\\\\n\\midrule\n\\endhead\n")
         for lab, folder, ch, title in concord:
-            f.write(f"{lab} & \\texttt{{{folder}}} & {ch} & {title}\\\\\n")
+            short = re.sub(r"^Algorithmic non-commutative class field theory, [IVX]+:\s*", "", title)
+            f.write(f"{lab} & \\texttt{{{folder}}} & {ch} & {short}\\\\\n")
         f.write("\\bottomrule\n\\end{longtable}\n")
     with open(os.path.join(outdir, "main.tex"), "w", encoding="utf-8") as f:
         f.write(MAIN_TEMPLATE.replace("%%PARTS%%", "\n".join(parts_tex)))

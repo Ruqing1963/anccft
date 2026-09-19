@@ -38,7 +38,7 @@ must sit beside this script.
 
 import sys, os, time, random, collections, itertools
 
-PAPER10 = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Paper 10")
+PAPER10 = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..", "papers", "10")
 sys.path.insert(0, PAPER10)
 import pgl3_building as pb
 

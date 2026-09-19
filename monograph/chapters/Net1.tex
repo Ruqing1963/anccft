@@ -46,7 +46,7 @@ number of spanning trees --- itself a classical measure of network reliability
 \end{equation}
 
 \paragraph{What is established.}
-For abelian $\ell$-towers, \\eqref{Net1:eq:law} is a theorem. Vall\`ieres \cite{Val21} proved it
+For abelian $\ell$-towers, \eqref{Net1:eq:law} is a theorem. Vall\`ieres \cite{Val21} proved it
 for a family of towers over bouquets; McGown and Vall\`ieres \cite{MV24} proved it over an
 arbitrary connected multigraph; Gonet \cite{Gonet22} obtained the Sylow structure from the
 $\La=\Zl[[T]]$-module decomposition, and Kleine and M\"uller \cite{KM24} and others have
@@ -66,21 +66,21 @@ de Bruijn and Kautz cases worked out in \cite{BK11,CHP15}.
 
 \paragraph{What is here.}
 These two bodies of work have not met. We put the line-digraph iteration into the form
-\\eqref{Net1:eq:law} and find
+\eqref{Net1:eq:law} and find
 \begin{equation}\label{Net1:eq:minus1}
 \mu=\frac{n(q+1)}{q},\qquad \lambda=-1,\qquad \nu=\text{const},
 \end{equation}
-on every base graph tested (Section~\\ref{Net1:sec:measure}). Since $\lambda<0$ is impossible for
-a torsion $\La$-module, this is a certificate (Section~\\ref{Net1:sec:cert}). We show in
-Section~\\ref{Net1:sec:where} that \\eqref{Net1:eq:minus1} telescopes from the classical recursion, so
+on every base graph tested (Section~\ref{Net1:sec:measure}). Since $\lambda<0$ is impossible for
+a torsion $\La$-module, this is a certificate (Section~\ref{Net1:sec:cert}). We show in
+Section~\ref{Net1:sec:where} that \eqref{Net1:eq:minus1} telescopes from the classical recursion, so
 the arithmetic is not new --- only its reading is --- and we give the Euler-characteristic
-interpretation of the $-1$. Section~\\ref{Net1:sec:net} draws the network consequence.
+interpretation of the $-1$. Section~\ref{Net1:sec:net} draws the network consequence.
 
 \paragraph{What we do not claim.}
-Not \\eqref{Net1:eq:law} in the abelian case \cite{Val21,MV24,Gonet22}; not the line-digraph
+Not \eqref{Net1:eq:law} in the abelian case \cite{Val21,MV24,Gonet22}; not the line-digraph
 tower as an object \cite{FAY83,FYA84}; not its spanning-tree counts
-\cite{Knuth67,Levine11,BK11,CHP15}. A referee will observe that \\eqref{Net1:eq:minus1} follows
-from \cite{Knuth67,Levine11}, and will be right; we say so in Section~\\ref{Net1:sec:where} and
+\cite{Knuth67,Levine11,BK11,CHP15}. A referee will observe that \eqref{Net1:eq:minus1} follows
+from \cite{Knuth67,Levine11}, and will be right; we say so in Section~\ref{Net1:sec:where} and
 verify it.
 
 \section{Setting}\label{Net1:sec:setting}
@@ -102,8 +102,8 @@ determinants.
 
 \section{Measurements}\label{Net1:sec:measure}
 
-Table~\\ref{Net1:tab:main} reports $(\mu,\lambda,\nu)$ fitted from the last three levels of each
-tower --- fitting from the tail is deliberate, since the defects of \\eqref{Net1:eq:law} are
+Table~\ref{Net1:tab:main} reports $(\mu,\lambda,\nu)$ fitted from the last three levels of each
+tower --- fitting from the tail is deliberate, since the defects of \eqref{Net1:eq:law} are
 finitely supported \cite[IX]{ANCFT} and the first levels may be transient --- together with
 the number of levels on which the fit holds.
 
@@ -119,7 +119,7 @@ mechanism & instances & $\lambda$ observed & law holds?\\
 (d) line digraph & 5 bases & $\mathbf{-1}$ (every base) & yes\\
 \bottomrule
 \end{tabular}
-\caption{The four mechanisms. For (b) the one-variable law \\eqref{Net1:eq:law} fails on all
+\caption{The four mechanisms. For (b) the one-variable law \eqref{Net1:eq:law} fails on all
 three towers, as it must: a $\Zl^{2}$-extension needs the two-variable theory of
 \cite{CM81,DV22,KM24}. All entries exact.}
 \label{Net1:tab:main}
@@ -144,7 +144,7 @@ exact.}
 \label{Net1:tab:ld}
 \end{table}
 
-The contrast in Table~\\ref{Net1:tab:main} is the point, and it is not the contrast we expected.
+The contrast in Table~\ref{Net1:tab:main} is the point, and it is not the contrast we expected.
 Negative $\lambda$ does not track non-commutativity: the dihedral towers are non-abelian and
 give $\lambda=3>0$. It tracks \emph{normality}. Every tower in the graph-Iwasawa literature
 is a voltage tower and hence Galois; the line-digraph tower is not, and it is the only one
@@ -153,7 +153,7 @@ that goes negative.
 \section{The certificate}\label{Net1:sec:cert}
 
 \begin{theorem}\label{Net1:thm:cert}
-Suppose a tower satisfies \\eqref{Net1:eq:law} with $\lambda<0$. Then the tower is not an
+Suppose a tower satisfies \eqref{Net1:eq:law} with $\lambda<0$. Then the tower is not an
 abelian $\ell$-tower: there is no voltage assignment in $\Zl$ whose derived graphs are the
 $Y_k$.
 \end{theorem}
@@ -163,18 +163,18 @@ For an abelian $\ell$-tower the inverse limit
 $X_\infty=\varprojlim_k\Jac(Y_k)\otimes\Zl$ is a finitely generated torsion
 $\La=\Zl[[T]]$-module \cite[IV]{ANCFT}, \cite{Gonet22,MV24}, and its Iwasawa invariants
 satisfy $\mu=\sum_ik_i\ge0$ and $\lambda=\sum_jm_j\deg g_j\ge0$ by the structure theorem
-\cite[Thm.~13.12]{Washington}; these are the coefficients in \\eqref{Net1:eq:law}.
+\cite[Thm.~13.12]{Washington}; these are the coefficients in \eqref{Net1:eq:law}.
 \end{proof}
 
 \begin{remark}[What the certificate does not say]\label{Net1:rem:caveat}
-Theorem~\\ref{Net1:thm:cert} rules out the characteristic ideal of a \emph{single} torsion
+Theorem~\ref{Net1:thm:cert} rules out the characteristic ideal of a \emph{single} torsion
 $\La$-module. It does not rule out a virtual object --- a formal difference of two
 $\La$-modules, or the cohomology of a complex --- and indeed the interpretation in
-Section~\\ref{Net1:sec:where} is exactly of that kind. It is therefore wrong to say that
+Section~\ref{Net1:sec:where} is exactly of that kind. It is therefore wrong to say that
 $\lambda=-1$ contradicts Iwasawa theory; the correct statement is that it is the invariant
 of a difference, not of a module. Two further limitations: the certificate is
-one-directional (Table~\\ref{Net1:tab:main}(c) shows non-abelian towers with $\lambda>0$), and it
-presupposes that \\eqref{Net1:eq:law} holds at all, which for rank-two towers it does not.
+one-directional (Table~\ref{Net1:tab:main}(c) shows non-abelian towers with $\lambda>0$), and it
+presupposes that \eqref{Net1:eq:law} holds at all, which for rank-two towers it does not.
 \end{remark}
 
 \begin{remark}[A parity coincidence]\label{Net1:rem:parity}
@@ -194,7 +194,7 @@ classical line-digraph tree formula \cite{Knuth67}, in the form used in
 \[
 \ord_q\bigl|\Jac(Y_{k+1})\bigr|-\ord_q\bigl|\Jac(Y_k)\bigr|=n_k(q-1)-1 .
 \]
-With $n_k=n(q{+}1)q^{k-1}$ this telescopes to \\eqref{Net1:eq:minus1}.
+With $n_k=n(q{+}1)q^{k-1}$ this telescopes to \eqref{Net1:eq:minus1}.
 \end{proposition}
 
 \begin{proof}
@@ -204,8 +204,8 @@ $\frac{n(q+1)}{q}q^{k}-k+\text{const}$.
 \end{proof}
 
 So $\lambda=-1$ is a consequence of a $1967$ formula. We verify the telescoping numerically
-on all five bases (check (K) of Section~\\ref{Net1:sec:battery}): the measured sequences of
-Table~\\ref{Net1:tab:ld} agree term by term with the telescoped prediction.
+on all five bases (check (K) of Section~\ref{Net1:sec:battery}): the measured sequences of
+Table~\ref{Net1:tab:ld} agree term by term with the telescoped prediction.
 
 \paragraph{The Euler characteristic.}
 The $-1$ in the increment is not a normalisation artefact. The one-step increment is
@@ -218,12 +218,12 @@ Eisenstein line. Check (E) verifies the increment identity level by level.
 
 \section{The network reading}\label{Net1:sec:net}
 
-The two mechanisms of Table~\\ref{Net1:tab:main} are not artificial. Torus, circulant and
+The two mechanisms of Table~\ref{Net1:tab:main} are not artificial. Torus, circulant and
 chordal-ring interconnects are voltage covers of a small base, hence abelian towers; de
 Bruijn and Kautz interconnects are built by line-digraph iteration \cite{FAY83,FYA84,FL92},
 hence non-normal towers. The quantity being measured, $|\Jac(Y_k)|$, is the spanning-tree
 count, a standard reliability measure \cite{Boesch86,Colbourn87,BH09}. Equation
-\\eqref{Net1:eq:law} is therefore a three-parameter scaling law for a reliability measure along a
+\eqref{Net1:eq:law} is therefore a three-parameter scaling law for a reliability measure along a
 design family, in which
 \begin{itemize}
 \item $\mu$ is the bulk growth rate --- for the line-digraph family, $n(q{+}1)/q$, i.e.\
@@ -236,12 +236,12 @@ We are not aware of prior use of an algebraic growth exponent for this purpose; 
 precedent is the use of renormalisation exponents to infer a growth mechanism
 \cite{SHM06}. Whether the law survives the perturbations a real network family suffers ---
 irregularity, missing edges, coarse-grainings that are not covers --- we have not tested,
-and Section~\\ref{Net1:sec:scope} lists it first among the open questions.
+and Section~\ref{Net1:sec:scope} lists it first among the open questions.
 
 \section{Verification}\label{Net1:sec:battery}
 
 The script \texttt{tower\_lambda.py} accompanying this note builds and measures $27$ towers
-and runs the checks of Table~\\ref{Net1:tab:battery} in about $7$ minutes, all passing; its output
+and runs the checks of Table~\ref{Net1:tab:battery} in about $7$ minutes, all passing; its output
 is archived as \texttt{tower\_lambda\_output.txt}. All spanning-tree and arborescence counts
 are exact integer determinants.
 
@@ -251,10 +251,10 @@ are exact integer determinants.
 \toprule
 key & check & mode\\
 \midrule
-(A) & \\eqref{Net1:eq:law} holds with $\lambda>0$ on 15 abelian towers over 6 bases & exact\\
-(L) & $\lambda=-1$ and $\mu=n(q{+}1)/q$ on 5 line-digraph towers (Table~\\ref{Net1:tab:ld}) & exact\\
+(A) & \eqref{Net1:eq:law} holds with $\lambda>0$ on 15 abelian towers over 6 bases & exact\\
+(L) & $\lambda=-1$ and $\mu=n(q{+}1)/q$ on 5 line-digraph towers (Table~\ref{Net1:tab:ld}) & exact\\
 (E) & the increment is $n_k(q-1)-\chi$ with $\chi=1$, level by level & exact\\
-(K) & Prop.~\\ref{Net1:prop:telescope}: the measured sequence equals the telescoped recursion & exact\\
+(K) & Prop.~\ref{Net1:prop:telescope}: the measured sequence equals the telescoped recursion & exact\\
 (R) & the one-variable law fails on all 3 rank-two $(\Z/2)^{k}$ towers & exact\\
 (D) & dihedral towers: $\lambda=3>0$, so the certificate detects normality & exact\\
 (C) & the certificate assembled over the whole battery & exact\\
@@ -272,13 +272,13 @@ tree arithmetic \cite{Knuth67,Levine11,BK11,CHP15}; spanning trees as a reliabil
 \cite{Boesch86,Colbourn87,BH09}.
 
 \emph{New here, as far as we can determine.} Putting the line-digraph iteration in the form
-\\eqref{Net1:eq:law}; the value $\lambda=-1$, there being no negative $\lambda$ anywhere in the
+\eqref{Net1:eq:law}; the value $\lambda=-1$, there being no negative $\lambda$ anywhere in the
 graph-Iwasawa literature; the Euler-characteristic reading of it; the certificate
-(Theorem~\\ref{Net1:thm:cert}) with its caveats (Remark~\\ref{Net1:rem:caveat}); and the observation
+(Theorem~\ref{Net1:thm:cert}) with its caveats (Remark~\ref{Net1:rem:caveat}); and the observation
 that the certificate separates normal from non-normal rather than abelian from non-abelian.
 
 \emph{Open.} (a) Robustness. Every tower here is exact; real network families are not, and
-we do not know how \\eqref{Net1:eq:law} degrades under edge noise or under refinements that are
+we do not know how \eqref{Net1:eq:law} degrades under edge noise or under refinements that are
 not covers. This is the question that decides whether any of this is usable. (b) Whether
 $\lambda<0$ occurs for any tower other than the line-digraph family --- we found none, but
 tested only four mechanisms. (c) Whether the structural refinement of $\lambda$ as a count
@@ -288,8 +288,8 @@ non-normal case, where \cite[X--XII]{ANCFT} shows no abelian sector exists at al
 
 \section*{Provenance of this chapter}
 
-Unrefereed preprint. Theorem~\\ref{Net1:thm:cert} is a restatement of the structure theorem for
-$\La$-modules and is proved above modulo that theorem. Proposition~\\ref{Net1:prop:telescope} is
+Unrefereed preprint. Theorem~\ref{Net1:thm:cert} is a restatement of the structure theorem for
+$\La$-modules and is proved above modulo that theorem. Proposition~\ref{Net1:prop:telescope} is
 a summation of a classical formula. Everything numerical is produced by the accompanying
 script in exact integer arithmetic. We searched for a negative $\lambda$, for a non-normal
 graph tower with a growth law, and for an Euler-characteristic reading of such a law, and

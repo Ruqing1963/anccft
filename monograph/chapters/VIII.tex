@@ -46,11 +46,11 @@ Cuntz--Krieger $K$-theory formula and the gauge-invariant uniqueness theorem for
 algebras \cite{R}; the closure of nuclearity, simplicity, pure infiniteness and the UCT
 class under inductive limits \cite{KR,Ro,RS}; the Pontryagin duality between profinite
 and discrete torsion abelian groups; and Kirchberg--Phillips classification \cite{Ph},
-which is quoted once, in Remark~\\ref{VIII:rem:down}, for an existence statement we do not
-use. The in-covering lemma (Lemma~\\ref{VIII:lem:incov}) and the dual-graph isomorphism
-(Proposition~\\ref{VIII:prop:plain}) are proved in full. Every finite identity was
+which is quoted once, in Remark~\ref{VIII:rem:down}, for an existence statement we do not
+use. The in-covering lemma (Lemma~\ref{VIII:lem:incov}) and the dual-graph isomorphism
+(Proposition~\ref{VIII:prop:plain}) are proved in full. Every finite identity was
 machine-verified exactly on the $K_4$ tower at levels $k\le3$ (shadow matrices of size
-$24$, $48$, $96$; Table~\\ref{VIII:tab:battery}). Section~\\ref{VIII:sec:scope} states what is
+$24$, $48$, $96$; Table~\ref{VIII:tab:battery}). Section~\ref{VIII:sec:scope} states what is
 solved, what remains open, and what is impossible, and records four corrections to the
 specification that prompted this paper.
 
@@ -91,7 +91,7 @@ The other standard convention reverses all arcs. Because $T_p$ is symmetric the 
 was invisible in [Ch.~\ref{chap:VI}]; at the directed levels it is not, and we make it once and for all
 here. Under the reversed convention every statement of this paper holds with
 $(\tau,\Delta_k,X_\infty)$ replaced by $(\eta,\Delta_k^{\,t},X_\infty^{\mathrm{in}})$
-of [Ch.~\ref{chap:V}, Prop.~3.2] (Remark~\\ref{VIII:rem:mirror}).
+of [Ch.~\ref{chap:V}, Prop.~3.2] (Remark~\ref{VIII:rem:mirror}).
 \end{convention}
 
 \begin{definition}[Level shadow]\label{VIII:def:shadow}
@@ -135,7 +135,7 @@ $c=q-1$ the first block is $\Delta_k^{\,t}$. The second identity is the transpos
 the first. Cokernels and kernels are invariant under unimodular equivalence, and
 $\coker\Delta_k^{\,t}$ has the same invariant factors as $\coker\Delta_k$, whence the
 abstract isomorphism with $\Z\oplus\Jac(Y_k)$ (the canonical relation between the two
-torsion groups is Lemma~\\ref{VIII:lem:dual}). For the kernels: $(x,y)\in\ker(I-B_k^{\,t})$
+torsion groups is Lemma~\ref{VIII:lem:dual}). For the kernels: $(x,y)\in\ker(I-B_k^{\,t})$
 forces $y=-x$ and $A_k^{\,t}x=qx$, and the Perron eigenspace of the irreducible
 $A_k^{\,t}$ (row sums $=$ in-degrees $=q$) is $\Z\mathbf1$, saturated because $\mathbf1$
 is primitive; $\ker(I-B_k)$ similarly. Kirchberg: $\shadow{Y_k}$ is strongly connected
@@ -149,14 +149,14 @@ $[1]=(1-c)\sum_v[p_v]=(2-q)\sum_v[p_v]$.
 \begin{remark}[A correction to the specification: $q-1$, not $q$]\label{VIII:rem:cq}
 The specification prompting this paper prescribed $B(Y_k)=\begin{psmallmatrix}A_k&I\\
 qI&2I\end{psmallmatrix}$ at every level. The block computation of
-Theorem~\\ref{VIII:thm:level} shows that with $c$ return arcs the Laplacian block is
+Theorem~\ref{VIII:thm:level} shows that with $c$ return arcs the Laplacian block is
 $(1+c)I-A_k^{\,t}$, so the shadow $K_0$ is the sandpile group only when $1+c$ equals the
 out-degree: $c=q$ at the $(q{+}1)$-regular base, $c=q-1$ at the $q$-regular levels.
 With $c=q$ at a level $k\ge1$ the block is $(q{+}1)I-A_k^{\,t}$, nonsingular because
 every eigenvalue of $A_k$ has modulus $\le q$; then $K_1=0$ and $K_0$ is a finite group
 with no relation to $\Jac(Y_k)$. On the $K_4$ tower it is $\Z/2\oplus\Z/14\oplus(\Z/112)^2$
 at $k=1$ and $(\Z/3)^8\oplus\Z/6\oplus\Z/42\oplus(\Z/336)^2$ at $k=2$
-(Table~\\ref{VIII:tab:battery}, line (W)), against $\Jac(Y_1)=\Z/2\oplus\Z/8\oplus\Z/24$ and
+(Table~\ref{VIII:tab:battery}, line (W)), against $\Jac(Y_1)=\Z/2\oplus\Z/8\oplus\Z/24$ and
 $\Jac(Y_2)=(\Z/2)^8\oplus\Z/4\oplus\Z/16\oplus\Z/48$. The $(q{+}1)$-versus-$q$ mismatch
 is the Eisenstein special layer of the whole series ([Ch.~\ref{chap:I}, Rem.~1.8], [Ch.~\ref{chap:V}, Rem.~3.3],
 [Ch.~\ref{chap:VII}, Rem.~3.3]); here it fixes the number of return arcs.
@@ -288,10 +288,10 @@ Then:
 \item[(i)] $\Tup(I-B_k^{\,t})=(I-B_{k+1}^{\,t})\Tup$, $\Tup\mathbf1_{2n_k}=\mathbf1_{2n_{k+1}}$,
 $\Tup(\mathbf1,-\mathbf1)=(\mathbf1,-\mathbf1)$;
 \item[(ii)] $K_0(\varphi_k)$ is the map induced by $\Tup$, which under the
-isomorphisms of Theorem~\\ref{VIII:thm:level} is the pullback
+isomorphisms of Theorem~\ref{VIII:thm:level} is the pullback
 $\taup\colon\coker\Delta_k^{\,t}\to\coker\Delta_{k+1}^{\,t}$; on torsion it is the
 Pontryagin dual $\Jac(Y_k)^{\vee}\to\Jac(Y_{k+1})^{\vee}$ of the tail norm $\ta$
-(Lemma~\\ref{VIII:lem:dual}), hence injective; on the torsion-free quotient
+(Lemma~\ref{VIII:lem:dual}), hence injective; on the torsion-free quotient
 $\coker\Delta^{t}/\Tor\cong\Z$ (via the degree) it is multiplication by $q$; and
 $K_0(\varphi_k)$ is injective;
 \item[(iii)] $K_1(\varphi_k)\colon\Z\to\Z$ is the identity.
@@ -299,17 +299,17 @@ $K_0(\varphi_k)$ is injective;
 \end{theorem}
 
 \begin{proof}
-Lemma~\\ref{VIII:lem:incov} applies by Proposition~\\ref{VIII:prop:tausharp}. (i) The intertwining
+Lemma~\ref{VIII:lem:incov} applies by Proposition~\ref{VIII:prop:tausharp}. (i) The intertwining
 reduces blockwise to $\taup A_k^{\,t}=A_{k+1}^{\,t}\taup$, the transpose of
-$\ta A_{k+1}=A_k\ta$ \\eqref{VIII:eq:calculus}; $\taup\mathbf1=\mathbf1$ because every vertex
+$\ta A_{k+1}=A_k\ta$ \eqref{VIII:eq:calculus}; $\taup\mathbf1=\mathbf1$ because every vertex
 of $Y_{k+1}$ has exactly one tail. (ii) Since $\Tup U_k=U_{k+1}\Tup$ (block scalars
 commute with $\operatorname{diag}(\taup,\taup)$), the first-block isomorphisms of
-Theorem~\\ref{VIII:thm:level} carry the map induced by $\Tup$ to the map induced by $\taup$ on
+Theorem~\ref{VIII:thm:level} carry the map induced by $\Tup$ to the map induced by $\taup$ on
 $\coker\Delta^{t}$. The dual of a surjection is injective, and $\ta$ is surjective on
 $\Jac$ [Ch.~\ref{chap:V}, Thm.~3.1(ii)]. Degree: $\deg\circ\Delta^{t}=(\Delta\mathbf1)^t=0$ so $\deg$
 descends, and $\deg(\taup y)=q\deg y$ because fibres of $\tau$ have $q$ elements. If
 $K_0(\varphi_k)[x]=0$ then $q\deg x=0$, so $[x]$ is torsion, so $[x]=0$. (iii) is
-Lemma~\\ref{VIII:lem:incov} with (i).
+Lemma~\ref{VIII:lem:incov} with (i).
 \end{proof}
 
 \begin{theorem}[The transfer matrix and the tail norm]\label{VIII:thm:matrix}
@@ -317,7 +317,7 @@ For $k\ge1$ let $\Tdn:=\operatorname{diag}(\ta,\ta)\in M_{2n_k\times2n_{k+1}}(\Z
 \begin{enumerate}
 \item[(i)] $\Tdn(I-B_{k+1})=(I-B_k)\Tdn$, so $\Tdn$ induces
 $(\Tdn)_*\colon\coker(I-B_{k+1})\to\coker(I-B_k)$ on the Bowen--Franks groups, and
-under $V^{t}$ of \\eqref{VIII:eq:factor} this map is exactly the tail norm
+under $V^{t}$ of \eqref{VIII:eq:factor} this map is exactly the tail norm
 $\ta\colon\coker\Delta_{k+1}\to\coker\Delta_k$ of {\rm[Ch.~\ref{chap:V}, Thm.~3.1]}: surjective,
 surjective on $\Jac$, with kernel of order $q^{\,n_k(q-1)-1}$ on $\Jac(Y_{k+1})$;
 \item[(ii)] on $\ker(I-B_{k+1})=\Z(\mathbf1,-c\mathbf1)$ the matrix $\Tdn$ acts by
@@ -334,7 +334,7 @@ whose $(v,w)$ entry is $q[\eta(w)=v]-A_k(\tau(w),v)$.
 (i) Blockwise the intertwining is $\ta A_{k+1}=A_k\ta$; since $V_k^{t}\Tdn=\Tdn V_{k+1}^{t}$
 the induced map on $\coker(\Delta\oplus(-I))=\coker\Delta$ is the first block $\ta$;
 the properties listed are [Ch.~\ref{chap:V}, Thm.~3.1(ii)]. (ii) $\ta\mathbf1=q\mathbf1$. (iii) is
-Lemma~\\ref{VIII:lem:dual}(ii) with $F=\ta$. (iv) By \\eqref{VIII:eq:calculus},
+Lemma~\ref{VIII:lem:dual}(ii) with $F=\ta$. (iv) By \eqref{VIII:eq:calculus},
 $\ta A_{k+1}^{\,t}=(A_{k+1}\taup)^{t}=(\etp\ta\taup)^{t}=q\et$ and
 $A_k^{\,t}\ta=(\taup A_k)^{t}=(\taup\ta\etp)^{t}=\et\taup\ta$; and
 $(\et\taup\ta)(v,w)=\#\{w':\eta(w')=v,\ \tau(w')=\tau(w)\}=A_k(\tau(w),v)$, which is
@@ -342,13 +342,13 @@ $0$ or $1$ for $q$ different $v$, whereas $q[\eta(w)=v]$ is $q$ at one $v$.
 \end{proof}
 
 \begin{remark}[The mirror]\label{VIII:rem:mirror}
-Under Convention~\\ref{VIII:conv} exactly one degeneracy map lifts to the $C^*$-level: the one
+Under Convention~\ref{VIII:conv} exactly one degeneracy map lifts to the $C^*$-level: the one
 that is a covering on the (CK1) side, $\tau$. The head map $\shadow\eta$ is an
 out-covering (bijective on out-arcs, the same proof with $s$ and $r$ exchanged), and the
 sum-over-lifts formula fails for it because the cross terms $s_fs_{f'}^*$ with $r(f)=r(f')$
 do not vanish. Dually, on $K_0$ the pushforward that descends is $\et$
-($\et A_{k+1}^{\,t}=A_k^{\,t}\et$ by \\eqref{VIII:eq:calculus}), not $\ta$
-(Theorem~\\ref{VIII:thm:matrix}(iv)). Reversing all arcs exchanges $\tau\leftrightarrow\eta$,
+($\et A_{k+1}^{\,t}=A_k^{\,t}\et$ by \eqref{VIII:eq:calculus}), not $\ta$
+(Theorem~\ref{VIII:thm:matrix}(iv)). Reversing all arcs exchanges $\tau\leftrightarrow\eta$,
 $\Delta\leftrightarrow\Delta^{t}$, and the pro-module $X_\infty$ of [Ch.~\ref{chap:V}, Thm.~3.1] with
 the in-module $X_\infty^{\mathrm{in}}$ of [Ch.~\ref{chap:V}, Prop.~3.2]. This is the $C^*$-algebraic
 face of the two-sidedness proved in [Ch.~\ref{chap:V}]: the tower is a $(\tau,\eta)$-bimodule system,
@@ -357,8 +357,8 @@ and each side is realized by one of the two conventions.
 
 \begin{remark}[Downward homomorphisms]\label{VIII:rem:down}
 The specification asked for $*$-homomorphisms $\cO_{k+1}\to\cO_k$ inducing $\ta$. Under
-Convention~\\ref{VIII:conv} no map $\cO_{k+1}\to\cO_k$ can induce $\ta$ on $K_0$, because $\ta$
-does not descend (Theorem~\\ref{VIII:thm:matrix}(iv)); the descending pushforward is $\et$,
+Convention~\ref{VIII:conv} no map $\cO_{k+1}\to\cO_k$ can induce $\ta$ on $K_0$, because $\ta$
+does not descend (Theorem~\ref{VIII:thm:matrix}(iv)); the descending pushforward is $\et$,
 and it sends $[1_{\cO_{k+1}}]\mapsto q[1_{\cO_k}]$-type classes ($\et\mathbf1=q\mathbf1$),
 so any $*$-homomorphism inducing it is non-unital. By Kirchberg--Phillips
 classification \cite{Ph} a $*$-homomorphism $\psi_k\colon\cO_{k+1}\to P\cO_kP$ with
@@ -378,9 +378,9 @@ every level $k\ge1$, and $\ker(\ta|_{\Jac(Y_{k+1})})\subseteq\Jac(Y_{k+1})[q]$.
 \end{proposition}
 
 \begin{proof}
-$\etp$ descends by \\eqref{VIII:eq:pullbacks}; on $\coker\Delta_k$ one has $A_k\equiv qI$
-since $\Delta_k=qI-A_k\equiv0$; the two composites are \\eqref{VIII:eq:calculus}. On the
-$K_4$ tower the odd part is $\Z/3$ at $k=1,2,3$ (Table~\\ref{VIII:tab:battery}).
+$\etp$ descends by \eqref{VIII:eq:pullbacks}; on $\coker\Delta_k$ one has $A_k\equiv qI$
+since $\Delta_k=qI-A_k\equiv0$; the two composites are \eqref{VIII:eq:calculus}. On the
+$K_4$ tower the odd part is $\Z/3$ at $k=1,2,3$ (Table~\ref{VIII:tab:battery}).
 \end{proof}
 
 \begin{theorem}[The kernel of the tail norm is the $p$-torsion]\label{VIII:thm:ptorsion}
@@ -407,7 +407,7 @@ over $\Z$, hence of full row rank $n_k$ over $\F_p$; so $\rk_{\F_p}A_{k+1}=\rk_{
 Since $p\mid q$, $\Delta_{k+1}\equiv-A_{k+1}\pmod p$, so the $\F_p$-dimension of
 $\coker\Delta_{k+1}\otimes\F_p$ is $n_{k+1}-n_k=n_k(p-1)$; one dimension is the free
 summand $\Z$, the rest is the $p$-rank of $\Jac(Y_{k+1})$. (ii) The kernel is contained
-in $\Jac(Y_{k+1})[p]$ by Proposition~\\ref{VIII:prop:stable}; its order is $p^{\,n_k(p-1)-1}$ by
+in $\Jac(Y_{k+1})[p]$ by Proposition~\ref{VIII:prop:stable}; its order is $p^{\,n_k(p-1)-1}$ by
 [Ch.~\ref{chap:V}, Thm.~3.1(ii)] (the increment of [Ch.~\ref{chap:III}, Thm.~2.1], re-proved homologically in
 [Ch.~\ref{chap:VII}, Cor.~2.2]); and $|\Jac(Y_{k+1})[p]|=p^{\,n_k(p-1)-1}$ by (i). (iii) Let
 $x=(x_k)_k\in\XX$ with $px=0$. For $k\ge2$, $x_k\in\Jac(Y_k)[p]=\ker\ta$ by (ii), so
@@ -419,16 +419,16 @@ $X_\infty^{(p)}\cong\Zp^{\,I}$. Since $X_\infty^{(p)}\twoheadrightarrow\Jac(Y_k)
 for every $k$ (surjective transitions) and the $p$-ranks $n_{k-1}(p-1)-1$ are unbounded,
 $I$ is infinite; it is countable because a countable inverse limit of finite groups is
 second countable. The splitting off of the prime-to-$p$ part is
-Proposition~\\ref{VIII:prop:stable}. Machine confirmation on $K_4$ ($p=2$):
+Proposition~\ref{VIII:prop:stable}. Machine confirmation on $K_4$ ($p=2$):
 $\rk_{\F_2}A_2=12$, $\rk_{\F_2}A_3=24$; the $2$-ranks of $\Jac(Y_2)$, $\Jac(Y_3)$ are
 $11$, $23$; $\ta$ annihilates $\Jac(Y_{k+1})[2]$; and $2^{11},2^{23}$ are the kernel
-orders (Table~\\ref{VIII:tab:battery}, line (Q)).
+orders (Table~\ref{VIII:tab:battery}, line (Q)).
 \end{proof}
 
 The machine found (ii) before we did: at both computed transitions the number of even
 invariant factors coincided with $\ord_2|\ker\ta|$, and the one-line inclusion of
-Proposition~\\ref{VIII:prop:stable} turned the coincidence into a theorem. Its meaning for the
-Iwasawa-theoretic reading of [III]--[Ch.~\ref{chap:V}] is discussed in Remark~\\ref{VIII:rem:euler}. Note
+Proposition~\ref{VIII:prop:stable} turned the coincidence into a theorem. Its meaning for the
+Iwasawa-theoretic reading of [III]--[Ch.~\ref{chap:V}] is discussed in Remark~\ref{VIII:rem:euler}. Note
 that (ii) has no meaning at the boundary transition $0\to1$: there $\ta$ does not
 descend to the cokernels ([Ch.~\ref{chap:V}, Rem.~3.3]) and $A_1\ne\etp\ta$ ([Ch.~\ref{chap:I}, Def.~1.7]:
 $A_1=T^{t}S-J$), so the identity $\rk_{\F_p}A_{k+1}=n_k$ driving (i) has no analogue. On
@@ -439,7 +439,7 @@ but no proof is offered and none is claimed.
 
 \begin{definition}\label{VIII:def:limit}
 $\cO_\infty(Y_\bullet):=\varinjlim_k\bigl(\cO_k,\varphi_k\bigr)$, the $C^*$-inductive limit
-of the level shadow algebras along the shadow transfers of Theorem~\\ref{VIII:thm:transfer},
+of the level shadow algebras along the shadow transfers of Theorem~\ref{VIII:thm:transfer},
 starting at $k=1$. We abbreviate it $\cO_\infty$.
 \end{definition}
 
@@ -456,7 +456,7 @@ $\varphi$ injective, $J\ni1$; otherwise the quotient map is isometric on the den
 $\bigcup_k\varphi(\cO_k)$, hence on $\cO_\infty$, and $J=0$. Pure infiniteness passes to
 inductive limits \cite[\S4]{KR}, \cite[\S4.1]{Ro}, and the bootstrap class is closed
 under inductive limits \cite{RS}. Purely infinite simple algebras have no traces. The
-$\varphi_k$ are gauge-equivariant (Lemma~\\ref{VIII:lem:incov}).
+$\varphi_k$ are gauge-equivariant (Lemma~\ref{VIII:lem:incov}).
 \end{proof}
 
 \begin{theorem}[$K$-theory of the limit]\label{VIII:thm:klimit}
@@ -489,20 +489,20 @@ class of infinite order; for $q=2$ the unit class is $0$.
 
 \begin{proof}
 $K$-theory commutes with $C^*$-inductive limits, so $K_*(\cO_\infty)=\varinjlim K_*(\cO_k)$
-along $K_*(\varphi_k)$, computed in Theorem~\\ref{VIII:thm:transfer}. (i) The maps are the
-identity. (ii) Injectivity is Theorem~\\ref{VIII:thm:transfer}(ii); the torsion of $K_0(\cO_k)$
-is $\Tor_k^{\,t}\cong\Jac(Y_k)^{\vee}$ by Lemma~\\ref{VIII:lem:dual}. (iii) Direct limits are
+along $K_*(\varphi_k)$, computed in Theorem~\ref{VIII:thm:transfer}. (i) The maps are the
+identity. (ii) Injectivity is Theorem~\ref{VIII:thm:transfer}(ii); the torsion of $K_0(\cO_k)$
+is $\Tor_k^{\,t}\cong\Jac(Y_k)^{\vee}$ by Lemma~\ref{VIII:lem:dual}. (iii) Direct limits are
 exact, so $\Tor\varinjlim=\varinjlim\Tor$ and $\varinjlim(G_k)/\Tor=\varinjlim(G_k/\Tor)
-=\varinjlim(\Z,\times q)=\Z[1/q]$ (Theorem~\\ref{VIII:thm:transfer}(ii)). Pontryagin duality
+=\varinjlim(\Z,\times q)=\Z[1/q]$ (Theorem~\ref{VIII:thm:transfer}(ii)). Pontryagin duality
 exchanges inverse limits of compact groups with direct limits of their discrete duals,
-and $\taup$ is dual to $\ta$ by Lemma~\\ref{VIII:lem:dual}(ii). The recovery statement is
+and $\taup$ is dual to $\ta$ by Lemma~\ref{VIII:lem:dual}(ii). The recovery statement is
 double duality for the discrete torsion group $\XX^{\vee}$. (iv) By
-Theorem~\\ref{VIII:thm:ptorsion}(iii), $\XX^{\vee}=D\oplus F$ with $D$ divisible (hence an
+Theorem~\ref{VIII:thm:ptorsion}(iii), $\XX^{\vee}=D\oplus F$ with $D$ divisible (hence an
 injective $\Z$-module) and $F$ finite of order prime to $p$. $\Ext(\Z[1/p],D)=0$; and
 writing $\Z[1/p]=\varinjlim(\Z\xrightarrow{p}\Z\xrightarrow{p}\cdots)$,
 $\Ext(\Z[1/p],F)$ is the $\varprojlim^1$ of the tower $(F\xleftarrow{p}F\xleftarrow{p}\cdots)$,
 which vanishes because multiplication by $p$ is an automorphism of $F$. So the extension
-splits. (v) Theorem~\\ref{VIII:thm:level} and $\taup\sum_ve_v=\sum_we_w$; $\deg u=n_k\ne0$ at
+splits. (v) Theorem~\ref{VIII:thm:level} and $\taup\sum_ve_v=\sum_we_w$; $\deg u=n_k\ne0$ at
 level $k$.
 \end{proof}
 
@@ -518,7 +518,7 @@ $\Ext(\Z[1/q],\Z)$.
 \end{corollary}
 
 \begin{proof}
-Apply $\Hom(-,\Z)$ to the sequence of Theorem~\\ref{VIII:thm:klimit}(iii): $\Hom(\XX^{\vee},\Z)=0$
+Apply $\Hom(-,\Z)$ to the sequence of Theorem~\ref{VIII:thm:klimit}(iii): $\Hom(\XX^{\vee},\Z)=0$
 and $\Hom(\Z[1/q],\Z)=0$, so $0\to\Ext(\Z[1/q],\Z)\to\Ext(K_0,\Z)\to\Ext(\XX^{\vee},\Z)\to0$.
 For a torsion group $T$, $\Ext(T,\Z)\cong\Hom(T,\Q/\Z)$ (apply $\Hom(T,-)$ to
 $0\to\Z\to\Q\to\Q/\Z\to0$), so $\Ext(\XX^{\vee},\Z)=\XX$ by duality. And from
@@ -532,7 +532,7 @@ and $K_1$ of a separable $C^*$-algebra are countable. Hence no separable $C^*$-a
 --- in particular no Kirchberg algebra --- has $K_0$ containing $X_\infty$ or
 $\Z\oplus X_\infty$, and the formula $K_0(\cO_\infty)\cong\Z\oplus X_\infty$ of the
 specification is false for every candidate $\cO_\infty$. The correct statement is the
-dual one, Theorem~\\ref{VIII:thm:klimit}(iii).
+dual one, Theorem~\ref{VIII:thm:klimit}(iii).
 \end{theorem}
 
 \begin{proof}
@@ -564,7 +564,7 @@ $\Jac(Y_k)$ for any $k$.
 
 \begin{proof}
 In-arcs at $f\in L(Y_k)^0$ are the $(e,f)$ with $r(e)=s(f)$, mapping bijectively to the
-in-arcs $e$ of $\tau(f)=s(f)$: Lemma~\\ref{VIII:lem:incov} gives $\tau^\natural$. The family
+in-arcs $e$ of $\tau(f)=s(f)$: Lemma~\ref{VIII:lem:incov} gives $\tau^\natural$. The family
 $\{s_es_e^*,\ s_es_fs_f^*\}$ is a Cuntz--Krieger $L(Y_k)$-family in $C^*(Y_k)$:
 $(s_es_fs_f^*)^*(s_es_fs_f^*)=s_fs_f^*p_{r(e)}s_fs_f^*=s_fs_f^*$ since $p_{s(f)}s_f=s_f$,
 and $\sum_{s(f)=r(e)}s_es_fs_f^*s_fs_f^*s_e^*=s_ep_{r(e)}s_e^*=s_es_e^*$; so $\Psi$ exists.
@@ -575,7 +575,7 @@ $\tau^\natural\Psi(p_e)=\sum_{f,f'}s_{(e,f)}s_{(e,f')}^*=\sum_fs_{(e,f)}s_{(e,f)
 $\tau^\natural\Psi(s_{(e,f)})=\bigl(\sum_{f_1}s_{(e,f_1)}\bigr)p_f=s_{(e,f)}$. The
 $K$-groups are Morita invariants of $C^*(Y_1)=\cO_{A^{\mathrm{nb}}}$, Morita equivalent to
 $C(\partial X)\rtimes\Gamma$ [Ch.~\ref{chap:I}, Prop.~1.9(ii)]. On $K_4$: $\coker(I-A_k^{\,t})=\Z^3\oplus\Z/2$
-at $k=1,2,3$, $r=3$ (Table~\\ref{VIII:tab:battery}, line (B)).
+at $k=1,2,3$, $r=3$ (Table~\ref{VIII:tab:battery}, line (B)).
 \end{proof}
 
 \begin{table}[ht]
@@ -601,12 +601,12 @@ $K_0(\varphi_k)$.}
 \begin{remark}[Where $\mu$, $-k$ and the Euler line live]\label{VIII:rem:euler}
 The pseudo-Iwasawa law $\ord_p|\Jac(Y_k)|=\mu p^k-k+\nu_0$, $\mu=n(q{+}1)/q$
 [Ch.~\ref{chap:III}, Thm.~2.2], is the growth law of the torsion of the level filtration of
-$K_0(\cO_\infty)$ (Theorem~\\ref{VIII:thm:klimit}(ii)): $7,18,41$ on $K_4$. The Eisenstein index
+$K_0(\cO_\infty)$ (Theorem~\ref{VIII:thm:klimit}(ii)): $7,18,41$ on $K_4$. The Eisenstein index
 $\ind(\ta)=q$ of [Ch.~\ref{chap:VII}] appears three times in the limit: as the action of $\Tdn$ on
-$\ker(I-B)$ (Theorem~\\ref{VIII:thm:matrix}(ii)), as the scaling of the free part of $K_0$ that
-produces $\Z[1/q]$ (Theorem~\\ref{VIII:thm:transfer}(ii)), and as the $q$-adic term
-$\Ext(\Z[1/q],\Z)$ separating $K$-homology from the pro-module (Corollary~\\ref{VIII:cor:khom}).
-Theorem~\\ref{VIII:thm:ptorsion} sharpens the arithmetic reading: for $q=p$ the $p$-rank of
+$\ker(I-B)$ (Theorem~\ref{VIII:thm:matrix}(ii)), as the scaling of the free part of $K_0$ that
+produces $\Z[1/q]$ (Theorem~\ref{VIII:thm:transfer}(ii)), and as the $q$-adic term
+$\Ext(\Z[1/q],\Z)$ separating $K$-homology from the pro-module (Corollary~\ref{VIII:cor:khom}).
+Theorem~\ref{VIII:thm:ptorsion} sharpens the arithmetic reading: for $q=p$ the $p$-rank of
 $\Jac(Y_{k+1})$ is $(n_{k+1}-n_k)-1$, the arc increment minus the Eisenstein line, exactly
 the two terms of the snake formula [Ch.~\ref{chap:VII}, eq.~(2.1)] now read as a rank count rather than
 an order count; and the $p$-part of the pro-module is $\Zp^{\,\mathbb N}$ --- torsion-free
@@ -630,29 +630,29 @@ side --- and the lifts assemble into a unital Kirchberg algebra $\cO_\infty$ wit
 $K_1\cong\Z$ and $\Tor K_0\cong\XX^{\vee}$, from which the pro-module, its level
 filtration and the tail norms are recovered by duality. \emph{Open:} (a) a canonical
 $C^*$-correspondence $\cO_{k+1}\rightsquigarrow\cO_k$ induced by the out-covering
-$\shadow\eta$ with $K_0$-map $\et$; existence is abstract (Remark~\\ref{VIII:rem:down}),
+$\shadow\eta$ with $K_0$-map $\et$; existence is abstract (Remark~\ref{VIII:rem:down}),
 canonicity is not established; (b) whether the sequence of
-Theorem~\\ref{VIII:thm:klimit}(iii) splits for composite $q$; (c) the Hecke-module structure of
+Theorem~\ref{VIII:thm:klimit}(iii) splits for composite $q$; (c) the Hecke-module structure of
 $\XX$ as a module over the degeneracy pro-ring of [Ch.~\ref{chap:V}, Prop.~4.1], and with it
 [Ch.~\ref{chap:V}, Prob.~5.1]. \emph{Impossible:} a separable $C^*$-algebra with $K_0\supseteq X_\infty$
-(Theorem~\\ref{VIII:thm:nogo}); and, as before, a Hecke-dynamical realization
+(Theorem~\ref{VIII:thm:nogo}); and, as before, a Hecke-dynamical realization
 ([Ch.~\ref{chap:II}, Thm.~1.6], [Ch.~\ref{chap:VI}, Rem.~4.3]).
 \end{remark}
 
 \begin{remark}[Four corrections to the task specification]\label{VIII:rem:corrections}
-(1) The level shadow needs $q-1$ return arcs, not $q$ (Remark~\\ref{VIII:rem:cq}). (2) The
+(1) The level shadow needs $q-1$ return arcs, not $q$ (Remark~\ref{VIII:rem:cq}). (2) The
 matrix $\Tdn=\operatorname{diag}(\ta,\ta)$ does not induce a map
-$\coker(I-B_{k+1}^{\,t})\to\coker(I-B_k^{\,t})$ (Theorem~\\ref{VIII:thm:matrix}(iv)); it induces
+$\coker(I-B_{k+1}^{\,t})\to\coker(I-B_k^{\,t})$ (Theorem~\ref{VIII:thm:matrix}(iv)); it induces
 $\ta$ on $\coker(I-B_{k+1})\to\coker(I-B_k)$, the Bowen--Franks groups, which are the
 Pontryagin duals of the $K_0$-groups on torsion. The $K_0$-map of the canonical
 $*$-homomorphism is the pullback $\taup$, in the opposite direction. (3) The target
-$K_0(\cO_\infty)\cong\Z\oplus X_\infty$ is impossible (Theorem~\\ref{VIII:thm:nogo}); the
+$K_0(\cO_\infty)\cong\Z\oplus X_\infty$ is impossible (Theorem~\ref{VIII:thm:nogo}); the
 theorem is $\Tor K_0(\cO_\infty)\cong\XX^{\vee}$, $K_0/\Tor\cong\Z[1/q]$, $K_1\cong\Z$. (4)
 The blind algebra with $K_0\cong\Z/(q-1)$ is the rooted tail groupoid algebra of
 [Ch.~\ref{chap:I}, Prop.~1.9(iii)] and [Ch.~\ref{chap:III}, \S1]; [Ch.~\ref{chap:I}, Thm.~3.7] is the boundary channel, with
 $K_0\cong\Z^r\oplus\Z/(r-1)$; both are blind, and the plain tower algebras are the latter
-at every level (Proposition~\\ref{VIII:prop:plain}). We also decline the specification's
-historical superlative; what is proved is stated in Remark~\\ref{VIII:rem:scope}.
+at every level (Proposition~\ref{VIII:prop:plain}). We also decline the specification's
+historical superlative; what is proved is stated in Remark~\ref{VIII:rem:scope}.
 \end{remark}
 
 \begin{remark}[Boundary level]\label{VIII:rem:boundary}
@@ -666,7 +666,7 @@ level $0$ stands beside the tower, not at its foot.
 
 \section{The verification battery}\label{VIII:sec:battery}
 
-Table~\\ref{VIII:tab:battery} lists the exact checks performed by \texttt{tower\_kirchberg.py};
+Table~\ref{VIII:tab:battery} lists the exact checks performed by \texttt{tower\_kirchberg.py};
 the letters match the docstring of the script and the references in the text. The
 levels $k\le3$ of the $K_4$ tower are the same ones used in [Ch.~\ref{chap:V}] and [Ch.~\ref{chap:VII}], so every
 number here can be compared line by line with the batteries of those papers.
@@ -678,9 +678,9 @@ number here can be compared line by line with the batteries of those papers.
 \toprule
 check & levels & result\\
 \midrule
-(S) both factorizations \\eqref{VIII:eq:factor}, $c=q-1$ & $k\le3$ & exact\\
+(S) both factorizations \eqref{VIII:eq:factor}, $c=q-1$ & $k\le3$ & exact\\
 (K) $\mathrm{SNF}(I-B_k^{\,t})$: one zero; torsion $=\Jac(Y_k)$; $\ord_2=7,18,41$; odd part $\Z/3$ & $k\le3$ & exact\\
-(W) $c=q$: no zero invariant, finite $K_0\ne\Z\oplus\Jac$ & $k\le3$ & Rem.~\\ref{VIII:rem:cq}\\
+(W) $c=q$: no zero invariant, finite $K_0\ne\Z\oplus\Jac$ & $k\le3$ & Rem.~\ref{VIII:rem:cq}\\
 (C) $\shadow\tau$: morphism, surjective, bijective on in-arcs, not on out-arcs & $1\to2$, $2\to3$ & exact\\
 (U) $\Tup(I-B_k^{\,t})=(I-B_{k+1}^{\,t})\Tup$;\ $\Tup\mathbf1=\mathbf1$;\ $\Tup(\mathbf1,-\mathbf1)=(\mathbf1,-\mathbf1)$ & $1\to2$, $2\to3$ & exact\\
 (D) $\Tdn(I-B_{k+1})=(I-B_k)\Tdn$; transposed version fails; $\Tdn(\mathbf1,-c\mathbf1)=q(\mathbf1,-c\mathbf1)$ & $1\to2$, $2\to3$ & exact\\
@@ -706,9 +706,9 @@ each line is itself a proof; the general statements are proved in the text.}
 Unrefereed preprint. Every numbered statement is proved; the $C^*$-algebraic inputs are
 quoted with flagged citations in the Status paragraph, and Kirchberg--Phillips
 classification is quoted only for an existence statement that nothing depends on
-(Remark~\\ref{VIII:rem:down}). Theorem~\\ref{VIII:thm:ptorsion} was found by machine and then proved;
+(Remark~\ref{VIII:rem:down}). Theorem~\ref{VIII:thm:ptorsion} was found by machine and then proved;
 it is stated for $q=p$ prime, and for composite $q$ only the inclusion
-$\ker\ta\subseteq\Jac[q]$ is claimed. Remark~\\ref{VIII:rem:corrections} records the
+$\ker\ta\subseteq\Jac[q]$ is claimed. Remark~\ref{VIII:rem:corrections} records the
 corrections to the specification that prompted the paper. Bibliographic data of
 \cite{R,Ph,Ro,RS} were checked against publisher or indexing pages (titles, venues,
 years, volumes); page ranges are as commonly cited.

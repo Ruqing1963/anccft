@@ -32,7 +32,7 @@ Python integers, via the Paper X helper).  Run: python tower_lambda.py
 import sys, os, time, collections
 from fractions import Fraction
 
-PAPER10 = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Paper 10")
+PAPER10 = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..", "papers", "10")
 sys.path.insert(0, PAPER10)
 import pgl3_building as pb
 

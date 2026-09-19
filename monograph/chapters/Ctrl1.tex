@@ -46,12 +46,12 @@ This note contributes one inequality. It is elementary, and its only merit is th
 appears not to have been written down beyond its first instance.
 
 \paragraph{The bound.} Write $p_k=p_k(\Lambda)=\sum_{i}\lambda_i^{k}$ for the $k$-th power
-sum of the poles and $[x]_+=\max(x,0)$. Theorem~\\ref{Ctrl1:thm:main} states
+sum of the poles and $[x]_+=\max(x,0)$. Theorem~\ref{Ctrl1:thm:main} states
 \begin{equation}\label{Ctrl1:eq:bound}
 s\;\ge\;\Bigl\lceil\;\max_{k\ge1}\;\frac{[-p_k]_+}{\rho^{k}}\;\Bigr\rceil .
 \end{equation}
 
-\paragraph{What is already known.} The case $k=1$ of \\eqref{Ctrl1:eq:bound} is published.
+\paragraph{What is already known.} The case $k=1$ of \eqref{Ctrl1:eq:bound} is published.
 Benvenuti \cite[Thm.~4.7]{Ben20ELA} proves $N\ge N_D+\sum_{|s|<1}m(s)+\zeta$ with
 $\zeta=\lceil-m_{\mathcal R_1}-\sum_{|s|<1}s\,m(s)\rceil$ when that quantity is positive,
 and the proof is exactly the $k=1$ argument: ``since the trace of a nonnegative matrix is
@@ -60,7 +60,7 @@ than $1$, then their number is not lesser than $\zeta$''
 \cite[pp.~379--380]{Ben20ELA}. The companion paper \cite{Ben20SCL} transfers the same
 quantity to the realization dimension. We have found no power sum beyond the first
 anywhere in this literature: not in \cite{Ben20ELA,Ben20SCL}, not in the digraph bound of
-Nagy and Matolcsi \cite{NM03}, not in \cite{BF04,TS25}. Section~\\ref{Ctrl1:sec:improve} shows
+Nagy and Matolcsi \cite{NM03}, not in \cite{BF04,TS25}. Section~\ref{Ctrl1:sec:improve} shows
 that $k=2$ already does strictly better.
 
 \paragraph{What we do not claim.} Two disclaimers, stated here rather than buried.
@@ -71,9 +71,9 @@ $n=2^{m}+1$ and minimal positive realization of dimension $N=2^{m+1}=2n-2$, so r
 exactly what they already achieve; and Nagy and Matolcsi \cite{NM03} obtain \emph{unbounded}
 ratios, with $n=4$ fixed and $N\ge m+1$ for arbitrary $m$.
 \item[(b)] Worse, ratio $2$ is a hard ceiling for the present method.
-Since $p_k\ge-\sum_i|\lambda_i|^{k}\ge-n\rho^{k}$, the right-hand side of \\eqref{Ctrl1:eq:bound}
-never exceeds $n$, so \\eqref{Ctrl1:eq:bound} can never prove more than $N\le 2n$
-(Proposition~\\ref{Ctrl1:prop:ceiling}). The bound is therefore complementary to the combinatorial
+Since $p_k\ge-\sum_i|\lambda_i|^{k}\ge-n\rho^{k}$, the right-hand side of \eqref{Ctrl1:eq:bound}
+never exceeds $n$, so \eqref{Ctrl1:eq:bound} can never prove more than $N\le 2n$
+(Proposition~\ref{Ctrl1:prop:ceiling}). The bound is therefore complementary to the combinatorial
 bounds of \cite{NM03}, not a competitor to them.
 \end{enumerate}
 What we do claim is (i) the inequality for $k\ge2$, (ii) that it strictly improves the
@@ -110,7 +110,7 @@ from the poles alone; in the realization setting it holds because $\rho(H)$ is a
 \cite[Lem.~7]{BF04}.
 
 \begin{proposition}[$k=1$ is Benvenuti's $\zeta$]\label{Ctrl1:prop:k1}
-At $k=1$, \\eqref{Ctrl1:eq:bound} reads $s\ge\lceil-p_1(\Lambda)/\rho\rceil$, which after
+At $k=1$, \eqref{Ctrl1:eq:bound} reads $s\ge\lceil-p_1(\Lambda)/\rho\rceil$, which after
 normalising $\rho=1$ and splitting $\Lambda$ into its dominant and non-dominant parts is
 the quantity $\zeta$ of {\rm\cite[Thm.~4.7]{Ben20ELA}}.
 \end{proposition}
@@ -124,8 +124,8 @@ of its positive part is $\zeta$.
 \end{proof}
 
 \begin{proposition}[Ceiling of the method]\label{Ctrl1:prop:ceiling}
-The right-hand side of \\eqref{Ctrl1:eq:bound} is at most $n$; consequently
-Theorem~\\ref{Ctrl1:thm:main} can never certify $N>2n$.
+The right-hand side of \eqref{Ctrl1:eq:bound} is at most $n$; consequently
+Theorem~\ref{Ctrl1:thm:main} can never certify $N>2n$.
 \end{proposition}
 
 \begin{proof}
@@ -147,7 +147,7 @@ For $\M_m(\theta)$:
 \begin{enumerate}
 \item[(i)] the lower bound of {\rm\cite[Thm.~4.7]{Ben20ELA}} gives $N\ge 2m+1=n$, i.e.\ it is
 vacuous, because $\zeta=0$;
-\item[(ii)] Theorem~\\ref{Ctrl1:thm:main} at $k=2$ gives
+\item[(ii)] Theorem~\ref{Ctrl1:thm:main} at $k=2$ gives
 $s\ge\lceil 2m\theta^{2}-1\rceil$, hence $N\ge 2m+1+\lceil2m\theta^{2}-1\rceil$, which
 exceeds $n$ whenever $\theta^{2}>1/2m$;
 \item[(iii)] the upper bound of {\rm\cite[Thm.~4.4]{Ben20ELA}} gives $N\le 4m$;
@@ -169,8 +169,8 @@ $\lceil2m\theta^{2}-1\rceil\ge2m-1$, i.e.\ $2m\theta^{2}-1>2m-2$, i.e.\
 $\theta^{2}>1-1/2m$.
 \end{proof}
 
-Table~\\ref{Ctrl1:tab:improve} shows the three quantities. The criterion $\theta^{2}>1-1/2m$ of
-Theorem~\\ref{Ctrl1:thm:improve}(iv) predicts exactly which rows close: it holds for
+Table~\ref{Ctrl1:tab:improve} shows the three quantities. The criterion $\theta^{2}>1-1/2m$ of
+Theorem~\ref{Ctrl1:thm:improve}(iv) predicts exactly which rows close: it holds for
 $\theta=9/10$ only at $m=1$ ($0.81>0.5$) and fails at $m=4$ ($0.81<0.875$), where the bound
 indeed falls one short of the upper bound; it holds throughout for $\theta=99/100$ from
 $m=2$ on and for $\theta=999/1000$, and there the gap closes and $N$ is determined.
@@ -179,7 +179,7 @@ $m=2$ on and for $\theta=999/1000$, and there the gap closes and $N$ is determin
 \centering\small
 \begin{tabular}{rrrrrr}
 \toprule
-$\theta$ & $m$ & $n$ & \cite[Thm.~4.7]{Ben20ELA} & Theorem~\\ref{Ctrl1:thm:main} & \cite[Thm.~4.4]{Ben20ELA}\\
+$\theta$ & $m$ & $n$ & \cite[Thm.~4.7]{Ben20ELA} & Theorem~\ref{Ctrl1:thm:main} & \cite[Thm.~4.4]{Ben20ELA}\\
  & & & lower & lower & upper\\
 \midrule
 $9/10$      &  1 &  3 &  3 &  \textbf{4} &  4\\
@@ -206,7 +206,7 @@ exact.}
 Let $\M_m=\{1\}\cup m\cdot\{i,-i\}$, all of modulus one, $n=2m+1$.
 
 \begin{theorem}\label{Ctrl1:thm:sharp}
-$p_2(\M_m)=1-2m$, so Theorem~\\ref{Ctrl1:thm:main} gives $s\ge2m-1$ and $N\ge4m$. The bound is
+$p_2(\M_m)=1-2m$, so Theorem~\ref{Ctrl1:thm:main} gives $s\ge2m-1$ and $N\ge4m$. The bound is
 attained: if $C_4$ is the $4$-cycle permutation matrix, with characteristic polynomial
 $x^{4}-1$ and spectrum $\{1,i,-1,-i\}$, then $C_4^{\oplus m}$ is nonnegative of size $4m$
 and contains $\M_m$ in its spectrum. Hence $N_{\min}=4m=2n-2$.
@@ -223,14 +223,14 @@ Two caveats. First, for $m\ge2$ the multiset $\M_m$ violates the standing hypoth
 here $m(1)=1$ while the dominant multiplicity is $m$. The formula of
 \cite[Thm.~4.1]{Ben20ELA} nevertheless evaluates to $N_D=4m$ on $\M_m$, so the conclusion
 $N_{\min}=4m$ is also reachable by that route, by an argument through roots of unity rather
-than through traces; we note this so that Theorem~\\ref{Ctrl1:thm:sharp} is not mistaken for a new
-determination. It is a sharpness check on \\eqref{Ctrl1:eq:bound}, not a new value of $N$. Second,
+than through traces; we note this so that Theorem~\ref{Ctrl1:thm:sharp} is not mistaken for a new
+determination. It is a sharpness check on \eqref{Ctrl1:eq:bound}, not a new value of $N$. Second,
 $4m=2n-2$ is the Benvenuti--Farina ratio of \cite{BF99}, as recalled in
-Section~\\ref{Ctrl1:sec:intro}.
+Section~\ref{Ctrl1:sec:intro}.
 \end{remark}
 
 \begin{remark}[Tutorial Example 8]\label{Ctrl1:rem:ex8}
-For the poles $\{1,\pm0.9i\}$ of \cite[Ex.~8]{BF04}, $p_2=-31/50$ and \\eqref{Ctrl1:eq:bound}
+For the poles $\{1,\pm0.9i\}$ of \cite[Ex.~8]{BF04}, $p_2=-31/50$ and \eqref{Ctrl1:eq:bound}
 gives $s\ge1$, i.e.\ $N\ge4$. This is attained by the nonnegative circulant with first row
 $(0,\tfrac{19}{20},0,\tfrac1{20})$, whose characteristic polynomial is
 $(x-1)(x+1)(x^{2}+\tfrac{81}{100})$: the hidden eigenvalue is $-1$. The example in
@@ -245,9 +245,9 @@ Kim, Ormes and Roush over $\Z$ \cite{KOR00}, one asks whether $\Lambda$ is the \
 spectrum of a nonnegative matrix; the matrix may be enlarged, but only by appending
 \emph{zeros}. Zeros contribute nothing to any power sum, so the trace conditions
 $\operatorname{tr}_k\ge0$ must already hold for $\Lambda$ itself: they are a genuine
-obstruction, not a counting device, and no lower bound of the shape \\eqref{Ctrl1:eq:bound} on the
+obstruction, not a counting device, and no lower bound of the shape \eqref{Ctrl1:eq:bound} on the
 size of the dilation can exist. Equivalently: in that category the analogue of
-Theorem~\\ref{Ctrl1:thm:main} is the statement $p_k(\Lambda)\ge0$, with no $s$ in it.
+Theorem~\ref{Ctrl1:thm:main} is the statement $p_k(\Lambda)\ge0$, with no $s$ in it.
 
 This is the exact point at which results from symbolic dynamics fail to transfer to the
 positive realization problem. A negative $p_2$ closes the fixed-nonzero-spectrum problem
@@ -261,7 +261,7 @@ the freedom to add nonzero eigenvalues.
 \section{Verification}\label{Ctrl1:sec:battery}
 
 The script \texttt{hidden\_eigs.py} accompanying this note runs the checks of
-Table~\\ref{Ctrl1:tab:battery} in $23$\,s, all passing; its output is archived as
+Table~\ref{Ctrl1:tab:battery} in $23$\,s, all passing; its output is archived as
 \texttt{hidden\_eigs\_output.txt}. Arithmetic is exact rational throughout; the only
 floating-point quantity anywhere is the spectral radius in check (T), and that row is
 labelled accordingly.
@@ -272,13 +272,13 @@ labelled accordingly.
 \toprule
 key & check & mode\\
 \midrule
-(T) & Theorem~\\ref{Ctrl1:thm:main} holds on $120$ random nonnegative integer matrices, $\Lambda$ a rational factor & exact $+$ numeric $\rho$\\
+(T) & Theorem~\ref{Ctrl1:thm:main} holds on $120$ random nonnegative integer matrices, $\Lambda$ a rational factor & exact $+$ numeric $\rho$\\
 (K) & at $k=1$ the bound equals $\zeta$ of \cite[Thm.~4.7]{Ben20ELA} & exact\\
-(I) & $k=2$ strictly exceeds \cite[Thm.~4.7]{Ben20ELA} in $15/15$ instances (Table~\\ref{Ctrl1:tab:improve}) & exact\\
-(S) & Theorem~\\ref{Ctrl1:thm:sharp}: bound $=4m$ attained by $C_4^{\oplus m}$, $m\le32$ & exact\\
-(E) & Remark~\\ref{Ctrl1:rem:ex8}: bound $=1$, attained by an explicit rational circulant & exact\\
-(C) & Proposition~\\ref{Ctrl1:prop:ceiling}: the bound never exceeds $n$, on $300$ random pole sets & exact\\
-(Z) & appending zeros leaves every power sum unchanged (Section~\\ref{Ctrl1:sec:bh}) & exact\\
+(I) & $k=2$ strictly exceeds \cite[Thm.~4.7]{Ben20ELA} in $15/15$ instances (Table~\ref{Ctrl1:tab:improve}) & exact\\
+(S) & Theorem~\ref{Ctrl1:thm:sharp}: bound $=4m$ attained by $C_4^{\oplus m}$, $m\le32$ & exact\\
+(E) & Remark~\ref{Ctrl1:rem:ex8}: bound $=1$, attained by an explicit rational circulant & exact\\
+(C) & Proposition~\ref{Ctrl1:prop:ceiling}: the bound never exceeds $n$, on $300$ random pole sets & exact\\
+(Z) & appending zeros leaves every power sum unchanged (Section~\ref{Ctrl1:sec:bh}) & exact\\
 \bottomrule
 \end{tabular}
 \caption{The verification battery (\texttt{hidden\_eigs.py}), $7/7$ passing.}
@@ -293,7 +293,7 @@ oscillatory.
 
 \section{Scope}\label{Ctrl1:sec:scope}
 
-\emph{Established here.} Theorem~\\ref{Ctrl1:thm:main} for all $k$; its coincidence with
+\emph{Established here.} Theorem~\ref{Ctrl1:thm:main} for all $k$; its coincidence with
 \cite[Thm.~4.7]{Ben20ELA} at $k=1$; strict improvement and an exact determination of
 $N_{\min}$ on $\M_m(\theta)$ for $\theta^{2}>1-1/2m$; sharpness on $\M_m$ and on
 \cite[Ex.~8]{BF04}; the ceiling $N\le2n$; the structural reason the bound has no analogue
@@ -302,9 +302,9 @@ in \cite{BH91,KOR00}.
 \emph{Open.} (a) Whether power sums can be combined with the cone criterion \cite{BF04} or
 with the digraph bound \cite{NM03} to pass the ratio-$2$ ceiling. (b) Whether the
 Johnson--Loewy--London inequalities \cite{LoewyLondon78}, which mix power sums of different
-orders, give a bound not implied by \\eqref{Ctrl1:eq:bound}; we have not investigated this and it
+orders, give a bound not implied by \eqref{Ctrl1:eq:bound}; we have not investigated this and it
 is the obvious next step. (c) Whether the bound is ever tight outside the families of
-Sections~\\ref{Ctrl1:sec:improve}--\\ref{Ctrl1:sec:sharp}; it was not tight in any of our $120$ random
+Sections~\ref{Ctrl1:sec:improve}--\ref{Ctrl1:sec:sharp}; it was not tight in any of our $120$ random
 instances.
 
 \emph{Not claimed.} Ratio $2$, which is \cite{BF99}; unbounded ratios, which are
@@ -312,10 +312,10 @@ instances.
 
 \section*{Provenance of this chapter}
 
-Unrefereed preprint. Theorem~\\ref{Ctrl1:thm:main} is elementary and its proof is complete above.
-The bounds of \cite{Ben20ELA} quoted for comparison in Table~\\ref{Ctrl1:tab:improve} are
+Unrefereed preprint. Theorem~\ref{Ctrl1:thm:main} is elementary and its proof is complete above.
+The bounds of \cite{Ben20ELA} quoted for comparison in Table~\ref{Ctrl1:tab:improve} are
 evaluated by us from the published statements of Theorems 4.4 and 4.7 of that paper and are
 reproduced in the script; we have not reproved them. The symbolic-dynamics facts in
-Section~\\ref{Ctrl1:sec:bh} are quoted from \cite{LM95,BH91,KOR00}. We searched the literature for
+Section~\ref{Ctrl1:sec:bh} are quoted from \cite{LM95,BH91,KOR00}. We searched the literature for
 a power-sum bound with $k\ge2$ and found none; a search cannot establish a negative, and we
 state this as the limit of our knowledge.
