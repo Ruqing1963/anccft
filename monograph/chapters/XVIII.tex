@@ -1,0 +1,284 @@
+% generated from Paper 18/anccft18.tex
+\chapter{Algorithmic non-commutative class field theory, XVIII: the unitary remainder in rank $d$}\label{chap:XVIII}
+\chaptermark{XVIII}
+\begin{chapterabstract}
+Paper~XV proved that for an $\Atilde2$ complex of order $q$ the geodesic edge flow
+satisfies $\LE\LE^{\mathsf T}=qI+(q^2-q)T^{\mathsf T}T$, so that its remainder is
+$\sqrt q$ times an orthogonal matrix and the parahoric zeros of the edge zeta lie on
+$|u|=q^{-1/2}$ whether or not the complex is Ramanujan; whether this survives in higher
+rank was left open. It does, with the exponent $(d-1)/2$, and the proof is one line of
+projective geometry. In an $\Atilde d$ complex the types force the tails of the edges into
+a vertex $y$ to be the \emph{hyperplanes} of the link $\PG(d,q)$ and the successors to be
+its \emph{points}, and $\{x,y,z\}$ is a simplex exactly when the point $z$ lies in the
+hyperplane $x$. Since two distinct hyperplanes of $\PG(d,q)$ always meet in codimension
+two --- for every $d$ --- inclusion--exclusion gives a count that does not depend on the
+pair, and
+\[
+\LE\LE^{\mathsf T}=q^{d-1}I+q^{d-1}(q-1)\,T^{\mathsf T}T,\qquad
+\LE^{\mathsf T}\LE=q^{d-1}I+q^{d-1}(q-1)\,S^{\mathsf T}S,
+\]
+which is Paper~XV's identity at $d=2$. Two unconditional consequences follow with no
+hypothesis on the complex: \emph{exactly} $|E|-n$ singular values of $\LE$ equal
+$q^{(d-1)/2}$, and $\LE$ restricts to a bijective $q^{(d-1)/2}$-isometry from $\ker S$ onto
+$\ker T$ (the mixed identities $T\LE=q^{d}S$ and $S\LE^{\mathsf T}=q^{d}T$). On any
+subspace of $\ker S\cap\ker T$ invariant under $\LE$ and $\LE^{\mathsf T}$ the remainder
+is therefore $q^{(d-1)/2}$ times an orthogonal matrix and its zeros lie on
+$|u|=q^{-(d-1)/2}$. The typing is not a convention one may vary: run the same construction
+on lines against planes in $\PG(3,q)$ and the count takes two values, because two lines
+meet or are skew. Four checks, exhaustive in $\PG(d,q)$ for $d\le5$ and reproducing
+Paper~XV on $Y_{21}$, $Y_{24}$, $Y_{42}$. What is \emph{not} done: the invariant subspace
+itself for $d\ge3$, and the worked $\Atilde3$ example, for want of a thick $\Atilde3$
+complex.
+\end{chapterabstract}
+
+\section{The link, and what the types force}\label{XVIII:sec:link}
+
+Let $X$ be an $\Atilde d$ complex of order $q$ in the sense of [Ch.~\ref{chap:X}, Def.~1.1] generalised to
+rank $d$: a pure $d$-dimensional simplicial complex with vertices typed by $\Z/(d+1)$,
+one vertex of each type in every chamber, and the link of every vertex isomorphic to the
+flag complex of $\PG(d,q)$. Write $n$ for the number of vertices, $E$ for the set of
+type-increasing directed edges ($\mathrm{type}(y)=\mathrm{type}(x)+1$ for $x\to y$), and
+$S,T\in\{0,1\}^{\,n\times E}$ for the tail and head incidence matrices. The geodesic edge
+flow is
+\[
+\LE\bigl((x\to y),(y\to z)\bigr)=1\iff\{x,y,z\}\ \text{is not a simplex of }X,
+\]
+the rank-$d$ form of [Ch.~\ref{chap:XV}, Def.~1.1]; for $d=2$ a $2$-simplex is a chamber and this is
+[Ch.~\ref{chap:XV}, Def.~1.1] verbatim, including the correction recorded there.
+
+\begin{lemma}[What the typing forces]\label{XVIII:lem:typing}
+Fix a vertex $y$ and identify its link with the flag complex of $\PG(d,q)$, a neighbour of
+type $\mathrm{type}(y)+i$ corresponding to a subspace of vector dimension $i$
+$(1\le i\le d)$. Then the tails of the edges into $y$ are exactly the \emph{hyperplanes}
+of $\PG(d,q)$, the heads of the edges out of $y$ are exactly its \emph{points}, and for
+such $x$ and $z$ the set $\{x,y,z\}$ is a simplex of $X$ if and only if the point $z$ lies
+in the hyperplane $x$.
+\end{lemma}
+
+\begin{proof}
+A tail $x$ has $\mathrm{type}(x)=\mathrm{type}(y)-1\equiv\mathrm{type}(y)+d$, so $i=d$ and
+$x$ is a subspace of vector dimension $d$, a hyperplane; a successor $z$ has
+$\mathrm{type}(z)=\mathrm{type}(y)+1$, so $i=1$ and $z$ is a point. Two vertices of the
+link span a simplex with $y$ precisely when they are incident in the link, which for a
+point and a hyperplane means containment.
+\end{proof}
+
+That one paragraph is the whole difference between rank two and rank $d$, and it is what
+makes the rank-two count survive: of all the pairings of types that one might have had to
+handle, the typing selects the single pairing whose intersection behaviour is uniform.
+
+\section{The identity}\label{XVIII:sec:identity}
+
+Write $\theta_j=\theta_j(q)=(q^{\,j+1}-1)/(q-1)$ for the number of points of $\PG(j,q)$.
+
+\begin{theorem}[Unitarity identity in rank $d$]\label{XVIII:thm:main}
+For every $\Atilde d$ complex of order $q$, $d\ge2$,
+\[
+\LE\LE^{\mathsf T}=q^{\,d-1}I+q^{\,d-1}(q-1)\,T^{\mathsf T}T,
+\qquad
+\LE^{\mathsf T}\LE=q^{\,d-1}I+q^{\,d-1}(q-1)\,S^{\mathsf T}S .
+\]
+\end{theorem}
+
+\begin{proof}
+$(\LE\LE^{\mathsf T})(e,e')$ counts the common successors of $e$ and $e'$, which is zero
+unless $e$ and $e'$ have the same head $y$; so the matrix is block diagonal by head, and
+$T^{\mathsf T}T$ is the indicator of ``same head''. Fix $y$ and use
+Lemma~\ref{XVIII:lem:typing}: the block is $BB^{\mathsf T}$ with $B[x][z]=1$ iff the point $z$
+is not in the hyperplane $x$. On the diagonal, the number of points off a hyperplane is
+$\theta_d-\theta_{d-1}=q^{\,d}$. Off the diagonal, two \emph{distinct} hyperplanes of
+$\PG(d,q)$ meet in a subspace of codimension two, which carries $\theta_{d-2}$ points, so
+by inclusion--exclusion the number of points on neither is
+\[
+\theta_d-2\theta_{d-1}+\theta_{d-2}
+=(\theta_d-\theta_{d-1})-(\theta_{d-1}-\theta_{d-2})
+=q^{\,d}-q^{\,d-1}=q^{\,d-1}(q-1),
+\]
+independent of the pair and of $d$. Hence each block is
+$q^{\,d}I+q^{\,d-1}(q-1)(J-I)=q^{\,d-1}I+q^{\,d-1}(q-1)J$, which is the first identity.
+The second is the same computation in the dual plane: two distinct points of $\PG(d,q)$
+span a line, the hyperplanes containing both are the $\theta_{d-2}$ hyperplanes containing
+that line, and the count of hyperplanes missing both points is again $q^{\,d-1}(q-1)$.
+\end{proof}
+
+\begin{remark}[Reduction to Paper XV]\label{XVIII:rem:d2}
+At $d=2$ the constants are $q^{\,d-1}=q$ and $q^{\,d-1}(q-1)=q^2-q$, so
+Theorem~\ref{XVIII:thm:main} is [Ch.~\ref{chap:XV}, Thm.~2.1] and its proof is [Ch.~\ref{chap:XV}, Lem.~1.3] with the
+counting done once instead of case by case. Check~(A) verifies the two identities, with
+these constants, on the complexes $Y_{21}$, $Y_{24}$ and $Y_{42}$ of [Ch.~\ref{chap:X}, Constr.~1.4].
+\end{remark}
+
+\begin{proposition}[The mixed identities]\label{XVIII:prop:mixed}
+$T\LE=q^{\,d}S$ and $S\LE^{\mathsf T}=q^{\,d}T$.
+\end{proposition}
+
+\begin{proof}
+$(T\LE)(v,f)$ counts the edges $e$ with head $v$ and $e\to f$; since $e\to f$ forces
+$\mathrm{head}(e)=\mathrm{tail}(f)$, the entry vanishes unless $v=\mathrm{tail}(f)$, and
+then it counts the hyperplanes of the link of $v$ not containing the point
+$\mathrm{head}(f)$, of which there are $\theta_d-\theta_{d-1}=q^{\,d}$. The second
+identity is dual.
+\end{proof}
+
+\begin{corollary}[Unconditional consequences]\label{XVIII:cor:uncond}
+For every $\Atilde d$ complex of order $q$:
+\begin{enumerate}
+\item[(i)] exactly $|E|-n$ singular values of $\LE$ equal $q^{(d-1)/2}$;
+\item[(ii)] $\LE$ maps $\ker S$ into $\ker T$, bijectively, and
+$\|\LE w\|^2=q^{\,d-1}\|w\|^2$ there; symmetrically $\LE^{\mathsf T}$ maps $\ker T$ onto
+$\ker S$ as a $q^{(d-1)/2}$-isometry.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(i) $\LE\LE^{\mathsf T}-q^{\,d-1}I=q^{\,d-1}(q-1)T^{\mathsf T}T$ has rank
+$\rank T=n$, every vertex being the head of some edge; so $q^{\,d-1}$ is an eigenvalue of
+$\LE\LE^{\mathsf T}$ of multiplicity exactly $|E|-n$. (ii) For $w\in\ker S$,
+$T\LE w=q^{\,d}Sw=0$ by Proposition~\ref{XVIII:prop:mixed}, and
+$\|\LE w\|^2=\langle\LE^{\mathsf T}\LE w,w\rangle=q^{\,d-1}\|w\|^2$ by
+Theorem~\ref{XVIII:thm:main}; both spaces have dimension $|E|-n$, so the isometry is onto.
+\end{proof}
+
+\begin{corollary}[The critical circle in rank $d$]\label{XVIII:cor:circle}
+Let $W\subseteq\ker S\cap\ker T$ be invariant under $\LE$ and $\LE^{\mathsf T}$ and put
+$R=\LE|_W$. Then $RR^{\mathsf T}=R^{\mathsf T}R=q^{\,d-1}I_W$, so $q^{-(d-1)/2}R$ is
+orthogonal and every root of $G(u)=\det(I-uR)$ lies on $|u|=q^{-(d-1)/2}$. No hypothesis
+on the complex --- in particular no Ramanujan hypothesis --- is used.
+\end{corollary}
+
+\begin{proof}
+Immediate from Theorem~\ref{XVIII:thm:main}, since $T^{\mathsf T}T$ and $S^{\mathsf T}S$ vanish
+on $W$; an orthogonal matrix has all eigenvalues of modulus one.
+\end{proof}
+
+\begin{remark}[The typing is not a convention]\label{XVIII:rem:typing}
+The uniformity in Theorem~\ref{XVIII:thm:main} is a property of the hyperplane/point pairing, not
+of $\PG(d,q)$ in general. Run the same construction on lines against planes in $\PG(3,q)$:
+two distinct lines either meet or are skew, so the planes containing both number $1$ or
+$0$, and the off-diagonal of $BB^{\mathsf T}$ takes two values differing by one --- $9$ and
+$10$ for $q=2$, $32$ and $33$ for $q=3$, $144$ and $145$ for $q=5$ (check~(C)). Had the
+types of an $\Atilde d$ complex put intermediate dimensions against each other, the
+correction term would have been a sum over the classes of the Grassmann association scheme
+instead of a multiple of $T^{\mathsf T}T$, and the remainder would have carried several
+moduli rather than one. Lemma~\ref{XVIII:lem:typing} is what rules this out.
+\end{remark}
+
+\section{Verification}\label{XVIII:sec:battery}
+
+The script \texttt{ad\_unitarity.py} runs the four checks of Table~\ref{XVIII:tab:battery} in
+about three seconds; its output is archived as \texttt{ad\_unitarity\_output.txt}.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{clc}
+\toprule
+key & check & mode\\
+\midrule
+(H) & $BB^{\mathsf T}=B^{\mathsf T}B=q^{d-1}I+q^{d-1}(q-1)J$ in $\PG(d,q)$, $14$ pairs $(d,q)$ & exact\\
+(C) & lines against planes in $\PG(3,q)$: the off-diagonal takes two values & exact\\
+(A) & the identities of \S\ref{XVIII:sec:identity} on $Y_{21},Y_{24},Y_{42}$, with $d=2$ & exact\\
+(S) & exactly $|E|-n$ singular values of $\LE$ equal $q^{(d-1)/2}$ & numeric\\
+\bottomrule
+\end{tabular}
+\caption{The verification battery, $4/4$.}
+\label{XVIII:tab:battery}
+\end{table}
+
+Check~(H) is exhaustive: for $d=2,3,4,5$ and $q=2,3,5,7,11$ with $\theta_d\le1300$ it
+forms the full point/hyperplane non-incidence matrix of $\PG(d,q)$ and both of its Gram
+matrices, and finds the diagonal constantly $q^{\,d}$ and the off-diagonal constantly
+$q^{\,d-1}(q-1)$ --- $14$ instances, including $\PG(5,3)$ on $364$ points and $\PG(4,5)$ on
+$781$. Check~(A) builds the thick $\Atilde2$ complexes of [Ch.~\ref{chap:X}] and verifies
+Theorem~\ref{XVIII:thm:main}, Proposition~\ref{XVIII:prop:mixed} and
+Corollary~\ref{XVIII:cor:uncond}(ii) on each; check~(S) finds $126$, $144$ and $252$ singular
+values equal to $\sqrt2$ out of $147$, $168$ and $294$, which are exactly $|E|-n$.
+
+\section{Status, scope, corrections}\label{XVIII:sec:scope}
+
+\emph{Proved.} Lemma~\ref{XVIII:lem:typing}, Theorem~\ref{XVIII:thm:main},
+Proposition~\ref{XVIII:prop:mixed} and Corollary~\ref{XVIII:cor:uncond} for every $\Atilde d$ complex
+of order $q$, $d\ge2$; Corollary~\ref{XVIII:cor:circle} for every such complex admitting an
+invariant $W\subseteq\ker S\cap\ker T$.
+
+\emph{Not proved, and this is the gap.} The existence of that $W$. For $d=2$ it is
+[Ch.~\ref{chap:XV}, Thm.~2.1], obtained from the intertwining $\LE\Psi=\Psi C'$ with
+$\Psi=[S^{\mathsf T}\ T^{\mathsf T}\ M^{\mathsf T}]$ and the cubic Hecke pencil.
+Corollary~\ref{XVIII:cor:uncond} is what survives unconditionally: $\LE$ is already
+$q^{(d-1)/2}$ times an isometry from $\ker S$ onto $\ker T$, and only the passage from
+that pair of spaces to a single invariant one is missing.
+
+\begin{remark}[The candidate intertwiner in rank $d$]\label{XVIII:rem:psi}
+A chamber of an $\Atilde d$ complex has $d+1$ vertices, so an edge $e=(x\to y)$ lying in a
+chamber determines $d-1$ further vertices, one of each type
+$\mathrm{type}(y)+1,\dots,\mathrm{type}(y)+d-1$. Let $M_i(v,e)$ be the number of chambers
+containing $e$ whose vertex of type $\mathrm{type}(y)+i$ is $v$, and put
+\[
+\Psi_d:=\bigl[\,S^{\mathsf T}\ \ T^{\mathsf T}\ \ M_1^{\mathsf T}\ \cdots\
+M_{d-1}^{\mathsf T}\,\bigr]\in\Z^{\,|E|\times(d+1)n},
+\]
+so that $\Psi_2=[S^{\mathsf T}\ T^{\mathsf T}\ M^{\mathsf T}]$ is the intertwiner of
+[Ch.~\ref{chap:XV}, Thm.~2.1] and the block count $d+1$ matches the degree of the Hecke pencil. We record
+this as the natural candidate and do not claim it works: what must be shown is
+$\LE\Psi_d=\Psi_dC^{(d+1)}$ and $\LE^{\mathsf T}\Psi_d=\Psi_dC^{(d+1)\prime}$ for
+$(d+1)\times(d+1)$ block matrices, after which $W=(\operatorname{im}\Psi_d)^{\perp}$ would
+satisfy the hypothesis of Corollary~\ref{XVIII:cor:circle} and complete the argument. Both
+identities are entrywise \emph{local} --- each entry is a count inside the star of a single
+vertex --- so they can in principle be settled in $\PG(d,q)$ without a global complex, as
+Theorem~\ref{XVIII:thm:main} was.
+
+\emph{Added in proof.} That has now been carried out, in Paper XX. The local identity is a
+single flag count: in $\PG(d,q)$ the number of complete flags $F$ with $F_{i+1}=V$ and $F_1$
+inside a hyperplane $H$ takes exactly two values, according as $V\subseteq H$ or not, and
+their difference $K_i=f(d-i)f(i+1)q^{\,i}/[i+1]_q$ depends on neither $V$ nor $H$; with
+$M_0=cT$ and $M_d=cS$ this gives
+$\LE M_i^{\mathsf T}=K_i(T^{\mathsf T}A_{i+1}-c_{i+1}^{-1}M_{i+1}^{\mathsf T})$ and, by the
+self-duality of $\PG(d,q)$, the mirror identity for $\LE^{\mathsf T}$. So $\Psi_d$ does work,
+Corollary~\ref{XVIII:cor:circle} is unconditional for every $d\ge2$, and at $d=2$ the
+characteristic polynomial of $C^{(3)}$ is the cubic Hecke pencil $x^3-A_1x^2+qA_2x-q^3$.
+\end{remark}
+
+\begin{remark}[Solved, open, impossible]\label{XVIII:rem:soi}
+\emph{Solved:} the counting half of [Ch.~\ref{chap:XV}, Rem.~6.1(d)] --- the exact decomposition of
+$\LE\LE^{\mathsf T}$ in rank $d$ --- with the exponent $(d-1)/2$ as anticipated.
+\emph{Open:} (a) \emph{closed in Paper XX} --- the invariant subspace
+$W_d=(\operatorname{im}\Psi_d)^{\perp}$ exists for every $d$, so
+Corollary~\ref{XVIII:cor:circle} is unconditional; what remains open there is the exact rank of
+$\Psi_d$, hence $\dim W_d$;
+(b) a thick $\Atilde3$ complex small enough to compute with, and with it the degree-four
+block companion and a worked example; (c) the exact certificate of the vertex Ramanujan
+property, the other half of [Ch.~\ref{chap:XV}, Rem.~6.1(d)], which this note does not touch.
+\emph{Impossible:} nothing new. In particular the mechanism does \emph{not} degenerate in
+higher rank, which was the outcome one might have expected from
+Remark~\ref{XVIII:rem:typing}.
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{XVIII:rem:corrections}
+Three. (1) The specification proposed building the identity from ``the typical counting
+formula for the intersection of $k$-dimensional with $(d-k)$-dimensional subspaces of
+$\PG(d,q)$''. No such formula is needed and none would serve: the typing of an $\Atilde d$
+complex puts hyperplanes against points (Lemma~\ref{XVIII:lem:typing}), and the only geometric
+input is that two distinct hyperplanes meet in codimension two. With intermediate
+dimensions the count is not constant (Remark~\ref{XVIII:rem:typing}), so an identity of the
+stated shape would be false. (2) The specification asked for
+$W_d=\bigcap_{i=0}^{d}\ker S_i$. Only two operators appear in Theorem~\ref{XVIII:thm:main}, and
+$\ker S\cap\ker T$ already carries $RR^{\mathsf T}=q^{\,d-1}I$; whether a smaller
+intersection is needed is a question about \emph{invariance}, not about the constant.
+(3) The predicted $R_dR_d^{\mathsf T}=q^{\,d-1}I$ and the circle $|u|=q^{-(d-1)/2}$ are
+correct, and are Corollary~\ref{XVIII:cor:circle}. The third task --- the explicit $\Atilde3$
+block companion and a verified example --- is not done: no thick $\Atilde3$ complex is at
+hand. The rank-two test complexes came from an exhaustive search for triangle
+presentations over $\PG(2,2)$ [Ch.~\ref{chap:X}, Constr.~1.4]; there is no comparably small search in
+rank three, and the known constructions of finite $\Atilde d$ quotients go through
+arithmetic lattices in $\mathrm{PGL}_{d+1}$ over a local field. That is a separate problem
+and we do not pretend to have solved it.
+\end{remark}
+
+\section*{Provenance of this chapter}
+
+Unrefereed preprint. Theorem~\ref{XVIII:thm:main} and everything derived from it are proved in
+full; the computations verify the geometric input exhaustively in $\PG(d,q)$ for $d\le5$
+and confirm that the rank-$d$ statement specialises at $d=2$ to the published identity on
+three complexes constructed independently. The one-line proof was found by asking which
+pair of types the $\Z/(d+1)$ grading actually selects, and the negative half of
+Remark~\ref{XVIII:rem:typing} was computed before the positive half was proved, to check that
+the question had teeth.

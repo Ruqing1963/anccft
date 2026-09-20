@@ -1,0 +1,37 @@
+﻿=== the odd cyclic class that does not exist ===
+
+=== (A) the crossed product of the Z-cover ===
+    K4  alpha=(1,0,0): cover vertices 4 x Z; deck action free on each fibre True; 4 orbits = |V| = 4
+    K4  alpha=(1,1,1): cover vertices 4 x Z; deck action free on each fibre True; 4 orbits = |V| = 4
+    K4  alpha=(1,2,0): cover vertices 4 x Z; deck action free on each fibre True; 4 orbits = |V| = 4
+  [ok]   (A) the deck group acts freely on the cover with exactly |V| orbits, so c_0(V x Z) x| Z = (+)_V K: K_1 = 0 and there is no odd pairing there   [3 covers] [exact]
+
+=== (P),(I) the exceptional zero and the integral form ===
+      case                 b_1  kappa_0  ||h||^2  kappa_0||h||^2   [T^0,T^1,T^2]
+      K4  alpha=(1,0,0)      3       16      1/2              8   [0, 0, -8]
+      K4  alpha=(1,1,1)      3       16        1             16   [0, 0, -16]
+      K4  alpha=(1,2,0)      3       16      3/2             24   [0, 0, -24]
+      K5  single edge        6      125      3/5             75   [0, 0, -75]
+      K5  triangle           6      125      7/5            175   [0, 0, -175]
+  [ok]   (P) the cleared voltage pencil has a double zero at t = 1 whose T^2 coefficient is -kappa_0||h_alpha||^2, i.e. kappa_0 times the L-invariant   [5 voltage classes] [exact]
+  [ok]   (I) kappa_0||h_alpha||^2 = a_c^t adj(G) a_c is an integer, adj(G) being the adjugate of the cycle Gram matrix   [5 voltage classes] [exact]
+
+=== (W) what the odd pairing actually sees ===
+      K4  alpha=(1,0,0)    winding number of det D on |t-1| = 1e-3: 2   (kappa_0||h||^2 = 8)
+      K4  alpha=(1,1,1)    winding number of det D on |t-1| = 1e-3: 2   (kappa_0||h||^2 = 16)
+      K4  alpha=(1,2,0)    winding number of det D on |t-1| = 1e-3: 2   (kappa_0||h||^2 = 24)
+      K5  single edge      winding number of det D on |t-1| = 1e-3: 2   (kappa_0||h||^2 = 75)
+      K5  triangle         winding number of det D on |t-1| = 1e-3: 2   (kappa_0||h||^2 = 175)
+  [ok]   (W) on a circle where the pencil is invertible the odd pairing is the winding number of det D, which equals the ORDER of the exceptional zero -- 2 for every voltage class -- and not its leading coefficient   [5 voltage classes] [numeric]
+
+=== (Q) the bilinearity obstruction ===
+      K4  alpha=(1,0,0)    b_1 = 3, rank adj(G) = 3, positive definite True  ->  not a product of two linear forms: True
+      K4  alpha=(1,1,1)    b_1 = 3, rank adj(G) = 3, positive definite True  ->  not a product of two linear forms: True
+      K4  alpha=(1,2,0)    b_1 = 3, rank adj(G) = 3, positive definite True  ->  not a product of two linear forms: True
+      K5  single edge      b_1 = 6, rank adj(G) = 6, positive definite True  ->  not a product of two linear forms: True
+      K5  triangle         b_1 = 6, rank adj(G) = 6, positive definite True  ->  not a product of two linear forms: True
+  [ok]   (Q) kappa_0||h||^2 is a positive definite quadratic form of rank b_1 >= 2 on H^1(Y;R); a product of two linear forms has a nonzero kernel, so no pair of LINEAR assignments alpha -> tau_alpha, alpha -> [u_alpha] into a rank-one K_1 can reproduce it   [5 voltage classes] [exact]
+
+=== battery summary ===
+  TOTAL 5/5 passed
+  elapsed 1s

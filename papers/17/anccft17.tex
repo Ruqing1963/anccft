@@ -1,0 +1,344 @@
+% Algorithmic non-commutative class field theory, XVII
+% Build: pdflatex anccft17 (x3)
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\XX}{\mathfrak{X}_\infty}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\ta}{\tau_*}
+\newcommand{\etp}{\eta^*}
+
+\title[Algorithmic non-commutative class field theory, XVII]
+{Algorithmic non-commutative class field theory, XVII:\\
+the tail norm at composite $q$, and the splitting of the limit $K$-module}
+
+\author{Ruqing Chen}
+\address{GUT Geoservice Inc., Rivi\`ere-Beaudette, Qu\'ebec, Canada}
+\email{ruqing@hotmail.com}
+\date{19 September 2026}
+\subjclass[2020]{Primary 05C25, 46L80; Secondary 11R23, 19K35, 05C50}
+\keywords{sandpile group, critical group, line digraph, Iwahori tower, tail norm,
+Kirchberg algebra, Pontryagin duality, $\varprojlim^1$}
+
+\begin{document}
+
+\begin{abstract}
+Paper~VIII proved that for $q=p$ prime the kernel of the tail norm on the Iwahori tower is
+the full $p$-torsion of the sandpile group, and deduced from the resulting torsion-freeness
+that the sequence $0\to\XX^\vee\to K_0(\cO_\infty)\to\Z[1/q]\to0$ splits. Both statements
+were left open for composite $q$, on the ground that $\Z/q\Z$ has zero divisors. That
+ground is illusory. The only ingredient of the prime proof that used primality is the rank
+identity $\rank_{\F_p}A_{k+1}=n_k$, and $A_{k+1}$ is the adjacency matrix of a line
+digraph, hence factors as $H^{\mathsf T}T$ through the head and tail incidence matrices;
+the rows of $H$ and of $T$ are non-empty and disjointly supported, so the rank is $n_k$
+\emph{in every characteristic}. With that, the two facts already known for all $q$ ---
+$|\ker\ta|=q^{\,n_k(q-1)-1}$ and $\ker\ta\subseteq\Jac(Y_{k+1})[q]$ --- close the problem
+by counting: the two orders are forced to agree, so
+\[
+\ker\bigl(\ta\colon\Jac(Y_{k+1})\to\Jac(Y_k)\bigr)=\Jac(Y_{k+1})[q]\cong(\Z/q)^{\,n_k(q-1)-1}
+\]
+for every $q\ge2$. Equality in the counting has a second consequence, which is new even
+for prime powers and is the sharpest statement here: \emph{every invariant factor of
+$\Jac(Y_{k+1})$ divisible by a prime $p\mid q$ is divisible by $p^{v_p(q)}$}. So at
+$q=4$ the group has no element of order exactly $2$, and the kernel of the tail norm
+strictly contains the $2$-torsion --- a structural phenomenon with no analogue in the
+prime case. Duality then gives the splitting for every $q$ in three lines and without
+identifying $\XX$: $\XX[q]=0$, so $\XX^\vee$ is $q$-divisible, so
+$\mathrm{Ext}^1(\Z[1/q],\XX^\vee)=\varprojlim^1(\XX^\vee,\times q)=0$. Six checks on
+eight towers ($q=2,3,4,5,6$, complete and incomplete bases, to level three), all exact;
+the $q=4$ towers could have falsified the divisibility statement and did not.
+\end{abstract}
+
+\maketitle
+
+\section{The rank is characteristic-free}\label{sec:rank}
+
+Throughout, $Y_0$ is a $(q+1)$-regular graph on $n$ vertices, $Y_1$ its non-backtracking
+directed-edge graph --- Eulerian $q$-regular on $n_1=n(q+1)$ vertices --- and
+$Y_{k+1}=L(Y_k)$ the line digraph, so $n_{k+1}=qn_k$, for $k\ge1$. The degeneracy maps
+$\tau$ (tail) and $\eta$ (head) send the vertex $i\to j$ of $Y_{k+1}$ to $i$ and to $j$
+respectively; $\ta$ is the pushforward and $\etp$ the pullback. We write
+\[
+r_k:=n_k(q-1)-1 ,
+\]
+$\Delta_k=qI-A_k$ for the out-Laplacian of $Y_k$, and $\Jac(Y_k)$ for the torsion of
+$\coker\Delta_k^{\mathsf T}$, so that $\coker\Delta_k^{\mathsf T}\cong\Z\oplus\Jac(Y_k)$.
+Three facts from the earlier papers hold for \emph{every} $q\ge2$ and will be used as
+stated:
+\begin{enumerate}
+\item[(i)] $\ta\etp=A_k$, $\etp\ta=A_{k+1}$ and $\ta\tau^*=\eta_*\etp=qI$
+      [V, Prop.~1.2];
+\item[(ii)] $\ta$ is surjective on Jacobians with $|\ker\ta|=q^{\,r_k}$
+      [V, Thm.~3.1(ii)], a restatement of the line-digraph recursion
+      $\kappa(Y_{k+1})=q^{\,r_k}\kappa(Y_k)$ [III, Thm.~2.1];
+\item[(iii)] $A_{k+1}$ acts on $\Jac(Y_{k+1})$ as multiplication by $q$, and consequently
+      $\ker\ta\subseteq\Jac(Y_{k+1})[q]$ [VIII, Prop.~2.7].
+\end{enumerate}
+Only (iii) needs a word: $\Delta_{k+1}=qI-A_{k+1}$ annihilates the cokernel, so $A_{k+1}=q$
+there, and by (i) $\ta x=0$ forces $A_{k+1}x=\etp\ta x=0$, i.e.\ $qx=0$.
+
+What was available only for $q=p$ prime is the rank of $A_{k+1}$ modulo $p$
+[VIII, Thm.~2.8]. It is in fact insensitive to the characteristic.
+
+\begin{lemma}[Rank of a line-digraph adjacency matrix]\label{lem:rank}
+Let $G$ be a digraph on $n$ vertices and $m$ arcs in which every vertex is the head of at
+least one arc and the tail of at least one arc, and let $A_{L(G)}$ be the adjacency matrix
+of its line digraph. Then $\rank_F A_{L(G)}=n$ for every field $F$.
+\end{lemma}
+
+\begin{proof}
+Let $H,T\in F^{\,n\times m}$ be the head and tail incidence matrices,
+$H_{v,e}=[\,\mathrm{head}(e)=v\,]$ and $T_{v,f}=[\,\mathrm{tail}(f)=v\,]$. For arcs $e,f$,
+\[
+(H^{\mathsf T}T)_{e,f}=\sum_{v}[\,\mathrm{head}(e)=v\,][\,\mathrm{tail}(f)=v\,]
+=[\,\mathrm{head}(e)=\mathrm{tail}(f)\,]=(A_{L(G)})_{e,f},
+\]
+so $A_{L(G)}=H^{\mathsf T}T$. Every arc has exactly one head, so the rows of $H$ have
+pairwise disjoint supports; each is non-zero by hypothesis; hence they are linearly
+independent over any field and $\rank H=n$, and likewise $\rank T=n$. Thus
+$T\colon F^m\to F^n$ is surjective and $H^{\mathsf T}\colon F^n\to F^m$ injective, so
+$\rank(H^{\mathsf T}T)=\dim H^{\mathsf T}(F^n)=n$.
+\end{proof}
+
+\begin{corollary}[The $p$-rank of the Jacobian]\label{cor:prank}
+For $k\ge1$ and every prime $p\mid q$, the $p$-rank of $\Jac(Y_{k+1})$ equals $r_k$.
+\end{corollary}
+
+\begin{proof}
+$Y_{k+1}=L(Y_k)$ is $q$-regular, so $\Delta_{k+1}\equiv-A_{k+1}\pmod p$ and
+$\rank_{\F_p}\Delta_{k+1}=n_k$ by Lemma~\ref{lem:rank}. Tensoring
+$\coker\Delta_{k+1}^{\mathsf T}\cong\Z\oplus\Jac(Y_{k+1})$ with $\F_p$ gives
+\[
+n_{k+1}-\rank_{\F_p}\Delta_{k+1}=1+\dim_{\F_p}\bigl(\Jac(Y_{k+1})\otimes\F_p\bigr),
+\]
+and the left side is $qn_k-n_k$. As $\Jac(Y_{k+1})\otimes\F_p\cong\Jac(Y_{k+1})[p]$ for a
+finite abelian group, the $p$-rank is $n_k(q-1)-1=r_k$.
+\end{proof}
+
+\section{The tail norm at composite \texorpdfstring{$q$}{q}}\label{sec:kernel}
+
+\begin{theorem}[The kernel of the tail norm, for every $q$]\label{thm:main}
+Let $q\ge2$ be arbitrary and $k\ge1$. Then
+\[
+\ker\bigl(\ta\colon\Jac(Y_{k+1})\to\Jac(Y_k)\bigr)=\Jac(Y_{k+1})[q]\cong(\Z/q)^{\,r_k},
+\]
+and moreover every invariant factor of $\Jac(Y_{k+1})$ divisible by a prime $p\mid q$ is
+divisible by $p^{\,v_p(q)}$.
+\end{theorem}
+
+\begin{proof}
+Write $e_p=v_p(q)$ and let the $p$-primary part of $\Jac(Y_{k+1})$ be
+$\bigoplus_{j=1}^{s_p}\Z/p^{a_{p,j}}$ with $a_{p,j}\ge1$; by
+Corollary~\ref{cor:prank}, $s_p=r_k$ for every $p\mid q$. By (ii) and (iii) of
+Section~\ref{sec:rank},
+\[
+q^{\,r_k}=|\ker\ta|\;\le\;\bigl|\Jac(Y_{k+1})[q]\bigr|
+=\prod_{p\mid q}p^{\,\sum_{j}\min(e_p,\,a_{p,j})}
+\;\le\;\prod_{p\mid q}p^{\,e_p r_k}=q^{\,r_k}.
+\]
+Both inequalities are therefore equalities. The first forces
+$\ker\ta=\Jac(Y_{k+1})[q]$, two finite groups of the same order one contained in the
+other. The second forces $\min(e_p,a_{p,j})=e_p$, that is $a_{p,j}\ge e_p$, for every
+$p\mid q$ and every $j$; the $p$-primary part of $\Jac(Y_{k+1})[q]$ is then
+$\bigl(\Z/p^{e_p}\bigr)^{r_k}$, and taking the product over $p\mid q$ gives
+$(\Z/q)^{r_k}$.
+\end{proof}
+
+\begin{remark}[What was and was not primality]\label{rem:whatwas}
+For $q=p$ this is [VIII, Thm.~2.8]. The present proof differs from that one only in
+Corollary~\ref{cor:prank}, and the corollary differs only in proving the rank identity by
+a factorisation valid in every characteristic rather than by an argument in
+characteristic $p$. Nothing else in the chain ever meets a zero divisor of $\Z/q\Z$: the
+counting is carried out one prime at a time, and $q$ enters only through its valuations.
+\end{remark}
+
+\begin{remark}[Prime powers behave differently from primes]\label{rem:powers}
+For $q$ squarefree, $\Jac(Y_{k+1})[q]=\bigoplus_{p\mid q}\Jac(Y_{k+1})[p]$ and
+Theorem~\ref{thm:main} says only that the kernel of the tail norm is the torsion killed by
+each prime factor --- the prime picture, assembled by the Chinese remainder theorem. For
+$q$ \emph{not} squarefree the theorem says something with no prime analogue. At $q=4$ it
+asserts that $\Jac(Y_{k+1})$ has \emph{no element of order exactly $2$}: every invariant
+factor divisible by $2$ is divisible by $4$. Consequently
+$\Jac(Y_{k+1})[2]\subsetneq\Jac(Y_{k+1})[4]=\ker\ta$, of index $2^{r_k}$, and the kernel of
+the tail norm strictly contains the $p$-torsion for each $p\mid q$. This is a falsifiable
+statement about a concrete integer matrix; check~(E) tests it on three $q=4$ towers,
+including level three of the $K_6$ tower, where $\Jac(Y_3)$ has $2$-rank $359$ and the
+smallest $2$-adic valuation among its invariant factors is $2$.
+\end{remark}
+
+\begin{corollary}[No $q$-torsion in the pro-module]\label{cor:notorsion}
+$\XX:=\varprojlim\bigl(\Jac(Y_k),\ta\bigr)$ satisfies $\XX[q]=0$.
+\end{corollary}
+
+\begin{proof}
+Let $x=(x_k)_{k\ge1}\in\XX$ with $qx=0$. Then $x_k\in\Jac(Y_k)[q]$ for every $k$, and for
+$k\ge2$ that group is $\ker\bigl(\ta\colon\Jac(Y_k)\to\Jac(Y_{k-1})\bigr)$ by
+Theorem~\ref{thm:main}; hence $x_{k-1}=\ta x_k=0$ for every $k\ge2$, i.e.\ $x=0$.
+\end{proof}
+
+\section{The splitting, for every \texorpdfstring{$q$}{q}}\label{sec:split}
+
+\begin{theorem}[Splitting of the limit $K$-module]\label{thm:split}
+For every $q\ge2$ the short exact sequence of [VIII, Thm.~3.3(iii)],
+\[
+0\longrightarrow\XX^{\vee}\longrightarrow K_0(\cO_\infty)\longrightarrow\Z[1/q]
+\longrightarrow0,
+\]
+splits, and $K_0(\cO_\infty)\cong\Z[1/q]\oplus\XX^{\vee}$.
+\end{theorem}
+
+\begin{proof}
+The extension class lies in $\mathrm{Ext}^1(\Z[1/q],\XX^\vee)$. Write
+$\Z[1/q]=\varinjlim\bigl(\Z\xrightarrow{\;q\;}\Z\xrightarrow{\;q\;}\cdots\bigr)$. For any
+abelian group $B$ the Milnor sequence of this colimit reads
+\[
+0\to\varprojlim{}^1\mathrm{Hom}(\Z,B)\to\mathrm{Ext}^1(\Z[1/q],B)
+\to\varprojlim\mathrm{Ext}^1(\Z,B)\to0 ,
+\]
+and $\mathrm{Ext}^1(\Z,B)=0$, so
+$\mathrm{Ext}^1(\Z[1/q],B)\cong\varprojlim^1\bigl(B\xleftarrow{\;q\;}B\xleftarrow{\;q\;}\cdots\bigr)$.
+If $B$ is $q$-divisible every transition map is surjective and this $\varprojlim^1$
+vanishes. Now $\XX$ is profinite and multiplication by $q$ on it is injective by
+Corollary~\ref{cor:notorsion}; Pontryagin duality is exact, so multiplication by $q$ on
+$\XX^\vee$ is surjective, i.e.\ $\XX^\vee$ is $q$-divisible. Hence
+$\mathrm{Ext}^1(\Z[1/q],\XX^\vee)=0$.
+\end{proof}
+
+\begin{remark}[A shorter route to the prime case]\label{rem:shorter}
+For $q=p$, [VIII, Thm.~3.3] obtained the splitting by first identifying
+$\XX^{(p)}\cong\Z_p^{\mathbb N}$ and then observing that its dual
+$(\Q_p/\Z_p)^{(\mathbb N)}$ is divisible. The proof above needs neither identification: it
+uses only that multiplication by $q$ is injective on $\XX$, which is
+Corollary~\ref{cor:notorsion}. The structure of $\XX$ is not an input to the splitting,
+and for composite $q$ we do not determine it.
+\end{remark}
+
+\section{Verification}\label{sec:battery}
+
+The script \texttt{composite\_tail\_norm.py} runs the six checks of
+Table~\ref{tab:battery} in about five seconds; its output is archived as
+\texttt{composite\_tail\_norm\_output.txt}. Eight towers are used: base graphs $K_4$ and
+Petersen ($q=2$), $K_5$ and $K_{4,4}$ ($q=3$), $K_6$ and $K_{5,5}$ ($q=4$), $K_7$ ($q=5$)
+and $K_8$ ($q=6$), carried to level three where the size permits, the largest being
+$Y_3$ of the $K_6$ tower on $480$ vertices. All arithmetic is exact: Bareiss determinants
+for the orders, and $p$-adic elimination (no coefficient explosion) for the valuations of
+the invariant factors.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{clc}
+\toprule
+key & check & mode\\
+\midrule
+(I) & the degeneracy identities of \S\ref{sec:rank}(i) hold verbatim at composite $q$ & exact\\
+(N) & $\kappa(Y_{k+1})=q^{\,r_k}\kappa(Y_k)$, so $|\ker\ta|=q^{\,r_k}$ & exact\\
+(R) & Lemma~\ref{lem:rank}: $\rank A_{k+1}=n_k$ over $\F_p$ for $p\mid q$ and $p\nmid q$ alike & exact\\
+(P) & Corollary~\ref{cor:prank}: the $p$-rank of $\Jac(Y_{k+1})$ is $r_k$ for $p\mid q$ & exact\\
+(E) & Theorem~\ref{thm:main}: every invariant factor divisible by $p$ is divisible by $p^{v_p(q)}$ & exact\\
+(T) & the published prime-$q$ values of [VIII] are recovered & exact\\
+\bottomrule
+\end{tabular}
+\caption{The verification battery, $6/6$.}
+\label{tab:battery}
+\end{table}
+
+Check~(E) is the one that could have failed. For each $q=4$ tower it reports the
+multiset of $2$-adic valuations of the invariant factors of $\Jac(Y_k)$: on $K_6$ at
+level two these are $2^{84},4,5^4$ and at level three the $359$ valuations are all at
+least $2$; on $K_{5,5}$ at level two the $149$ valuations are all at least $2$. A single
+invariant factor of valuation $1$ anywhere would have contradicted
+Theorem~\ref{thm:main}. Check~(T) reproduces
+$\Jac(Y_2)=(\Z/2)^8\oplus\Z/4\oplus\Z/16\oplus\Z/48$ and
+$\Jac(Y_3)=(\Z/2)^{12}\oplus(\Z/4)^8\oplus\Z/8\oplus\Z/32\oplus\Z/96$ of [VIII, Table~1],
+with $\mathrm{ord}_2\kappa=18$ and $41$.
+
+\section{Status, scope, corrections}\label{sec:scope}
+
+\emph{Proved.} Lemma~\ref{lem:rank}, Corollary~\ref{cor:prank}, Theorem~\ref{thm:main},
+Corollary~\ref{cor:notorsion} and Theorem~\ref{thm:split}, for arbitrary $q\ge2$ and
+$k\ge1$. Together they close [VIII, Rem.~5.1(b)] in both of its parts.
+
+\emph{Quoted, for every $q$ and used as stated.} The degeneracy calculus [V, Prop.~1.2];
+the tail norm and its kernel order [V, Thm.~3.1], resting on the line-digraph recursion
+[III, Thm.~2.1]; the containment $\ker\ta\subseteq\Jac[q]$ [VIII, Prop.~2.7]; the exact
+sequence [VIII, Thm.~3.3(iii)]; the Milnor $\varprojlim^1$ sequence and the exactness of
+Pontryagin duality, both textbook.
+
+\begin{remark}[Solved, open, impossible]\label{rem:soi}
+\emph{Solved:} the composite-$q$ half of [VIII, Rem.~5.1(b)], in the strong form
+$\ker\ta\cong(\Z/q)^{r_k}$, together with the splitting for every $q$.
+\emph{Open:} (a) the structure of $\XX$ itself for composite $q$ --- the splitting no
+longer needs it, and we have not determined whether $\XX^{(p)}$ is again a free
+$\Z_p$-module when $p^2\mid q$; (b) whether the divisibility statement of
+Theorem~\ref{thm:main} --- no invariant factor of valuation below $v_p(q)$ --- has a
+direct combinatorial proof, independent of the counting, and what it says about the
+spanning-tree lattice of a line digraph; (c) the remaining items of [VIII, Rem.~5.1],
+which this note does not touch.
+\emph{Impossible:} nothing new is shown impossible here. In particular the obstruction the
+task specification anticipated --- that zero divisors in $\Z/q\Z$ would make the kernel
+smaller than $\Jac[q]$ and force an order formula in terms of $\gcd(q,\cdot)$ --- does not
+exist.
+\end{remark}
+
+\begin{remark}[Corrections to the task specification]\label{rem:corrections}
+Four, all in the same direction: the composite case is easier than expected, not harder.
+(1) The specification asked for the Smith normal form of $A_{k+1}$ over
+$\Z/p_i^{e_i}\Z$ and for a fallback order formula in terms of $\gcd(q,\Jac)$ should the
+kernel fail to be $\Jac[q]$. Neither is needed: the kernel \emph{is} $\Jac[q]$, and the
+only rank computation required is over a field, where Lemma~\ref{lem:rank} makes it
+characteristic-free. (2) ``Modulo $q$ localisation has zero divisors'' is true and
+irrelevant; no step localises at $q$. (3) The specification proposed expanding $\Z[1/q]$
+as a direct limit of localisations over the primes $p\mid q$; the single tower
+$\Z\xrightarrow{q}\Z\xrightarrow{q}\cdots$ is what gives the $\varprojlim^1$ description,
+and splitting into primes is unnecessary. (4) The specification asked for the divisible
+subgroup structure of $\XX^\vee$. What is needed and true is only that $\XX^\vee$ is
+$q$-divisible, dual to $\XX[q]=0$; no finer structure enters, and
+Remark~\ref{rem:shorter} notes that this also shortens the published prime-case proof.
+\end{remark}
+
+\section*{Provenance}
+
+Unrefereed preprint. Every numbered statement is proved in full above from the three
+quoted facts of Section~\ref{sec:rank}, each of which is stated in the earlier papers for
+all $q$; the computations verify those inputs independently (checks (I) and (N)), the new
+lemma (check (R)), and the falsifiable consequence of the theorem (check (E)). The
+divisibility statement of Theorem~\ref{thm:main} was found by the counting and then
+tested, not the other way round; the $q=4$ towers were computed specifically because they
+could refute it.
+
+\begin{thebibliography}{99}
+
+\bibitem{III} R.~Chen, \emph{Algorithmic non-commutative class field theory, III: the
+Iwahori--Hecke tower and the type III dissolution of the trace obstruction}, 2026.
+
+\bibitem{V} R.~Chen, \emph{Algorithmic non-commutative class field theory, V: the
+degeneracy structure of the Iwahori tower and the Euler correction}, 2026.
+
+\bibitem{VIII} R.~Chen, \emph{Algorithmic non-commutative class field theory, VIII: the
+tower-level Hecke--Kirchberg limit and the non-commutative Iwasawa $K$-module}, 2026.
+
+\end{thebibliography}
+
+\end{document}

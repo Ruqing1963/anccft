@@ -4,6 +4,15 @@
 This chapter consolidates the closing remarks of the chapters. Verdicts are quoted, not
 re-argued; the chapter and statement numbers point to where the argument is.
 
+Four of the open problems of the first edition of this list have since been settled, three
+of them affirmatively and one by a no-go theorem, and a fifth has been settled in a way that
+was not on the menu at all. Composite $q$ is proved (Chapter~\ref{chap:XVII}); the rank-$d$
+unitarity mechanism is proved, and then made unconditional (Chapters~\ref{chap:XVIII},
+\ref{chap:XX}); the search for a cyclic class computing the $L$-invariant is closed by an
+obstruction (Chapter~\ref{chap:XIX}); and the bidirected sandpile theory asked for by the
+assembly chapters turns out not to exist, for a reason that is itself a theorem
+(Chapter~\ref{chap:Bio7}).
+
 \section{Corrections made by later chapters to earlier ones}
 
 \begin{itemize}
@@ -28,6 +37,18 @@ Chapter~\ref{chap:VIII}, Remark~1.4.
 adjacent'': Chapter~\ref{chap:XV}, Remark~1.2 corrects Chapter~\ref{chap:XI},
 Definition~3.1; the two agree only on flag complexes, and of the five test complexes
 only $Y_{168}$ is a flag complex.
+\item The $p$-primary hypothesis in the tail-norm theorem was an artefact of the proof, not
+of the statement: Chapter~\ref{chap:XVII}, Theorem~\ref{XVII:thm:main} removes it for every
+$q\ge2$, because the rank of a line-digraph adjacency matrix is $n$ over \emph{every} field
+(Ch.~\ref{chap:XVII}, Lemma~\ref{XVII:lem:rank}), which is what the counting argument needs.
+\item The invariant subspace left open at Chapter~\ref{chap:XVIII}, Remark~4.2(a) does
+exist: Chapter~\ref{chap:XX}, Corollary~\ref{XX:cor:W}. The candidate intertwiner recorded
+there was the right one, and the identity it needs is a single flag count.
+\item The expectation, stated in the assembly chapters, that double-strandedness would be
+handled by a sandpile theory on a quotient graph is withdrawn:
+Chapter~\ref{chap:Bio7}, Theorem~\ref{Bio7:thm:anti}. Chapter~\ref{chap:Bio6} had already
+shown that no new lemma is \emph{needed}, by passing to the double cover instead; Chapter
+\ref{chap:Bio7} shows that the quotient route is not merely unnecessary but unavailable.
 \item Cross-references between the original papers drifted as sections were
 renumbered (for instance ``[V, Prob.~5.1]'' is Problem~4.1 of Chapter~\ref{chap:V};
 ``[I, Prop.~1.7(iii)]'' is Proposition~1.9(iii) of Chapter~\ref{chap:I}). The
@@ -59,23 +80,52 @@ faces of the $L$-invariant (Ch.~\ref{chap:XIV}, Cor.~7.2).
 and the snake factorization (Ch.~\ref{chap:VII}, Lem.~1.1, Thm.~2.1); the Eisenstein
 boundary sequence $0\to\Z/n_k\to\coker\Delta_k^0\to\Jac(Y_k)\to0$ and its
 non-splitting on $K_4$ (Ch.~\ref{chap:XIII}, Thm.~3.2).
-\item For $q=p$ prime, $\ker(\tau_*|\Jac(Y_{k+1}))=\Jac(Y_{k+1})[p]$, hence the $p$-part
-of the pro-module is $\Z_p^{\mathbb N}$ (Ch.~\ref{chap:VIII}, Thm.~2.8); the inductive
-limit is Kirchberg with $\operatorname{Tor}K_0$ dual to the pro-module
-(Ch.~\ref{chap:VIII}, Thms.~3.2, 3.3); the head correspondence with $K_0$-index $\eta_*$
-and the Hecke round trips (Ch.~\ref{chap:XVI}, Thms.~2.3, 3.1, 4.1).
+\item \textbf{For every $q\ge2$}, $\ker(\tau_*|\Jac(Y_{k+1}))=\Jac(Y_{k+1})[q]\cong
+(\Z/q)^{r_k}$, and every invariant factor divisible by a prime $p\mid q$ is divisible by
+$p^{v_p(q)}$ (Ch.~\ref{chap:XVII}, Thm.~\ref{XVII:thm:main}); hence the pro-module has no
+$q$-torsion (Ch.~\ref{chap:XVII}, Cor.~\ref{XVII:cor:notorsion}) and the sequence
+$0\to\mathfrak X_\infty^\vee\to K_0(\mathcal O_\infty)\to\Z[1/q]\to0$ splits for every $q$
+(Ch.~\ref{chap:XVII}, Thm.~\ref{XVII:thm:split}). The $p$-prime case is
+Ch.~\ref{chap:VIII}, Thm.~2.8; the inductive limit is Kirchberg with
+$\operatorname{Tor}K_0$ dual to the pro-module (Ch.~\ref{chap:VIII}, Thms.~3.2, 3.3); the
+head correspondence with $K_0$-index $\eta_*$ and the Hecke round trips
+(Ch.~\ref{chap:XVI}, Thms.~2.3, 3.1, 4.1).
 \item In rank two: no cubic trace obstruction (Ch.~\ref{chap:X}, Thm.~4.2); $b_1=0$ for
 thick quotients, hence no abelian towers (Ch.~\ref{chap:XII}, Thm.~1.1); the covering
 norm theorem and the incidence calculus (Ch.~\ref{chap:XII}, Thms.~2.1, 3.1); the
 edge-flow intertwiner $L_E\Psi=\Psi C'$ (Ch.~\ref{chap:XI}, Thm.~3.3); the two-sided
 reduction $\ell^2(E)=\operatorname{im}\Psi\oplus W$ and the unitarity of the remainder,
 $RR^{\mathsf T}=qI$ (Ch.~\ref{chap:XV}, Thms.~2.1, 2.2, 3.1).
+\item \textbf{In every rank $d\ge2$}: the unitarity identity
+$L_EL_E^{\mathsf T}=q^{\,d-1}I+q^{\,d-1}(q-1)T^{\mathsf T}T$ and its dual
+(Ch.~\ref{chap:XVIII}, Thm.~\ref{XVIII:thm:main}), whose whole content is that two
+hyperplanes of $\mathrm{PG}(d,q)$ always meet in codimension two; exactly $|E|-n$ singular
+values equal $q^{(d-1)/2}$ and $L_E:\ker S\to\ker T$ is a bijective isometry
+(Ch.~\ref{chap:XVIII}, Cor.~\ref{XVIII:cor:uncond}). The invariant subspace that makes the
+critical circle unconditional is supplied in Ch.~\ref{chap:XX}: the number of complete flags
+of $\mathrm{PG}(d,q)$ with $F_{i+1}=V$ and $F_1$ inside a hyperplane $H$ takes exactly two
+values according as $V\subseteq H$ or not (Thm.~\ref{XX:thm:flag}), which \emph{is} the
+intertwining $L_EN_i^{\mathsf T}=q^{\,i}(N_0^{\mathsf T}A_{i+1}-N_{i+1}^{\mathsf T})$
+(Thm.~\ref{XX:thm:inter}); hence $W_d=(\operatorname{im}\Psi_d)^\perp$ is two-sided
+invariant and every eigenvalue of $L_E|_{W_d}$ has modulus $q^{(d-1)/2}$ with no hypothesis
+whatever (Cor.~\ref{XX:cor:W}). The companion matrix is explicit in every rank and its
+characteristic polynomial is the local Hecke polynomial of $\mathrm{PGL}_{d+1}$
+(Thm.~\ref{XX:thm:hecke}).
 \item In the applications: the bundle-chain splitting theorem
 $\K(G)\cong\bigoplus(\Z/r_c)^{\ell_c-1}\oplus\K(\mathrm{Sk})$ and the canonicity of the
 skeleton (Ch.~\ref{chap:Bio3}); the two-family theorem $\K(D_w)=\Z/c$
 (Ch.~\ref{chap:Bio4}); the power-sum bound on hidden eigenvalues
 (Ch.~\ref{chap:Ctrl1}); the sign of $\lambda$ as a normality certificate
 (Ch.~\ref{chap:Net1}).
+\item In double-stranded assembly: the reverse-complement double cover is balanced, so the
+whole single-strand apparatus applies to it verbatim and the five plus-strand and two
+minus-strand ribosomal operons of \emph{E.\ coli} merge into one seven-copy family
+(Ch.~\ref{chap:Bio6}, Thm.~\ref{Bio6:thm:merge}, Cor.~\ref{Bio6:cor:rrna}); the quotient is
+a signed graph exactly when no repeated $k$-mer is its own reverse complement, which is
+automatic for odd $k$ (Ch.~\ref{chap:Bio7}, Prop.~\ref{Bio7:prop:parity}); it is unbalanced
+exactly when the sequence carries an inverted repeat of length at least $k$
+(Thm.~\ref{Bio7:thm:balance}); and the Reiner--Tseng covering sequence holds on it, with a
+non-split $2$-primary part arising from a real bacteriophage (Thm.~\ref{Bio7:thm:rt}).
 \end{itemize}
 
 \section{Verified computationally, not proved}
@@ -91,6 +141,13 @@ $A_kA_k^{\mathsf T}\ne A_k^{\mathsf T}A_k$ is checked on $K_4$ only (Ch.~\ref{ch
 Prop.~3.4); the exhaustive statements about chord diagrams hold for $m\le5$
 (Ch.~\ref{chap:Bio3}, Rem.~9) and are known to fail at $m=6$.
 
+Two items are new. The corank of $\Psi_d$ is at least $d(d+1)$ by
+Ch.~\ref{chap:XX}, Theorem~\ref{XX:thm:corank}, and equals it on all three thick
+$\widetilde A_2$ complexes tested; equality for $d\ge3$ is unproved, and with it the exact
+value of $\dim W_d$. And a signed $r$-bundle chain of $s$ internal vertices raises the
+$r$-rank by exactly $s$ in every case tested (Ch.~\ref{chap:Bio7},
+Thm.~\ref{Bio7:thm:series}); only the inequality is proved.
+
 \section{Open}
 
 \begin{enumerate}
@@ -99,27 +156,32 @@ $L$-values alone, an element $L_H\in K_1(H_\Sigma)$ equal to the characteristic 
 $[\Theta_H]$ modulo the image of $K_1(H)$ (Ch.~\ref{chap:XIII}, Rem.~5.1); before that,
 determine the image of $K_1(H)$, i.e.\ how non-unique the class is, and whether
 $H\to H_\Sigma$ is stably flat (Ch.~\ref{chap:XIII}, Rem.~5.2). This is Problem~4.1 of
-Ch.~\ref{chap:V} in its final form.
+Ch.~\ref{chap:V} in its final form, and it is now the oldest unsettled question in the
+programme.
 \item \textbf{Rank two realization.} A non-negative integer matrix shift equivalent
 over $\Z$ to the graded companion $C^{(3)}$ --- an instance of the weak Generalized
 Spectral Conjecture of Boyle--Handelman (Ch.~\ref{chap:XI}, Rem.~2.4).
-\item \textbf{Composite $q$.} Whether $\ker\tau_*=\Jac(Y_{k+1})[q]$ and whether the
-$K_0$ sequence of the limit algebra splits (Ch.~\ref{chap:VIII}, Rem.~5.1(b)).
-\item \textbf{$\widetilde A_d$.} The unitarity mechanism of Ch.~\ref{chap:XV} uses the
-$\mathrm{PG}(2,q)$ link identities $L_EL_E^{\mathsf T}=qI+(q^2-q)T^{\mathsf T}T$; whether
-an analogous exact decomposition holds for $\widetilde A_d$ complexes, and an exact
-(non-numeric) certificate of the vertex Ramanujan property of the test complexes
-(Ch.~\ref{chap:XV}, Rem.~6.1).
 \item \textbf{Congruence towers in rank two.} The growth law of $\Jac^H$ along a genuine
 infinite congruence tower of $\widetilde A_2$ complexes; no second level has been
 computed (Ch.~\ref{chap:XII}, Rem.~6.1).
-\item \textbf{A non-commutative cyclic class for the $L$-invariant.} Whether an odd
-cyclic cocycle on $C_0(\widetilde Y_\alpha)\rtimes\Z$ or on the shadow algebra pairs to
-$\|h_\alpha\|^2$ (Ch.~\ref{chap:XIV}, Rem.~9.1).
-\item \textbf{Bidirected de Bruijn graphs.} A sandpile theory for the double-stranded
-assembly graph, starting from the signed Laplacian (Ch.~\ref{chap:Bio2}, Open~(a)); and
-any non-pairwise presentation of the arrangement group for repeats with three or more
-copies (Ch.~\ref{chap:Bio4}, Open~(a)).
+\item \textbf{The size of the unitary part.} Whether
+$\operatorname{corank}\Psi_d=d(d+1)$ for $d\ge3$, and whether $W_d$ is the \emph{largest}
+two-sided invariant subspace inside $\ker S\cap\ker T$ (Ch.~\ref{chap:XX},
+Rem.~\ref{XX:rem:soi}). Also a thick $\widetilde A_3$ complex small enough to compute with,
+and an exact certificate of the vertex Ramanujan property of the test complexes
+(Ch.~\ref{chap:XV}, Rem.~6.1(c)).
+\item \textbf{Counting double-stranded reconstructions.} The reverse-complement involution
+induces a perfect \emph{symmetric} linking form on $\K(D_k)$
+(Ch.~\ref{chap:Bio7}, Rem.~\ref{Bio7:rem:pairing}). At tree level it is a bijection from
+the arborescences converging on a root to those diverging from the image root, not an
+action, so there are no orbits to sum over; and for $\phi$X174 the group order is not a
+square, so there is no metabolizer either. What a double-stranded count is built from is
+open.
+\item \textbf{Non-pairwise arrangement invariants.} Any presentation of the arrangement
+group for repeats with three or more copies that is not built from pairwise data
+(Ch.~\ref{chap:Bio4}, Open~(a)); and the even-$k$ case of the quotient, which is a signed
+graph with half-edges branched over the palindromic repeated $k$-mers
+(Ch.~\ref{chap:Bio7}, Rem.~\ref{Bio7:rem:halfedge}).
 \end{enumerate}
 
 \section{Impossible}
@@ -134,3 +196,35 @@ $\widetilde A_2$ complexes exists; no cubic trace obstruction exists; no invaria
 unsigned chord-crossing graph computes the arrangement group of two-copy repeats, and no
 pairwise invariant at all computes it for three-copy repeats; no coset structure
 underlies long-read constraints in the reconstruction torsor.
+
+Two entries are added here, and both were open problems on the previous list.
+
+\emph{No odd cyclic class computes the graph $L$-invariant by a linear construction.}
+The crossed product proposed for the job is Morita-trivial --- the deck action on a
+connected $\Z$-cover is free, so $C_0(\widetilde Y_\alpha)\rtimes\Z\cong\bigoplus_V\mathcal
+K$ and $K_1=0$ (Ch.~\ref{chap:XIX}, Prop.~\ref{XIX:prop:compacts}). In the Floquet
+commutant, where $K_1$ is not zero, the natural element does not exist, because the pencil
+degenerates exactly at the point one wants to evaluate at; what the odd pairing reads there
+is the \emph{order} of the exceptional zero, which is two for every voltage class, whereas
+$\kappa_0\|h_\alpha\|^2$ is its leading \emph{coefficient}
+(Ch.~\ref{chap:XIX}, Prop.~\ref{XIX:prop:notinv}, Cor.~\ref{XIX:cor:winding}). And in any
+algebra whose $K_1$ has rank one, a pairing linear in each slot is a product of two linear
+forms and therefore vanishes on a subspace, while $\kappa_0\|h_\alpha\|^2$ is positive
+definite; so no such construction can work once $b_1\ge2$
+(Ch.~\ref{chap:XIX}, Thm.~\ref{XIX:thm:obstruction}). What is \emph{not} excluded is an
+algebra with $\operatorname{rank}K_1\ge b_1$: the reduced group $C^*$-algebra of
+$\pi_1(Y)$ is free of rank $b_1$ and sits exactly at that threshold.
+
+\emph{The directed sandpile group of a reverse-complement de Bruijn graph has no covering
+theory, and its signed quotient does not contract.} With $P$ the permutation matrix of the
+involution, $P\Delta P=\Delta^{\mathsf T}$ and never $\Delta$: the deck involution is an
+anti-automorphism of the Laplacian, so the $\pm1$ eigenlattices are not $\Delta$-stable and
+the classical covering factorization is unavailable
+(Ch.~\ref{chap:Bio7}, Thm.~\ref{Bio7:thm:anti}). The Reiner--Tseng sequence that does hold
+computes an invariant of the undirected shadow, which by the matrix-tree theorem counts
+spanning trees; the quantity of interest counts Eulerian circuits and lives on the digraph.
+Separately, a signed $r$-bundle chain obeys the series law --- the presentation column at
+the chain's endpoint differs from the contracted graph by $s\,r\,d_0$ --- so
+$\K(\Sigma)\not\cong(\Z/r)^s\oplus\K(\Sigma/C)$, and the chain contraction that makes a
+bacterial genome computable on one strand has no bidirected analogue
+(Ch.~\ref{chap:Bio7}, Thm.~\ref{Bio7:thm:series}, Cor.~\ref{Bio7:cor:nocompute}).

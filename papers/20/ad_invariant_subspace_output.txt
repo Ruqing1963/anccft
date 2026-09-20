@@ -1,0 +1,56 @@
+﻿=== the invariant subspace in rank d ===
+
+=== (F) the flag count N(V,H) in PG(d,q) takes exactly two values ===
+      d  q  i   N (V in H)  predicted   N (V not in H)  predicted    jump  K_i
+      2  2  0          [3]          3             [0]          0        3    3
+      2  2  1          [3]          3             [1]          1        2    2
+      2  3  0          [4]          4             [0]          0        4    4
+      2  3  1          [4]          4             [1]          1        3    3
+      3  2  0         [21]         21             [0]          0       21   21
+      3  2  1          [9]          9             [3]          3        6    6
+      3  2  2         [21]         21             [9]          9       12   12
+      3  3  0         [52]         52             [0]          0       52   52
+      3  3  1         [16]         16             [4]          4       12   12
+      3  3  2         [52]         52            [16]         16       36   36
+      4  2  0        [315]        315             [0]          0      315  315
+      4  2  1         [63]         63            [21]         21       42   42
+      4  2  2         [63]         63            [27]         27       36   36
+      4  2  3        [315]        315           [147]        147      168  168
+  [ok]   (F) in PG(d,q) the number of complete flags with F_{i+1} = V and F_1 inside a hyperplane H depends only on whether V lies in H, and the jump between the two values is independent of V and H -- the whole content of the rank-d intertwining   [14 triples (d,q,i)] [exact]
+  [ok]   (K) the closed forms f(m) = prod [j]_q, phi(m,m-1) = [m-1]_q f(m)/[m]_q and K_i = f(d-i) f(i+1) q^i / [i+1]_q reproduce the enumeration exactly, and K_i is an integer for every (d,i,q)   [14 triples] [exact]
+
+=== (A) the constant collapses: K_i / c_i = q^i with c_i = f(i) f(d-i) ===
+      K_i / c_i = q^i symbolically in q, for 2 <= d <= 7 and every i (33 pairs): True
+  [ok]   (A) the coefficient in the intertwining is the bare power q^i, because a chamber through {x,y,v} is a flag through a chain of dimensions i < d, so c_i = f(i) f(d-i)   [33 pairs (d,i)] [exact]
+
+=== (H) det(xI - C) is the local Hecke polynomial of PGL_{d+1} ===
+      d=2: -A1*x**2 + A2*q*x - q**3 + x**3   ok
+      d=3: -A1*x**3 + A2*q*x**2 - A3*q**3*x + q**6 + x**4   ok
+      d=4: -A1*x**4 + A2*q*x**3 - A3*q**3*x**2 + A4*q**6*x - q**10 + x**5   ok
+      d=5: -A1*x**5 + A2*q*x**4 - A3*q**3*x**3 + A4*q**6*x**2 - A5*q**10*x + q**15 + x**6   ok
+  [ok]   (H) the companion matrix read off the intertwining has characteristic polynomial sum_j (-1)^j q^{j(j-1)/2} A_j x^{d+1-j}: the cubic Hecke pencil at d = 2 and the quartic x^4 - A_1x^3 + qA_2x^2 - q^3A_3x + q^6 of PGL_4 at d = 3   [4 values of d] [exact]
+
+=== (I) the three global identities on the thick A~_2 complexes of Paper X ===
+      Y_21: n= 21, |E|= 147, q=2;  L_E S^t = q^2 T^t True;  L_E T^t = T^t A_1 - M^t True;  L_E M^t = q(T^t A_2 - S^t) True
+            the mirror, with S and T and A_1 and A_2 exchanged: True, True, True
+            rank Psi_2 = 57 of 63;  escape under L_E 8.7e-16, under L_E^t 8.7e-16;  L_E Psi = Psi C True;  C^3 = A_1 C^2 - q A_2 C + q^3 True
+            dim W = 90;  L_E W = W R with residual 8.8e-16;  |eig R| in [1.414214, 1.414214], sqrt(q) = 1.414214  ok
+            corank Psi_2 = 6 = d(d+1);  the relations N_i^t 1_{t+i} = b_i N_0^t 1_t, b = [1, 3, 1], give ||Psi w|| = 1.4e-15 and span the kernel: True
+      Y_24: n= 24, |E|= 168, q=2;  L_E S^t = q^2 T^t True;  L_E T^t = T^t A_1 - M^t True;  L_E M^t = q(T^t A_2 - S^t) True
+            the mirror, with S and T and A_1 and A_2 exchanged: True, True, True
+            rank Psi_2 = 66 of 72;  escape under L_E 1.1e-15, under L_E^t 1.2e-15;  L_E Psi = Psi C True;  C^3 = A_1 C^2 - q A_2 C + q^3 True
+            dim W = 102;  L_E W = W R with residual 1.1e-15;  |eig R| in [1.414214, 1.414214], sqrt(q) = 1.414214  ok
+            corank Psi_2 = 6 = d(d+1);  the relations N_i^t 1_{t+i} = b_i N_0^t 1_t, b = [1, 3, 1], give ||Psi w|| = 1.4e-15 and span the kernel: True
+      Y_42: n= 42, |E|= 294, q=2;  L_E S^t = q^2 T^t True;  L_E T^t = T^t A_1 - M^t True;  L_E M^t = q(T^t A_2 - S^t) True
+            the mirror, with S and T and A_1 and A_2 exchanged: True, True, True
+            rank Psi_2 = 120 of 126;  escape under L_E 1.5e-15, under L_E^t 1.5e-15;  L_E Psi = Psi C True;  C^3 = A_1 C^2 - q A_2 C + q^3 True
+            dim W = 174;  L_E W = W R with residual 1.1e-15;  |eig R| in [1.414214, 1.414214], sqrt(q) = 1.414214  ok
+            corank Psi_2 = 6 = d(d+1);  the relations N_i^t 1_{t+i} = b_i N_0^t 1_t, b = [1, 3, 1], give ||Psi w|| = 1.9e-15 and span the kernel: True
+  [ok]   (I) the three rank-2 intertwining identities and their three mirrors hold on Y_21, Y_24 and Y_42; each is the flag count of check (F) at i = 0, 1, 2, the mirrors being the same count read through the duality of PG(d,q)   [3 complexes, 6 identities each] [exact]
+  [ok]   (P) im Psi_2 absorbs L_E and L_E^t, the companion matrix assembled from the three identities satisfies L_E Psi = Psi C exactly, and C obeys the cubic Hecke pencil of Paper X   [3 complexes] [exact]
+  [ok]   (U) W_2 = (im Psi_2)^perp lies in ker S cap ker T, is L_E-invariant, and every eigenvalue of L_E there has modulus q^{1/2} -- Paper XVIII's Cor. 2.7 with its hypothesis discharged   [3 complexes] [numeric]
+  [ok]   (N) the relations N_i^t 1_{t+i} = b_i N_0^t 1_t force corank Psi_d >= d(d+1); at d = 2 the corank is exactly 6 = d(d+1) and these relations span the kernel, so dim W_2 = |E| - 3n + 6   [3 complexes] [exact]
+
+=== battery summary ===
+  TOTAL 8/8 passed
+  elapsed 5s

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 r"""
 build_monograph.py -- assemble the ANCCFT papers into one LaTeX book.
 
@@ -27,22 +27,28 @@ PLAN = [
         ("Paper 14", "anccft14.tex", "XIV"), ("Paper 5", "anccft5.tex", "V"),
         ("Paper 7", "anccft7.tex", "VII"), ("Paper 13", "anccft13.tex", "XIII")]),
     ("Operator algebras of the tower", [
-        ("Paper 8", "anccft8.tex", "VIII"), ("Paper 16", "anccft16.tex", "XVI")]),
-    ("Rank two: $\\widetilde A_2$ buildings", [
+        ("Paper 8", "anccft8.tex", "VIII"), ("Paper 16", "anccft16.tex", "XVI"),
+        ("Paper 17", "anccft17.tex", "XVII"), ("Paper 19", "anccft19.tex", "XIX")]),
+    ("Buildings: rank two, and rank $d$", [
         ("Paper 10", "anccft10.tex", "X"), ("Paper 11", "anccft11.tex", "XI"),
-        ("Paper 12", "anccft12.tex", "XII"), ("Paper 15", "anccft15.tex", "XV")]),
+        ("Paper 12", "anccft12.tex", "XII"), ("Paper 15", "anccft15.tex", "XV"),
+        ("Paper 18", "anccft18.tex", "XVIII"), ("Paper 20", "anccft20.tex", "XX")]),
     ("Applications outside number theory", [
         ("Phys 1", "bloch_mass.tex", "Phys1"), ("Holo 1", "boundary_blind.tex", "Holo1"),
         ("Net 1", "tower_lambda.tex", "Net1"), ("Ctrl 1", "hidden_eigs.tex", "Ctrl1"),
         ("Bio 1", "dbg_sandpile.tex", "Bio1"), ("Bio 2", "rotor_assembly.tex", "Bio2"),
-        ("Bio 3", "repeat_splitting.tex", "Bio3"), ("Bio 4", "multicopy.tex", "Bio4")]),
+        ("Bio 3", "repeat_splitting.tex", "Bio3"), ("Bio 4", "multicopy.tex", "Bio4"),
+        ("Bio 5", "ecoli_decomposition.tex", "Bio5"),
+        ("Bio 6", "rc_double_cover.tex", "Bio6"),
+        ("Bio 7", "rc_quotient_signed.tex", "Bio7")]),
 ]
 ORDER = [(f, t, l) for _, chs in PLAN for f, t, l in chs]
 
 MACRO_RE = re.compile(r"\\(?:re)?newcommand\*?\{?\\(\w+)\}?(\[\d\])?(\[[^\]]*\])?\{")
 MATHOP_RE = re.compile(r"\\DeclareMathOperator\*?\{\\(\w+)\}\{([^}]*)\}")
 THM_RE = re.compile(r"\\newtheorem\*?\{(\w+)\}(?:\[(\w+)\])?\{([^}]*)\}(?:\[(\w+)\])?")
-ROMAN = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI"}
+ROMAN = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII",
+         "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"}
 
 
 def balanced(s, i):
@@ -125,7 +131,10 @@ def analyse(papers):
 
 
 # self-citations of unpublished parts of this corpus become chapter references
-SELF = {"Bio1": "Bio1", "Bio2": "Bio2", "Bio3": "Bio3", "Bio4": "Bio4", "ANCFT9": "IX", "ANCFT10": "X",
+SELF = {"Bio1": "Bio1", "Bio2": "Bio2", "Bio3": "Bio3", "Bio4": "Bio4", "Bio5": "Bio5",
+        "Bio6": "Bio6", "Bio7": "Bio7",
+        "ANCFT9": "IX", "ANCFT10": "X", "ANCFT17": "XVII", "ANCFT18": "XVIII",
+        "ANCFT19": "XIX", "ANCFT20": "XX",
         "ANCFT12": "XII", "ANCFT14": "XIV", "Phys1": "Phys1", "Net1": "Net1", "Holo1": "Holo1", "Ctrl1": "Ctrl1"}
 SELF_SERIES = "ANCFT"      # cited as \cite[V]{ANCFT}, \cite[X--XII]{ANCFT}
 
@@ -170,15 +179,33 @@ def rewrite_cites(body, mapping):
     return re.sub(r"(\\(?:online)?cite[tp]?\*?)(\[[^\]]*\])?\{([^}]*)\}", rep, body)
 
 
+def _chref(r):
+    return "\\ref{chap:" + r + "}"
+
+
 def rewrite_paper_refs(body):
-    """[V, Thm.~3.1] -> [Ch.~\ref{chap:V}, Thm.~3.1];  [V] -> [Ch.~\ref{chap:V}] when clearly a paper."""
-    def rep(m):
-        r = m.group(1)
-        return f"[Ch.~\\ref{{chap:{r}}}, " if r in ROMAN else m.group(0)
-    body = re.sub(r"\[([IVX]{1,5}),\s*(?=(?:Thm|Prop|Lem|Cor|Def|Rem|Prob|Tab|Eq|Conv|Constr|Conj|Alg|Ex|Sec|Fig|Hyp|eq|\\S|\\eqref|\\S|\(|\u00a7|Section|Table|Remark|Theorem))", rep, body)
-    body = re.sub(r"(?<![\w$^_{\\])\[([IVX]{1,5})\](?=[\s.,;:)])",
-                  lambda m: f"[Ch.~\\ref{{chap:{m.group(1)}}}]" if m.group(1) in ROMAN else m.group(0), body)
-    # ranges and lists like [I]--[IV] or [X]--[XII]
+    r"""Turn the papers' own cross-references, written as roman numerals, into chapter
+    references.  Only unambiguous citation shapes are rewritten: a BARE [X] can be a class
+    in a module (\partial[\Theta]=[X] in the chapter from Paper XIII, and [x], [y] in the
+    one from Paper VIII), so it is touched only when followed by punctuation, a space or an
+    apostrophe, and never when preceded by a word character, a $ or a brace."""
+    R = "|".join(sorted(ROMAN, key=len, reverse=True))   # longest first: XIII before XI before I
+    # ranges, including the half-rewritten ones an earlier pass could leave
+    body = re.sub(r"\[(" + R + r")\]--\[(" + R + r")\]",
+                  lambda m: "Chs.~" + _chref(m.group(1)) + "--" + _chref(m.group(2)), body)
+    body = re.sub(r"\[(" + R + r")\]--\[Ch\.~\\ref\{chap:(" + R + r")\}\]",
+                  lambda m: "Chs.~" + _chref(m.group(1)) + "--" + _chref(m.group(2)), body)
+    # two-paper lists: [I, III]
+    body = re.sub(r"\[(" + R + r"),\s*(" + R + r")\]",
+                  lambda m: "[Chs.~" + _chref(m.group(1)) + ", " + _chref(m.group(2)) + "]", body)
+    # anything after a comma is a locator: [V, Thm.~3.1], [II,~1.4], [III, proof of Thm.~2.1]
+    body = re.sub(r"\[(" + R + r"),\s*", lambda m: "[Ch.~" + _chref(m.group(1)) + ", ", body)
+    # {\rm[I]} -- the \rm wrapper marks a citation
+    body = re.sub(r"\\rm\s*\[(" + R + r")\]",
+                  lambda m: "\\rm[Ch.~" + _chref(m.group(1)) + "]", body)
+    # bare [V], and the possessive [X]'s, only in safe surroundings
+    body = re.sub(r"(?<![\w$^_{\\])\[(" + R + r")\](?=['\s.,;:)])",
+                  lambda m: "[Ch.~" + _chref(m.group(1)) + "]", body)
     return body
 
 
@@ -318,7 +345,7 @@ def build(papers, outdir):
                 "The chapters are the papers of the series, re-ordered by subject. A reference of the form "
                 "``[Ch.~$n$, Thm.~$a.b$]'' points to Theorem $n.a.b$ of this book; the papers' own "
                 "section-wise numbering is preserved inside each chapter. References to the applied notes "
-                "(Phys~1, Bio~1--4, \\dots) are by the labels below.\n\n"
+                "(Phys~1, Bio~1--5, \\dots) are by the labels below.\n\n"
                 "\\begin{longtable}{llrp{8.2cm}}\n\\toprule\npaper & folder & chapter & title\\\\\n\\midrule\n\\endhead\n")
         for lab, folder, ch, title in concord:
             short = re.sub(r"^Algorithmic non-commutative class field theory, [IVX]+:\s*", "", title)

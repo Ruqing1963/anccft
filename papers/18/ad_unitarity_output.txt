@@ -1,0 +1,41 @@
+﻿=== the unitary remainder in rank d ===
+
+=== (H) B B^t = q^{d-1} I + q^{d-1}(q-1) J in PG(d,q) ===
+      d  q   points     diagonal   predicted    off-diagonal   predicted
+      2   2        7          [4]           4             [2]           2
+      2   3       13          [9]           9             [6]           6
+      2   5       31         [25]          25            [20]          20
+      2   7       57         [49]          49            [42]          42
+      2  11      133        [121]         121           [110]         110
+      3   2       15          [8]           8             [4]           4
+      3   3       40         [27]          27            [18]          18
+      3   5      156        [125]         125           [100]         100
+      3   7      400        [343]         343           [294]         294
+      4   2       31         [16]          16             [8]           8
+      4   3      121         [81]          81            [54]          54
+      4   5      781        [625]         625           [500]         500
+      5   2       63         [32]          32            [16]          16
+      5   3      364        [243]         243           [162]         162
+  [ok]   (H) in PG(d,q) the point/hyperplane non-incidence matrix satisfies B B^t = B^t B = q^{d-1} I + q^{d-1}(q-1) J, for every d and q tested -- the whole content of the rank-d unitarity identity   [14 pairs (d,q)] [exact]
+
+=== (C) the same construction at intermediate dimensions is not uniform ===
+      q=2: PG(3,q) has 35 lines and 15 planes; the off-diagonal of B B^t takes the values [9, 10]
+      q=3: PG(3,q) has 130 lines and 40 planes; the off-diagonal of B B^t takes the values [32, 33]
+      q=5: PG(3,q) has 806 lines and 156 planes; the off-diagonal of B B^t takes the values [144, 145]
+  [ok]   (C) with lines against planes the off-diagonal takes two values, differing by one (the lines meet or are skew): only the hyperplane/point pairing forced by the Z/(d+1) typing gives a constant   [3 values of q] [exact]
+
+=== (A) the global identity on the thick A~_2 complexes of Paper X ===
+      Y_21: n=  21 vertices, |E|=  147 edges, q=2;  L L^t True, L^t L True, T L = q^d S and S L^t = q^d T True, L: ker S -> ker T an isometry True
+      Y_24: n=  24 vertices, |E|=  168 edges, q=2;  L L^t True, L^t L True, T L = q^d S and S L^t = q^d T True, L: ker S -> ker T an isometry True
+      Y_42: n=  42 vertices, |E|=  294 edges, q=2;  L L^t True, L^t L True, T L = q^d S and S L^t = q^d T True, L: ker S -> ker T an isometry True
+  [ok]   (A) on Y_21, Y_24 and Y_42 the rank-d identities with d = 2 hold, the first being exactly Paper XV's Theorem 2.1, so the conventions agree   [3 complexes] [exact]
+
+=== (S) singular values of L_E equal to q^{(d-1)/2} ===
+      Y_21: 126 of 147 singular values equal sqrt(q); rank T^t T = n forces exactly |E|-n = 126   ok
+      Y_24: 144 of 168 singular values equal sqrt(q); rank T^t T = n forces exactly |E|-n = 144   ok
+      Y_42: 252 of 294 singular values equal sqrt(q); rank T^t T = n forces exactly |E|-n = 252   ok
+  [ok]   (S) since T^t T has rank n, the identity forces EXACTLY |E| - n singular values of L_E to equal q^{(d-1)/2}, with no hypothesis on the complex   [3 complexes] [numeric]
+
+=== battery summary ===
+  TOTAL 4/4 passed
+  elapsed 3s

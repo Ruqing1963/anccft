@@ -1,0 +1,451 @@
+% generated from Paper 20/anccft20.tex
+\renewcommand{\LE}{L_E}
+\chapter{Algorithmic non-commutative class field theory, XX: the invariant subspace in rank $d$, and one flag count that produces it}\label{chap:XX}
+\chaptermark{XX}
+\begin{chapterabstract}
+\noindent
+Paper XVIII proved that on an $\Atilde d$ complex of order $q$ the geodesic edge flow
+satisfies $\LE\LE^{\tp}=q^{\,d-1}I+q^{\,d-1}(q-1)T^{\tp}T$ and its dual, so that on any
+subspace $W\subseteq\ker S\cap\ker T$ invariant under $\LE$ and $\LE^{\tp}$ the restriction
+is $q^{(d-1)/2}$ times an orthogonal matrix. It left the existence of such a $W$ open,
+recording only a candidate intertwiner built from the incidence operators
+$M_i(v,e)=\#\{\text{chambers } C\supseteq e:\ C_{\tau(e)+i}=v\}$. This note supplies the
+subspace. The entire content is a single flag count: in $\PG(d,q)$, the number of complete
+flags $F$ with $F_{i+1}=V$ and $F_1$ inside a hyperplane $H$ takes exactly \emph{two} values,
+according as $V\subseteq H$ or not, and their difference
+$K_i=f(d-i)f(i+1)q^{\,i}/[i+1]_q$ depends on neither $V$ nor $H$. Because the tail of an edge
+is a hyperplane of the link of its head and the geodesic successors are the points off that
+hyperplane (Paper XVIII, Lem.~2.2), this dichotomy is exactly an intertwining; and after
+normalising $M_i$ to the $0/1$ indicator $N_i$ the constant collapses to a bare power,
+$K_i/c_i=q^{\,i}$, leaving
+\[
+  \LE N_i^{\tp}=q^{\,i}\bigl(N_0^{\tp}A_{i+1}-N_{i+1}^{\tp}\bigr),
+  \qquad N_0=T,\quad N_d=S,
+\]
+with the mirror identity for $\LE^{\tp}$ from the self-duality of $\PG(d,q)$. Hence
+$\Psi_d=[N_0^{\tp}\,\cdots\,N_d^{\tp}]$ satisfies $\LE\Psi_d=\Psi_dC$ and
+$\LE^{\tp}\Psi_d=\Psi_dC'$, and $W_d=(\im\Psi_d)^{\perp}$ is a two-sided invariant subspace
+of $\ker S\cap\ker T$. Paper XVIII's Corollary 2.7 therefore holds with no hypothesis: every
+eigenvalue of $\LE|_{W_d}$ has modulus exactly $q^{(d-1)/2}$. The companion matrix is
+explicit in every rank and its characteristic polynomial is
+$\sum_{j}(-1)^{j}q^{\,j(j-1)/2}A_jx^{\,d+1-j}$, the local Hecke polynomial of
+$\mathrm{PGL}_{d+1}$ --- the cubic pencil of Kang and Li at $d=2$, and at $d=3$ the quartic
+$x^4-A_1x^3+qA_2x^2-q^3A_3x+q^6$, obtained with no global $\Atilde3$ complex. The relations
+$N_i^{\tp}1_{t+i}=\binom{d}{i}_{\!q}N_0^{\tp}1_t$ give $\operatorname{corank}\Psi_d\ge
+d(d+1)$, with equality at $d=2$. The upshot is a decomposition of the spectrum of $\LE$ into
+a Hecke part on $\im\Psi_d$, where the Ramanujan property is exactly the question, and a
+complement on $W_d$ that is on the critical circle unconditionally. Eight checks, verified on
+$\PG(d,q)$ for fourteen triples $(d,q,i)$, symbolically in $q$ for $d\le7$, and on the three
+thick $\Atilde2$ complexes of Paper X.
+\end{chapterabstract}
+
+\section{The gap, and what closes it}
+
+Let $X$ be a thick $\Atilde d$ complex of order $q$: a finite quotient of the Bruhat--Tits
+building of $\mathrm{PGL}_{d+1}$ over a local field with residue field of size $q$, with
+vertices typed by $\Z/(d+1)$. Write $E$ for the set of directed edges $x\to y$ with
+$\tau(y)=\tau(x)+1$, $S$ and $T$ for the tail and head incidence matrices, and $\LE$ for the
+geodesic edge flow,
+\[
+  (\LE)_{e,f}=1 \iff e=(x,y),\ f=(y,z)\ \text{and}\ \{x,y,z\}\ \text{is not a simplex of }X .
+\]
+
+Paper XVIII proved
+\begin{equation}\label{XX:eq:main}
+  \LE\LE^{\tp}=q^{\,d-1}I+q^{\,d-1}(q-1)\,T^{\tp}T,\qquad
+  \LE^{\tp}\LE=q^{\,d-1}I+q^{\,d-1}(q-1)\,S^{\tp}S ,
+\end{equation}
+for every $d\ge 2$, and deduced that on any subspace $W\subseteq\ker S\cap\ker T$ stable
+under both $\LE$ and $\LE^{\tp}$ the restriction $R=\LE|_W$ satisfies
+$RR^{\tp}=R^{\tp}R=q^{\,d-1}I_W$, so that all its eigenvalues have modulus $q^{(d-1)/2}$ ---
+with no Ramanujan hypothesis. What it could not do was produce a single such $W$. Its
+Remark 4.1 recorded a candidate and observed that the identities it would need are
+``entrywise local'', so that they could in principle be settled inside $\PG(d,q)$ without a
+global complex. That is what is carried out here, and the local computation turns out to be
+one line.
+
+\begin{definition}\label{XX:def:M}
+For $0\le i\le d$ and an edge $e=(x,y)\in E$ put
+\[
+  N_i(v,e)=
+  \begin{cases}1, & \{x,y,v\}\ \text{lies in a chamber and }\tau(v)=\tau(y)+i,\\
+               0, & \text{otherwise,}\end{cases}
+\]
+and $\Psi_d=[N_0^{\tp}\ N_1^{\tp}\ \cdots\ N_d^{\tp}]\in\Z^{E\times(d+1)n}$. Write $c_i$ for
+the number of chambers containing such a triple, so that the unnormalised operator of
+Paper XVIII, Rem.~4.1 is $M_i=c_iN_i$.
+\end{definition}
+
+Two blocks are old: $N_0=T$ and $N_d=S$, because a vertex of relative type $0$ in a chamber
+through $e=(x,y)$ is $y$ and one of relative type $d$ is $x$. So
+$\im\Psi_d\supseteq\im S^{\tp}+\im T^{\tp}$ and therefore
+\begin{equation}\label{XX:eq:inside}
+  W_d:=(\im\Psi_d)^{\perp}\subseteq(\im S^{\tp})^{\perp}\cap(\im T^{\tp})^{\perp}
+  =\ker S\cap\ker T .
+\end{equation}
+So the only thing to prove is that $\im\Psi_d$ absorbs $\LE$ and $\LE^{\tp}$.
+
+\section{One flag count}
+
+Write $[j]_q=(q^{j}-1)/(q-1)$ for the number of points of a $j$-dimensional $\mathbb{F}_q$
+space and $f(m)=\prod_{j=1}^{m}[j]_q$ for the number of complete flags of an $m$-dimensional
+one. A \emph{complete flag} of $\PG(d,q)$ is a chain $F_1\subset F_2\subset\cdots\subset F_d$
+of subspaces of an ambient $(d{+}1)$-dimensional space, $\dim F_j=j$.
+
+\begin{theorem}\label{XX:thm:flag}
+Fix $0\le i\le d-1$, a hyperplane $H$ and a subspace $V$ with $\dim V=i+1$. Then
+\[
+  N(V,H):=\#\{\text{complete flags } F:\ F_{i+1}=V\ \text{and}\ F_1\subseteq H\}
+  =\begin{cases}
+     f(i+1)\,f(d-i), & V\subseteq H,\\[2pt]
+     f(i+1)\,f(d-i)-K_i, & V\not\subseteq H,
+   \end{cases}
+\]
+where
+\[
+  K_i=\frac{f(d-i)\,f(i+1)\,q^{\,i}}{[i+1]_q}
+\]
+is a positive integer depending only on $d$, $i$ and $q$. In particular $N$ takes exactly
+two values, and the jump is independent of both $V$ and $H$.
+\end{theorem}
+
+\begin{proof}
+A complete flag with $F_{i+1}=V$ is a complete flag of $V$ together with a complete flag of
+the quotient by $V$, and the two choices are independent; the quotient has dimension
+$(d+1)-(i+1)=d-i$, so the number of flags above $V$ is $f(d-i)$ regardless of $H$.
+
+Below $V$ the constraint is $F_1\subseteq H\cap V$. If $V\subseteq H$ this is vacuous and the
+count is $f(i+1)$. Otherwise $H\cap V$ is a hyperplane of $V$, of dimension $i$. Every point
+of $V$ lies in the same number $f(i+1)/[i+1]_q$ of complete flags of $V$, by transitivity of
+$\mathrm{GL}(V)$ on points; hence the count is $[i]_q\,f(i+1)/[i+1]_q$, and
+\[
+  f(i+1)-\frac{[i]_q\,f(i+1)}{[i+1]_q}
+  =f(i+1)\,\frac{[i+1]_q-[i]_q}{[i+1]_q}
+  =\frac{f(i+1)\,q^{\,i}}{[i+1]_q} .
+\]
+Multiplying by $f(d-i)$ gives $K_i$. It is an integer because it counts flags.
+\end{proof}
+
+Theorem~\ref{XX:thm:flag} is verified exhaustively --- over \emph{every} pair $(V,H)$ --- for
+$(d,q)\in\{(2,2),(2,3),(3,2),(3,3),(4,2)\}$ and every $i$, fourteen triples in all; checks
+(F) and (K). Table~\ref{XX:tab:flag} lists the values.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{rrrrrr}
+\toprule
+$d$ & $q$ & $i$ & $N$ ($V\subseteq H$) & $N$ ($V\not\subseteq H$) & $K_i$\\
+\midrule
+2 & 2 & 0 &   3 &   0 &   3\\
+2 & 2 & 1 &   3 &   1 &   2\\
+2 & 3 & 0 &   4 &   0 &   4\\
+2 & 3 & 1 &   4 &   1 &   3\\
+3 & 2 & 1 &   9 &   3 &   6\\
+3 & 2 & 2 &  21 &   9 &  12\\
+3 & 3 & 1 &  16 &   4 &  12\\
+3 & 3 & 2 &  52 &  16 &  36\\
+4 & 2 & 1 &  63 &  21 &  42\\
+4 & 2 & 2 &  63 &  27 &  36\\
+4 & 2 & 3 & 315 & 147 & 168\\
+\bottomrule
+\end{tabular}
+\caption{The two values of $N(V,H)$ and their difference, over all pairs $(V,H)$ in
+$\PG(d,q)$. The rows with $i=0$ are omitted for $d\ge3$ (there $V$ is a point, $N=0$ when
+$V\not\subseteq H$, and $K_0=f(d)$). Checks (F) and (K).}
+\label{XX:tab:flag}
+\end{table}
+
+\section{The intertwining}
+
+\begin{lemma}[Paper XVIII, Lem.~2.2]\label{XX:lem:link}
+Let $y$ be a vertex of $X$ and identify its link with the flag complex of $\PG(d,q)$ so that
+a neighbour of relative type $+j$ corresponds to a subspace of dimension $j$. Then the tail
+of an edge with head $y$ is a hyperplane, the geodesic successors are exactly the points not
+on it, and the chambers of $X$ through $y$ are the complete flags.
+\end{lemma}
+
+\begin{theorem}\label{XX:thm:inter}
+Let $A_j(y,v)=1$ when $v$ is a neighbour of $y$ of relative type $+j$ and $0$ otherwise, and
+put $N_{d+1}:=0$, $A_{d+1}:=I$. Then for every $\Atilde d$ complex of order $q$ and every
+$0\le i\le d$,
+\begin{equation}\label{XX:eq:rec}
+  \LE N_i^{\tp}=q^{\,i}\bigl(N_0^{\tp}A_{i+1}-N_{i+1}^{\tp}\bigr),
+\end{equation}
+and dually, with $N_{-1}:=0$ and $A_0:=I$,
+$\LE^{\tp}N_i^{\tp}=q^{\,d-i}\bigl(N_d^{\tp}A_{i}-N_{i-1}^{\tp}\bigr)$.
+Consequently $\LE\Psi_d=\Psi_dC$ and $\LE^{\tp}\Psi_d=\Psi_dC'$ for $(d{+}1)\times(d{+}1)$
+block matrices with entries in the algebra generated by $A_1,\dots,A_d$.
+\end{theorem}
+
+The collapse of the constant from $K_i$ to the bare power $q^{\,i}$ is what makes the
+rank-$d$ statement usable, and it is forced: a chamber through $\{x,y,v\}$ is a flag through
+the chain $V\subset H$ of dimensions $i\subset d$, so $c_i=f(i)f(d-i)$, and with
+$f(i+1)=[i+1]_qf(i)$,
+\begin{equation}\label{XX:eq:kappa}
+  \frac{K_i}{c_i}
+  =\frac{f(d-i)f(i+1)q^{\,i}}{[i+1]_q}\cdot\frac{1}{f(i)f(d-i)}=q^{\,i}.
+\end{equation}
+
+\begin{proof}
+Fix $e=(x,y)$ and a vertex $v$ of type $\tau(y)+1+i$. Then
+\[
+  c_i\,(\LE N_i^{\tp})(e,v)=\sum_{z:\ (y,z)\ \text{geodesic after}\ e} M_i\bigl(v,(y,z)\bigr)
+  =\#\bigl\{(z,C):\ z\notin x,\ y,z\in C,\ C_{\tau(y)+1+i}=v\bigr\},
+\]
+the condition $z\notin x$ being Lemma~\ref{XX:lem:link}. Work in the link of $y$. There $x$ is a
+hyperplane $H$, each $z$ is a point $p$, $v$ is a subspace $V$ of dimension $i+1$, and a
+chamber $C$ through $y$ and $z$ with $C_{\tau(y)+1+i}=v$ is a complete flag $F$ with $F_1=p$
+and $F_{i+1}=V$. Since $z$ is recovered from $C$ as $F_1$, the pair $(z,C)$ is just the flag,
+and
+\[
+  c_i\,(\LE N_i^{\tp})(e,v)=\#\{F:\ F_{i+1}=V\}-\#\{F:\ F_{i+1}=V,\ F_1\subseteq H\}
+  =f(i+1)f(d-i)-N(V,H).
+\]
+By Theorem~\ref{XX:thm:flag} this is $0$ when $V\subseteq H$ and $K_i$ otherwise. Now
+$V\subseteq H$ says precisely that $v$ and $x$ lie in a common chamber with $y$, i.e.\ that
+$\{x,y,v\}$ is a simplex, which is exactly what $N_{i+1}$ records; and the value $K_i$ is
+attained only when $v$ is a neighbour of $y$ of relative type $i+1$ at all, which is
+$A_{i+1}(y,v)$. Assembling and dividing by $c_i$, which is $q^{\,i}$ by \eqref{XX:eq:kappa},
+\[
+  (\LE N_i^{\tp})(e,v)=q^{\,i}\bigl(A_{i+1}(y,v)-N_{i+1}(v,e)\bigr),
+\]
+and $A_{i+1}(y,v)=(N_0^{\tp}A_{i+1})(e,v)$ since $N_0=T$ and $y$ is the head of $e$. At
+$i=d$ the first term is $q^{\,d}N_0^{\tp}$ and the second vanishes, recovering
+$\LE S^{\tp}=q^{\,d}T^{\tp}$, which is Paper XVIII, Prop.~2.4 transposed.
+
+For the dual, $(\LE^{\tp}N_i^{\tp})(f,v)$ with $f=(y,z)$ sums $N_i(v,(x,y))$ over the $x$ with
+$\{x,y,z\}$ not a simplex. In the link of $y$ this counts complete flags $F$ with $F_i=V$ and
+$p\not\subseteq F_d$, where now $V$ has dimension $i$ and $p$ is the point $z$. The duality
+of $\PG(d,q)$, which exchanges subspaces of dimension $j$ with those of dimension $d+1-j$
+and reverses inclusion, carries this count to the count of Theorem~\ref{XX:thm:flag} with $i$
+replaced by $d-i$. The same argument then gives the mirror identity, with $N_d=S$ in place of
+$N_0=T$ and $N_{i-1}$ in place of $N_{i+1}$.
+
+Finally, each right-hand side of \eqref{XX:eq:rec} is a $\Z$-linear combination of the blocks
+$N_0^{\tp}$ and $N_{i+1}^{\tp}$, the first multiplied on the right by an operator on the
+vertex space. That is exactly the statement $\LE\Psi_d=\Psi_dC$ with $C$ of the asserted
+shape.
+\end{proof}
+
+\begin{corollary}\label{XX:cor:W}
+$W_d=(\im\Psi_d)^{\perp}$ is contained in $\ker S\cap\ker T$ and is invariant under $\LE$ and
+$\LE^{\tp}$. Hence, by Paper XVIII, Cor.~2.7, $R=\LE|_{W_d}$ satisfies
+$RR^{\tp}=R^{\tp}R=q^{\,d-1}I$, every eigenvalue of $R$ has modulus $q^{(d-1)/2}$, and every
+root of $\det(I-uR)$ lies on $|u|=q^{-(d-1)/2}$. No hypothesis on $X$ is used --- in
+particular, no Ramanujan hypothesis.
+\end{corollary}
+
+\begin{proof}
+The inclusion is \eqref{XX:eq:inside}. If $\LE\Psi_d=\Psi_dC$ then $\LE(\im\Psi_d)\subseteq
+\im\Psi_d$, so $\LE^{\tp}$ preserves $(\im\Psi_d)^{\perp}$; and $\LE^{\tp}\Psi_d=\Psi_dC'$
+gives the other half. Now apply \eqref{XX:eq:main}, whose correction terms $T^{\tp}T$ and
+$S^{\tp}S$ vanish on $W_d$.
+\end{proof}
+
+\section{The companion matrix, and the Hecke polynomial in rank $d$}
+
+Reading \eqref{XX:eq:rec} columnwise gives $C$ outright: the block in row $0$, column $i$ is
+$q^{\,i}A_{i+1}$ and the block in row $i+1$, column $i$ is $-q^{\,i}I$, all others zero.
+
+\begin{theorem}\label{XX:thm:hecke}
+$\LE\Psi_d=\Psi_dC$ with
+\[
+  C=\begin{pmatrix}
+     A_1 & qA_2 & q^{2}A_3 & \cdots & q^{\,d-1}A_d & q^{\,d}I\\
+     -I  & 0    & 0        &        &              & 0\\
+     0   & -qI  & 0        &        &              & 0\\
+         &      & \ddots   &        &              & \vdots\\
+     0   & 0    &          & -q^{\,d-1}I & 0       & 0
+    \end{pmatrix},
+\]
+and, the blocks $A_1,\dots,A_d$ being commuting operators on the vertex space,
+\[
+  \det(xI-C)=\sum_{j=0}^{d+1}(-1)^{j}\,q^{\,j(j-1)/2}\,A_j\,x^{\,d+1-j},
+  \qquad A_0=A_{d+1}=I ,
+\]
+the local Hecke polynomial of $\mathrm{PGL}_{d+1}$. Equivalently, on $\im\Psi_d$,
+\[
+  \LE^{\,d+1}-\LE^{\,d}A_1+q\LE^{\,d-1}A_2-q^{3}\LE^{\,d-2}A_3+\cdots
+  +(-1)^{d+1}q^{\,d(d+1)/2}=0 .
+\]
+\end{theorem}
+
+\begin{proof}
+The shape of $C$ is \eqref{XX:eq:rec}. For the determinant, eliminate: \eqref{XX:eq:rec} gives
+$N_{i+1}^{\tp}=N_0^{\tp}A_{i+1}-q^{-i}\LE N_i^{\tp}$, so by induction
+$N_j^{\tp}=\sum_{t=0}^{j}(-1)^{t}q^{-(tj-t(t+1)/2)}\LE^{t}N_0^{\tp}A_{j-t}$. Applying $\LE$
+to the case $j=d$ and using $\LE N_d^{\tp}=q^{\,d}N_0^{\tp}$ gives a relation of degree
+$d+1$ in $\LE$ annihilating $N_0^{\tp}$; clearing the negative powers of $q$ turns it into
+the displayed polynomial, whose coefficient of $\LE^{\,d+1-j}A_j$ is
+$(-1)^{j}q^{\,j(j-1)/2}$.
+\end{proof}
+
+At $d=2$ this is $x^{3}-A_1x^{2}+qA_2x-q^{3}$, the cubic pencil of Kang and Li \cite{KL14}.
+At $d=3$, which no published work reaches, it is
+\[
+  C^{(4)}=\begin{pmatrix} A_1 & qA_2 & q^{2}A_3 & q^{3}I\\ -I&0&0&0\\ 0&-qI&0&0\\
+          0&0&-q^{2}I&0\end{pmatrix},
+  \qquad
+  \det(xI-C^{(4)})=x^{4}-A_1x^{3}+qA_2x^{2}-q^{3}A_3x+q^{6} ,
+\]
+the quartic local Hecke polynomial of $\mathrm{PGL}_4$ --- obtained here with no global
+$\Atilde3$ complex, purely from the flag count. The determinant identity is verified
+symbolically for $d=2,3,4,5$, and \eqref{XX:eq:kappa} for $d\le6$; checks (H) and (A).
+
+\begin{theorem}\label{XX:thm:corank}
+For every $t\in\Z/(d+1)$ and every $i$, let $1_t\in\Z^{n}$ be the indicator of the vertices
+of type $t$, and let $b_i=\binom{d}{i}_{\!q}=f(d)/\bigl(f(i)f(d-i)\bigr)$ be the number of
+vertices of relative type $i$ forming a simplex with a given edge. Then
+\[
+  N_i^{\tp}1_{t+i}=b_i\,N_0^{\tp}1_{t},
+\]
+so the vectors $w=(w_0,\dots,w_d)$ with $w_i=\sum_s a_{i,s}1_s$ lie in $\ker\Psi_d$ exactly
+when $\sum_{i=0}^{d}b_i\,a_{i,t+i}=0$ for each $t$. That is $(d+1)^{2}$ unknowns subject to
+$d+1$ independent equations, so
+\[
+  \operatorname{corank}\Psi_d\ \ge\ d(d+1),
+  \qquad
+  \dim W_d\ \le\ |E|-(d+1)n+\operatorname{corank}\Psi_d .
+\]
+\end{theorem}
+
+\begin{proof}
+$(N_i^{\tp}1_s)(e)=\sum_{\tau(v)=s}N_i(v,e)$ counts the vertices of relative type $i$ lying
+in a chamber with $e$, when $s=\tau(\mathrm{head}\,e)+i$, and is $0$ otherwise. In the link
+of the head those vertices are the $i$-dimensional subspaces of the hyperplane $x$, so there
+are $b_i=\binom{d}{i}_q$ of them, independently of $e$; hence
+$N_i^{\tp}1_s=b_i\,N_0^{\tp}1_{s-i}$.
+The $d+1$ vectors $N_0^{\tp}1_t$ are the indicators of the type classes of $E$ and so are
+independent, which makes the $d+1$ equations independent.
+\end{proof}
+
+On all three complexes of Section~\ref{XX:sec:y} the corank is exactly $d(d+1)=6$ and these
+relations span the kernel, so $\dim W_d=|E|-(d+1)n+d(d+1)$ there; check (N). Whether the
+inequality is an equality for $d\ge3$ we do not know. We note that $d(d+1)$, $2(d+1)$ and
+$(d+1)!$ all equal $6$ at $d=2$ and diverge at $d=3$, where they are $12$, $8$ and $24$; the
+value derived above is $d(d+1)$.
+
+\section{Rank two, and the Hecke pencil}\label{XX:sec:y}
+
+At $d=2$ we have $N_0=T$, $N_2=S$ and $N_1=M$, the chamber indicator; the three cases of
+\eqref{XX:eq:rec} read
+\begin{equation}\label{XX:eq:three}
+  \LE T^{\tp}=T^{\tp}A_1-M^{\tp},\qquad
+  \LE M^{\tp}=q\bigl(T^{\tp}A_2-S^{\tp}\bigr),\qquad
+  \LE S^{\tp}=q^{2}T^{\tp},
+\end{equation}
+with the mirror obtained by exchanging $S\leftrightarrow T$ and $A_1\leftrightarrow A_2$.
+Only the first and third were available before: the first is the definition of the geodesic
+condition rearranged, the third is Paper XVIII, and the middle one --- the one that closes
+the cycle --- is new. With $\Psi_2=[T^{\tp}\ M^{\tp}\ S^{\tp}]$,
+\[
+  C=\begin{pmatrix} A_1 & qA_2 & q^{2}I\\ -I & 0 & 0\\ 0 & -qI & 0\end{pmatrix},
+  \qquad
+  \det(xI-C)=x^{3}-A_1x^{2}+qA_2x-q^{3} .
+\]
+That cubic is the local Hecke polynomial of $\mathrm{PGL}_3$, and the determinant identity
+built on it is Kang and Li's \cite{KL14}. The three identities of \eqref{XX:eq:three}, their
+mirrors, $\LE\Psi_2=\Psi_2C$ exactly, and the pencil relation $C^{3}=A_1C^{2}-qA_2C+q^{3}$
+are verified on the thick $\Atilde2$ complexes $Y_{21}$, $Y_{24}$ and $Y_{42}$ of Paper X;
+checks (I) and (P). Table~\ref{XX:tab:y} records the subspace they produce.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lrrrrrl}
+\toprule
+$X$ & $n$ & $|E|$ & $q$ & $\rank\Psi_2$ & $\dim W_2$ & $|\text{eigenvalues of }\LE|_{W_2}|$\\
+\midrule
+$Y_{21}$ & 21 & 147 & 2 &  57 &  90 & $1.414214=\sqrt2$\\
+$Y_{24}$ & 24 & 168 & 2 &  66 & 102 & $1.414214=\sqrt2$\\
+$Y_{42}$ & 42 & 294 & 2 & 120 & 174 & $1.414214=\sqrt2$\\
+\bottomrule
+\end{tabular}
+\caption{The invariant subspace on the three thick $\Atilde2$ complexes of Paper X. In every
+case $\Psi_2$ has corank $6$ in $\Z^{3n}$ --- the two relations per type saying that the
+columns of $S$, $T$ and $M$ sum to the indicator of a type class --- and \emph{every}
+eigenvalue of $\LE|_{W_2}$ has modulus $\sqrt q$ to machine precision. Checks (P) and (U).}
+\label{XX:tab:y}
+\end{table}
+
+\begin{remark}[What the decomposition says]\label{XX:rem:split}
+Corollary~\ref{XX:cor:W} splits the spectrum of $\LE$ into a part carried by $\im\Psi_d$ and a
+part carried by $W_d$. On $\im\Psi_d$ the flow is governed by $C$, whose entries are Hecke
+operators, so that part of the spectrum is a function of the Satake parameters and the
+Ramanujan property is exactly the question of where it sits. On $W_d$ the flow is
+$q^{(d-1)/2}$ times an orthogonal matrix, unconditionally. At $d=2$ this explains the shape
+of Kang and Li's criterion \cite[Thm.~1.0.2]{KL14}: they prove that $X$ is Ramanujan if and
+only if the non-trivial zeros of $\det(I-u\LE)$ have $|u|\in\{q^{-1},q^{-1/2}\}$. The
+$q^{-1/2}$ family is precisely the $W_d$ part, and Corollary~\ref{XX:cor:W} says it is there for
+every complex, Ramanujan or not; the Ramanujan content is entirely in the $q^{-1}$ family,
+which is the Hecke part.
+\end{remark}
+
+\begin{remark}[Solved, open, impossible]\label{XX:rem:soi}
+\emph{Solved:} the open problem (a) of Paper XVIII, Rem.~4.2 --- the invariant subspace, and
+with it Corollary 2.7 of that paper unconditionally, for every $d\ge2$.
+\emph{Open:} (i) whether the bound $\operatorname{corank}\Psi_d\ge d(d+1)$ of
+Theorem~\ref{XX:thm:corank} is an equality for $d\ge3$, hence $\dim W_d$ exactly; at $d=2$ it is
+an equality on all three complexes tested, and we have not proved it in general.
+(ii) Whether $\im\Psi_d$ is the \emph{full} Hecke-isotypic part, i.e.\ whether $W_d$ is the
+largest two-sided invariant subspace inside $\ker S\cap\ker T$.
+(iii) A rank-$d$ analogue of the determinant identity itself; see the provenance note.
+\emph{Impossible by the same argument:} nothing here bounds the spectrum on $\im\Psi_d$. The
+Hecke part is where Ramanujan lives, and Corollary~\ref{XX:cor:W} is silent about it by
+construction --- that is the price of being unconditional.
+\end{remark}
+
+\section{Verification}
+
+The script \texttt{ad\_invariant\_subspace.py} runs eight checks in a few seconds; its
+output is archived as \texttt{ad\_invariant\_subspace\_output.txt}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\toprule
+key & claim & cases & mode\\
+\midrule
+(F) & $N(V,H)$ takes exactly two values, jump $K_i$ & 14 triples $(d,q,i)$ & exact\\
+(K) & the closed forms $f$, $\varphi$, $K_i$ match the enumeration & 14 triples & exact\\
+(A) & $K_i/c_i=q^{\,i}$, symbolically in $q$ & $2\le d\le7$, all $i$ & exact\\
+(H) & $\det(xI-C)$ is the $\mathrm{PGL}_{d+1}$ Hecke polynomial & $d=2,3,4,5$ & exact\\
+(I) & the six rank-2 identities of \eqref{XX:eq:three} and their mirrors & 3 complexes & exact\\
+(P) & $\im\Psi_2$ absorbs $\LE$ and $\LE^{\tp}$; $C$ obeys the pencil & 3 complexes & exact\\
+(U) & every eigenvalue of $\LE|_{W_2}$ has modulus $q^{1/2}$ & 3 complexes & numeric\\
+(N) & $\operatorname{corank}\Psi_2=6=d(d+1)$, and the type relations span & 3 complexes & exact\\
+\bottomrule
+\end{tabular}
+\caption{The battery. ``Exact'' is exact integer arithmetic; (U) is a floating-point
+eigenvalue computation, agreeing with $\sqrt q$ to $10^{-12}$.}
+\label{XX:tab:battery}
+\end{table}
+
+Check (F) enumerates every complete flag of $\PG(d,q)$ and every pair $(V,H)$ --- no sampling
+--- for the five pairs $(d,q)$ with at most $20\,000$ flags. Check (U) is the only numerical
+item; it is a consequence of the exact checks, and is reported because the eigenvalues are
+what the statement is about.
+
+\section{Scope and provenance}
+
+\paragraph{Scope.} Theorem~\ref{XX:thm:flag} and Theorem~\ref{XX:thm:inter} are proved for every
+$d\ge2$ and every $\Atilde d$ complex of order $q$; so is Corollary~\ref{XX:cor:W}. The global
+identities are \emph{verified} only at $d=2$, because we have no $\Atilde d$ complex for
+$d\ge3$ to verify them on; the proof of Theorem~\ref{XX:thm:inter}, however, uses nothing beyond
+Lemma~\ref{XX:lem:link} and the flag count, and both hold in every rank. The corank of $\Psi_d$
+is not determined.
+
+\paragraph{Provenance.} Identity~\eqref{XX:eq:main} and Lemma~\ref{XX:lem:link} are Paper XVIII.
+The $d=2$ determinant identity
+$Z(X,u)^{-1}=\det(I-A_1u+qA_2u^{2}-q^{3}u^{3})\cdot\det(I+L_Bu)\cdot(1-u^{3})^{-\chi}$
+and the four-way Ramanujan criterion quoted in Remark~\ref{XX:rem:split} are Kang and Li
+\cite{KL14}; a representation-theoretic reproof is Kang, Li and Wang \cite{KLW10}, and an
+earlier approximation is Deitmar and Hoffman \cite{DH06}. The rank-two case for
+$\mathrm{Sp}_4$ is Fang, Li and Wang \cite{FLW13}. For general rank the state of the art is
+an alternating-product Ihara identity, uniform in $n$, of Kang and Yu \cite{KY26}; it carries
+no Riemann-hypothesis statement and no single-operator determinant formula, and Kang and
+McCallum \cite{KM16} had recorded the higher-rank case as a conjecture. A targeted search
+found no published statement of an \emph{operator-level} intertwining
+$\LE\Psi=\Psi C$ --- at any rank, including $d=2$ --- and none of an unconditional modulus
+statement for a complementary part of $\mathrm{spec}(\LE)$. Those two, and the flag count
+that produces them, are what is new here. The spectral definition of a Ramanujan complex of
+type $\Atilde d$ is Lubotzky, Samuels and Vishne \cite{LSV05}.
