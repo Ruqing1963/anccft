@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below."
+message: "If you use this work, please cite the book by its DOI."
 title: "Algorithmic Non-commutative Class Field Theory: Hecke operators, sandpile groups and operator algebras on trees and buildings, with applications"
 authors:
   - family-names: Chen
@@ -7,8 +7,13 @@ authors:
     affiliation: "GUT Geoservice Inc., Rivière-Beaudette, Québec, Canada"
     email: ruqing@hotmail.com
 type: software
-version: "1.0.0"
-date-released: "2026-09-25"
+version: "1.1.0"
+date-released: "2026-09-21"
+doi: 10.5281/zenodo.22883908
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22883908
+    description: "The monograph (Volume I) archived on Zenodo"
 license: "CC-BY-4.0"
 repository-code: "https://github.com/Ruqing1963/anccft"
 keywords:
@@ -24,7 +29,15 @@ keywords:
   - line digraph
   - affine building
   - Ramanujan complex
-  - de Bruijn graph
-  - genome assembly
   - Smith normal form
-abstract: "Sixteen papers and eight applied notes, assembled into a monograph, on the sandpile groups of Hecke-Laplacians over quotients of Bruhat-Tits trees and A~2 buildings, their towers, and the operator algebras that carry them; with verification scripts, data and figures reproducing every numerical claim."
+abstract: "Twenty papers and four applied notes (September 2026), assembled into a monograph of 26 chapters, on the sandpile groups of Hecke-Laplacians over quotients of Bruhat-Tits trees and A~2 / A~d buildings, their towers, and the operator algebras that carry them; with the verification scripts, data tables and figures that reproduce every numerical claim. The biological strand (Bio 1-11) is Volume II, Algebraic Genomics, published separately."
+preferred-citation:
+  type: book
+  title: "Algorithmic Non-commutative Class Field Theory: Hecke operators, sandpile groups and operator algebras on trees and buildings, with applications"
+  authors:
+    - family-names: Chen
+      given-names: Ruqing
+  year: 2026
+  publisher:
+    name: Zenodo
+  doi: 10.5281/zenodo.22883908

@@ -17,30 +17,45 @@ import os, re, sys, collections, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# The same script runs in two layouts: beside the working folders ("Paper 1", "Phys 1", ...)
+# and inside the repository (code/build_monograph.py with papers/01, applications/...).
+REPO_MAP = {f"Paper {i}": f"papers/{i:02d}" for i in range(1, 21)}
+REPO_MAP.update({"Phys 1": "applications/phys-bloch-mass", "Holo 1": "applications/holo-boundary-blind",
+                 "Net 1": "applications/net-tower-lambda", "Ctrl 1": "applications/ctrl-hidden-eigenvalues"})
+
+
+def locate(folder):
+    """the directory holding a paper's sources, in either layout"""
+    for cand in (os.path.join(ROOT, folder),
+                 os.path.join(ROOT, REPO_MAP.get(folder, folder)),
+                 os.path.join(os.path.dirname(ROOT), REPO_MAP.get(folder, folder))):
+        if os.path.isdir(cand):
+            return cand
+    raise FileNotFoundError(f"no source folder for {folder!r} relative to {ROOT}")
+
+
 # (part title, [(folder, tex, roman/label)])  -- the monograph plan
+# Volume I: the twenty papers and the four non-biological applied notes.  The Bio strand
+# (Bio 1--11) is Volume II, "Algebraic Genomics", built separately (see build_volume2 below).
 PLAN = [
     ("The bridge over the tree: two channels and one obstruction", [
         ("Paper 1", "anccft.tex", "I"), ("Paper 2", "anccft2.tex", "II"),
         ("Paper 6", "anccft6.tex", "VI"), ("Paper 3", "anccft3.tex", "III")]),
     ("Towers: commutative Iwasawa theory and its failure", [
         ("Paper 4", "anccft4.tex", "IV"), ("Paper 9", "anccft9.tex", "IX"),
-        ("Paper 14", "anccft14.tex", "XIV"), ("Paper 5", "anccft5.tex", "V"),
-        ("Paper 7", "anccft7.tex", "VII"), ("Paper 13", "anccft13.tex", "XIII")]),
+        ("Paper 14", "anccft14.tex", "XIV"), ("Paper 19", "anccft19.tex", "XIX"),
+        ("Paper 5", "anccft5.tex", "V"), ("Paper 7", "anccft7.tex", "VII"),
+        ("Paper 13", "anccft13.tex", "XIII")]),
     ("Operator algebras of the tower", [
-        ("Paper 8", "anccft8.tex", "VIII"), ("Paper 16", "anccft16.tex", "XVI"),
-        ("Paper 17", "anccft17.tex", "XVII"), ("Paper 19", "anccft19.tex", "XIX")]),
-    ("Buildings: rank two, and rank $d$", [
+        ("Paper 8", "anccft8.tex", "VIII"), ("Paper 17", "anccft17.tex", "XVII"),
+        ("Paper 16", "anccft16.tex", "XVI")]),
+    ("Higher rank: $\\widetilde A_2$ and $\\widetilde A_d$ buildings", [
         ("Paper 10", "anccft10.tex", "X"), ("Paper 11", "anccft11.tex", "XI"),
         ("Paper 12", "anccft12.tex", "XII"), ("Paper 15", "anccft15.tex", "XV"),
         ("Paper 18", "anccft18.tex", "XVIII"), ("Paper 20", "anccft20.tex", "XX")]),
-    ("Applications outside number theory", [
+    ("Applications to physics, networks and control", [
         ("Phys 1", "bloch_mass.tex", "Phys1"), ("Holo 1", "boundary_blind.tex", "Holo1"),
-        ("Net 1", "tower_lambda.tex", "Net1"), ("Ctrl 1", "hidden_eigs.tex", "Ctrl1"),
-        ("Bio 1", "dbg_sandpile.tex", "Bio1"), ("Bio 2", "rotor_assembly.tex", "Bio2"),
-        ("Bio 3", "repeat_splitting.tex", "Bio3"), ("Bio 4", "multicopy.tex", "Bio4"),
-        ("Bio 5", "ecoli_decomposition.tex", "Bio5"),
-        ("Bio 6", "rc_double_cover.tex", "Bio6"),
-        ("Bio 7", "rc_quotient_signed.tex", "Bio7")]),
+        ("Net 1", "tower_lambda.tex", "Net1"), ("Ctrl 1", "hidden_eigs.tex", "Ctrl1")]),
 ]
 ORDER = [(f, t, l) for _, chs in PLAN for f, t, l in chs]
 
@@ -93,6 +108,10 @@ def parse(path):
     body = re.sub(r"\\begin\{abstract\}.*?\\end\{abstract\}", "", body, flags=re.S)
     body = re.sub(r"\\maketitle|\\tableofcontents", "", body)
     body = body.replace("\\end{document}", "")
+    # a paper that sets its bibliography in \begingroup\small ... \endgroup leaves the opener
+    # behind once the bibliography is cut off; drop it (the closer went with the bibliography)
+    body = re.sub(r"\\begingroup\s*(\\(?:small|footnotesize|scriptsize))?\s*$", "", body.rstrip())
+    assert body.count("\\begingroup") == body.count("\\endgroup"), path
     bib = collections.OrderedDict()
     if tail:
         tail = tail.split("\\end{thebibliography}")[0]
@@ -130,12 +149,16 @@ def analyse(papers):
             print(f"  {k}: " + " | ".join(f"{t[:40]} <- {','.join(l)}" for t, l in variants.items()))
 
 
-# self-citations of unpublished parts of this corpus become chapter references
-SELF = {"Bio1": "Bio1", "Bio2": "Bio2", "Bio3": "Bio3", "Bio4": "Bio4", "Bio5": "Bio5",
-        "Bio6": "Bio6", "Bio7": "Bio7",
-        "ANCFT9": "IX", "ANCFT10": "X", "ANCFT17": "XVII", "ANCFT18": "XVIII",
-        "ANCFT19": "XIX", "ANCFT20": "XX",
-        "ANCFT12": "XII", "ANCFT14": "XIV", "Phys1": "Phys1", "Net1": "Net1", "Holo1": "Holo1", "Ctrl1": "Ctrl1"}
+# self-citations of unpublished parts of this corpus become chapter references.  The papers
+# key them three ways: by bare roman numeral (\cite{II}), by ANCFT<n> and by Paper<n>; the
+# applied notes by their own labels.  Every such key is dropped from the merged bibliography.
+ROMANS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII",
+          "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"]
+SELF = {r: r for r in ROMANS}
+SELF.update({f"ANCFT{i + 1}": r for i, r in enumerate(ROMANS)})
+SELF.update({f"Paper{i + 1}": r for i, r in enumerate(ROMANS)})
+SELF.update({"Phys1": "Phys1", "Net1": "Net1", "Holo1": "Holo1", "Ctrl1": "Ctrl1"})
+SELF.update({f"Bio{i}": f"Bio{i}" for i in range(1, 12)})
 SELF_SERIES = "ANCFT"      # cited as \cite[V]{ANCFT}, \cite[X--XII]{ANCFT}
 
 
@@ -183,6 +206,55 @@ def _chref(r):
     return "\\ref{chap:" + r + "}"
 
 
+# --- PDF bookmarks: hyperref cannot put math into a bookmark string, so every chapter, part
+# and section title that contains math or a macro is wrapped as \texorpdfstring{tex}{plain}.
+PDF_REP = {
+    r"\widetilde A_2": "A2", r"\Atwo": "A2", r"\widetilde A_d": "Ad", r"\Atilde d": "Ad",
+    r"\Atilde{d}": "Ad", r"\Atilde{2}": "A2", r"\Atilde 2": "A2", r"\Atilde{3}": "A3",
+    r"\mathcal{L}": "L", r"\mathcal L": "L", r"\cL": "L", r"\mathrm{PGL}": "PGL", r"\PGL": "PGL",
+    r"\mathrm{GL}": "GL", r"\GL": "GL", r"\mathrm{Sp}": "Sp", r"\PPone": "P1", r"\mathbb{P}": "P",
+    r"\Zl": "Zl", r"\Zp": "Zp", r"\Qp": "Qp", r"\Ql": "Ql", r"\KK": "KK", r"\Z": "Z", r"\Q": "Q",
+    r"\K": "K", r"\lambda": "lambda", r"\eta": "eta", r"\ell": "l", r"\Delta": "Delta",
+    r"\Theta": "Theta", r"\Psi": "Psi", r"\tau": "tau", r"\alpha": "alpha", r"\sigma": "sigma",
+    r"\kappa": "kappa", r"\mu": "mu", r"\nu": "nu", r"\infty": "inf", r"\rtimes": " x ",
+    r"\otimes": " x ", r"\oplus": " + ", r"\to": " -> ", r"\emph": "", r"\textbf": "", r"\textit": "",
+    r"\texttt": "", r"\mathrm": "", r"\operatorname": "", r"\ ": " ", r"\,": " ", r"\;": " ",
+    r"\&": "&", r"\%": "%", r"\_": "_", "~": " ", "--": "-",
+}
+
+
+def pdf_plain(s):
+    """an ASCII rendering of a title for the PDF bookmark"""
+    s = re.sub(r"\\texorpdfstring\{((?:[^{}]|\{[^{}]*\})*)\}\{((?:[^{}]|\{[^{}]*\})*)\}", r"\2", s)
+    for k in sorted(PDF_REP, key=len, reverse=True):
+        s = s.replace(k, PDF_REP[k])
+    s = re.sub(r"\\[A-Za-z]+\*?", "", s)
+    s = re.sub(r"[\$\{\}\^]", "", s).replace("_", "")
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def pdfsafe(title):
+    if "\\texorpdfstring" in title or ("$" not in title and "\\" not in title):
+        return title
+    return "\\texorpdfstring{" + title + "}{" + pdf_plain(title) + "}"
+
+
+def wrap_section_titles(body):
+    r"""apply pdfsafe to the argument of every \section / \section* in a chapter body"""
+    out, i = [], 0
+    for m in re.finditer(r"\\section\*?\{", body):
+        if m.start() < i:
+            continue
+        end = balanced(body, m.end() - 1)
+        arg = body[m.end():end - 1]
+        out.append(body[i:m.end()])
+        out.append(pdfsafe(arg))
+        out.append("}")
+        i = end
+    out.append(body[i:])
+    return "".join(out)
+
+
 def rewrite_paper_refs(body):
     r"""Turn the papers' own cross-references, written as roman numerals, into chapter
     references.  Only unambiguous citation shapes are rewritten: a BARE [X] can be a class
@@ -222,6 +294,7 @@ MAIN_TEMPLATE = r"""% main.tex -- generated by build_monograph.py; edit frontmat
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
 \raggedbottom
+\emergencystretch=2em
 \setcounter{tocdepth}{1}
 \setcounter{secnumdepth}{2}
 
@@ -306,7 +379,7 @@ def build(papers, outdir):
     concord = []
     chno = 1   # introduction is chapter 1
     for part_title, chs in PLAN:
-        parts_tex.append(f"\\part{{{part_title}}}")
+        parts_tex.append(f"\\part{{{pdfsafe(part_title)}}}")
         for folder, tex, lab in chs:
             chno += 1
             p = papers[lab]
@@ -315,14 +388,18 @@ def build(papers, outdir):
             body = re.sub(r"\\label\{", f"\\\\label{{{lab}:", body)
             body = re.sub(r"\\(ref|eqref|pageref|autoref)\{(?!chap:)", lambda m: "\\" + m.group(1) + "{" + lab + ":", body)
             body = re.sub(r"\\section\*\{Provenance\}", r"\\section*{Provenance of this chapter}", body)
+            body = wrap_section_titles(body)
             # local macro overrides
             over = [text.replace("\\newcommand", "\\renewcommand", 1)
                     for name, text in p["macros"].items() if norm(text) != norm(macros[name])]
+            # the table of contents carries the paper numeral and the short title
+            short = re.sub(r"^Algorithmic non-commutative class field theory, ([IVX]+):\s*", "", p["title"])
+            toc = (f"{lab}. " + short[0].upper() + short[1:]) if short != p["title"] else p["title"]
             fn = f"chapters/{lab}.tex"
             with open(os.path.join(outdir, fn), "w", encoding="utf-8") as f:
                 f.write(f"% generated from {folder}/{tex}\n")
                 f.write("\n".join(over) + ("\n" if over else ""))
-                f.write(f"\\chapter{{{p['title']}}}\\label{{chap:{lab}}}\n")
+                f.write(f"\\chapter[{pdfsafe(toc)}]{{{pdfsafe(p['title'])}}}\\label{{chap:{lab}}}\n")
                 f.write(f"\\chaptermark{{{lab}}}\n")
                 if p["abstract"]:
                     abst = re.sub(r"\\(ref|eqref|pageref|autoref)\{(?!chap:)", lambda m: "\\" + m.group(1) + "{" + lab + ":",
@@ -345,8 +422,10 @@ def build(papers, outdir):
                 "The chapters are the papers of the series, re-ordered by subject. A reference of the form "
                 "``[Ch.~$n$, Thm.~$a.b$]'' points to Theorem $n.a.b$ of this book; the papers' own "
                 "section-wise numbering is preserved inside each chapter. References to the applied notes "
-                "(Phys~1, Bio~1--5, \\dots) are by the labels below.\n\n"
-                "\\begin{longtable}{llrp{8.2cm}}\n\\toprule\npaper & folder & chapter & title\\\\\n\\midrule\n\\endhead\n")
+                "(Phys~1, Holo~1, Net~1, Ctrl~1) are by the labels below; the biological notes Bio~1--11 "
+                "form Volume~II, \\emph{Algebraic Genomics}, and are not chapters of this volume.\n\n"
+                "\\begin{longtable}{llr>{\\raggedright\\arraybackslash}p{8.2cm}}\n\\toprule\n"
+                "paper & folder & chapter & title\\\\\n\\midrule\n\\endhead\n")
         for lab, folder, ch, title in concord:
             short = re.sub(r"^Algorithmic non-commutative class field theory, [IVX]+:\s*", "", title)
             f.write(f"{lab} & \\texttt{{{folder}}} & {ch} & {short}\\\\\n")
@@ -359,7 +438,7 @@ def build(papers, outdir):
 if __name__ == "__main__":
     papers = collections.OrderedDict()
     for folder, tex, lab in ORDER:
-        papers[lab] = parse(os.path.join(ROOT, folder, tex))
+        papers[lab] = parse(os.path.join(locate(folder), tex))
     if sys.argv[1:] and sys.argv[1] == "analyse":
         analyse(papers)
     elif sys.argv[1:] and sys.argv[1] == "build":

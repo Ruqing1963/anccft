@@ -1,5 +1,0 @@
-k,branch_vertices,bundle_chains,skeleton_vertices,K_skeleton,length_driven,log10_order_K
-12,2,1,1,0,Z/2,0.301
-11,10,2,8,Z/3+Z/11,(Z/2)^2,2.1206
-10,47,8,37,Z/4+Z/1076338579,(Z/2)^10,12.6443
-9,146,28,110,(Z/2)^6+(Z/4)^4+Z/7+Z/523+Z/3779+Z/5297+Z/6561+Z/7669+Z/2707831823,(Z/2)^36,43.0508

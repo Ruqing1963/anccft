@@ -1,0 +1,4 @@
+complex,n,edges,q,singular_values_sqrt_q,rank_Psi,corank_Psi,dim_W
+Y_21,21,147,2,126,57,6,90
+Y_24,24,168,2,144,66,6,102
+Y_42,42,294,2,252,120,6,174
