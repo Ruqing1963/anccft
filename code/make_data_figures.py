@@ -133,7 +133,7 @@ for r in comp:
         ax.annotate(f"{r[0]}, $q=4$", (r[6], r[5]), fontsize=6, xytext=(4, -8), textcoords="offset points")
 ax.set_xlabel("$r_k=n_k(q-1)-1$")
 ax.set_ylabel("$p$-rank of $\\mathrm{Jac}(Y_{k+1})$")
-ax.set_title("Composite $q$: the kernel of the tail norm is the $q$-torsion")
+ax.set_title("Composite $q$: $\\ker\\tau_*=\\mathrm{Jac}(Y_{k+1})[q]$")
 ax.legend(frameon=False, fontsize=8)
 fig.tight_layout()
 fig.savefig(os.path.join(FIGS, "composite_q_prank.pdf"))
