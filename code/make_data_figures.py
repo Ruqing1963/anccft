@@ -155,21 +155,21 @@ fig.tight_layout()
 fig.savefig(os.path.join(FIGS, "a2_edge_flow_split.pdf"))
 print("  wrote a2_edge_flow_split.pdf")
 
-# 4. Ctrl 1: the power-sum bound s >= ceil(max_k [-p_k]_+ / rho^k) is illustrated on a generic spectrum
+# 4. Ctrl 1: the power-sum bound s >= ceil(max_k [-p_k]_+ / rho^k) on the two witnesses of the
+#    note -- M_3(0.9) = {1} u 3{+-0.9i} (Thm 3.1) and the tutorial poles {1, +-0.9i} (Rem 4.3):
+#    k = 1 gives nothing (Benvenuti's zeta = 0), k = 2 binds.
 fig, ax = plt.subplots(figsize=(4.2, 2.8))
-import cmath
-lam = [1.0, 0.9 * cmath.exp(2j * math.pi / 3), 0.9 * cmath.exp(-2j * math.pi / 3)]
-rho = 1.0
-kmax = 12
-bounds = []
-for k in range(1, kmax + 1):
-    pk = sum(l ** k for l in lam).real
-    bounds.append(max(-pk, 0) / rho ** k)
-ax.plot(range(1, kmax + 1), bounds, "o-", color="#3182bd")
-ax.axhline(max(bounds), color="#e6550d", ls="--", lw=0.8)
+kmax = 8
+for lam, lab, col, mk in ((([1.0] + [0.9j, -0.9j] * 3), "$\\mathcal{M}_3(0.9)$: bound $3.86$, so $s\\geq4$", "#3182bd", "o"),
+                          (([1.0, 0.9j, -0.9j]), "poles $\\{1,\\pm0.9i\\}$: bound $0.62$, so $s\\geq1$", "#e6550d", "s")):
+    rho = max(abs(l) for l in lam)
+    bounds = [max(-sum(l ** k for l in lam).real, 0.0) / rho ** k for k in range(1, kmax + 1)]
+    ax.plot(range(1, kmax + 1), bounds, mk + "-", color=col, label=lab)
 ax.set_xlabel("$k$")
 ax.set_ylabel("$[-p_k]_+/\\rho^k$")
-ax.set_title("Hidden-eigenvalue bound: the $k$ that binds need not be $k=1$")
+ax.set_xticks(range(1, kmax + 1))
+ax.set_title("Power-sum bound: $k=2$ binds, $k=1$ sees nothing")
+ax.legend(frameon=False, fontsize=7)
 fig.tight_layout()
 fig.savefig(os.path.join(FIGS, "ctrl_powersum_bound.pdf"))
 print("  wrote ctrl_powersum_bound.pdf")
